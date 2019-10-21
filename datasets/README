@@ -1,0 +1,5 @@
+Create a directory per dataset in here. The naming convention is to use the
+publishing organisation's acronym, e.g. ONS, followed by a short form of the
+dataset's title. E.g. ONS-disability-england-wales.
+
+Each dataset directory will be used to create a transformation pipeline.

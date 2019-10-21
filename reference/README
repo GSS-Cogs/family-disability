@@ -1,0 +1,7 @@
+Directory to keep the configuration and codelists for table2qb:
+
+columns.csv
+components.csv
+codelists/*.csv
+codelists-metadata.json
+
