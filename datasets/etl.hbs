@@ -22,9 +22,9 @@
   <div class="col border-bottom border-right border-left p-2">
     <div class="font-weight-bold">Contacts:</div>
     {{#each contacts}}
-    <div>{{this.name}}</div>
-    <div>{{this.tel}}</div>
-    <div><a href="mailto:{{this.email}}">{{this.email}}</a></div>
+      <div>{{this.name}}</div>
+      <div>{{this.tel}}</div>
+      <div><a href="mailto:{{this.email}}">{{this.email}}</a></div>
     {{/each}}
   </div>
   <div class="col border-bottom border-right p-2">
@@ -40,7 +40,7 @@
   <div class="col border-bottom border-right p-2">
     <div class="font-weight-bold">Families:</div>
     {{#each families}}
-    {{this}}{{#unless @last}}, {{/unless}}
+      {{this}}{{#unless @last}}, {{/unless}}
     {{/each}}
   </div>
 </div>
@@ -93,15 +93,15 @@
     <div>
       <div class="font-weight-bold">Breakdowns:</div>
       {{#each extract.breakdowns}}
-      <div>
-	{{#ifObject this}}
-	{{#each this}}
-	{{@key}}: {{#each this}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
-	{{/each}}
-	{{else}}
-	{{this}}
-	{{/ifObject}}
-      </div>
+        <div>
+          {{#ifObject this}}
+            {{#each this}}
+              {{@key}}: {{#each this}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+            {{/each}}
+      {{else}}
+        {{this}}
+          {{/ifObject}}
+        </div>
       {{/each}}
     </div>
   </div>
