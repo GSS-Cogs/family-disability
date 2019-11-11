@@ -1,0 +1,16 @@
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Publisher</th>
+      <th>Dataset</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each this}}
+    <tr>
+      <td>{{this.info.publisher}}</td>
+      <td><a href="?{{this.directory}}">{{this.info.title}}</a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
