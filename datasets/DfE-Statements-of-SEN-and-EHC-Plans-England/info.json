@@ -20,5 +20,6 @@
       "Year", "Age", "Education Type", "Assessment", "Reason", "Status",
 	    {"Geography": ["Local Authority", "Region"]},
 	    "Placement", {"Financial": ["Budget"]}, "Mediation", "Employment", "Duration"]
-    }
+    },
+    "notes": "Initial view of spreadsheet taken place"
 }
