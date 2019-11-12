@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.min.js"></script>
   <script src="https://kit.fontawesome.com/850af993b4.js" crossorigin="anonymous"></script>
-  <title>Dataset family: disability</title>
+  <title>Dataset family: Disability</title>
 </head>
 
 <body>
-  <div class="container" id="body" style="background-color: aliceblue"></div>
+  <div class="container" id="body"></div>
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -46,20 +46,22 @@
         datatype: "html",
       }, function(source) {
         var template = Handlebars.compile(source);
-        $.getJSON('info.json', function(dirs) {
-          var fetches = dirs.map(function(dir) {
+        $.getJSON('info.json', function(info) {
+          var fetches = info.pipelines.map(function(dir) {
             return $.getJSON(dir + '/info.json');
           });
           $.when.apply($, fetches).then(function() {
             var allInfo = arguments;
-            var collected = dirs.map(function(d, i) {
+            var collected = info.pipelines.map(function(d, i) {
               return {
                 'directory': d,
                 'info': allInfo[i][0]
               };
             });
-            console.log(collected);
-            $("#body").html(template(collected));
+            $("#body").html(template({
+              "family": info.family,
+              "pipelines": collected
+            }));
           });
         });
       });
