@@ -1,1 +1,27 @@
-
+{
+    "title": "Homelessness in Scotland: Annual Publication 2018-19",
+    "publisher": "Scottish Government",
+    "description": "Information on local authority homelessness applications, assessments and outcomes along with information on the use of temporary accommodation.",
+    "dataURL": "https://www2.gov.scot/Topics/Statistics/Browse/Housing-Regeneration/RefTables",
+    "contacts": [{
+	      "name": "Lee Bunce",
+	      "tel": "01312443861",
+	      "email": "homelessness_statistics_inbox@gov.scot"
+    }],
+    "metaURL": "https://www2.gov.scot/Topics/Statistics/Browse/Housing-Regeneration/RefTables",
+    "published": "26 June 2019",
+    "families": ["Homelessness", "Disabilities"],
+    "stability": "Good",
+    "future": "Good",
+    "extract": {
+	      "source": "Excel spreadsheet (charts)",
+	      "subset": "All tabs",
+	      "breakdowns": [
+      	      "Application", "Assessment", "LA", "Housing option approach", "Rough sleeping", "Prior housing circumstances",
+	            {"Reason ": ["for assistance", "Failing to maintain accommodation"]},
+	            "Intentionally homeless", "Repeated homelessness", "Support need", "Year", 
+              "Temp accommodation", "Duration", "Household type", "Contact maintained", 
+              "Difference", "Property type", "Armed services", "LA Care"]
+    },
+    "notes": "There are 2  datasets  about homelessness in Scotland however  (charts) Data 6 and Data 9 and (tables) 9, 10 &15 relate to disabilities "
+}
