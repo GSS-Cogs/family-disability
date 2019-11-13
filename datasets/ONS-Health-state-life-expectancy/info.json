@@ -17,7 +17,6 @@
 	"source": "Excel spreadsheet, CSV and XLS",
 	"subset": "All tabs",
 	"breakdowns": [
-	    "Period", "Geography", "Sex", "Age Group", "Health State Life Expectancy"
- ]
+	    "Period", "Geography", "Sex", "Age Group", "Health State Life Expectancy"]
     }
 }
