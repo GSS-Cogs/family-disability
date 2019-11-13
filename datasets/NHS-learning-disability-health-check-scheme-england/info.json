@@ -10,6 +10,7 @@
     }],
     "metaURL": "https://digital.nhs.uk/data-and-information/publications/statistical/learning-disabilities-health-check-scheme/england-quarter-1-2019-20",
     "published": "04 October 2019",
+    "due": "January 2020" ,
     "families": ["Disability"],
     "stability": "Good",
     "future": "Good",
