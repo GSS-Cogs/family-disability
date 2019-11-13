@@ -1,0 +1,26 @@
+{
+    "title": "Special educational needs in England: January 2019",
+    "publisher": "Department for Education",
+    "description": "Information from the school census on pupils with special educational needs (SEN) and SEN provision in schools.",
+    "dataURL": "https://www.gov.uk/government/statistics/special-educational-needs-in-england-january-2019",
+    "contacts": [{
+	"name": "Sean Gibson",
+	"tel": "01325 340 987",
+	"email": "sen.statistics@education.gov.uk"
+    }],
+    "metaURL": "https://www.gov.uk/government/statistics/statements-of-sen-and-ehc-plans-england-2019",
+    "published": "04 July 2019",
+    "families": ["Education", "Disability"],
+    "stability": "?",
+    "future": "?",
+    "extract": {
+	"source": "3 XLS spreadsheets",
+	"subset": "All tabs",
+	"breakdowns": [
+	    {"Education provider": ["School type", "Academy type"]},
+	    "Provision", {"Special need type": ["SEN support ", "ECH plan "]}, "Year", "Age", "Gender",
+      "National curriculum year", "Free school meals", "Ethnic group", "First Language", "Primary type of need",
+      "Disability type", "Approval", "School size", "Resourced provision", "Region/LA area"]
+    },
+    "notes": "There appears to be a different definition of provision e.g. table 1, table 9 and the disabilities appears to be referred to as Primary type of need in tables 16 -18"
+}
