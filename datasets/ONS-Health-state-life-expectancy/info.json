@@ -1,1 +1,23 @@
-To EDIT:
+{
+"title": "Health state life expectancy - all ages, UK",
+    "publisher": "ONS",
+    "description": "Pivot tables for health state life expectancy by sex and area type, divided by two-year intervals starting from 2009 to 2011. Inversely relevant to disability dataset.",
+    "dataURL": "https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/datasets/healthstatelifeexpectancyallagesuk",
+    "contacts": [{
+	"name": "Merilynn Pratt",
+	"tel": "01633 456305",
+	"email": "merilynn.pratt@ons.gov.uk"
+    }],
+    "metaURL": "https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/datasets/healthstatelifeexpectancyallagesuk",
+    "published": "12 Dec 2018",
+    "families": ["Disability", "Healt"],
+    "stability": "Good",
+    "future": "Good",
+    "extract": {
+	"source": "Excel spreadsheet, CSV and XLS",
+	"subset": "All tabs",
+	"breakdowns": [
+	    "Period", "Geography", "Sex", "Age Group", "Health State Life Expectancy"
+ ]
+    }
+}
