@@ -10,7 +10,7 @@
     }],
     "metaURL": "https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/datasets/healthstatelifeexpectancyallagesuk",
     "published": "12 Dec 2018",
-    "families": ["Disability", "Healt"],
+    "families": ["Disability", "Health"],
     "stability": "Good",
     "future": "Good",
     "extract": {
