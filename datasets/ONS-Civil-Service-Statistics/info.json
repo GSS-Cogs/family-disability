@@ -17,12 +17,8 @@
 	"source": "Excel spreadsheet, CSV and XLS",
 	"subset": "All tabs",
 	"breakdowns": [
-	    "Responsibility Level", "Sex",
-	    "Employment Type", "Ethnicity",
-	    "Disability Status", "Age Group",
-      "Nationality", "Salary Band"
-      "Department", "Profession of Post"
-      "Entrants and Leavers", "Geography",
-	    "Year" ]
+	 	"Responsibility Level", "Sex", "Employment Type", "Ethnicity", "Disability Status", "Age Group",
+     		"Nationality", "Salary Band", "Department", "Profession of Post", "Entrants and Leavers",
+		{"Geography": ["Region", "NUTS2"]}, "Year" ]
     }
 }
