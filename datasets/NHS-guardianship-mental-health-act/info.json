@@ -1,0 +1,26 @@
+{
+    "title": "Guardianship under the Mental Health Act 1983, England, 2016-17 and 2017-18, National Statistic",
+    "publisher": "NHS Digital",
+    "description": "This publication contains data taken from the Adult Social Care Finance Return (ASC-FR) and Short and Long Term (SALT) collection to provide information regarding adult social care activity and finance on local authorities in England for 2018-19.",
+    "dataURL": "https://digital.nhs.uk/data-and-information/publications/statistical/guardianship-under-the-mental-health-act-1983/england-2016-17-and-2017-18-national-statistic",
+    "contacts": [{
+	"name": "Jane Winter",
+	"tel": "0300 303 5678",
+	"email": "enquiries@nhsdigital.nhs.uk"
+    }],
+    "metaURL": "https://digital.nhs.uk/data-and-information/publications/statistical/guardianship-under-the-mental-health-act-1983/england-2016-17-and-2017-18-national-statistic",
+    "published": "20 November 2018",
+    "families": ["Mental health","Health", "Disability"],
+    "stability": "Good",
+    "future": "Good",
+    "extract": {
+	"source": "Excel spreadsheet, XLS",
+	"subset": "All tabs",
+	"breakdowns": [
+	    "Section", "Relationship", "Year", "Gender",
+      {"Region and Local Authorit": ["ONS area code", "Local Authority code", "Local Authority name", "Region code"]},
+	    {"Status": ["New", "Continuing", "Closed"]},
+	    {"Guardianship": ["LA", "Other"]},
+	    "Duration" ]
+    }
+}
