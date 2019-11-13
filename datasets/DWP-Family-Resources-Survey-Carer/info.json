@@ -1,0 +1,32 @@
+{
+    "title": "Family Resources Survey for financial year 2017 to 2018 - Carer",
+    "publisher": "Department for work and pensions",
+    "description": "Results from the Family Resources Survey for financial year 2017 to 2018, providing information on income and circumstances of UK households. Includes a table of Carer information.",
+    "dataURL": "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718",
+    "contacts": [{
+	"name": "M A Vaughan",
+	"tel": "",
+	"email": "steam.frs@dwp.gov.uk"
+    }],
+    "metaURL": "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718",
+    "published": "28 March 2019",
+    "families": ["Affordable Housing", "Disability", "Care"],
+    "stability": "Good",
+    "future": "Good",
+    "extract": {
+	"source": "Excel spreadsheet, ODS",
+	"subset": "All tabs",
+	"breakdowns": [
+      "Year", "Informal Care",
+      {"Gender": ["Male","Female"]},
+      {"Age": ["0-15","16-24","25-34","35-44","45-54","55-64","65-74","75-84","85+"]},
+      {"Age Adult Carer": ["0-15","16-24","25-34","35-44","45-54","55-64","65-74","75+"]},
+	    {"Geography": ["United Kingdom"]},
+	    "Hours providing care per week", "Employment status", "Main source of income", "Net weekly income", "Person cared for",
+      "Frequency of care", "People receiving care", "People not receiving care", "All People"]
+    },
+    "notes": [
+      "This ETL covers the Carer dataset there is a seperate ETL for Disability an XLS and ODS document for each dataset available on the landing page.  This report also links into another ETL which has been created under affordable housing",
+      "There are 2 Age dimensions as listed above."
+    ]
+}
