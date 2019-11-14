@@ -20,6 +20,9 @@
        {"Sub-domains": ["Children and young people", "Adult skills", "Geographical barriers",
          "Wider barriers", "Indoors", "Outdoors"]},
          "Population"],
-         "notes": ["The landing page contains 13 XLS and 1 CSV spreadsheets relating to English deprivation."]
+         "notes": [
+           "The landing page contains 13 XLS and 1 CSV spreadsheets relating to English deprivation.",
+           "This data may already be in http://opendatacommunities.org/data/societal-wellbeing/imd2019/indices already as an RDF data cube."
+         ]
   }
 }
