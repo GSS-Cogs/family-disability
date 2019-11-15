@@ -48,20 +48,20 @@
         var template = Handlebars.compile(source);
         $.getJSON('info.json', function(info) {
           var fetches = info.pipelines.map(function(pipeline) {
-            return $.getJSON(pipeline[0] + '/info.json');
+            return $.getJSON(pipeline + '/info.json');
           });
           $.when.apply($, fetches).then(function() {
             var allInfo = arguments;
             var collected = info.pipelines.map(function(pipeline, i) {
               return {
-                'directory': pipeline[0],
+                'directory': pipeline,
                 'number': i + 1,
-                'github': (typeof pipeline[1] === 'number') ? info.github + '/issues/' + pipeline[1].toString() : null,
                 'info': allInfo[i][0]
               };
             });
             $("#body").html(template({
               "family": info.family,
+              "github": info.github,
               "pipelines": collected
             }));
           });

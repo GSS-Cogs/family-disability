@@ -16,5 +16,8 @@
     "source": "Excel spreadsheet",
     "subset": "All tabs",
     "breakdowns": ["Indicator", "Area", "Sex", "Age", "Category", "Time period", "Value", "Trend"]
+  },
+  "transform": {
+    "main_issue": 8
   }
 }

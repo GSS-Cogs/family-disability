@@ -28,5 +28,8 @@
         "Equality Act 2010": ["Equality Act Core"]
       }
     ]
+  },
+  "transform": {
+    "main_issue": 3
   }
 }

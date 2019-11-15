@@ -1,28 +1,40 @@
 {
-    "title": "English indices of deprivation",
-    "publisher": "Ministry of Housing, Communities and Local Government",
-    "description": "The English indices of deprivation measure relative deprivation in small areas in England called lower-layer super output areas. The index of multiple deprivation is the most widely used of these indices.",
-    "dataURL": "https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019",
-   "contacts": "sen.statistics@education.gov.uk",
-    "metaURL": "https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019",
-    "published": "26 September 2019",
-    "families": ["Deprivation", "Disability"],
-    "stability": "Good",
-    "future": "Good",
-    "extract": {
-	"source": "XLS, CSV, all",
-	"subset": "All tabs",
-	"breakdowns": [
-      	    "Local Authority", "Rank",
-	    {"Domains": ["Income", "Employment", "Education, skills and training", "Health and disability", "Crime",
-        "Barriers to housing", "Living environment"]},
-	     {"Indexes": ["Children", "Older people"]},
-       {"Sub-domains": ["Children and young people", "Adult skills", "Geographical barriers",
-         "Wider barriers", "Indoors", "Outdoors"]},
-         "Population"],
-         "notes": [
-           "The landing page contains 13 XLS and 1 CSV spreadsheets relating to English deprivation.",
-           "This data may already be in http://opendatacommunities.org/data/societal-wellbeing/imd2019/indices already as an RDF data cube."
-         ]
+  "title": "English indices of deprivation",
+  "publisher": "Ministry of Housing, Communities and Local Government",
+  "description": "The English indices of deprivation measure relative deprivation in small areas in England called lower-layer super output areas. The index of multiple deprivation is the most widely used of these indices.",
+  "dataURL": "https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019",
+  "contacts": "sen.statistics@education.gov.uk",
+  "metaURL": "https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019",
+  "published": "26 September 2019",
+  "families": ["Deprivation", "Disability"],
+  "stability": "Good",
+  "future": "Good",
+  "extract": {
+    "source": "XLS, CSV, all",
+    "subset": "All tabs",
+    "breakdowns": [
+      "Local Authority", "Rank",
+      {
+        "Domains": ["Income", "Employment", "Education, skills and training", "Health and disability", "Crime",
+          "Barriers to housing", "Living environment"
+        ]
+      },
+      {
+        "Indexes": ["Children", "Older people"]
+      },
+      {
+        "Sub-domains": ["Children and young people", "Adult skills", "Geographical barriers",
+          "Wider barriers", "Indoors", "Outdoors"
+        ]
+      },
+      "Population"
+    ]
+  },
+  "notes": [
+    "The landing page contains 13 XLS and 1 CSV spreadsheets relating to English deprivation.",
+    "This data may already be in http://opendatacommunities.org/data/societal-wellbeing/imd2019/indices already as an RDF data cube."
+  ],
+  "transform": {
+    "main_issue": 16
   }
 }

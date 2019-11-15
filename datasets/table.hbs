@@ -16,8 +16,8 @@
       <td>{{info.publisher}}</td>
       <td><a href="?{{directory}}">{{info.title}}</a></td>
       <td>
-        {{#if github}}
-        <a href="{{github}}"><i style="color: black;" class="fab fa-github-alt"></i></a>
+        {{#if info.transform.main_issue}}
+        <a href="{{../github}}/issues/{{info.transform.main_issue}}"><i style="color: black;" class="fab fa-github-alt"></i></a>
         {{/if}}
       </td>
     </tr>

@@ -1,25 +1,31 @@
 {
-    "title": "SCCG Outcomes Indicator Set - September 2019",
-    "publisher": "NHS Digital ",
-    "description": "The indicators aim to provide clear, comparative information for Clinical Commissioning Groups (CCGs) and Health and Wellbeing Boards (HWBs) about the quality of health services commissioned by CCGs and, as far as possible, the associated health outcomes.",
-    "dataURL": "https://digital.nhs.uk/data-and-information/publications/clinical-indicators/ccg-outcomes-indicator-set/current#data-sets",
-    "contacts": [{
-	"name": "Madeleine Watson, Chris Drew",
-	"tel": "0300 303 5678",
-	"email": "enquiries@nhsdigital.nhs.uk"
-    }],
-    "metaURL": "https://digital.nhs.uk/data-and-information/publications/clinical-indicators/ccg-outcomes-indicator-set/current#data-sets",
-    "published": "September 2019",
-    "families": ["Health", "Disability"],
-    "stability": "Good",
-    "future": "Good",
-    "extract": {
-	"source": "Excel spreadsheet, CSV",
-	"subset": "All tabs",
-	"breakdowns": [
-    "Reporting period","Breakdown","Level",
-    {"Health": ["Cancer","Mental illness","Long-term"]},
-    "Survival rate","Check","Value"]
+  "title": "CCG Outcomes Indicator Set - September 2019",
+  "publisher": "NHS Digital ",
+  "description": "The indicators aim to provide clear, comparative information for Clinical Commissioning Groups (CCGs) and Health and Wellbeing Boards (HWBs) about the quality of health services commissioned by CCGs and, as far as possible, the associated health outcomes.",
+  "dataURL": "https://digital.nhs.uk/data-and-information/publications/clinical-indicators/ccg-outcomes-indicator-set/current#data-sets",
+  "contacts": [{
+    "name": "Madeleine Watson, Chris Drew",
+    "tel": "0300 303 5678",
+    "email": "enquiries@nhsdigital.nhs.uk"
+  }],
+  "metaURL": "https://digital.nhs.uk/data-and-information/publications/clinical-indicators/ccg-outcomes-indicator-set/current#data-sets",
+  "published": "September 2019",
+  "families": ["Health", "Disability"],
+  "stability": "Good",
+  "future": "Good",
+  "extract": {
+    "source": "Excel spreadsheet, CSV",
+    "subset": "All tabs",
+    "breakdowns": [
+      "Reporting period", "Breakdown", "Level",
+      {
+        "Health": ["Cancer", "Mental illness", "Long-term"]
+      },
+      "Survival rate", "Check", "Value"
+    ]
   },
-    "notes": ""
+  "notes": "",
+  "transform": {
+    "main_issue": 13
+  }
 }

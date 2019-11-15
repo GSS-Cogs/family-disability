@@ -84,6 +84,10 @@
     </div>
   </div>
   <div class="col border-bottom border-right p-2">
+    {{#if transform.main_issue}}
+    <span class="font-weight-bold">Tracking:</span>
+    <span><a href="https://github.com/GSS-Cogs/family-disability/issues/{{transform.main_issue}}">GitHub issue #{{transform.main_issue}}</a></span>
+    {{/if}}
   </div>
   <div class="col border-bottom border-right p-2">
   </div>

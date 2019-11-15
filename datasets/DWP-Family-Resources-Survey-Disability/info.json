@@ -1,35 +1,54 @@
 {
-    "title": "Family Resources Survey for financial year 2017 to 2018 - Disability",
-    "publisher": "Department for work and pensions",
-    "description": "Results from the Family Resources Survey for financial year 2017 to 2018, providing information on income and circumstances of UK households. Includes a table of Disability information.",
-    "dataURL": "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718",
-    "contacts": [{
-	"name": "M A Vaughan",
-	"tel": "",
-	"email": "team.frs@dwp.gov.uk"
-    }],
-    "metaURL": "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718",
-    "published": "28 March 2019",
-    "families": ["Affordable Housing","Disability","Care"],
-    "stability": "Good",
-    "future": "Good",
-    "extract": {
-	"source": "Excel spreadsheet, ODS",
-	"subset": "All tabs",
-	"breakdowns": [
-         {"Geography": ["United Kingdon", "Country", "Region"]},
-      	 "Year",
-         {"Age Group": ["Working age Adults", "State Pension Age", "Adults", "Children"]},
-         {"Age group": ["0-4","5-9","10-14","15-19","20-24","25-29","30-34","35-39","40-44","45-49","50-54","55-59","60-64","65-69","70-74","75-79","80+"]},
-         {"Disability Status": ["Disabled","Non-Disabled"]},
-         {"Gender": ["Male","Female"]},
-         {"Gender": ["Male Disabled","Male Non-Disabled","Female Disabled","Female Non-Disabled"]},
-         {"Impairment type": ["Mobility","Stamina/breathing/fatigue","Dexterity","Mental health","Memory","Hearing","Vision","Learning","Social/behavioural","Other"]},
-         {"Employment status": ["All in employment","Unemployed","Retired","Other economically inactive"]},
-          "Benefit unit type","Disability status of benefit unit","State support"]
-    },
-    "notes": [
-      "This ETL covers the Disability element  there is a seperate ETL for Carer  an XLS and ODS document for each dataset available on the landing page.  This  report also links into another ETL which has been created under affordable housing.",
-      "There are 2 Age group and Gender dimensions as listed above."
+  "title": "Family Resources Survey for financial year 2017 to 2018 - Disability",
+  "publisher": "Department for work and pensions",
+  "description": "Results from the Family Resources Survey for financial year 2017 to 2018, providing information on income and circumstances of UK households. Includes a table of Disability information.",
+  "dataURL": "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718",
+  "contacts": [{
+    "name": "M A Vaughan",
+    "tel": "",
+    "email": "team.frs@dwp.gov.uk"
+  }],
+  "metaURL": "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718",
+  "published": "28 March 2019",
+  "families": ["Affordable Housing", "Disability", "Care"],
+  "stability": "Good",
+  "future": "Good",
+  "extract": {
+    "source": "Excel spreadsheet, ODS",
+    "subset": "All tabs",
+    "breakdowns": [{
+        "Geography": ["United Kingdon", "Country", "Region"]
+      },
+      "Year",
+      {
+        "Age Group": ["Working age Adults", "State Pension Age", "Adults", "Children"]
+      },
+      {
+        "Age group": ["0-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74", "75-79", "80+"]
+      },
+      {
+        "Disability Status": ["Disabled", "Non-Disabled"]
+      },
+      {
+        "Gender": ["Male", "Female"]
+      },
+      {
+        "Gender": ["Male Disabled", "Male Non-Disabled", "Female Disabled", "Female Non-Disabled"]
+      },
+      {
+        "Impairment type": ["Mobility", "Stamina/breathing/fatigue", "Dexterity", "Mental health", "Memory", "Hearing", "Vision", "Learning", "Social/behavioural", "Other"]
+      },
+      {
+        "Employment status": ["All in employment", "Unemployed", "Retired", "Other economically inactive"]
+      },
+      "Benefit unit type", "Disability status of benefit unit", "State support"
     ]
+  },
+  "notes": [
+    "This ETL covers the Disability element  there is a seperate ETL for Carer  an XLS and ODS document for each dataset available on the landing page.  This  report also links into another ETL which has been created under affordable housing.",
+    "There are 2 Age group and Gender dimensions as listed above."
+  ],
+  "transform": {
+    "main_issue": 11
+  }
 }

@@ -1,24 +1,30 @@
 {
-"title": "Civil Service Statistics (unvalidated)",
-    "publisher": "ONS",
-    "description": "Annual data on Civil Service employment in the UK, including gender, ethnicity, disability status, earnings and location of the Civil Service workforce",
-    "dataURL": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/publicsectorpersonnel/datasets/civilservicestatistics",
-    "contacts": [{
-	"name": "Niel Hedges",
-	"tel": "+44 (0)1633 456741",
-	"email": "cssurveys@ons.gov.uk"
-    }],
-    "metaURL": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/publicsectorpersonnel/datasets/civilservicestatistics",
-    "published": "03 August 2018",
-    "families": ["Employment", "Disabilities"],
-    "stability": "Good",
-    "future": "Good",
-    "extract": {
-	"source": "Excel spreadsheet, CSV and XLS",
-	"subset": "All tabs",
-	"breakdowns": [
-	 	"Responsibility Level", "Sex", "Employment Type", "Ethnicity", "Disability Status", "Age Group",
-     		"Nationality", "Salary Band", "Department", "Profession of Post", "Entrants and Leavers",
-		{"Geography": ["Region", "NUTS2"]}, "Year" ]
-    }
+  "title": "Civil Service Statistics (unvalidated)",
+  "publisher": "ONS",
+  "description": "Annual data on Civil Service employment in the UK, including gender, ethnicity, disability status, earnings and location of the Civil Service workforce",
+  "dataURL": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/publicsectorpersonnel/datasets/civilservicestatistics",
+  "contacts": [{
+    "name": "Niel Hedges",
+    "tel": "+44 (0)1633 456741",
+    "email": "cssurveys@ons.gov.uk"
+  }],
+  "metaURL": "https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/publicsectorpersonnel/datasets/civilservicestatistics",
+  "published": "03 August 2018",
+  "families": ["Employment", "Disabilities"],
+  "stability": "Good",
+  "future": "Good",
+  "extract": {
+    "source": "Excel spreadsheet, CSV and XLS",
+    "subset": "All tabs",
+    "breakdowns": [
+      "Responsibility Level", "Sex", "Employment Type", "Ethnicity", "Disability Status", "Age Group",
+      "Nationality", "Salary Band", "Department", "Profession of Post", "Entrants and Leavers",
+      {
+        "Geography": ["Region", "NUTS2"]
+      }, "Year"
+    ]
+  },
+  "transform": {
+    "main_issue": 9
+  }
 }
