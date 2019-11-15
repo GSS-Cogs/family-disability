@@ -1,0 +1,26 @@
+{
+    "title": "Measures from the Adult Social Care Outcomes Framework, England, 2018-19",
+    "publisher": "NHS Digital",
+    "description": "The Adult Social Care Outcomes Framework (ASCOF) measures how well care and support services achieve the outcomes that matter most to people. The ASCOF is used both locally and nationally to set priorities for care and support, measure progress and strengthen transparency and accountability.",
+    "dataURL": "https://digital.nhs.uk/data-and-information/publications/statistical/adult-social-care-outcomes-framework-ascof/upcoming/measures-from-the-adult-social-care-outcomes-framework-england-2018-19",
+    "contacts": [{
+	"name": "Robyn Wilson",
+	"tel": "0300 303 5678",
+	"email": "enquiries@nhsdigital.nhs.uk"
+    }],
+    "metaURL": "https://digital.nhs.uk/data-and-information/publications/statistical/adult-social-care-outcomes-framework-ascof/upcoming/measures-from-the-adult-social-care-outcomes-framework-england-2018-19",
+    "published": "22 October 2019",
+    "families": ["Social care", "Disability", "Health"],
+    "stability": "Good",
+    "future": "Good",
+    "extract": {
+	"source": "XLS x 5",
+	"subset": "All tabs",
+	"breakdowns": [
+	  {"Geography": ["England", "CASSR", "ONS code"]},
+	    {"Gender": ["All", "Male", "Female"]},
+      {"Age group": ["18-64", "65+", "65-74", "75-84", "85+"]}, "Outcomes", {"People": ["Adults", "Service users", "Carers"]},
+	    {"Financial": ["Income", "Expenditure", "Capital", "Cash"]},
+	    {"Period": ["91 days"]} ]
+    }
+}
