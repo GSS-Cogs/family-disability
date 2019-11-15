@@ -3,6 +3,5 @@ Indicator,indicator,qb:dimension,http://gss-data.org.uk/def/dimension/indicator,
 Area,geography,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refArea,http://statistics.data.gov.uk/id/statistical-geography/{geography},string,,,
 Sex,sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#sex,http://purl.org/linked-data/sdmx/2009/code#sex-{sex},string,,,http://purl.org/linked-data/sdmx/2009/code#Sex
 Age,age,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#age,http://gss-data.org.uk/def/concept/ages/{age},string,slugize,,http://gss-data.org.uk/def/classes/age/Age
-Category,category,qb:dimension,http://gss-data.org.uk/def/dimension/category,http://gss-data.org.uk/def/dimension/category/{category},string,slugize,,http://gss-data.org.uk/def/classes/category/Category
 Time period,period,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refPeriod,http://reference.data.gov.uk/id/{+period},string,,,http://reference.data.gov.uk/def/intervals/Interval
 Trend,trend,qb:dimension,ttp://gss-data.org.uk/def/dimension/trend,http://gss-data.org.uk/def/dimension/trend/{trend},string,slugize,,http://gss-data.org.uk/def/classes/trend/Trend
