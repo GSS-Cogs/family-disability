@@ -29,7 +29,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh "csv2rdf -m annotated -t epraccur/epraccur.csv -u epraccur.csv-metadata.json -o epraccur.ttl"
+                    sh "csv2rdf -m annotated -t epraccur.csv -u reference/nhs-gp-practices/epraccur.csv-metadata.json -o epraccur.ttl"
                 }
             }
         }
