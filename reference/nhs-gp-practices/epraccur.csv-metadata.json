@@ -185,17 +185,17 @@
             "name": "in_scheme",
             "virtual": true,
             "propertyUrl": "skos:inScheme",
-            "valueUrl": "http://gss-data.org.uk/def/nhs-gp-practices"
+            "valueUrl": "http://gss-data.org.uk/def/concept-scheme/nhs-gp-practices"
           }
         ],
         "primaryKey": "org_code",
-        "aboutUrl": "http://gss-data.org.uk/def/nhs-gp-practices/{org_code}"
+        "aboutUrl": "http://gss-data.org.uk/def/concept/nhs-gp-practices/{org_code}"
       }
     }
   ],
   "@id": "http://gss-data.org.uk/def/nhs-gp-practices#tablegroup",
   "prov:hadDerivation": {
-    "@id": "http://gss-data.org.uk/def/nhs-gp-practices",
+    "@id": "http://gss-data.org.uk/def/concept-scheme/nhs-gp-practices",
     "@type": "skos:ConceptScheme",
     "rdfs:label": "NHS GP Practices"
   }

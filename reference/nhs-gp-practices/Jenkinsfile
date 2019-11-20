@@ -33,5 +33,22 @@ pipeline {
                 }
             }
         }
+	stage('Add concept scheme') {
+            steps {
+                script {
+                    def pmd = pmdConfig('pmd')
+                    def draftset = pmd.drafter.listDraftsets().find { it['display-name'] == env.JOB_NAME }
+                    if (draftset) {
+                        pmd.drafter.deleteDraftset(draftset.id)
+                    }
+		    String id = pmd.drafter.createDraftset(env.JOB_NAME).id
+		    String graph = 'http://gss-data.org.uk/def/concept-scheme/nhs-gp-practices'
+		    pmd.drafter.deleteGraph(id, graph)
+		    pmd.drafter.addData(id, graph, 'text/ttl', 'UTF-8', 'epraccur.ttl')
+                    pmd.drafter.publishDraftset(id)
+                }
+            }
+        }
+
     }
 }
