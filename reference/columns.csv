@@ -4,4 +4,5 @@ Area,geography,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refA
 Sex,sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#sex,http://purl.org/linked-data/sdmx/2009/code#sex-{sex},string,,,http://purl.org/linked-data/sdmx/2009/code#Sex
 Age,age,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#age,http://gss-data.org.uk/def/concept/ages/{age},string,slugize,,http://gss-data.org.uk/def/classes/age/Age
 Time period,period,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refPeriod,http://reference.data.gov.uk/id/{+period},string,,,http://reference.data.gov.uk/def/intervals/Interval
-Trend,trend,qb:dimension,ttp://gss-data.org.uk/def/dimension/trend,http://gss-data.org.uk/def/dimension/trend/{trend},string,slugize,,http://gss-data.org.uk/def/classes/trend/Trend
+Trend,trend,qb:dimension,http://gss-data.org.uk/def/dimension/trend,http://gss-data.org.uk/def/dimension/trend/{trend},string,slugize,,http://gss-data.org.uk/def/classes/trend/Trend
+GP Practice,gp_practice_code,qb:dimension,http://gss-data.org.uk/def/nhs-gp-practice,http://gss-data.org.uk/def/concept/nhs-gp-practices/{gp_practice_code},string,,([A-H]|[J-N]|[P-W]|Y)[0-9]{5},http://gss-data.org.uk/def/classes/gp-practice/GP_Practice
