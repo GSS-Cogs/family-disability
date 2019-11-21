@@ -44,7 +44,7 @@ pipeline {
 		    String id = pmd.drafter.createDraftset(env.JOB_NAME).id
 		    String graph = 'http://gss-data.org.uk/def/concept-scheme/nhs-gp-practices'
 		    pmd.drafter.deleteGraph(id, graph)
-		    pmd.drafter.addData(id, graph, 'text/ttl', 'UTF-8', 'epraccur.ttl')
+		    pmd.drafter.addData(id, graph, 'text/ttl', 'UTF-8', 'reference/nhs-gp-practices/epraccur.ttl')
                     pmd.drafter.publishDraftset(id)
                 }
             }
