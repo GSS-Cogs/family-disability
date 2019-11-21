@@ -1,59 +1,41 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[24]:
-
-
+# %%
 from gssutils import *
-from databaker.framework import *
-import pandas as pd
-import datetime
-
-def left(s, amount):
-    return s[:amount]
-
-def right(s, amount):
-    return s[-amount:]
-
-def mid(s, offset, amount):
-    return s[offset:offset+amount]
-
-year = right(str(datetime.datetime.now().year),2)
 
 scraper = Scraper('https://digital.nhs.uk/data-and-information/publications/statistical/adult-social-care-outcomes-framework-ascof')
 scraper
 
 
-# In[25]:
-
-
-scraper.select_dataset(title=lambda t: year in t)
+# %%
+scraper.select_dataset(latest=True)
 scraper
 
 
-# In[28]:
-
-
-dist = scraper.distribution(mediaType='text/csv')
+# %%
+dist = scraper.distribution(latest=True, mediaType='text/csv')
 dist
 
 
-# In[34]:
+# %%
+table = dist.as_pandas(encoding='Windows-1252')
+table
+
+# %%
+out = Path('out')
+out.mkdir(exist_ok=True, parents=True)
+table.to_csv(out / 'observations.csv', index = False)
 
 
-file = dist.downloadURL
-file = pd.read_csv(file, encoding = "ISO-8859-1", low_memory = False)
-file
+# %%
+scraper.dataset.family = 'health'
+scraper.dataset.theme = THEME['health-social-care']
+with open(out / 'dataset.trig', 'wb') as metadata:
+    metadata.write(scraper.generate_trig())
 
 
-# In[36]:
+# %%
+csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
+csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
 
-
-file.to_csv('Tidy.csv', index = False)
-
-
-# In[ ]:
-
-
-
-
+# %%
