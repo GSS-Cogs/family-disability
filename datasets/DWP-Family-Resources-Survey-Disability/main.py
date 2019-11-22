@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[192]:
+# In[3]:
 
 
 from gssutils import *
@@ -21,14 +21,14 @@ def mid(s, offset, amount):
 year = right(str(datetime.datetime.now().year),2)
 
 scraper = Scraper('https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718')
+dist = scraper.distribution(title=lambda t: 'Disability data tables (XLS)' in t)
 
 
-# In[193]:
+# In[4]:
 
 
 dist = scraper.distribution(title=lambda t: 'Disability data tables (XLS)' in t)
 tabs = (t for t in dist.as_databaker())
-
 tidied_sheets = []
 
 for tab in tabs:
@@ -197,7 +197,7 @@ for tab in tabs:
         continue
 
 
-# In[194]:
+# In[5]:
 
 
 new_table = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -214,7 +214,7 @@ new_table['Age Group'] = new_table['Age Group'].map(
 tidy = new_table[['Period','Region','Disability','Gender','Age Group','Measure type','Value','Unit']]
 
 
-# In[195]:
+# In[6]:
 
 
 tidy = tidy.replace({'Disability' : {
@@ -242,7 +242,7 @@ tidy = tidy.replace({'Age Group' : {
     'All people' : 'All'}})
 
 
-# In[196]:
+# In[7]:
 
 
 from IPython.core.display import HTML
@@ -253,7 +253,7 @@ for col in tidy:
         display(tidy[col].cat.categories)
 
 
-# In[197]:
+# In[8]:
 
 
 destinationFolder = Path('out')
@@ -263,16 +263,4 @@ TAB_NAME = 'observations'
 
 tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 tidy
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
