@@ -454,7 +454,7 @@ out.mkdir(exist_ok=True, parents=True)
 # -
 
 #### Output the files
-#bl1.drop_duplicates().to_csv(out / ('observations_5_1.csv'), index = False)
+tbl1.drop_duplicates().to_csv(out / ('observations_5_1.csv'), index = False)
 tbl2.drop_duplicates().to_csv(out / ('observations_5_2.csv'), index = False)
 tbl3.drop_duplicates().to_csv(out / ('observations_5_3.csv'), index = False)
 tbl4.drop_duplicates().to_csv(out / ('observations_5_4.csv'), index = False)
@@ -474,4 +474,16 @@ with open(out / 'dataset.trig', 'wb') as metadata:
 
 # +
 #schema = CSVWMetadata('https://github.com/GSS-Cogs/family-disability/reference/')
-#schema.create(out / 'observations.csv', out / 'observations_5_1.csv-schema.json')
+#schema.create(out / 'observations_5_1.csv', out / 'observations_5_1.csv-schema.json')
+#schema.create(out / 'observations_5_2.csv', out / 'observations_5_2.csv-schema.json')
+#schema.create(out / 'observations_5_3.csv', out / 'observations_5_3.csv-schema.json')
+#schema.create(out / 'observations_5_4.csv', out / 'observations_5_4.csv-schema.json')
+#schema.create(out / 'observations_5_5.csv', out / 'observations_5_5.csv-schema.json')
+#schema.create(out / 'observations_5_6.csv', out / 'observations_5_6.csv-schema.json')
+#schema.create(out / 'observations_5_7.csv', out / 'observations_5_7.csv-schema.json')
+#schema.create(out / 'observations_5_8.csv', out / 'observations_5_8.csv-schema.json')
+#schema.create(out / 'observations_5_9.csv', out / 'observations_5_9.csv-schema.json')
+#schema.create(out / 'observations_5_10.csv', out / 'observations_5_10.csv-schema.json')
+# -
+
+
