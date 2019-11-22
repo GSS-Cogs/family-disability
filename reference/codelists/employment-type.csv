@@ -1,0 +1,9 @@
+Label,Notation,Parent Notation,Sort Priority
+All,All,,1
+full-time,full-time,All,2
+part-time,part-time,All,3
+student,student,All,4
+looking after family/home,looking-after-family-home,All,5
+"permanently sick/disabled",permanently-sick-disabled,All,6
+"temporarily sick/disabled",temporarily-sick-disabled,All,7
+other inactive,other-inactive,All,8
