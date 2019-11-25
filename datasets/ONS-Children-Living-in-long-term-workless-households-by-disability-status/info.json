@@ -17,7 +17,21 @@
     "source": "Excel spreadsheet",
     "subset": "All tabs",
     "breakdowns": [
-      "Year", "Household disability status", "Workless Household Type"
+        "Year",
+      {
+        "Household disability status": ["Children in long-term workless households", "Children in workless households", 
+                                        "All children"]
+      },
+      {
+        "Workless Household Type": ["No disabled adults in household", "Some adults in household are disabled", 
+                                        "All adults in household are disabled", "Total"]
+      },
+      {
+        "Measure Type": ["Thousands"]
+      },
+      {
+        "Unit": ["People"]
+      }
     ]
   },
   "notes": [
