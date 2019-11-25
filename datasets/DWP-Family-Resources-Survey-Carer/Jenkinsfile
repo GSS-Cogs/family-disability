@@ -1,4 +1,23 @@
+pipeline {
+    agent {
+        label 'master'
+    }
+    stages {
+        stage('Test') {
+            agent {
+                docker {
+                    image 'python:3.7'
+                    reuseNode true
+                }
+            }
+            steps 
+                sh "jupyter-nbconvert --to python --stdout python DWP-Family-Resources-Survey-Carer/main.ipynb | python"
+            }
+        }
+    }
+    post {
+    }
+}
 
-    def task = "python DWP-Family-Resources-Survey-Carer/main.py".execute()
-    task.waitFor()
-    println task.text
+
+
