@@ -11,7 +11,7 @@ pipeline {
                 }
             }
             steps {
-                     sh 'jupyter-nbconvert --to python 'DWP-Family-Resources-Survey-Carer/sic2007.ipynb' --stdout | python'
+                     !sh jupyter-nbconvert --to python 'DWP-Family-Resources-Survey-Carer/sic2007.ipynb' --stdout
             }
         }
   
