@@ -11,10 +11,12 @@ pipeline {
                 }
             }
             steps {
-                 def cmdArray = ["python", "-c", "print('hello')"]
-                def cmd = cmdArray.execute()
-                cmd.waitForOrKill(1000)
-                println cmd.text
+                    def cmd = 'python -c "print(\'hello\')"'
+                    def proc = cmd.execute()
+                    proc.waitFor()
+                    println "return code: ${ proc.exitValue()}"
+                    println "stderr: ${proc.err.text}"
+                    println "stdout: ${proc.in.text}"
             }
         }
   
