@@ -12,5 +12,9 @@
     "url": "codelists/phe-co-occurring-substance-misuse-and-mental-health-issues-age.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Age"
+  }, {
+		"url": "codelists/nhs-geographies.csv",
+		"tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "NHS Geography"
   }]
 }
