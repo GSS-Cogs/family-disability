@@ -1,21 +1,11 @@
 pipeline {
-    agent {
-        label 'master'
-    }
+    agent { docker { image 'python:3.5.1' } }
     stages {
-        stage('Transform') {
-            agent {
-                docker {
-                    image 'cloudfluff/databaker'
-                    reuseNode true
-                }
-            }
+        stage('build') {
             steps {
-                 sh 'jupyter-nbconvert --to python --stdout DWP-Family-Resources-Survey-Carer/main.ipynb | python'
+                sh 'python --version'
             }
         }
-  
     }
-    
 }
 
