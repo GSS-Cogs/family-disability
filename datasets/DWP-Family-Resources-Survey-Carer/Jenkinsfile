@@ -11,12 +11,12 @@ pipeline {
                 }
             }
             steps {
-                    def cmd = 'python -c "print(\'hello\')"'
-                    def proc = cmd.execute()
-                    proc.waitFor()
-                    println "return code: ${ proc.exitValue()}"
-                    println "stderr: ${proc.err.text}"
-                    println "stdout: ${proc.in.text}"
+                    def sout = new StringBuffer(), serr = new StringBuffer()
+                    def proc ='../DWP-Family-Resources-Survey-Carer/main.py'.execute()
+                    def b = new StringBuffer()
+                    proc.consumeProcessErrorStream(b)
+                    println proc.text
+                    println b.toString()
             }
         }
   
