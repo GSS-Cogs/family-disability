@@ -16,7 +16,7 @@
     "url": "codelists/workless-household-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Workless Household Type"
-  }{
+  }, {
     "url": "codelists/phe-co-occurring-substance-misuse-and-mental-health-issues-age.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Age"
