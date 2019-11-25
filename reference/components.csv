@@ -2,3 +2,5 @@ Label,Description,Component Type,Codelist
 Trend,The general direction in which something is developing or changing,Dimension,http://gss-data.org.uk/def/concept-scheme/trend
 Indicator,A public health Indicator,Dimension,http://gss-data.org.uk/def/concept-scheme/indicator
 Age,Age grouping,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-co-occurring-substance-misuse-and-mental-health-issues-age
+Household Disability Status,?,Dimension,http://gss-data.org.uk/def//household-disability-status/indicator
+Workless Household Type,?,Dimension,http://gss-data.org.uk/def//workless-household-type/indicator
