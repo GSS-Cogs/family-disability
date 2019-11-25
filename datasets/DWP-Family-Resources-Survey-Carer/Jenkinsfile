@@ -1,7 +1,4 @@
-transformPipeline {
 
     def task = "python DWP-Family-Resources-Survey-Carer/main.py".execute()
     task.waitFor()
     println task.text
-    
-}
