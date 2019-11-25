@@ -11,7 +11,12 @@ pipeline {
                 }
             }
             steps {
-                sh 'jupyter-nbconvert --to python --stdout DWP-Family-Resources-Survey-Carer/main.ipynb | python'
+                def sRootDir = configuration.workspaceDir.absolutePath + '/' + vars.getValue("ProjectPath") + '/TestScripts/';
+                print sRootDir
+                //def sPythonExe = configuration.workspaceDir.absolutePath + '/' + vars.getValue("ProjectPath") + '/Tools/Python/python.exe';
+                //def generateScriptCmd = '"' + sPythonExe + '" GenerateScript.py';
+                //def proc1 = generateScriptCmd.execute(null, new File(sRootDir));
+                //proc1.waitFor();
             }
         }
   
