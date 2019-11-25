@@ -1,5 +1,7 @@
 transformPipeline {
 
-    refFamily = 'family_disability/reference'
+    def task = "python main.py".execute()
+    task.waitFor()
+    println task.text
     
 }
