@@ -43,9 +43,9 @@ tidy_sheet["Time period"] = df["Time period"].apply(timeify)
 tidy_sheet["Value"] = df["Value"]
 tidy_sheet["Trend"] = df["Recent Trend"]
 
-# output observations to ./out
-# TODO - should probably be consistent with the other recipes
-out_dir = os.getcwd()+"/out"
-if not os.path.exists(out_dir):
-    os.mkdir(out_dir)
-tidy_sheet.to_csv(out_dir+"/observations.csv", index=False)
+from pathlib import Path
+out = Path('out')
+out.mkdir(exist_ok=True)
+tidy_Sheet.to_csv(out / 'observations.csv', index = False)
+
+
