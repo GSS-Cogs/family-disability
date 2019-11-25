@@ -1,4 +1,6 @@
 transformPipeline {
 
     refFamily = 'family_disability/reference'
+    sh 'python.exe DWP-Family-Resources-Survey-Carer.py'
+/
 }
