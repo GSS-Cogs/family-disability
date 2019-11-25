@@ -1,0 +1,6 @@
+Label,Notation,Parent Notation,Sort Priority
+All ages,all-ages,,
+<16 yrs,less-than-16-years,,
+<18 yrs,less-than-18-years,,
+Not applicable,not-applicable,,
+16+ yrs,greater-than-16-years,,
