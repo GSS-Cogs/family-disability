@@ -11,12 +11,7 @@ pipeline {
                 }
             }
             steps {
-                    def sout = new StringBuffer(), serr = new StringBuffer()
-                    def proc ='../DWP-Family-Resources-Survey-Carer/main.py'.execute()
-                    def b = new StringBuffer()
-                    proc.consumeProcessErrorStream(b)
-                    println proc.text
-                    println b.toString()
+                     sh 'jupyter-nbconvert --to python 'DWP-Family-Resources-Survey-Carer/sic2007.ipynb' --stdout | python'
             }
         }
   
