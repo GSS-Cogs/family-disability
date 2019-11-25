@@ -1,6 +1,4 @@
 transformPipeline {
-    
-    sh 'DWP-Family-Resources-Survey-Carer/main.py'
 
     refFamily = 'family_disability/reference'
 }
