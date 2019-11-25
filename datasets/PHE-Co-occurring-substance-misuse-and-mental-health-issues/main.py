@@ -46,6 +46,5 @@ tidy_sheet["Trend"] = df["Recent Trend"]
 from pathlib import Path
 out = Path('out')
 out.mkdir(exist_ok=True)
-tidy_Sheet.to_csv(out / 'observations.csv', index = False)
-
+tidy_sheet.to_csv(out / 'observations.csv', index = False)
 
