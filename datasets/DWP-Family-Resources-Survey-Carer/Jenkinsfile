@@ -11,7 +11,10 @@ pipeline {
                 }
             }
             steps {
-                 sh 'jupyter-nbconvert --to python --stdout DWP-Family-Resources-Survey-Carer/main.ipynb | python'
+                 def cmdArray = ["python", "-c", "print('hello')"]
+                def cmd = cmdArray.execute()
+                cmd.waitForOrKill(1000)
+                println cmd.text
             }
         }
   
