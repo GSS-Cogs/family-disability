@@ -27,6 +27,7 @@ table.rename(columns={
     'ONS Area Code': 'ONS Geography'
 }, inplace=True)
 table.drop(columns=['Geographical Description', 'Geographical Level'], inplace=True)
+table
 
 # %%
 for col in table:
