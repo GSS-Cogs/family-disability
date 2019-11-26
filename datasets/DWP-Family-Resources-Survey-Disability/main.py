@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[56]:
+# In[307]:
 
 
 from gssutils import *
@@ -14,7 +14,7 @@ def left(s, amount):
 scraper = Scraper('https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718')
 
 
-# In[57]:
+# In[308]:
 
 
 dist = scraper.distribution(title=lambda t: 'Disability data tables (XLS)' in t)
@@ -42,7 +42,8 @@ for tab in tabs:
                 HDim(age, 'Age Group', DIRECTLY, ABOVE),
                 HDimConst('Measure type','Percentage'),
                 HDimConst('Unit','Percent'),
-                HDimConst('Region', 'United Kingdom')
+                HDimConst('Region', 'United Kingdom'),
+                HDimConst('Sheet','4_1')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -68,7 +69,8 @@ for tab in tabs:
                 HDimConst('Age Group', 'All people'),
                 HDimConst('Measure type','Count'),
                 HDimConst('Unit','People (Millions)') ,
-                HDimConst('Region', 'United Kingdom')   
+                HDimConst('Region', 'United Kingdom'),
+                HDimConst('Sheet','4_2')   
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -77,30 +79,56 @@ for tab in tabs:
         
     elif tab.name in ['4_3']:
         
-        cell = tab.excel_ref("B9")
+        cell = tab.excel_ref("B15")
 
-        remove = tab.filter('Percentage of people').expand(RIGHT).expand(LEFT).expand(DOWN)
+        remove = tab.filter('Percentage of people').expand(RIGHT).expand(DOWN).expand(LEFT)
     
         age = cell.shift(RIGHT).expand(DOWN).is_not_blank().is_not_whitespace().shift(LEFT) - remove
 
-        gender = cell.shift(1,0).expand(RIGHT).is_not_blank().is_not_whitespace()
+        gender = tab.excel_ref("C9").expand(RIGHT).is_not_blank().is_not_whitespace() - remove
 
-        observations = gender.fill(DOWN).is_not_blank().is_not_whitespace() - remove
+        observations = gender.shift(0,5).fill(DOWN).is_not_blank().is_not_whitespace() - remove
 
         dimensions = [
-                HDim(gender, 'Disability', DIRECTLY, ABOVE),
+                HDim(gender,'Disability', DIRECTLY, ABOVE),
                 HDim(age, 'Age Group', DIRECTLY, LEFT), 
-                HDim(gender, 'Gender', DIRECTLY, ABOVE), 
+                HDimConst('Region', 'United Kingdom'), 
                 HDimConst('Period', '2015-18'),
+                HDim(gender, 'Gender', DIRECTLY, ABOVE),
                 HDimConst('Measure type','Count'),
                 HDimConst('Unit','People (Millions)'),
-                HDimConst('Region', 'United Kingdom')    
+                HDimConst('Sheet','4_3')    
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
         tidied_sheets.append(c1.topandas())
         
+        remove = tab.excel_ref("B15").expand(RIGHT).expand(DOWN).expand(LEFT)
+        
+        age = tab.excel_ref("B11").expand(DOWN).is_not_blank().is_not_whitespace() - remove
+    
+        gender = age.shift(1,-2).expand(RIGHT).is_not_blank().is_not_whitespace() - remove
+
+        observations = age.fill(RIGHT).is_not_blank().is_not_whitespace() - remove
+
+        dimensions = [
+                HDim(gender,'Disability', DIRECTLY, ABOVE),
+                HDim(age, 'Age Group', DIRECTLY, LEFT), 
+                HDimConst('Region', 'United Kingdom'), 
+                HDimConst('Period', '2015-18'),
+                HDim(gender, 'Gender', DIRECTLY, ABOVE),
+                HDimConst('Measure type','Count'),
+                HDimConst('Unit','People (Millions)'),
+                HDimConst('Sheet','4_3')    
+        ]
+    
+        c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
+        savepreviewhtml(c1, fname="Preview.html")
+        tidied_sheets.append(c1.topandas())
+        
+        #Second build of table was due to duplicates which seemed to occur when reading all the data. Made no sense. I have 0 explanation but this works.
+
     elif tab.name in ['4_4']:
         
         cell = tab.excel_ref("B7")
@@ -120,7 +148,8 @@ for tab in tabs:
                 HDimConst('Period', '2017/18'),
                 HDimConst('Gender', 'All people'),
                 HDimConst('Measure type','Count'),
-                HDimConst('Unit','People (Millions)')    
+                HDimConst('Unit','People (Millions)'),
+                HDimConst('Sheet','4_4')    
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -146,7 +175,8 @@ for tab in tabs:
                 HDim(year, 'Period', DIRECTLY, ABOVE),
                 HDimConst('Measure type','Count'),
                 HDimConst('Unit','People (Millions)'),
-                HDimConst('Region', 'United Kingdom')    
+                HDimConst('Region', 'United Kingdom'),
+                HDimConst('Sheet','4_5')    
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -174,7 +204,8 @@ for tab in tabs:
                 HDimConst('Period', '2017/18'),
                 HDimConst('Measure type','Count'),
                 HDimConst('Unit','People (Millions)'),
-                HDimConst('Region', 'United Kingdom')    
+                HDimConst('Region', 'United Kingdom'),
+                HDimConst('Sheet','4_6')    
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -187,7 +218,7 @@ for tab in tabs:
         continue
 
 
-# In[58]:
+# In[309]:
 
 
 new_table = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -201,10 +232,10 @@ new_table['Age Group'] = new_table['Age Group'].map(
     lambda x: left(x, len(x) - 1) if x.endswith('1') else x)
 new_table['Age Group'] = new_table['Age Group'].map(
     lambda x: x.replace('2', '') if '2' in x else x)
-tidy = new_table[['Period','Region','Disability','Gender','Age Group','Measure type','Value','Unit']]
+tidy = new_table[['Period','Region','Disability','Gender','Age Group','Measure type','Value','Unit','Sheet']]
 
 
-# In[59]:
+# In[310]:
 
 
 tidy = tidy.replace({'Disability' : {
@@ -232,7 +263,7 @@ tidy = tidy.replace({'Age Group' : {
     'All people' : 'All'}})
 
 
-# In[60]:
+# In[311]:
 
 
 from IPython.core.display import HTML
@@ -243,7 +274,7 @@ for col in tidy:
         display(tidy[col].cat.categories)
 
 
-# In[61]:
+# In[312]:
 
 
 tidy.rename(columns={'Gender':'Sex',
@@ -254,7 +285,7 @@ tidy.rename(columns={'Gender':'Sex',
           inplace=True)
 
 
-# In[62]:
+# In[313]:
 
 
 destinationFolder = Path('out')
@@ -266,7 +297,7 @@ tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = Fal
 tidy
 
 
-# In[64]:
+# In[314]:
 
 
 scraper.dataset.family = 'health'
@@ -276,6 +307,34 @@ with open(destinationFolder / 'dataset.trig', 'wb') as metadata:
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(destinationFolder / 'observations.csv', destinationFolder / 'observations.csv-schema.json')
+
+
+# In[315]:
+
+
+import pandas as pd
+df = pd.read_csv(destinationFolder / "observations.csv")
+df["all_dimensions_concatenated"] = ""
+for col in df.columns.values:
+    if col != "Value":
+        df["all_dimensions_concatenated"] = df["all_dimensions_concatenated"]+df[col].astype(str)
+found = []
+bad_combos = []
+for item in df["all_dimensions_concatenated"]:
+    if item not in found:
+        found.append(item)
+    else:
+        bad_combos.append(item)
+df = df[df["all_dimensions_concatenated"].map(lambda x: x in bad_combos)]
+drop_these_cols = []
+for col in df.columns.values:
+    if col != "all_dimensions_concatenated" and col != "Value":
+        drop_these_cols.append(col)
+for dtc in drop_these_cols:
+    df = df.drop(dtc, axis=1)
+df = df[["all_dimensions_concatenated", "Value"]]
+df = df.sort_values(by=['all_dimensions_concatenated'])
+df.to_csv("duplicates_with_values.csv", index=False)
 
 
 # In[ ]:
