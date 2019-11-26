@@ -45,7 +45,7 @@ table.to_csv(out / 'observations.csv', index = False)
 # %%
 scraper.dataset.family = 'health'
 scraper.dataset.theme = THEME['health-social-care']
-with open(out / 'dataset.trig', 'wb') as metadata:
+with open(out / 'observations.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 
