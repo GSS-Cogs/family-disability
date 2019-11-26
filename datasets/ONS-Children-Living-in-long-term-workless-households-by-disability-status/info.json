@@ -24,7 +24,7 @@
       },
       {
         "Workless Household Type": ["No disabled adults in household", "Some adults in household are disabled", 
-                                        "All adults in household are disabled", "Total"]
+                                        "All adults in household are disabled"]
       },
       {
         "Measure Type": ["Thousands"]
