@@ -1,30 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[56]:
 
 
 from gssutils import *
 from databaker.framework import *
 import pandas as pd
-import datetime
 
 def left(s, amount):
     return s[:amount]
 
-def right(s, amount):
-    return s[-amount:]
-
-def mid(s, offset, amount):
-    return s[offset:offset+amount]
-
-year = right(str(datetime.datetime.now().year),2)
-
 scraper = Scraper('https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718')
-dist = scraper.distribution(title=lambda t: 'Disability data tables (XLS)' in t)
 
 
-# In[4]:
+# In[57]:
 
 
 dist = scraper.distribution(title=lambda t: 'Disability data tables (XLS)' in t)
@@ -197,7 +187,7 @@ for tab in tabs:
         continue
 
 
-# In[5]:
+# In[58]:
 
 
 new_table = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -214,19 +204,19 @@ new_table['Age Group'] = new_table['Age Group'].map(
 tidy = new_table[['Period','Region','Disability','Gender','Age Group','Measure type','Value','Unit']]
 
 
-# In[6]:
+# In[59]:
 
 
 tidy = tidy.replace({'Disability' : {
-    'All disabled people' : 'Disabled', 
-    'All not disabled people' : 'Not Disabled', 
+    'All disabled people' : 'Any Disability', 
+    'All not disabled people' : 'No Disability', 
     'All people' : 'All',
-    'Female, disabled' : 'Disabled', 
-    'Female, not disabled' : 'Not Disabled', 
-    'Females' : 'Disabled', 
-    'Male, disabled' : 'Disabled',
-    'Male, not disabled' : 'Not Disabled', 
-    'Males' : 'Disabled',
+    'Female, disabled' : 'Any Disability', 
+    'Female, not disabled' : 'No Disability', 
+    'Females' : 'Any Disability', 
+    'Male, disabled' : 'Any Disability',
+    'Male, not disabled' : 'No Disability', 
+    'Males' : 'Any Disability',
     'Stamina/\nbreathing/\nfatigue' : 'Stamina/breathing/fatigue'}})
 tidy = tidy.replace({'Gender' : {
     'All disabled people' : 'All', 
@@ -242,7 +232,7 @@ tidy = tidy.replace({'Age Group' : {
     'All people' : 'All'}})
 
 
-# In[7]:
+# In[60]:
 
 
 from IPython.core.display import HTML
@@ -253,7 +243,18 @@ for col in tidy:
         display(tidy[col].cat.categories)
 
 
-# In[8]:
+# In[61]:
+
+
+tidy.rename(columns={'Gender':'Sex',
+                   'Period':'Time period',
+                   'Region':'Area',
+                   'Age Group':'Age',
+                   'Measure type':'Measure Type'}, 
+          inplace=True)
+
+
+# In[62]:
 
 
 destinationFolder = Path('out')
@@ -263,4 +264,22 @@ TAB_NAME = 'observations'
 
 tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 tidy
+
+
+# In[64]:
+
+
+scraper.dataset.family = 'health'
+scraper.dataset.theme = THEME['health-social-care']
+with open(destinationFolder / 'dataset.trig', 'wb') as metadata:
+    metadata.write(scraper.generate_trig())
+
+csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
+csvw.create(destinationFolder / 'observations.csv', destinationFolder / 'observations.csv-schema.json')
+
+
+# In[ ]:
+
+
+
 
