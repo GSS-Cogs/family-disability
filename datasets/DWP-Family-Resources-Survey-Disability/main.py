@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[307]:
+# In[318]:
 
 
 from gssutils import *
@@ -14,7 +14,7 @@ def left(s, amount):
 scraper = Scraper('https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718')
 
 
-# In[308]:
+# In[319]:
 
 
 dist = scraper.distribution(title=lambda t: 'Disability data tables (XLS)' in t)
@@ -42,8 +42,7 @@ for tab in tabs:
                 HDim(age, 'Age Group', DIRECTLY, ABOVE),
                 HDimConst('Measure type','Percentage'),
                 HDimConst('Unit','Percent'),
-                HDimConst('Region', 'United Kingdom'),
-                HDimConst('Sheet','4_1')
+                HDimConst('Region', 'United Kingdom')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -69,8 +68,7 @@ for tab in tabs:
                 HDimConst('Age Group', 'All people'),
                 HDimConst('Measure type','Count'),
                 HDimConst('Unit','People (Millions)') ,
-                HDimConst('Region', 'United Kingdom'),
-                HDimConst('Sheet','4_2')   
+                HDimConst('Region', 'United Kingdom')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -96,8 +94,7 @@ for tab in tabs:
                 HDimConst('Period', '2015-18'),
                 HDim(gender, 'Gender', DIRECTLY, ABOVE),
                 HDimConst('Measure type','Count'),
-                HDimConst('Unit','People (Millions)'),
-                HDimConst('Sheet','4_3')    
+                HDimConst('Unit','People (Millions)')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -119,8 +116,7 @@ for tab in tabs:
                 HDimConst('Period', '2015-18'),
                 HDim(gender, 'Gender', DIRECTLY, ABOVE),
                 HDimConst('Measure type','Count'),
-                HDimConst('Unit','People (Millions)'),
-                HDimConst('Sheet','4_3')    
+                HDimConst('Unit','People (Millions)')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -148,8 +144,7 @@ for tab in tabs:
                 HDimConst('Period', '2017/18'),
                 HDimConst('Gender', 'All people'),
                 HDimConst('Measure type','Count'),
-                HDimConst('Unit','People (Millions)'),
-                HDimConst('Sheet','4_4')    
+                HDimConst('Unit','People (Millions)')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -175,8 +170,7 @@ for tab in tabs:
                 HDim(year, 'Period', DIRECTLY, ABOVE),
                 HDimConst('Measure type','Count'),
                 HDimConst('Unit','People (Millions)'),
-                HDimConst('Region', 'United Kingdom'),
-                HDimConst('Sheet','4_5')    
+                HDimConst('Region', 'United Kingdom') 
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -204,8 +198,7 @@ for tab in tabs:
                 HDimConst('Period', '2017/18'),
                 HDimConst('Measure type','Count'),
                 HDimConst('Unit','People (Millions)'),
-                HDimConst('Region', 'United Kingdom'),
-                HDimConst('Sheet','4_6')    
+                HDimConst('Region', 'United Kingdom')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -218,7 +211,7 @@ for tab in tabs:
         continue
 
 
-# In[309]:
+# In[320]:
 
 
 new_table = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -232,10 +225,10 @@ new_table['Age Group'] = new_table['Age Group'].map(
     lambda x: left(x, len(x) - 1) if x.endswith('1') else x)
 new_table['Age Group'] = new_table['Age Group'].map(
     lambda x: x.replace('2', '') if '2' in x else x)
-tidy = new_table[['Period','Region','Disability','Gender','Age Group','Measure type','Value','Unit','Sheet']]
+tidy = new_table[['Period','Region','Disability','Gender','Age Group','Measure type','Value','Unit']]
 
 
-# In[310]:
+# In[321]:
 
 
 tidy = tidy.replace({'Disability' : {
@@ -263,7 +256,7 @@ tidy = tidy.replace({'Age Group' : {
     'All people' : 'All'}})
 
 
-# In[311]:
+# In[322]:
 
 
 from IPython.core.display import HTML
@@ -274,7 +267,7 @@ for col in tidy:
         display(tidy[col].cat.categories)
 
 
-# In[312]:
+# In[323]:
 
 
 tidy.rename(columns={'Gender':'Sex',
@@ -285,7 +278,7 @@ tidy.rename(columns={'Gender':'Sex',
           inplace=True)
 
 
-# In[313]:
+# In[324]:
 
 
 destinationFolder = Path('out')
@@ -297,7 +290,7 @@ tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = Fal
 tidy
 
 
-# In[314]:
+# In[325]:
 
 
 scraper.dataset.family = 'health'
@@ -307,38 +300,4 @@ with open(destinationFolder / 'dataset.trig', 'wb') as metadata:
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(destinationFolder / 'observations.csv', destinationFolder / 'observations.csv-schema.json')
-
-
-# In[315]:
-
-
-import pandas as pd
-df = pd.read_csv(destinationFolder / "observations.csv")
-df["all_dimensions_concatenated"] = ""
-for col in df.columns.values:
-    if col != "Value":
-        df["all_dimensions_concatenated"] = df["all_dimensions_concatenated"]+df[col].astype(str)
-found = []
-bad_combos = []
-for item in df["all_dimensions_concatenated"]:
-    if item not in found:
-        found.append(item)
-    else:
-        bad_combos.append(item)
-df = df[df["all_dimensions_concatenated"].map(lambda x: x in bad_combos)]
-drop_these_cols = []
-for col in df.columns.values:
-    if col != "all_dimensions_concatenated" and col != "Value":
-        drop_these_cols.append(col)
-for dtc in drop_these_cols:
-    df = df.drop(dtc, axis=1)
-df = df[["all_dimensions_concatenated", "Value"]]
-df = df.sort_values(by=['all_dimensions_concatenated'])
-df.to_csv("duplicates_with_values.csv", index=False)
-
-
-# In[ ]:
-
-
-
 
