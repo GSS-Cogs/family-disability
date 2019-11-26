@@ -22,6 +22,20 @@ table = dist.as_pandas(encoding='Windows-1252')
 table
 
 # %%
+table.rename(columns={
+    'Geographical Code': 'NHS Geography',
+    'ONS Area Code': 'ONS Geography'
+}, inplace=True)
+table.drop(columns=['Geographical Description', 'Geographical Level'], inplace=True)
+
+# %%
+for col in table:
+    if col not in 'Measure Value':
+        table[col] = table[col].astype('category')
+        display(col)
+        display(table[col].cat.categories)
+
+# %%
 out = Path('out')
 out.mkdir(exist_ok=True, parents=True)
 table.to_csv(out / 'observations.csv', index = False)
