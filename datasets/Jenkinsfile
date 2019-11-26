@@ -60,26 +60,21 @@ pipeline {
             steps {
                 script {
                     jobDraft.replace()
-                    if (fileExists("${DATASET_DIR}/out/observations.csv")) {
-                        uploadTidy(["${DATASET_DIR}/out/observations.csv"],
-                                "reference/columns.csv")
-                    } else {
-                        def datasets = []
-                        String dspath = util.slugise(env.JOB_NAME)
-                        for (def observations : findFiles(glob: "${DATASET_DIR}/out/*.csv")) {
-                            def dataset = [
-                                    "csv": "${DATASET_DIR}/out/${observations.name}",
-                                    "metadata": "${DATASET_DIR}/out/${observations.name}-metadata.trig",
-                                    "path": "${dspath}/${observations.name.take(observations.name.lastIndexOf('.'))}"
-                            ]
-                            datasets.add(dataset)
-                        }
-                        for (def dataset : datasets) {
-                            uploadTidy([dataset.csv],
-                                    "reference/columns.csv",
-                                    dataset.path,
-                                    dataset.metadata)
-                        }
+                    def datasets = []
+                    String dspath = util.slugise(env.JOB_NAME)
+                    for (def observations : findFiles(glob: "${DATASET_DIR}/out/*.csv")) {
+                        def dataset = [
+                                "csv": "${DATASET_DIR}/out/${observations.name}",
+                                "metadata": "${DATASET_DIR}/out/${observations.name}-metadata.trig",
+                                "path": "${dspath}/${observations.name.take(observations.name.lastIndexOf('.'))}"
+                        ]
+                        datasets.add(dataset)
+                    }
+                    for (def dataset : datasets) {
+                        uploadTidy([dataset.csv],
+                                "reference/columns.csv",
+                                dataset.path,
+                                dataset.metadata)
                     }
                 }
             }
