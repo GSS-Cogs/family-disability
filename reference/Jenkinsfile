@@ -11,10 +11,6 @@ pipeline {
                     alwaysPull true
                 }
             }
-            when {
-                changeset "reference/**"
-                beforeAgent true
-            }
             steps {
                 script {
                     ansiColor('xterm') {
