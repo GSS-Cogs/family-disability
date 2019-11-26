@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[400]:
+# In[409]:
 
 
 from gssutils import *
 from databaker.framework import *
 import pandas as pd
+from gssutils.metadata import THEME
 
 def left(s, amount):
     return s[:amount]
@@ -14,7 +15,7 @@ def left(s, amount):
 scraper = Scraper('https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718')
 
 
-# In[401]:
+# In[410]:
 
 
 dist = scraper.distribution(title=lambda t: 'Disability data tables (XLS)' in t)
@@ -211,7 +212,7 @@ for tab in tabs:
         continue
 
 
-# In[402]:
+# In[411]:
 
 
 new_table = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -228,7 +229,7 @@ new_table['Age Group'] = new_table['Age Group'].map(
 tidy = new_table[['Period','Region','Disability','Gender','Age Group','Measure type','Value','Unit']]
 
 
-# In[403]:
+# In[412]:
 
 
 tidy = tidy.replace({'Disability' : {
@@ -256,7 +257,7 @@ tidy = tidy.replace({'Age Group' : {
     'All people' : 'All'}})
 
 
-# In[404]:
+# In[413]:
 
 
 from IPython.core.display import HTML
@@ -267,7 +268,7 @@ for col in tidy:
         display(tidy[col].cat.categories)
 
 
-# In[405]:
+# In[414]:
 
 
 tidy.rename(columns={'Gender':'Sex',
@@ -278,7 +279,7 @@ tidy.rename(columns={'Gender':'Sex',
           inplace=True)
 
 
-# In[406]:
+# In[415]:
 
 
 destinationFolder = Path('out')
@@ -290,7 +291,7 @@ tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = Fal
 tidy
 
 
-# In[407]:
+# In[416]:
 
 
 scraper.dataset.family = 'health'
