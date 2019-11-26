@@ -296,7 +296,7 @@ tidy
 
 scraper.dataset.family = 'health'
 scraper.dataset.theme = THEME['health-social-care']
-with open(destinationFolder / 'dataset.trig', 'wb') as metadata:
+with open(destinationFolder / 'observations.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
