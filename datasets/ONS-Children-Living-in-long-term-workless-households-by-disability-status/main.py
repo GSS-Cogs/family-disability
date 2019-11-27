@@ -100,6 +100,14 @@ new_table['OBS'].replace('', np.nan, inplace=True)
 new_table.dropna(subset=['OBS'], inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 
+# -
+
+from IPython.core.display import HTML
+for col in new_table:
+    if col not in ['Value']:
+        new_table[col] = new_table[col].astype('category')
+        display(HTML(f"<h2>{col}</h2>"))
+        display(new_table[col].cat.categories)
 
 # +
 #Set up the folder path for the output files
@@ -111,7 +119,7 @@ out.mkdir(exist_ok=True, parents=True)
 
 # Output the files
 new_table.drop_duplicates().to_csv(out / ('observations.csv'), index = False)
-new_table
+#new_table
 
 # +
 scraper.dataset.family = 'disability'
@@ -119,8 +127,8 @@ scraper.dataset.family = 'disability'
 with open(out / 'dataset.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
     
-#commented out for now
-#csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
+
+csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 #csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
 # -
 
