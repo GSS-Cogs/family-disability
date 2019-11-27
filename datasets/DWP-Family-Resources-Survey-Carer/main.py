@@ -91,9 +91,10 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab):
         tbl[gHeading][tbl[gHeading] == 'All'] = 'T'
         tbl['Age'][tbl['Age'] == 'All providing care'] = 'All'
         tbl['Age'][tbl['Age'] == 'All people receiving care'] = 'All'
-        
+    
         # Select the columns to return    
         tbl = tbl[['Year','Age',gHeading,'Sample Size','Value','Unit']]
+        tbl = tbl.rename(columns={'Year':'Period'})
         return tbl
     except Exception as e:
         return "Error for table 5_1 or 5_2 or 5_8: " + str(e)
@@ -141,7 +142,7 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl):
         elif whichTbl == 6:
             tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Net Weekly Income','Unit_x':'Unit','OBS_y':'Sample Size', 'Year_x':'Year'})
             tbl = tbl[['Year', 'Age', 'Net Weekly Income', gHeading, 'Sample Size', 'Value', 'Unit']]
-        
+        tbl = tbl.rename(columns={'Year':'Period'})
         # make some changes to match standars for codelists
         tbl[gHeading][tbl[gHeading] == 'Male'] = 'M'
         tbl[gHeading][tbl[gHeading] == 'Female'] = 'F'
@@ -262,6 +263,8 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl):
             tbl[subHeading][tbl[subHeading].str.contains('Client')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Client')]
             tbl[subHeading][tbl[subHeading] == 'Other'] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading] == 'Other']
             tbl = tbl[~tbl[heading].str.contains('Non-relative')]
+            
+        tbl = tbl.rename(columns={'Year':'Period'})
         return tbl
     except Exception as e:
         "Error for table 5_4 or 5_7: " + str(e) 
@@ -313,6 +316,7 @@ def extract_sheet_5_5(tab):
         tbl[heading][tbl[heading] == 'Disability benefits4'] = 'Disability benefits'
         tbl[heading][tbl[heading] == 'Other benefits5,6'] = 'Other benefits'
     
+        tbl = tbl.rename(columns={'Year':'Period'})
         return tbl
     except Exception as e:
         "Error for table 5_5: " + str(e) 
@@ -348,6 +352,7 @@ def extract_sheet_5_9(tab):
         tbl = tbl.rename(columns={'OBS_x':'Value', 'Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, 'OBS_y':'Sample Size'})
         tbl = tbl[['Year', 'Age', heading, 'Sample Size', 'Value', 'Unit']]
         tbl['Age'][tbl['Age'] == 'All receiving care'] = 'All'
+        tbl = tbl.rename(columns={'Year':'Period'})
         return tbl
     except Exception as e:
         err = pd.DataFrame(e.message, columns = ['Error']) 
@@ -395,6 +400,7 @@ def extract_sheet_5_10(tab):
         tbl[heading][tbl[heading] == 'Disability benefits5'] = 'Disability benefits'
         tbl[heading][tbl[heading] == 'Other benefits6,7'] = 'Other benefits'
         tbl['People'] = tbl['People'].str.strip()
+        tbl = tbl.rename(columns={'Year':'Period'})
         return tbl
     except Exception as e:
         return "Error for table 5_10: " + str(e)
