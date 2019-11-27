@@ -329,7 +329,7 @@ def extract_sheet_5_5(tab):
 def extract_sheet_5_9(tab):
     try:
         rw = 10
-        heading = 'Frequency of Care'
+        heading = 'Frequency of care'
         
         col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
         col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()
