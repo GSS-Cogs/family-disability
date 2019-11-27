@@ -1,6 +1,11 @@
-transformPipeline {
-    
-    sh 'DWP-Family-Resources-Survey-Carer/main.py'
-
-    refFamily = 'family_disability/reference'
+pipeline {
+    agent { docker { image 'python:3.5.1' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'python --version'
+            }
+        }
+    }
 }
+

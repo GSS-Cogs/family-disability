@@ -1,763 +1,472 @@
-{
- "cells": [
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "# Family Resources Survey for Financial Year 2017 to 2018 - Carer"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 1,
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/markdown": [
-       "## Family Resources Survey: financial year 2017/18\n",
-       "\n",
-       "Results from the Family Resources Survey for financial year 2017 to 2018, providing information on income and circumstances of UK households.\n",
-       "\n",
-       "### Description\n",
-       "\n",
-       "The Family Resources Survey collects information on the incomes and\n",
-       "circumstances of private households in the United Kingdom. It has been running\n",
-       "since October 1992. This report summarises the results for the financial year\n",
-       "2017 to 2018 survey in which over 19,000 households were interviewed.\n",
-       "\n",
-       "The report is divided into sections covering:\n",
-       "\n",
-       "  * income and state support\n",
-       "  * tenure\n",
-       "  * disability\n",
-       "  * carers\n",
-       "  * pension scheme participation\n",
-       "  * savings and investments\n",
-       "\n",
-       "We have also published a background note detailing methodology, and\n",
-       "accompanying data tables in XLS and ODS format.\n",
-       "\n",
-       "\n",
-       "\n",
-       "### Distributions\n",
-       "\n",
-       "1. Family Resources Survey 2017/18 ([application/pdf](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/791271/family-resources-survey-2017-18.pdf))\n",
-       "1. Background note and methodology ([application/pdf](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/789455/family-resources-survey-2017-18-background-note-methodology.pdf))\n",
-       "1. Income and state support data tables (XLS) ([application/vnd.openxmlformats-officedocument.spreadsheetml.sheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/789333/frs-income-and-state-support-data-tables-2017-18.xlsx))\n",
-       "1. Income and state support data tables (ODS) ([ODF Spreadsheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/791241/frs-income-and-state-support-data-tables-2017-18.ods))\n",
-       "1. Tenure data tables (XLS) ([application/vnd.openxmlformats-officedocument.spreadsheetml.sheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/789335/frs-tenure-data-tables-2017-18.xlsx))\n",
-       "1. Tenure data tables (ODS) ([ODF Spreadsheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/791242/frs-tenure-data-tables-2017-18.ods))\n",
-       "1. Disability data tables (XLS) ([application/vnd.openxmlformats-officedocument.spreadsheetml.sheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/789336/frs-disability-data-tables-2017-18.xlsx))\n",
-       "1. Disability data tables (ODS) ([ODF Spreadsheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/791244/frs-disability-data-tables-2017-18.ods))\n",
-       "1. Carers data tables (XLS) ([application/vnd.openxmlformats-officedocument.spreadsheetml.sheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/789338/frs-carers-data-tables-2017-18.xlsx))\n",
-       "1. Carers data tables (ODS) ([ODF Spreadsheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/791246/frs-carers-data-tables-2017-18.ods))\n",
-       "1. Pension scheme participation data tables (XLS) ([application/vnd.openxmlformats-officedocument.spreadsheetml.sheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/789342/frs-pensions-data-tables-2017-18.xlsx))\n",
-       "1. Pension scheme participation data tables (ODS) ([ODF Spreadsheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/791249/frs-pensions-data-tables-2017-18.ods))\n",
-       "1. Savings and investments data tables (XLS) ([application/vnd.openxmlformats-officedocument.spreadsheetml.sheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/789344/frs-savings-and-investments-data-tables-2017-18.xlsx))\n",
-       "1. Savings and investments data tables (ODS) ([ODF Spreadsheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/791250/frs-savings-and-investments-data-tables-2017-18.ods))\n",
-       "1. Self-employment data tables (XLS) ([application/vnd.openxmlformats-officedocument.spreadsheetml.sheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/790494/frs-self-employment-data-tables-2017-18.xlsx))\n",
-       "1. Self-employment data tables (ODS) ([ODF Spreadsheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/791251/frs-self-employment-data-tables-2017-18_v10.ods))\n",
-       "1. Methodology and standard error data tables (XLS) ([application/vnd.openxmlformats-officedocument.spreadsheetml.sheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/789449/frs-methodology-and-standard-error-tables-2017-18.xlsx))\n",
-       "1. Methodology and standard error data tables (ODS) ([ODF Spreadsheet](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/791252/frs-methodology-standard-error-tables-2017-18.ods))\n"
-      ],
-      "text/plain": [
-       "<gssutils.scrape.Scraper at 0x10c5fbe80>"
-      ]
-     },
-     "execution_count": 1,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "from gssutils import *\n",
-    "import datetime as d\n",
-    "import numpy as np\n",
-    "\n",
-    "#### Construct a string based on the year you need to look at.\n",
-    "oneYrAgo = int(d.datetime.now().year) - 1        #### Get the year 1 year ago\n",
-    "twoYrAgo = oneYrAgo - 1                          #### Get the year 2 years ago\n",
-    "yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, 201718\n",
-    "yrStr2 = str(twoYrAgo) + '/' + str(oneYrAgo)[2:4] #### This is for adding to columns later\n",
-    "try:\n",
-    "    #### EXAMPLE: https://www.gov.uk/government/statistics/family-resources-survey-#### Construct a string based on the year you need to look at.\n",
-    "    oneYrAgo = int(d.datetime.now().year) - 1        #### Get the year 1 year ago\n",
-    "    twoYrAgo = oneYrAgo - 1                          #### Get the year 2 years ago\n",
-    "    yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, 201718financial-year-201718\n",
-    "    urlStr = \"https://www.gov.uk/government/statistics/family-resources-survey-financial-year-\" + yrStr\n",
-    "\n",
-    "    scraper = Scraper(urlStr)\n",
-    "except Exception as e:\n",
-    "    print(e.message, e.args)\n",
-    "\n",
-    "scraper"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 2,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "# Table 5.1: Percentage of people providing informal care by gender, 2007/08 to 2017/18, United Kingdom\n",
-    "# Table 5.2: Percentage of people providing informal care by age & gender, 2007/08 to 2017/18, United Kingdom\n",
-    "# Table 5.8: Percentage of people receiving care by age and gender, 2017,18, United Kingdom"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 3,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab):\n",
-    "    try:\n",
-    "        st = '9'    # Start Row\n",
-    "        ed = '22'   # End RowgHeading = 'Sex'\n",
-    "        gHeading = 'Sex'\n",
-    "        # Set up the data for All\n",
-    "        col = tab.excel_ref('B' + st).fill(DOWN).is_not_blank() - tab.excel_ref('B' + ed).expand(DOWN).is_not_blank()\n",
-    "        All = tab.excel_ref('C' + st).fill(DOWN).is_not_blank() - tab.excel_ref('C' + ed).expand(DOWN).is_not_blank()\n",
-    "        ss1 = tab.excel_ref('D' + st).fill(DOWN).is_not_blank() - tab.excel_ref('D' + ed).expand(DOWN).is_not_blank()\n",
-    "        # Set the dimensions\n",
-    "        Dimensions = [\n",
-    "            HDim(col,mainCol, DIRECTLY, LEFT),\n",
-    "            HDim(ss1,'Sample Size', CLOSEST, ABOVE),\n",
-    "            HDimConst(gHeading,'All'),\n",
-    "            HDimConst('Unit','%')\n",
-    "            ]\n",
-    "        c1 = ConversionSegment(All, Dimensions, processTIMEUNIT=True)\n",
-    "        c1 = c1.topandas()\n",
-    "        # Set up the data for Males\n",
-    "        Males = tab.excel_ref('E' + st).fill(DOWN).is_not_blank() - tab.excel_ref('E' + ed).expand(DOWN).is_not_blank()\n",
-    "        ss2 = tab.excel_ref('F' + st).fill(DOWN).is_not_blank() - tab.excel_ref('F' + ed).expand(DOWN).is_not_blank()\n",
-    "        # Set the dimensions\n",
-    "        Dimensions = [\n",
-    "            HDim(col,mainCol, DIRECTLY, LEFT),\n",
-    "            HDim(ss2,'Sample Size', CLOSEST, ABOVE),\n",
-    "            HDimConst(gHeading,'Male'),\n",
-    "            HDimConst('Unit','%')\n",
-    "            ]\n",
-    "        c2 = ConversionSegment(Males, Dimensions, processTIMEUNIT=True)        \n",
-    "        c2 = c2.topandas()\n",
-    "        # Set up the data for Females\n",
-    "        Females = tab.excel_ref('G' + st).fill(DOWN).is_not_blank() - tab.excel_ref('G' + ed).expand(DOWN).is_not_blank()\n",
-    "        ss3 = tab.excel_ref('H' + st).fill(DOWN).is_not_blank() - tab.excel_ref('H' + ed).expand(DOWN).is_not_blank()\n",
-    "        # Set the dimensions\n",
-    "        Dimensions = [\n",
-    "            HDim(col,mainCol, DIRECTLY, LEFT),\n",
-    "            HDim(ss3,'Sample Size', CLOSEST, ABOVE),\n",
-    "            HDimConst(gHeading,'Female'),\n",
-    "            HDimConst('Unit','%')\n",
-    "            ]\n",
-    "        c3 = ConversionSegment(Females, Dimensions, processTIMEUNIT=True)       \n",
-    "        c3 = c3.topandas()\n",
-    "        # Join up the 3 tables\n",
-    "        tbl = pd.concat([c1, c2, c3])\n",
-    "        tbl.columns.values[0] = 'Value'\n",
-    "        \n",
-    "        # Set some extra columns\n",
-    "        if whichTab == 1:\n",
-    "            tbl['Age'] = 'All'\n",
-    "        elif whichTab == 2: \n",
-    "            tbl['Year'] = yrStr2\n",
-    "        elif whichTab == 8:\n",
-    "            tbl['Year'] = yrStr2\n",
-    "            \n",
-    "        # make some changes to match standars for codelists\n",
-    "        tbl[gHeading][tbl[gHeading] == 'Male'] = 'M'\n",
-    "        tbl[gHeading][tbl[gHeading] == 'Female'] = 'F'\n",
-    "        tbl[gHeading][tbl[gHeading] == 'All'] = 'T'\n",
-    "        tbl['Age'][tbl['Age'] == 'All providing care'] = 'All'\n",
-    "        tbl['Age'][tbl['Age'] == 'All people receiving care'] = 'All'\n",
-    "        \n",
-    "        # Select the columns to return    \n",
-    "        tbl = tbl[['Year','Age',gHeading,'Sample Size','Value','Unit']]\n",
-    "        return tbl\n",
-    "    except Exception as e:\n",
-    "        return \"Error for table 5_1 or 5_2 or 5_8: \" + str(e)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 4,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "# Table 5.3: Adult informal carers by gender, age and number of hours per week providing care, 2017/18, United Kingdom\n",
-    "# Table 5.6: Adult informal care by gender, age and net individual weekly income, 2017/18, United Kingdom"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 5,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "def extract_sheet_5_3_and_5_6(tab, whichTbl):\n",
-    "    try:\n",
-    "        if whichTbl == 3: \n",
-    "            rw = 10\n",
-    "        elif whichTbl == 6: \n",
-    "            rw = 9\n",
-    "        gHeading = 'Sex'   \n",
-    "        col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()\n",
-    "        col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()\n",
-    "        col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()\n",
-    "        # Create the table and convert to Pandas\n",
-    "        Dimensions = [\n",
-    "            HDim(col1,'Age', DIRECTLY, LEFT),\n",
-    "            HDim(col3,'Hours per Week', CLOSEST, LEFT),\n",
-    "            HDimConst('Unit','%'),\n",
-    "            HDimConst(gHeading,'All'),\n",
-    "            HDimConst('Year',yrStr2)\n",
-    "            ]\n",
-    "        tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)\n",
-    "        tbl = tbl.topandas()\n",
-    "        # Need to find where the Female and Male carer data starts and ends. Find it and then set Gender values\n",
-    "        mSt = tbl.loc[tbl['Age'].str.contains('male', na=False, regex=True)].index[0]    # Find where the Male data starts\n",
-    "        fSt = tbl.loc[tbl['Age'].str.contains('female', na=False, regex=True)].index[0]  # Find where the Female data starts\n",
-    "        aEd = tbl['Age'].count()                                                         # Get the total number of rows\n",
-    "        tbl[gHeading][mSt:fSt] = 'Male'\n",
-    "        tbl[gHeading][fSt:aEd] = 'Female'\n",
-    "\n",
-    "        tbl = tbl[tbl['Hours per Week'] != 'All'] # Get rid of the 100% rows, can't see the point\n",
-    "        tblSS = tbl[tbl['Hours per Week'].str.contains('Sample', na=False, regex=True)] # Identify the Sample Size rows to join in with the data laterz\n",
-    "        tbl = tbl[~tbl['Hours per Week'].str.contains('Sample', na=False, regex=True)] # Remove the Sample Size Rows from the main dataset\n",
-    "        tbl = pd.merge(tbl, tblSS, on=['Age', gHeading])\n",
-    "        if whichTbl == 3:\n",
-    "            tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Hours per Week','Unit_x':'Unit','OBS_y':'Sample Size', 'Year_x':'Year'})\n",
-    "            tbl = tbl[['Year', 'Age', 'Hours per Week', gHeading, 'Sample Size', 'Value', 'Unit']]\n",
-    "        elif whichTbl == 6:\n",
-    "            tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Net Weekly Income','Unit_x':'Unit','OBS_y':'Sample Size', 'Year_x':'Year'})\n",
-    "            tbl = tbl[['Year', 'Age', 'Net Weekly Income', gHeading, 'Sample Size', 'Value', 'Unit']]\n",
-    "        \n",
-    "        # make some changes to match standars for codelists\n",
-    "        tbl[gHeading][tbl[gHeading] == 'Male'] = 'M'\n",
-    "        tbl[gHeading][tbl[gHeading] == 'Female'] = 'F'\n",
-    "        tbl[gHeading][tbl[gHeading] == 'All'] = 'T'\n",
-    "        tbl['Age'][tbl['Age'].str.contains('carers')] = 'All'\n",
-    "        return tbl\n",
-    "    except Exception as e:\n",
-    "        return \"Error for table 5_3 or 5_6: \" + str(e)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 6,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "# Table 5.4: Adult informal carers by employment status and gender, 2017/18, United Kingdom\n",
-    "# Table 5.7: Who informal carers care for by gender, 2017/18, United Kingdom"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 7,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "def extract_sheet_5_4_and_5_7(tab, whichTbl):\n",
-    "    try:\n",
-    "        if whichTbl == 4: \n",
-    "            rw = 9\n",
-    "            col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()\n",
-    "            col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()\n",
-    "\n",
-    "        elif whichTbl == 7: \n",
-    "            rw = 10\n",
-    "            rwEnd = 36\n",
-    "            col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank() - tab.excel_ref('B' + str(rwEnd)).expand(DOWN).is_not_blank()\n",
-    "            col2 = tab.excel_ref(\"C10:E36\").is_not_blank() #### Some formulas in cells next to the dataset, font has also been changed to white! specified a range instead\n",
-    "            \n",
-    "        col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()\n",
-    "        gHeading = 'Sex'   \n",
-    "        # Create the table and convert to Pandas\n",
-    "        heading = 'Employment Status'\n",
-    "        Dimensions = [\n",
-    "            HDimConst('Year',yrStr2),\n",
-    "            HDim(col1,heading, DIRECTLY, LEFT),\n",
-    "            HDim(col3,gHeading, CLOSEST, LEFT),\n",
-    "            HDimConst('Unit','%')\n",
-    "            ]\n",
-    "        tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)\n",
-    "        tbl = tbl.topandas()\n",
-    "        if whichTbl == 4:\n",
-    "            \n",
-    "            subHeading = 'Employment Type'\n",
-    "            tbl[subHeading] = tbl[heading]    # Create new column to hold the sub employment status\n",
-    "            #### Sort out the All Employment Sub Category\n",
-    "            mSt = tbl.loc[tbl[heading].str.contains('employment', na=False, regex=True)].index    # \n",
-    "            fSt = tbl.loc[tbl[heading].str.contains('employees', na=False, regex=True)].index[0]     # \n",
-    "            tbl[heading][mSt[0]:fSt] = 'In Employment'\n",
-    "            tbl[subHeading][mSt] = 'All'\n",
-    "            #### Sort out the All Employees Sub Category\n",
-    "            mSt = tbl.loc[tbl[heading].str.contains('employees', na=False, regex=True)].index    # \n",
-    "            fSt = tbl.loc[tbl[heading].str.contains('self', na=False, regex=True)].index[0]         # \n",
-    "            tbl[heading][mSt[0]:fSt] = 'Employees'\n",
-    "            tbl[subHeading][mSt] = 'All'\n",
-    "            #### Sort out the All Self-Employed Sub Category\n",
-    "            mSt = tbl.loc[tbl[heading].str.contains('self', na=False, regex=True)].index    # \n",
-    "            fSt = tbl.loc[tbl[heading].str.contains('Unemployed', na=False, regex=True)].index[0]         # \n",
-    "            tbl[heading][mSt[0]:fSt] = 'Self-Employed'\n",
-    "            tbl[subHeading][mSt] = 'All'\n",
-    "            #### Sort out the All Unemployed & Retired Sub Category\n",
-    "            tbl[subHeading][tbl[subHeading] == 'Unemployed'] = 'All'\n",
-    "            tbl[subHeading][tbl[subHeading] == 'Retired'] = 'All'\n",
-    "            ### Sort out the All Economically Inactive Sub Category\n",
-    "            mSt = tbl.loc[tbl[heading].str.contains('economically', na=False, regex=True)].index    # \n",
-    "            fSt = tbl.loc[tbl[heading] == 'All'].index[0]    #\n",
-    "            tbl[heading][mSt[0]:fSt] = 'Economically Inactive'\n",
-    "            tbl[subHeading][mSt] = 'All'\n",
-    "\n",
-    "            #### Sort out the Gender sub category\n",
-    "            gsubHeading = 'Adult Carers'\n",
-    "            tbl[gsubHeading] = 'All Adults'\n",
-    "            mSt = tbl.loc[tbl[gHeading].str.contains('carers', na=False, regex=True)].index    # \n",
-    "            tbl[gsubHeading][mSt + 0] = 'Adult Informal Carers'\n",
-    "            tbl[gsubHeading][mSt + 1] = 'Adult Informal Carers'\n",
-    "            tbl[gsubHeading][mSt + 2] = 'Adult Informal Carers'\n",
-    "            tbl[gHeading][mSt] = 'All'\n",
-    "            tbl[gHeading][tbl[gHeading].str.strip() == 'All adults'] = 'All'\n",
-    "\n",
-    "            tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point\n",
-    "            tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz\n",
-    "            tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset\n",
-    "            tbl = pd.merge(tbl, tblSS, on=[gHeading, gsubHeading])\n",
-    "            #### Rename Columns\n",
-    "            tbl = tbl.rename(columns={'OBS_x':'Value','Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})\n",
-    "            tbl = tbl[['Year', heading, subHeading, gHeading, gsubHeading, 'Sample Size', 'Value', 'Unit']]\n",
-    "            \n",
-    "        elif whichTbl == 7:\n",
-    "            \n",
-    "            heading = 'Person cared for Type'\n",
-    "            subHeading = 'Person cared for'\n",
-    "            tbl = tbl.rename(columns={'Employment Status':heading})\n",
-    "            tbl[subHeading] = tbl[heading]\n",
-    "            #### Sort out the Household Member Sub Category\n",
-    "            mSt = tbl.loc[tbl[heading].str.contains('Household member', na=False, regex=True)].index    # \n",
-    "            fSt = tbl.loc[tbl[heading].str.contains('Non-household member', na=False, regex=True)].index[0]     # \n",
-    "            tbl[heading][mSt[0]:fSt] = 'Household Member'\n",
-    "            tbl[subHeading][mSt] = 'All'\n",
-    "            #### Sort out the Non-Household Member Sub Category\n",
-    "            mSt = tbl.loc[tbl[heading].str.contains('Non-household member', na=False, regex=True)].index    # \n",
-    "            fSt = tbl.loc[tbl[heading].str.contains('More than 1 person cared for', na=False, regex=True)].index[0]     # \n",
-    "            tbl[heading][mSt[0]:fSt] = 'Non-Household Member'\n",
-    "            tbl[subHeading][mSt] = 'All'\n",
-    "            #### Sort out the More than 1 person cared for Sub Category\n",
-    "            mSt = tbl.loc[tbl[heading].str.contains('More than 1 person cared for', na=False, regex=True)].index    # \n",
-    "            fSt = tbl.loc[tbl[heading].str.contains('Sample size', na=False, regex=True)].index[0]     # \n",
-    "            tbl[heading][mSt[0]:fSt] = 'More than 1 person cared for'\n",
-    "            tbl[subHeading][mSt] = 'All'\n",
-    "            \n",
-    "            tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point\n",
-    "            tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz\n",
-    "            tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset\n",
-    "            tbl = pd.merge(tbl, tblSS, on=[gHeading])\n",
-    "            #### Rename Columns\n",
-    "            tbl = tbl.rename(columns={'OBS_x':'Value','Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})\n",
-    "            tbl = tbl[['Year', heading, subHeading, gHeading, 'Sample Size', 'Value', 'Unit']]\n",
-    "            \n",
-    "            tbl[subHeading][tbl[subHeading].str.contains('Friend')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Friend')]\n",
-    "            tbl[subHeading][tbl[subHeading].str.contains('Client')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Client')]\n",
-    "            tbl[subHeading][tbl[subHeading] == 'Other'] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading] == 'Other']\n",
-    "            tbl = tbl[~tbl[heading].str.contains('Non-relative')]\n",
-    "        return tbl\n",
-    "    except Exception as e:\n",
-    "        \"Error for table 5_4 or 5_7: \" + str(e) "
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 8,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "# Table 5.5: Adult informal carers by main source of total weekly household income hours caring and gender, 2017/18, United Kingdom"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 9,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "def extract_sheet_5_5(tab):\n",
-    "    try:\n",
-    "        tab = [t for t in sheets if t.name == '5_5'][0]\n",
-    "        col1 = tab.excel_ref('B8').fill(DOWN).is_not_blank()\n",
-    "        col2 = tab.excel_ref('C8').fill(DOWN).expand(RIGHT).is_not_blank()\n",
-    "        col3 = tab.excel_ref('C7').expand(RIGHT).is_not_blank()\n",
-    "        # Create the table and convert to Pandas\n",
-    "        heading = 'Source of Income'\n",
-    "        headingHrs = 'Hours per Week'\n",
-    "        headingG = 'Sex'\n",
-    "        Dimensions = [\n",
-    "            HDimConst('Year',yrStr2),\n",
-    "            HDim(col1,heading, DIRECTLY, LEFT),\n",
-    "            HDim(col3,headingHrs, CLOSEST, LEFT),\n",
-    "            HDimConst('Unit','%')\n",
-    "            ]\n",
-    "        tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)\n",
-    "        tbl = tbl.topandas()\n",
-    "\n",
-    "        tbl[headingG] = 'All'\n",
-    "        tbl[headingG][(tbl[headingHrs] == 'Males') | (tbl[headingHrs] == 'Females')] = tbl[headingHrs]\n",
-    "        tbl[headingHrs][(tbl[headingHrs] == 'Males') | (tbl[headingHrs] == 'Females')] = 'All'\n",
-    "\n",
-    "        tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point\n",
-    "        tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz\n",
-    "        tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset\n",
-    "        tbl = pd.merge(tbl, tblSS, on=[headingHrs, headingG])\n",
-    "        tbl[headingHrs][(tbl[headingHrs] == 'All adult carers')] = 'All'\n",
-    "\n",
-    "        #### Rename Columns\n",
-    "        tbl = tbl.rename(columns={'OBS_x':'Value','Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, headingHrs + '_x':headingHrs, 'OBS_y':'Sample Size'})\n",
-    "        tbl = tbl[['Year', heading, headingHrs, headingG, 'Sample Size', 'Value', 'Unit']]\n",
-    "        # Rename the Gender items to match standards\n",
-    "        tbl[headingG][tbl[headingG] == 'Male'] = 'M'\n",
-    "        tbl[headingG][tbl[headingG] == 'Female'] = 'F'\n",
-    "        tbl[headingG][tbl[headingG] == 'All'] = 'T'\n",
-    "        # Rename the items with a notes number attached\n",
-    "        tbl[heading][tbl[heading] == 'State Pension plus any IS/PC1,2'] = 'State Pension plus any IS/PC'\n",
-    "        tbl[heading][tbl[heading] == 'Non-state pensions3'] = 'Non-state pensions'\n",
-    "        tbl[heading][tbl[heading] == 'Disability benefits4'] = 'Disability benefits'\n",
-    "        tbl[heading][tbl[heading] == 'Other benefits5,6'] = 'Other benefits'\n",
-    "    \n",
-    "        return tbl\n",
-    "    except Exception as e:\n",
-    "        \"Error for table 5_5: \" + str(e) "
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 10,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "# Table 5.9: People receiving care at least once a week by age and frequency of care, 2017/18, United Kingdom"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 11,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "def extract_sheet_5_9(tab):\n",
-    "    try:\n",
-    "        rw = 10\n",
-    "        heading = 'Frequency of Care'\n",
-    "        \n",
-    "        col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()\n",
-    "        col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()\n",
-    "        col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()\n",
-    "        # Create the table and convert to Pandas\n",
-    "        Dimensions = [\n",
-    "            HDim(col1,'Age', DIRECTLY, LEFT),\n",
-    "            HDim(col3,heading, CLOSEST, LEFT),\n",
-    "            HDimConst('Unit','%'),\n",
-    "            HDimConst('Year',yrStr2)\n",
-    "            ]\n",
-    "        tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)\n",
-    "        tbl = tbl.topandas()\n",
-    "        \n",
-    "        tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point\n",
-    "        tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz\n",
-    "        tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset\n",
-    "        tbl = pd.merge(tbl, tblSS, on=['Age'])\n",
-    "        #### Rename Columns\n",
-    "        tbl = tbl.rename(columns={'OBS_x':'Value', 'Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, 'OBS_y':'Sample Size'})\n",
-    "        tbl = tbl[['Year', 'Age', heading, 'Sample Size', 'Value', 'Unit']]\n",
-    "        tbl['Age'][tbl['Age'] == 'All receiving care'] = 'All'\n",
-    "        return tbl\n",
-    "    except Exception as e:\n",
-    "        err = pd.DataFrame(e.message, columns = ['Error']) \n",
-    "        return err"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 12,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "# Table 5.10: People receiving care by main source of total weekly household income and gender, 2017/18, United Kingdom"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 13,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "def extract_sheet_5_10(tab):\n",
-    "    try:                \n",
-    "        rw = 9\n",
-    "        col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()\n",
-    "        col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()    \n",
-    "        col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()\n",
-    "        col4 = tab.excel_ref('C' + str(rw - 2)).expand(RIGHT).is_not_blank()\n",
-    "        heading = 'Source of Income'\n",
-    "        # Create the table and convert to Pandas\n",
-    "        headingG = 'Sex'\n",
-    "        Dimensions = [\n",
-    "            HDimConst('Year',yrStr2),\n",
-    "            HDim(col1,heading, DIRECTLY, LEFT),\n",
-    "            HDim(col3,headingG, CLOSEST, LEFT),\n",
-    "            HDim(col4,'People', CLOSEST, LEFT),\n",
-    "            HDimConst('Unit','%')\n",
-    "            ]\n",
-    "        tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)\n",
-    "        tbl = tbl.topandas()\n",
-    "        \n",
-    "        tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point\n",
-    "        tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz\n",
-    "        tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset\n",
-    "        tbl = pd.merge(tbl, tblSS, on=[headingG, 'People'])\n",
-    "        #### Rename Columns\n",
-    "        tbl = tbl.rename(columns={'OBS_x':'Value','Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, 'People_x':'People', 'OBS_y':'Sample Size'})\n",
-    "        tbl = tbl[['Year', heading, 'People', headingG, 'Sample Size', 'Value', 'Unit']]\n",
-    "        # Rename the Gender items to match standards\n",
-    "        tbl[headingG][tbl[headingG] == 'Male'] = 'M'\n",
-    "        tbl[headingG][tbl[headingG] == 'Female'] = 'F'\n",
-    "        tbl[headingG][tbl[headingG] == 'All'] = 'T'\n",
-    "        # Rename the items with a notes number attached\n",
-    "        tbl[heading][tbl[heading] == 'State Pension plus any IS/PC2,3'] = 'State Pension plus any IS/PC'\n",
-    "        tbl[heading][tbl[heading] == 'Non-state pensions4'] = 'Non-state pensions'\n",
-    "        tbl[heading][tbl[heading] == 'Disability benefits5'] = 'Disability benefits'\n",
-    "        tbl[heading][tbl[heading] == 'Other benefits6,7'] = 'Other benefits'\n",
-    "        tbl['People'] = tbl['People'].str.strip()\n",
-    "        return tbl\n",
-    "    except Exception as e:\n",
-    "        return \"Error for table 5_10: \" + str(e)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 14,
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Carers data tables (XLS)\n"
-     ]
-    }
-   ],
-   "source": [
-    "#### There are several spreadsheets so look for the one you want, which in this case is Carers only\n",
-    "try:\n",
-    "    for i in scraper.distributions:\n",
-    "        if i.title == 'Carers data tables (XLS)':\n",
-    "            print(i.title)\n",
-    "            sheets = i\n",
-    "            break\n",
-    "except Exception as e:\n",
-    "         print(e.message, e.args)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 15,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "#### Convert to a DataBaker object\n",
-    "try:\n",
-    "    sheets = sheets.as_databaker()\n",
-    "except Exception as e:\n",
-    "    print(e.message, e.args)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 16,
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "\n",
-      "\n"
-     ]
-    },
-    {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "/Users/leigh/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:56: SettingWithCopyWarning: \n",
-      "A value is trying to be set on a copy of a slice from a DataFrame\n",
-      "\n",
-      "See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy\n",
-      "/Users/leigh/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:57: SettingWithCopyWarning: \n",
-      "A value is trying to be set on a copy of a slice from a DataFrame\n",
-      "\n",
-      "See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy\n",
-      "/Users/leigh/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:58: SettingWithCopyWarning: \n",
-      "A value is trying to be set on a copy of a slice from a DataFrame\n",
-      "\n",
-      "See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy\n",
-      "/Users/leigh/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:59: SettingWithCopyWarning: \n",
-      "A value is trying to be set on a copy of a slice from a DataFrame\n",
-      "\n",
-      "See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy\n",
-      "/Users/leigh/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:60: SettingWithCopyWarning: \n",
-      "A value is trying to be set on a copy of a slice from a DataFrame\n",
-      "\n",
-      "See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "\n",
-      "\n",
-      "\n",
-      "\n",
-      "\n",
-      "\n"
-     ]
-    },
-    {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "/Users/leigh/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:26: SettingWithCopyWarning: \n",
-      "A value is trying to be set on a copy of a slice from a DataFrame\n",
-      "\n",
-      "See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy\n",
-      "/Users/leigh/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:41: SettingWithCopyWarning: \n",
-      "A value is trying to be set on a copy of a slice from a DataFrame\n",
-      "\n",
-      "See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy\n",
-      "/Users/leigh/anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:42: SettingWithCopyWarning: \n",
-      "A value is trying to be set on a copy of a slice from a DataFrame\n",
-      "\n",
-      "See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "\n",
-      "\n",
-      "\n",
-      "\n",
-      "\n"
-     ]
-    }
-   ],
-   "source": [
-    "try:\n",
-    "    tbl1 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_1'][0], 'Year', 1)\n",
-    "    tbl2 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_2'][0], 'Age', 2)\n",
-    "    tbl3 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_3'][0], 3)\n",
-    "    tbl4 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_4'][0], 4)\n",
-    "    tbl5 = extract_sheet_5_5([t for t in sheets if t.name == '5_5'][0])\n",
-    "    tbl6 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_6'][0], 6)\n",
-    "    tbl7 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_7'][0], 7)\n",
-    "    tbl8 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_8'][0], 'Age', 8)\n",
-    "    tbl9 = extract_sheet_5_9([t for t in sheets if t.name == '5_9'][0])\n",
-    "    tbl10 = extract_sheet_5_10([t for t in sheets if t.name == '5_10'][0])\n",
-    "except Exception as e:\n",
-    "    print(e.message, e.args)\n",
-    "#tbl4"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 17,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "#### Set up the folder path for the output files\n",
-    "from pathlib import Path\n",
-    "\n",
-    "out = Path('out')\n",
-    "out.mkdir(exist_ok=True, parents=True)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 18,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "#### Output the files\n",
-    "tbl1.drop_duplicates().to_csv(out / ('observations_5_1.csv'), index = False)\n",
-    "tbl2.drop_duplicates().to_csv(out / ('observations_5_2.csv'), index = False)\n",
-    "tbl3.drop_duplicates().to_csv(out / ('observations_5_3.csv'), index = False)\n",
-    "tbl4.drop_duplicates().to_csv(out / ('observations_5_4.csv'), index = False)\n",
-    "tbl5.drop_duplicates().to_csv(out / ('observations_5_5.csv'), index = False)\n",
-    "tbl6.drop_duplicates().to_csv(out / ('observations_5_6.csv'), index = False)\n",
-    "tbl7.drop_duplicates().to_csv(out / ('observations_5_7.csv'), index = False)\n",
-    "tbl8.drop_duplicates().to_csv(out / ('observations_5_8.csv'), index = False)\n",
-    "tbl9.drop_duplicates().to_csv(out / ('observations_5_9.csv'), index = False)\n",
-    "tbl10.drop_duplicates().to_csv(out / ('observations_5_10.csv'), index = False)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 19,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "scraper.dataset.family = 'disability'\n",
-    "#scraper.dataset.license = 'http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/'\n",
-    "\n",
-    "with open(out / 'dataset.trig', 'wb') as metadata:\n",
-    "    metadata.write(scraper.generate_trig())"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "#schema = CSVWMetadata('https://github.com/GSS-Cogs/family-disability/reference/')\n",
-    "#schema.create(out / 'observations_5_1.csv', out / 'observations_5_1.csv-schema.json')\n",
-    "#schema.create(out / 'observations_5_2.csv', out / 'observations_5_2.csv-schema.json')\n",
-    "#schema.create(out / 'observations_5_3.csv', out / 'observations_5_3.csv-schema.json')\n",
-    "#schema.create(out / 'observations_5_4.csv', out / 'observations_5_4.csv-schema.json')\n",
-    "#schema.create(out / 'observations_5_5.csv', out / 'observations_5_5.csv-schema.json')\n",
-    "#schema.create(out / 'observations_5_6.csv', out / 'observations_5_6.csv-schema.json')\n",
-    "#schema.create(out / 'observations_5_7.csv', out / 'observations_5_7.csv-schema.json')\n",
-    "#schema.create(out / 'observations_5_8.csv', out / 'observations_5_8.csv-schema.json')\n",
-    "#schema.create(out / 'observations_5_9.csv', out / 'observations_5_9.csv-schema.json')\n",
-    "#schema.create(out / 'observations_5_10.csv', out / 'observations_5_10.csv-schema.json')"
-   ]
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.7.3"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 2
-}
+# +
+#### Family Resources Survey for Financial Year 2017 to 2018 - Carer ####
+
+# +
+from gssutils import *
+import datetime as d
+import numpy as np
+
+#### Construct a string based on the year you need to look at.
+oneYrAgo = int(d.datetime.now().year) - 1        #### Get the year 1 year ago
+twoYrAgo = oneYrAgo - 1                          #### Get the year 2 years ago
+yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, 201718
+yrStr2 = str(twoYrAgo) + '/' + str(oneYrAgo)[2:4] #### This is for adding to columns later
+try:
+    #### EXAMPLE: https://www.gov.uk/government/statistics/family-resources-survey-#### Construct a string based on the year you need to look at.
+    oneYrAgo = int(d.datetime.now().year) - 1        #### Get the year 1 year ago
+    twoYrAgo = oneYrAgo - 1                          #### Get the year 2 years ago
+    yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, 201718financial-year-201718
+    urlStr = "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-" + yrStr
+
+    scraper = Scraper(urlStr)
+except Exception as e:
+    print(e.message, e.args)
+
+scraper
+
+
+# +
+# Table 5.1: Percentage of people providing informal care by gender, 2007/08 to 2017/18, United Kingdom
+# Table 5.2: Percentage of people providing informal care by age & gender, 2007/08 to 2017/18, United Kingdom
+# Table 5.8: Percentage of people receiving care by age and gender, 2017,18, United Kingdom
+# -
+
+def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab):
+    try:
+        st = '9'    # Start Row
+        ed = '22'   # End RowgHeading = 'Sex'
+        gHeading = 'Sex'
+        # Set up the data for All
+        col = tab.excel_ref('B' + st).fill(DOWN).is_not_blank() - tab.excel_ref('B' + ed).expand(DOWN).is_not_blank()
+        All = tab.excel_ref('C' + st).fill(DOWN).is_not_blank() - tab.excel_ref('C' + ed).expand(DOWN).is_not_blank()
+        ss1 = tab.excel_ref('D' + st).fill(DOWN).is_not_blank() - tab.excel_ref('D' + ed).expand(DOWN).is_not_blank()
+        # Set the dimensions
+        Dimensions = [
+            HDim(col,mainCol, DIRECTLY, LEFT),
+            HDim(ss1,'Sample Size', CLOSEST, ABOVE),
+            HDimConst(gHeading,'All'),
+            HDimConst('Unit','%')
+            ]
+        c1 = ConversionSegment(All, Dimensions, processTIMEUNIT=True)
+        c1 = c1.topandas()
+        # Set up the data for Males
+        Males = tab.excel_ref('E' + st).fill(DOWN).is_not_blank() - tab.excel_ref('E' + ed).expand(DOWN).is_not_blank()
+        ss2 = tab.excel_ref('F' + st).fill(DOWN).is_not_blank() - tab.excel_ref('F' + ed).expand(DOWN).is_not_blank()
+        # Set the dimensions
+        Dimensions = [
+            HDim(col,mainCol, DIRECTLY, LEFT),
+            HDim(ss2,'Sample Size', CLOSEST, ABOVE),
+            HDimConst(gHeading,'Male'),
+            HDimConst('Unit','%')
+            ]
+        c2 = ConversionSegment(Males, Dimensions, processTIMEUNIT=True)        
+        c2 = c2.topandas()
+        # Set up the data for Females
+        Females = tab.excel_ref('G' + st).fill(DOWN).is_not_blank() - tab.excel_ref('G' + ed).expand(DOWN).is_not_blank()
+        ss3 = tab.excel_ref('H' + st).fill(DOWN).is_not_blank() - tab.excel_ref('H' + ed).expand(DOWN).is_not_blank()
+        # Set the dimensions
+        Dimensions = [
+            HDim(col,mainCol, DIRECTLY, LEFT),
+            HDim(ss3,'Sample Size', CLOSEST, ABOVE),
+            HDimConst(gHeading,'Female'),
+            HDimConst('Unit','%')
+            ]
+        c3 = ConversionSegment(Females, Dimensions, processTIMEUNIT=True)       
+        c3 = c3.topandas()
+        # Join up the 3 tables
+        tbl = pd.concat([c1, c2, c3])
+        tbl.columns.values[0] = 'Value'
+        
+        # Set some extra columns
+        if whichTab == 1:
+            tbl['Age'] = 'All'
+        elif whichTab == 2: 
+            tbl['Year'] = yrStr2
+        elif whichTab == 8:
+            tbl['Year'] = yrStr2
+            
+        # make some changes to match standars for codelists
+        tbl[gHeading][tbl[gHeading] == 'Male'] = 'M'
+        tbl[gHeading][tbl[gHeading] == 'Female'] = 'F'
+        tbl[gHeading][tbl[gHeading] == 'All'] = 'T'
+        tbl['Age'][tbl['Age'] == 'All providing care'] = 'All'
+        tbl['Age'][tbl['Age'] == 'All people receiving care'] = 'All'
+        
+        # Select the columns to return    
+        tbl = tbl[['Year','Age',gHeading,'Sample Size','Value','Unit']]
+        return tbl
+    except Exception as e:
+        return "Error for table 5_1 or 5_2 or 5_8: " + str(e)
+
+
+# +
+# Table 5.3: Adult informal carers by gender, age and number of hours per week providing care, 2017/18, United Kingdom
+# Table 5.6: Adult informal care by gender, age and net individual weekly income, 2017/18, United Kingdom
+# -
+
+def extract_sheet_5_3_and_5_6(tab, whichTbl):
+    try:
+        if whichTbl == 3: 
+            rw = 10
+        elif whichTbl == 6: 
+            rw = 9
+        gHeading = 'Sex'   
+        col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
+        col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()
+        col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
+        # Create the table and convert to Pandas
+        Dimensions = [
+            HDim(col1,'Age', DIRECTLY, LEFT),
+            HDim(col3,'Hours per Week', CLOSEST, LEFT),
+            HDimConst('Unit','%'),
+            HDimConst(gHeading,'All'),
+            HDimConst('Year',yrStr2)
+            ]
+        tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)
+        tbl = tbl.topandas()
+        # Need to find where the Female and Male carer data starts and ends. Find it and then set Gender values
+        mSt = tbl.loc[tbl['Age'].str.contains('male', na=False, regex=True)].index[0]    # Find where the Male data starts
+        fSt = tbl.loc[tbl['Age'].str.contains('female', na=False, regex=True)].index[0]  # Find where the Female data starts
+        aEd = tbl['Age'].count()                                                         # Get the total number of rows
+        tbl[gHeading][mSt:fSt] = 'Male'
+        tbl[gHeading][fSt:aEd] = 'Female'
+
+        tbl = tbl[tbl['Hours per Week'] != 'All'] # Get rid of the 100% rows, can't see the point
+        tblSS = tbl[tbl['Hours per Week'].str.contains('Sample', na=False, regex=True)] # Identify the Sample Size rows to join in with the data laterz
+        tbl = tbl[~tbl['Hours per Week'].str.contains('Sample', na=False, regex=True)] # Remove the Sample Size Rows from the main dataset
+        tbl = pd.merge(tbl, tblSS, on=['Age', gHeading])
+        if whichTbl == 3:
+            tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Hours per Week','Unit_x':'Unit','OBS_y':'Sample Size', 'Year_x':'Year'})
+            tbl = tbl[['Year', 'Age', 'Hours per Week', gHeading, 'Sample Size', 'Value', 'Unit']]
+        elif whichTbl == 6:
+            tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Net Weekly Income','Unit_x':'Unit','OBS_y':'Sample Size', 'Year_x':'Year'})
+            tbl = tbl[['Year', 'Age', 'Net Weekly Income', gHeading, 'Sample Size', 'Value', 'Unit']]
+        
+        # make some changes to match standars for codelists
+        tbl[gHeading][tbl[gHeading] == 'Male'] = 'M'
+        tbl[gHeading][tbl[gHeading] == 'Female'] = 'F'
+        tbl[gHeading][tbl[gHeading] == 'All'] = 'T'
+        tbl['Age'][tbl['Age'].str.contains('carers')] = 'All'
+        return tbl
+    except Exception as e:
+        return "Error for table 5_3 or 5_6: " + str(e)
+
+
+# +
+# Table 5.4: Adult informal carers by employment status and gender, 2017/18, United Kingdom
+# Table 5.7: Who informal carers care for by gender, 2017/18, United Kingdom
+# -
+
+def extract_sheet_5_4_and_5_7(tab, whichTbl):
+    try:
+        if whichTbl == 4: 
+            rw = 9
+            col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
+            col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()
+
+        elif whichTbl == 7: 
+            rw = 10
+            rwEnd = 36
+            col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank() - tab.excel_ref('B' + str(rwEnd)).expand(DOWN).is_not_blank()
+            col2 = tab.excel_ref("C10:E36").is_not_blank() #### Some formulas in cells next to the dataset, font has also been changed to white! specified a range instead
+            
+        col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
+        gHeading = 'Sex'   
+        # Create the table and convert to Pandas
+        heading = 'Employment Status'
+        Dimensions = [
+            HDimConst('Year',yrStr2),
+            HDim(col1,heading, DIRECTLY, LEFT),
+            HDim(col3,gHeading, CLOSEST, LEFT),
+            HDimConst('Unit','%')
+            ]
+        tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)
+        tbl = tbl.topandas()
+        if whichTbl == 4:
+            
+            subHeading = 'Employment Type'
+            tbl[subHeading] = tbl[heading]    # Create new column to hold the sub employment status
+            #### Sort out the All Employment Sub Category
+            mSt = tbl.loc[tbl[heading].str.contains('employment', na=False, regex=True)].index    # 
+            fSt = tbl.loc[tbl[heading].str.contains('employees', na=False, regex=True)].index[0]     # 
+            tbl[heading][mSt[0]:fSt] = 'In Employment'
+            tbl[subHeading][mSt] = 'All'
+            #### Sort out the All Employees Sub Category
+            mSt = tbl.loc[tbl[heading].str.contains('employees', na=False, regex=True)].index    # 
+            fSt = tbl.loc[tbl[heading].str.contains('self', na=False, regex=True)].index[0]         # 
+            tbl[heading][mSt[0]:fSt] = 'Employees'
+            tbl[subHeading][mSt] = 'All'
+            #### Sort out the All Self-Employed Sub Category
+            mSt = tbl.loc[tbl[heading].str.contains('self', na=False, regex=True)].index    # 
+            fSt = tbl.loc[tbl[heading].str.contains('Unemployed', na=False, regex=True)].index[0]         # 
+            tbl[heading][mSt[0]:fSt] = 'Self-Employed'
+            tbl[subHeading][mSt] = 'All'
+            #### Sort out the All Unemployed & Retired Sub Category
+            tbl[subHeading][tbl[subHeading] == 'Unemployed'] = 'All'
+            tbl[subHeading][tbl[subHeading] == 'Retired'] = 'All'
+            ### Sort out the All Economically Inactive Sub Category
+            mSt = tbl.loc[tbl[heading].str.contains('economically', na=False, regex=True)].index    # 
+            fSt = tbl.loc[tbl[heading] == 'All'].index[0]    #
+            tbl[heading][mSt[0]:fSt] = 'Economically Inactive'
+            tbl[subHeading][mSt] = 'All'
+
+            #### Sort out the Gender sub category
+            gsubHeading = 'Adult Carers'
+            tbl[gsubHeading] = 'All Adults'
+            mSt = tbl.loc[tbl[gHeading].str.contains('carers', na=False, regex=True)].index    # 
+            tbl[gsubHeading][mSt + 0] = 'Adult Informal Carers'
+            tbl[gsubHeading][mSt + 1] = 'Adult Informal Carers'
+            tbl[gsubHeading][mSt + 2] = 'Adult Informal Carers'
+            tbl[gHeading][mSt] = 'All'
+            tbl[gHeading][tbl[gHeading].str.strip() == 'All adults'] = 'All'
+
+            tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point
+            tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz
+            tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
+            tbl = pd.merge(tbl, tblSS, on=[gHeading, gsubHeading])
+            #### Rename Columns
+            tbl = tbl.rename(columns={'OBS_x':'Value','Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
+            tbl = tbl[['Year', heading, subHeading, gHeading, gsubHeading, 'Sample Size', 'Value', 'Unit']]
+            
+        elif whichTbl == 7:
+            
+            heading = 'Person cared for Type'
+            subHeading = 'Person cared for'
+            tbl = tbl.rename(columns={'Employment Status':heading})
+            tbl[subHeading] = tbl[heading]
+            #### Sort out the Household Member Sub Category
+            mSt = tbl.loc[tbl[heading].str.contains('Household member', na=False, regex=True)].index    # 
+            fSt = tbl.loc[tbl[heading].str.contains('Non-household member', na=False, regex=True)].index[0]     # 
+            tbl[heading][mSt[0]:fSt] = 'Household Member'
+            tbl[subHeading][mSt] = 'All'
+            #### Sort out the Non-Household Member Sub Category
+            mSt = tbl.loc[tbl[heading].str.contains('Non-household member', na=False, regex=True)].index    # 
+            fSt = tbl.loc[tbl[heading].str.contains('More than 1 person cared for', na=False, regex=True)].index[0]     # 
+            tbl[heading][mSt[0]:fSt] = 'Non-Household Member'
+            tbl[subHeading][mSt] = 'All'
+            #### Sort out the More than 1 person cared for Sub Category
+            mSt = tbl.loc[tbl[heading].str.contains('More than 1 person cared for', na=False, regex=True)].index    # 
+            fSt = tbl.loc[tbl[heading].str.contains('Sample size', na=False, regex=True)].index[0]     # 
+            tbl[heading][mSt[0]:fSt] = 'More than 1 person cared for'
+            tbl[subHeading][mSt] = 'All'
+            
+            tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point
+            tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz
+            tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
+            tbl = pd.merge(tbl, tblSS, on=[gHeading])
+            #### Rename Columns
+            tbl = tbl.rename(columns={'OBS_x':'Value','Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
+            tbl = tbl[['Year', heading, subHeading, gHeading, 'Sample Size', 'Value', 'Unit']]
+            
+            tbl[subHeading][tbl[subHeading].str.contains('Friend')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Friend')]
+            tbl[subHeading][tbl[subHeading].str.contains('Client')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Client')]
+            tbl[subHeading][tbl[subHeading] == 'Other'] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading] == 'Other']
+            tbl = tbl[~tbl[heading].str.contains('Non-relative')]
+        return tbl
+    except Exception as e:
+        "Error for table 5_4 or 5_7: " + str(e) 
+
+
+# +
+# Table 5.5: Adult informal carers by main source of total weekly household income hours caring and gender, 2017/18, United Kingdom
+# -
+
+def extract_sheet_5_5(tab):
+    try:
+        tab = [t for t in sheets if t.name == '5_5'][0]
+        col1 = tab.excel_ref('B8').fill(DOWN).is_not_blank()
+        col2 = tab.excel_ref('C8').fill(DOWN).expand(RIGHT).is_not_blank()
+        col3 = tab.excel_ref('C7').expand(RIGHT).is_not_blank()
+        # Create the table and convert to Pandas
+        heading = 'Source of Income'
+        headingHrs = 'Hours per Week'
+        headingG = 'Sex'
+        Dimensions = [
+            HDimConst('Year',yrStr2),
+            HDim(col1,heading, DIRECTLY, LEFT),
+            HDim(col3,headingHrs, CLOSEST, LEFT),
+            HDimConst('Unit','%')
+            ]
+        tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)
+        tbl = tbl.topandas()
+
+        tbl[headingG] = 'All'
+        tbl[headingG][(tbl[headingHrs] == 'Males') | (tbl[headingHrs] == 'Females')] = tbl[headingHrs]
+        tbl[headingHrs][(tbl[headingHrs] == 'Males') | (tbl[headingHrs] == 'Females')] = 'All'
+
+        tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point
+        tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz
+        tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
+        tbl = pd.merge(tbl, tblSS, on=[headingHrs, headingG])
+        tbl[headingHrs][(tbl[headingHrs] == 'All adult carers')] = 'All'
+
+        #### Rename Columns
+        tbl = tbl.rename(columns={'OBS_x':'Value','Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, headingHrs + '_x':headingHrs, 'OBS_y':'Sample Size'})
+        tbl = tbl[['Year', heading, headingHrs, headingG, 'Sample Size', 'Value', 'Unit']]
+        # Rename the Gender items to match standards
+        tbl[headingG][tbl[headingG] == 'Male'] = 'M'
+        tbl[headingG][tbl[headingG] == 'Female'] = 'F'
+        tbl[headingG][tbl[headingG] == 'All'] = 'T'
+        # Rename the items with a notes number attached
+        tbl[heading][tbl[heading] == 'State Pension plus any IS/PC1,2'] = 'State Pension plus any IS/PC'
+        tbl[heading][tbl[heading] == 'Non-state pensions3'] = 'Non-state pensions'
+        tbl[heading][tbl[heading] == 'Disability benefits4'] = 'Disability benefits'
+        tbl[heading][tbl[heading] == 'Other benefits5,6'] = 'Other benefits'
+    
+        return tbl
+    except Exception as e:
+        "Error for table 5_5: " + str(e) 
+
+
+# +
+# Table 5.9: People receiving care at least once a week by age and frequency of care, 2017/18, United Kingdom
+# -
+
+def extract_sheet_5_9(tab):
+    try:
+        rw = 10
+        heading = 'Frequency of Care'
+        
+        col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
+        col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()
+        col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
+        # Create the table and convert to Pandas
+        Dimensions = [
+            HDim(col1,'Age', DIRECTLY, LEFT),
+            HDim(col3,heading, CLOSEST, LEFT),
+            HDimConst('Unit','%'),
+            HDimConst('Year',yrStr2)
+            ]
+        tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)
+        tbl = tbl.topandas()
+        
+        tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point
+        tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz
+        tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
+        tbl = pd.merge(tbl, tblSS, on=['Age'])
+        #### Rename Columns
+        tbl = tbl.rename(columns={'OBS_x':'Value', 'Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, 'OBS_y':'Sample Size'})
+        tbl = tbl[['Year', 'Age', heading, 'Sample Size', 'Value', 'Unit']]
+        tbl['Age'][tbl['Age'] == 'All receiving care'] = 'All'
+        return tbl
+    except Exception as e:
+        err = pd.DataFrame(e.message, columns = ['Error']) 
+        return err
+
+
+# +
+# Table 5.10: People receiving care by main source of total weekly household income and gender, 2017/18, United Kingdom
+# -
+
+def extract_sheet_5_10(tab):
+    try:                
+        rw = 9
+        col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
+        col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()    
+        col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
+        col4 = tab.excel_ref('C' + str(rw - 2)).expand(RIGHT).is_not_blank()
+        heading = 'Source of Income'
+        # Create the table and convert to Pandas
+        headingG = 'Sex'
+        Dimensions = [
+            HDimConst('Year',yrStr2),
+            HDim(col1,heading, DIRECTLY, LEFT),
+            HDim(col3,headingG, CLOSEST, LEFT),
+            HDim(col4,'People', CLOSEST, LEFT),
+            HDimConst('Unit','%')
+            ]
+        tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)
+        tbl = tbl.topandas()
+        
+        tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point
+        tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz
+        tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
+        tbl = pd.merge(tbl, tblSS, on=[headingG, 'People'])
+        #### Rename Columns
+        tbl = tbl.rename(columns={'OBS_x':'Value','Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, 'People_x':'People', 'OBS_y':'Sample Size'})
+        tbl = tbl[['Year', heading, 'People', headingG, 'Sample Size', 'Value', 'Unit']]
+        # Rename the Gender items to match standards
+        tbl[headingG][tbl[headingG] == 'Male'] = 'M'
+        tbl[headingG][tbl[headingG] == 'Female'] = 'F'
+        tbl[headingG][tbl[headingG] == 'All'] = 'T'
+        # Rename the items with a notes number attached
+        tbl[heading][tbl[heading] == 'State Pension plus any IS/PC2,3'] = 'State Pension plus any IS/PC'
+        tbl[heading][tbl[heading] == 'Non-state pensions4'] = 'Non-state pensions'
+        tbl[heading][tbl[heading] == 'Disability benefits5'] = 'Disability benefits'
+        tbl[heading][tbl[heading] == 'Other benefits6,7'] = 'Other benefits'
+        tbl['People'] = tbl['People'].str.strip()
+        return tbl
+    except Exception as e:
+        return "Error for table 5_10: " + str(e)
+
+
+#### There are several spreadsheets so look for the one you want, which in this case is Carers only
+try:
+    for i in scraper.distributions:
+        if i.title == 'Carers data tables (XLS)':
+            print(i.title)
+            sheets = i
+            break
+except Exception as e:
+         print(e.message, e.args)
+
+#### Convert to a DataBaker object
+try:
+    sheets = sheets.as_databaker()
+except Exception as e:
+    print(e.message, e.args)
+
+try:
+    tbl1 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_1'][0], 'Year', 1)
+    tbl2 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_2'][0], 'Age', 2)
+    tbl3 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_3'][0], 3)
+    tbl4 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_4'][0], 4)
+    tbl5 = extract_sheet_5_5([t for t in sheets if t.name == '5_5'][0])
+    tbl6 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_6'][0], 6)
+    tbl7 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_7'][0], 7)
+    tbl8 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_8'][0], 'Age', 8)
+    tbl9 = extract_sheet_5_9([t for t in sheets if t.name == '5_9'][0])
+    tbl10 = extract_sheet_5_10([t for t in sheets if t.name == '5_10'][0])
+except Exception as e:
+    print(e.message, e.args)
+#tbl4
+
+# +
+#### Set up the folder path for the output files
+from pathlib import Path
+
+out = Path('out')
+out.mkdir(exist_ok=True, parents=True)
+# -
+
+#### Output the files
+tbl1.drop_duplicates().to_csv(out / ('observations_5_1.csv'), index = False)
+tbl2.drop_duplicates().to_csv(out / ('observations_5_2.csv'), index = False)
+tbl3.drop_duplicates().to_csv(out / ('observations_5_3.csv'), index = False)
+tbl4.drop_duplicates().to_csv(out / ('observations_5_4.csv'), index = False)
+tbl5.drop_duplicates().to_csv(out / ('observations_5_5.csv'), index = False)
+tbl6.drop_duplicates().to_csv(out / ('observations_5_6.csv'), index = False)
+tbl7.drop_duplicates().to_csv(out / ('observations_5_7.csv'), index = False)
+tbl8.drop_duplicates().to_csv(out / ('observations_5_8.csv'), index = False)
+tbl9.drop_duplicates().to_csv(out / ('observations_5_9.csv'), index = False)
+tbl10.drop_duplicates().to_csv(out / ('observations_5_10.csv'), index = False)
+
+# +
+scraper.dataset.family = 'disability'
+#scraper.dataset.license = 'http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/'
+
+with open(out / 'dataset.trig', 'wb') as metadata:
+    metadata.write(scraper.generate_trig())
+
+# +
+#schema = CSVWMetadata('https://github.com/GSS-Cogs/family-disability/reference/')
+#schema.create(out / 'observations_5_1.csv', out / 'observations_5_1.csv-schema.json')
+#schema.create(out / 'observations_5_2.csv', out / 'observations_5_2.csv-schema.json')
+#schema.create(out / 'observations_5_3.csv', out / 'observations_5_3.csv-schema.json')
+#schema.create(out / 'observations_5_4.csv', out / 'observations_5_4.csv-schema.json')
+#schema.create(out / 'observations_5_5.csv', out / 'observations_5_5.csv-schema.json')
+#schema.create(out / 'observations_5_6.csv', out / 'observations_5_6.csv-schema.json')
+#schema.create(out / 'observations_5_7.csv', out / 'observations_5_7.csv-schema.json')
+#schema.create(out / 'observations_5_8.csv', out / 'observations_5_8.csv-schema.json')
+#schema.create(out / 'observations_5_9.csv', out / 'observations_5_9.csv-schema.json')
+#schema.create(out / 'observations_5_10.csv', out / 'observations_5_10.csv-schema.json')
