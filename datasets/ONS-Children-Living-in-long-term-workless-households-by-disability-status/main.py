@@ -31,13 +31,13 @@ tab = tabs['CILTWH H']
 a_year = tab.excel_ref('A5').fill(DOWN).is_not_blank() - tab.excel_ref('A21').expand(DOWN).is_not_blank()
 a_workless_household_type = tab.excel_ref('B3').is_not_blank()
 a_household_disability_status = tab.excel_ref('B4').expand(RIGHT).is_not_blank() - tab.excel_ref('E4').expand(RIGHT).is_not_blank()
-a_observations = tab.excel_ref('B5').expand(RIGHT).expand(DOWN).is_not_blank() - tab.excel_ref('B21').expand(RIGHT).expand(DOWN).is_not_blank()
+a_observations = tab.excel_ref('B5').expand(RIGHT).expand(DOWN).is_not_blank().is_number() - tab.excel_ref('B21').expand(RIGHT).expand(DOWN).is_not_blank().is_number()
 a_exclude_totals = tab.excel_ref('E5').expand(DOWN).expand(RIGHT).is_not_blank() - tab.excel_ref('E21').expand(RIGHT).expand(DOWN).is_not_blank()
 a_observations = a_observations - a_exclude_totals
 
 Dimensions = [
              HDim(a_year,'Year',DIRECTLY,LEFT),
-             HDim(a_household_disability_status,'Household disability status',DIRECTLY,ABOVE),
+             HDim(a_household_disability_status,'Household Disability Status',DIRECTLY,ABOVE),
              HDim(a_workless_household_type,'Workless Household Type',CLOSEST,ABOVE),
              HDimConst('Measure Type', 'Thousands'), 
              HDimConst('Unit','People')
@@ -50,13 +50,13 @@ tbl_a = c1.topandas()
 c_year = tab.excel_ref('A45').fill(DOWN).is_not_blank() - tab.excel_ref('A61').expand(DOWN).is_not_blank()
 c_workless_household_type = tab.excel_ref('B43').is_not_blank()
 c_household_disability_status = tab.excel_ref('B44').expand(RIGHT).is_not_blank() - tab.excel_ref('E44').expand(RIGHT).is_not_blank()
-c_observations = tab.excel_ref('B45').expand(RIGHT).expand(DOWN).is_not_blank() - tab.excel_ref('B61').expand(RIGHT).expand(DOWN).is_not_blank()
+c_observations = tab.excel_ref('B45').expand(RIGHT).expand(DOWN).is_not_blank().is_number() - tab.excel_ref('B61').expand(RIGHT).expand(DOWN).is_not_blank().is_number()
 c_exclude_totals = tab.excel_ref('E45').expand(DOWN).expand(RIGHT).is_not_blank() - tab.excel_ref('E61').expand(RIGHT).expand(DOWN).is_not_blank()
 c_observations = c_observations - c_exclude_totals
 
 Dimensions = [
              HDim(c_year,'Year',DIRECTLY,LEFT),
-             HDim(c_household_disability_status,'Household disability status',DIRECTLY,ABOVE),
+             HDim(c_household_disability_status,'Household Disability Status',DIRECTLY,ABOVE),
              HDim(c_workless_household_type,'Workless Household Type',CLOSEST,ABOVE),
              HDimConst('Measure Type', 'Thousands'), 
              HDimConst('Unit','People')
@@ -69,13 +69,13 @@ tbl_c = c2.topandas()
 e_year = tab.excel_ref('A85').fill(DOWN).is_not_blank() - tab.excel_ref('A101').expand(DOWN).is_not_blank()
 e_workless_household_type = tab.excel_ref('B83').is_not_blank()
 e_household_disability_status = tab.excel_ref('B84').expand(RIGHT).is_not_blank() - tab.excel_ref('E84').expand(RIGHT).is_not_blank()
-e_observations = tab.excel_ref('B85').expand(RIGHT).expand(DOWN).is_not_blank() - tab.excel_ref('B101').expand(RIGHT).expand(DOWN).is_not_blank()
+e_observations = tab.excel_ref('B85').expand(RIGHT).expand(DOWN).is_not_blank().is_number() - tab.excel_ref('B101').expand(RIGHT).expand(DOWN).is_not_blank().is_number()
 e_exclude_totals = tab.excel_ref('E85').expand(DOWN).expand(RIGHT).is_not_blank() - tab.excel_ref('E101').expand(RIGHT).expand(DOWN).is_not_blank()
 e_observations = e_observations - e_exclude_totals
 
 Dimensions = [
              HDim(e_year,'Year',DIRECTLY,LEFT),
-             HDim(e_household_disability_status,'Household disability status',DIRECTLY,ABOVE),
+             HDim(e_household_disability_status,'Household Disability Status',DIRECTLY,ABOVE),
              HDim(e_workless_household_type,'Workless Household Type',CLOSEST,ABOVE),
              HDimConst('Measure Type', 'Thousands'), 
              HDimConst('Unit','People')
@@ -85,7 +85,7 @@ tbl_e = c3.topandas()
 # -
 
 #concatenate tables a,c,e
-new_table = pd.concat([tbl_a, tbl_c, tbl_e])
+new_table = pd.concat([tbl_a, tbl_c, tbl_e], ignore_index = True, sort = True).fillna('')
 
 # +
 #tidy up
@@ -99,7 +99,7 @@ new_table['OBS'] = new_table['OBS'].apply(lambda x: pd.to_numeric(x, downcast='i
 new_table['OBS'].replace('', np.nan, inplace=True)
 new_table.dropna(subset=['OBS'], inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-#new_table
+
 
 # +
 #Set up the folder path for the output files
@@ -111,16 +111,17 @@ out.mkdir(exist_ok=True, parents=True)
 
 # Output the files
 new_table.drop_duplicates().to_csv(out / ('observations.csv'), index = False)
-#new_table
+new_table
 
 # +
 scraper.dataset.family = 'disability'
 
 with open(out / 'dataset.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
-
-csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
+    
+#commented out for now
+#csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
+#csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
 # -
 
 
