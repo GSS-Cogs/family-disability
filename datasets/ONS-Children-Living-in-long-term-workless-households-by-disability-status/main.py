@@ -87,13 +87,18 @@ tbl_e = c3.topandas()
 #concatenate tables a,c,e
 new_table = pd.concat([tbl_a, tbl_c, tbl_e])
 
+# +
 #tidy up
+
+import numpy as np
 new_table = new_table[~new_table['Year'].isin(['break in series'])]
 new_table['Year'] = new_table['Year'].str[:4]
 new_table['Year'] = new_table['Year'].apply(lambda x: pd.to_numeric(x, downcast='integer'))
 new_table['Workless Household Type'] = new_table['Workless Household Type'].str[:-1]
 new_table['OBS'] = new_table['OBS'].apply(lambda x: pd.to_numeric(x, downcast='integer'))
-new_table.rename(columns={'OBS': 'Count'}, inplace=True)
+new_table['OBS'].replace('', np.nan, inplace=True)
+new_table.dropna(subset=['OBS'], inplace=True)
+new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 #new_table
 
 # +
@@ -106,6 +111,7 @@ out.mkdir(exist_ok=True, parents=True)
 
 # Output the files
 new_table.drop_duplicates().to_csv(out / ('observations.csv'), index = False)
+#new_table
 
 # +
 scraper.dataset.family = 'disability'
@@ -115,3 +121,6 @@ with open(out / 'dataset.trig', 'wb') as metadata:
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
+# -
+
+
