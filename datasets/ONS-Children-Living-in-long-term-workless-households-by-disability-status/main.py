@@ -85,7 +85,7 @@ tbl_e = c3.topandas()
 # -
 
 #concatenate tables a,c,e
-new_table = pd.concat([tbl_a, tbl_c, tbl_e], ignore_index = True, sort = True).fillna('')
+new_table = pd.concat([tbl_a, tbl_c, tbl_e]).fillna('')
 
 # +
 #tidy up
@@ -129,7 +129,7 @@ with open(out / 'dataset.trig', 'wb') as metadata:
     
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-#csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
+csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
 # -
 
 
