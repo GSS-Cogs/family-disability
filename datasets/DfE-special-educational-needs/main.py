@@ -51,3 +51,11 @@ from pathlib import Path
 out = Path('out')
 out.mkdir(exist_ok=True)
 next_table.drop_duplicates().to_csv(out / 'observations.csv', index = False)
+
+scraper.dataset.family = 'health'
+scraper.dataset.theme = THEME['health-social-care']
+with open(out / 'dataset.trig', 'wb') as metadata:
+    metadata.write(scraper.generate_trig())
+
+csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
+csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
