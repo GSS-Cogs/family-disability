@@ -457,9 +457,9 @@ scraper.dataset.family = 'disability'
 
 with open(out / 'dataset.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
-# -
 
-schema = CSVWMetadata('https://github.com/GSS-Cogs/family-disability/reference/')
+# +
+#schema = CSVWMetadata('https://github.com/GSS-Cogs/family-disability/reference/')
 #schema.create(out / 'observations_5_1.csv', out / 'observations_5_1.csv-schema.json')
 #schema.create(out / 'observations_5_2.csv', out / 'observations_5_2.csv-schema.json')
 #schema.create(out / 'observations_5_3.csv', out / 'observations_5_3.csv-schema.json')
