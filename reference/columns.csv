@@ -1,7 +1,7 @@
 title,name,component_attachment,property_template,value_template,datatype,value_transformation,regex,range
 Indicator,indicator,qb:dimension,http://gss-data.org.uk/def/dimension/indicator,http://gss-data.org.uk/def/dimension/indicator/{indicator},string,slugize,,http://gss-data.org.uk/def/classes/indicator/Indicator
 Area,geography,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refArea,http://statistics.data.gov.uk/id/statistical-geography/{geography},string,,,
-Sex,sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#sex,http://purl.org/linked-data/sdmx/2009/code#sex-{sex},string,,,http://purl.org/linked-data/sdmx/2009/code#Sex
+Sex,sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#sex,http://purl.org/linked-data/sdmx/2009/code#sex-{sex},string,,^(T|M|F)$,http://purl.org/linked-data/sdmx/2009/code#Sex
 Age,age,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#age,http://gss-data.org.uk/def/concept/ages/{age},string,slugize,,http://gss-data.org.uk/def/classes/age/Age
 Trend,trend,qb:dimension,http://gss-data.org.uk/def/dimension/trend,http://gss-data.org.uk/def/dimension/trend/{trend},string,slugize,,http://gss-data.org.uk/def/classes/trend/Trend
 Household Disability Status,household_disability_status,qb:dimension,http://gss-data.org.uk/def/dimension/household-disability-status,http://gss-data.org.uk/def/dimension/household-disability-status/{household-disability-status},string,slugize,,http://gss-data.org.uk/def/classes/household-disability-status/Household_disability_status
@@ -25,3 +25,4 @@ NHS Geography,nhs_geography,qb:dimension,http://gss-data.org.uk/def/dimension/nh
 ONS Geography,ons_geography,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refArea,http://statistics.data.gov.uk/id/statistical-geography/{geography},string,,[A-Z][0-9]{8},
 Disability,disability,qb:dimension,http://gss-data.org.uk/def/dimension/disability,http://gss-data.org.uk/def/concept/disability/{disability},string,,,http://gss-data.org.uk/def/classes/disability/disability
 Period,period,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refPeriod,http://reference.data.gov.uk/id/{+period},string,,^(year/[0-9]{4}|gregorian-interval/.*|month/[0-9]{4}-[0-9]{2}|day/[0-9]{4}-[0-9]{2}-[0-9]{2}|quarter/[0-9]{4}-Q[1-4]|government-year/[0-9]{4}-[0-9]{4})$,http://reference.data.gov.uk/def/intervals/Interval
+FRS Age Group,frs_age_group,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#age,http://gss-data.org.uk/def/concept/dwp-frs-age-group/{frs_age_group},string,,,http://gss-data.org.uk/def/classes/dwp-frs-age-group/AgeGroup

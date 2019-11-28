@@ -10,8 +10,9 @@ Employment Status,Employment status of people being measure such as Employed or 
 Employment Type,A sub category of Employment status that defines the employment type such as full-time or part-time etc.,Dimension,http://gss-data.org.uk/def//employment-type/indicator
 Adult Carers,Used to define if the statistic involves just Carers or all Adults,Dimension,http://gss-data.org.uk/def//adult-carers/indicator
 Source of Income,Main source of income of people being measured such as Wages and Salaries Investments or Tax credits etc.,Dimension,http://gss-data.org.uk/def//source-of-income/indicator
-Net Weekly Income, Range of net weekly income in £s for people the being measured,Dimension,http://gss-data.org.uk/def//net-weekly-income/indicator
+Net Weekly Income,Range of net weekly income in £s for people the being measured,Dimension,http://gss-data.org.uk/def//net-weekly-income/indicator
 Person cared for Type,Refers to who a Carer is caring for such as in their own household or not or if they care for more than one person,Dimension,http://gss-data.org.uk/def//person-cared-for-type/indicator
 Person cared for,A sub category of Person cared for type which defines who the person being cared for is such as Parent Spouse Brother or relative etc.,Dimension,http://gss-data.org.uk/def//person-cared-for/indicator
 Frequency of care,Refers the number of times a person receives care in number of times a day or week,Dimension,http://gss-data.org.uk/def//frequency-of-care/indicator
 People,Refers to if the people being measure are receiving care or not,Dimension,http://gss-data.org.uk/def//people/indicator
+Percentage of People,The percentage of all people measured who meet the criteria,Measure,
