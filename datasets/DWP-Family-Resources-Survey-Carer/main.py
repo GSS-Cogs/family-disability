@@ -21,7 +21,7 @@ try:
     scraper = Scraper(urlStr)
 except Exception as e:
     print(e.message, e.args)
-
+    
 scraper
 
 
@@ -34,7 +34,7 @@ scraper
 def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab):
     try:
         st = '9'    # Start Row
-        ed = '22'   # End RowgHeading = 'Sex'
+        ed = '22'   # End Row
         gHeading = 'Sex'
         # Set up the data for All
         col = tab.excel_ref('B' + st).fill(DOWN).is_not_blank() - tab.excel_ref('B' + ed).expand(DOWN).is_not_blank()
@@ -76,25 +76,22 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab):
         # Join up the 3 tables
         tbl = pd.concat([c1, c2, c3])
         tbl.columns.values[0] = 'Value'
+        yrRange = 'Period'
         
         # Set some extra columns
         if whichTab == 1:
             tbl['Age'] = 'All'
         elif whichTab == 2: 
-            tbl['Year'] = yrStr2
+            tbl[yrRange] = yrStr2
         elif whichTab == 8:
-            tbl['Year'] = yrStr2
+            tbl[yrRange] = yrStr2
             
-        # make some changes to match standars for codelists
-        tbl[gHeading][tbl[gHeading] == 'Male'] = 'M'
-        tbl[gHeading][tbl[gHeading] == 'Female'] = 'F'
-        tbl[gHeading][tbl[gHeading] == 'All'] = 'T'
-        tbl['Age'][tbl['Age'] == 'All providing care'] = 'All'
-        tbl['Age'][tbl['Age'] == 'All people receiving care'] = 'All'
-    
+        # Change the 2 Year period to match the standard for open data interval
+        tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
+        
         # Select the columns to return    
-        tbl = tbl[['Year','Age',gHeading,'Sample Size','Value','Unit']]
-        tbl = tbl.rename(columns={'Year':'Period'})
+        tbl = tbl[[yrRange,'Age',gHeading,'Sample Size','Value','Unit']]
+        
         return tbl
     except Exception as e:
         return "Error for table 5_1 or 5_2 or 5_8: " + str(e)
@@ -111,7 +108,8 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl):
             rw = 10
         elif whichTbl == 6: 
             rw = 9
-        gHeading = 'Sex'   
+        gHeading = 'Sex' 
+        yrRange = 'Period'
         col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
         col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()
         col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
@@ -121,7 +119,7 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl):
             HDim(col3,'Hours per Week', CLOSEST, LEFT),
             HDimConst('Unit','%'),
             HDimConst(gHeading,'All'),
-            HDimConst('Year',yrStr2)
+            HDimConst(yrRange,yrStr2)
             ]
         tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)
         tbl = tbl.topandas()
@@ -137,17 +135,20 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl):
         tbl = tbl[~tbl['Hours per Week'].str.contains('Sample', na=False, regex=True)] # Remove the Sample Size Rows from the main dataset
         tbl = pd.merge(tbl, tblSS, on=['Age', gHeading])
         if whichTbl == 3:
-            tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Hours per Week','Unit_x':'Unit','OBS_y':'Sample Size', 'Year_x':'Year'})
-            tbl = tbl[['Year', 'Age', 'Hours per Week', gHeading, 'Sample Size', 'Value', 'Unit']]
+            tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Hours per Week','Unit_x':'Unit','OBS_y':'Sample Size', yrRange + '_x':yrRange})
+            tbl = tbl[[yrRange, 'Age', 'Hours per Week', gHeading, 'Sample Size', 'Value', 'Unit']]
         elif whichTbl == 6:
-            tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Net Weekly Income','Unit_x':'Unit','OBS_y':'Sample Size', 'Year_x':'Year'})
-            tbl = tbl[['Year', 'Age', 'Net Weekly Income', gHeading, 'Sample Size', 'Value', 'Unit']]
-        tbl = tbl.rename(columns={'Year':'Period'})
+            tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Net Weekly Income','Unit_x':'Unit','OBS_y':'Sample Size', yrRange + '_x':yrRange})
+            tbl = tbl[[yrRange, 'Age', 'Net Weekly Income', gHeading, 'Sample Size', 'Value', 'Unit']]
+        
         # make some changes to match standars for codelists
         tbl[gHeading][tbl[gHeading] == 'Male'] = 'M'
         tbl[gHeading][tbl[gHeading] == 'Female'] = 'F'
         tbl[gHeading][tbl[gHeading] == 'All'] = 'T'
         tbl['Age'][tbl['Age'].str.contains('carers')] = 'All'
+        # Change the 2 Year period to match the standard for open data interval
+        tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
+        
         return tbl
     except Exception as e:
         return "Error for table 5_3 or 5_6: " + str(e)
@@ -173,10 +174,11 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl):
             
         col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
         gHeading = 'Sex'   
+        yrRange = 'Period'
         # Create the table and convert to Pandas
         heading = 'Employment Status'
         Dimensions = [
-            HDimConst('Year',yrStr2),
+            HDimConst(yrRange,yrStr2),
             HDim(col1,heading, DIRECTLY, LEFT),
             HDim(col3,gHeading, CLOSEST, LEFT),
             HDimConst('Unit','%')
@@ -226,8 +228,8 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl):
             tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
             tbl = pd.merge(tbl, tblSS, on=[gHeading, gsubHeading])
             #### Rename Columns
-            tbl = tbl.rename(columns={'OBS_x':'Value','Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
-            tbl = tbl[['Year', heading, subHeading, gHeading, gsubHeading, 'Sample Size', 'Value', 'Unit']]
+            tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
+            tbl = tbl[[yrRange, heading, subHeading, gHeading, gsubHeading, 'Sample Size', 'Value', 'Unit']]
             
         elif whichTbl == 7:
             
@@ -256,15 +258,17 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl):
             tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
             tbl = pd.merge(tbl, tblSS, on=[gHeading])
             #### Rename Columns
-            tbl = tbl.rename(columns={'OBS_x':'Value','Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
-            tbl = tbl[['Year', heading, subHeading, gHeading, 'Sample Size', 'Value', 'Unit']]
+            tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
+            tbl = tbl[[yrRange, heading, subHeading, gHeading, 'Sample Size', 'Value', 'Unit']]
             
             tbl[subHeading][tbl[subHeading].str.contains('Friend')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Friend')]
             tbl[subHeading][tbl[subHeading].str.contains('Client')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Client')]
             tbl[subHeading][tbl[subHeading] == 'Other'] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading] == 'Other']
             tbl = tbl[~tbl[heading].str.contains('Non-relative')]
             
-        tbl = tbl.rename(columns={'Year':'Period'})
+        # Change the 2 Year period to match the standard for open data interval
+        tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
+
         return tbl
     except Exception as e:
         "Error for table 5_4 or 5_7: " + str(e) 
@@ -284,8 +288,9 @@ def extract_sheet_5_5(tab):
         heading = 'Source of Income'
         headingHrs = 'Hours per Week'
         headingG = 'Sex'
+        yrRange = 'Period'
         Dimensions = [
-            HDimConst('Year',yrStr2),
+            HDimConst(yrRange,yrStr2),
             HDim(col1,heading, DIRECTLY, LEFT),
             HDim(col3,headingHrs, CLOSEST, LEFT),
             HDimConst('Unit','%')
@@ -304,8 +309,8 @@ def extract_sheet_5_5(tab):
         tbl[headingHrs][(tbl[headingHrs] == 'All adult carers')] = 'All'
 
         #### Rename Columns
-        tbl = tbl.rename(columns={'OBS_x':'Value','Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, headingHrs + '_x':headingHrs, 'OBS_y':'Sample Size'})
-        tbl = tbl[['Year', heading, headingHrs, headingG, 'Sample Size', 'Value', 'Unit']]
+        tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, headingHrs + '_x':headingHrs, 'OBS_y':'Sample Size'})
+        tbl = tbl[[yrRange, heading, headingHrs, headingG, 'Sample Size', 'Value', 'Unit']]
         # Rename the Gender items to match standards
         tbl[headingG][tbl[headingG] == 'Male'] = 'M'
         tbl[headingG][tbl[headingG] == 'Female'] = 'F'
@@ -316,7 +321,9 @@ def extract_sheet_5_5(tab):
         tbl[heading][tbl[heading] == 'Disability benefits4'] = 'Disability benefits'
         tbl[heading][tbl[heading] == 'Other benefits5,6'] = 'Other benefits'
     
-        tbl = tbl.rename(columns={'Year':'Period'})
+        # Change the 2 Year period to match the standard for open data interval
+        tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
+        
         return tbl
     except Exception as e:
         "Error for table 5_5: " + str(e) 
@@ -330,7 +337,7 @@ def extract_sheet_5_9(tab):
     try:
         rw = 10
         heading = 'Frequency of care'
-        
+        yrRange = 'Period'
         col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
         col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()
         col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
@@ -339,7 +346,7 @@ def extract_sheet_5_9(tab):
             HDim(col1,'Age', DIRECTLY, LEFT),
             HDim(col3,heading, CLOSEST, LEFT),
             HDimConst('Unit','%'),
-            HDimConst('Year',yrStr2)
+            HDimConst(yrRange,yrStr2)
             ]
         tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)
         tbl = tbl.topandas()
@@ -349,10 +356,13 @@ def extract_sheet_5_9(tab):
         tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
         tbl = pd.merge(tbl, tblSS, on=['Age'])
         #### Rename Columns
-        tbl = tbl.rename(columns={'OBS_x':'Value', 'Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, 'OBS_y':'Sample Size'})
-        tbl = tbl[['Year', 'Age', heading, 'Sample Size', 'Value', 'Unit']]
+        tbl = tbl.rename(columns={'OBS_x':'Value', yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'OBS_y':'Sample Size'})
+        tbl = tbl[[yrRange, 'Age', heading, 'Sample Size', 'Value', 'Unit']]
         tbl['Age'][tbl['Age'] == 'All receiving care'] = 'All'
-        tbl = tbl.rename(columns={'Year':'Period'})
+        
+        # Change the 2 Year period to match the standard for open data interval
+        tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
+        
         return tbl
     except Exception as e:
         err = pd.DataFrame(e.message, columns = ['Error']) 
@@ -371,10 +381,11 @@ def extract_sheet_5_10(tab):
         col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
         col4 = tab.excel_ref('C' + str(rw - 2)).expand(RIGHT).is_not_blank()
         heading = 'Source of Income'
+        yrRange = 'Period'
         # Create the table and convert to Pandas
         headingG = 'Sex'
         Dimensions = [
-            HDimConst('Year',yrStr2),
+            HDimConst(yrRange,yrStr2),
             HDim(col1,heading, DIRECTLY, LEFT),
             HDim(col3,headingG, CLOSEST, LEFT),
             HDim(col4,'People', CLOSEST, LEFT),
@@ -388,8 +399,8 @@ def extract_sheet_5_10(tab):
         tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
         tbl = pd.merge(tbl, tblSS, on=[headingG, 'People'])
         #### Rename Columns
-        tbl = tbl.rename(columns={'OBS_x':'Value','Year_x':'Year','Unit_x':'Unit', heading + '_x':heading, 'People_x':'People', 'OBS_y':'Sample Size'})
-        tbl = tbl[['Year', heading, 'People', headingG, 'Sample Size', 'Value', 'Unit']]
+        tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'People_x':'People', 'OBS_y':'Sample Size'})
+        tbl = tbl[[yrRange, heading, 'People', headingG, 'Sample Size', 'Value', 'Unit']]
         # Rename the Gender items to match standards
         tbl[headingG][tbl[headingG] == 'Male'] = 'M'
         tbl[headingG][tbl[headingG] == 'Female'] = 'F'
@@ -400,7 +411,10 @@ def extract_sheet_5_10(tab):
         tbl[heading][tbl[heading] == 'Disability benefits5'] = 'Disability benefits'
         tbl[heading][tbl[heading] == 'Other benefits6,7'] = 'Other benefits'
         tbl['People'] = tbl['People'].str.strip()
-        tbl = tbl.rename(columns={'Year':'Period'})
+        
+        # Change the 2 Year period to match the standard for open data interval
+        tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
+        
         return tbl
     except Exception as e:
         return "Error for table 5_10: " + str(e)
@@ -422,8 +436,9 @@ try:
 except Exception as e:
     print(e.message, e.args)
 
+yrRange = 'Period'
 try:
-    tbl1 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_1'][0], 'Year', 1)
+    tbl1 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_1'][0], yrRange, 1)
     tbl2 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_2'][0], 'Age', 2)
     tbl3 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_3'][0], 3)
     tbl4 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_4'][0], 4)
@@ -435,7 +450,7 @@ try:
     tbl10 = extract_sheet_5_10([t for t in sheets if t.name == '5_10'][0])
 except Exception as e:
     print(e.message, e.args)
-#tbl4
+tbl10
 
 # +
 #### Set up the folder path for the output files
@@ -463,10 +478,10 @@ scraper.dataset.family = 'disability'
 
 with open(out / 'dataset.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
-# -
 
+# +
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-#schema = CSVWMetadata('https://github.com/GSS-Cogs/family-disability/reference/')
+
 csvw.create(out / 'observations_5_1.csv', out / 'observations_5_1.csv-schema.json')
 csvw.create(out / 'observations_5_2.csv', out / 'observations_5_2.csv-schema.json')
 csvw.create(out / 'observations_5_3.csv', out / 'observations_5_3.csv-schema.json')
@@ -477,5 +492,6 @@ csvw.create(out / 'observations_5_7.csv', out / 'observations_5_7.csv-schema.jso
 csvw.create(out / 'observations_5_8.csv', out / 'observations_5_8.csv-schema.json')
 csvw.create(out / 'observations_5_9.csv', out / 'observations_5_9.csv-schema.json')
 csvw.create(out / 'observations_5_10.csv', out / 'observations_5_10.csv-schema.json')
+# -
 
 
