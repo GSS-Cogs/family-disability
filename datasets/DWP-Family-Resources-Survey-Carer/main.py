@@ -450,7 +450,7 @@ try:
     tbl10 = extract_sheet_5_10([t for t in sheets if t.name == '5_10'][0])
 except Exception as e:
     print(e.message, e.args)
-tbl10
+#tbl10
 
 # +
 #### Set up the folder path for the output files
@@ -458,40 +458,57 @@ from pathlib import Path
 
 out = Path('out')
 out.mkdir(exist_ok=True, parents=True)
+
+# +
+tblSet = [tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
+
+scraper.dataset.family = 'disability'
+
+csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 # -
 
+i = 1
+for t in tblSet:
+    fleNme = 'observations_5_' + str(i) + '.csv'
+    t.drop_duplicates().to_csv(out / (fleNme), index = False)
+    csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
+    with open(out / (fleNme + '.csv-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
+    i = i + 1
+    print(fleNme)
+
+# +
 #### Output the files
-tbl1.drop_duplicates().to_csv(out / ('observations_5_1.csv'), index = False)
-tbl2.drop_duplicates().to_csv(out / ('observations_5_2.csv'), index = False)
-tbl3.drop_duplicates().to_csv(out / ('observations_5_3.csv'), index = False)
-tbl4.drop_duplicates().to_csv(out / ('observations_5_4.csv'), index = False)
-tbl5.drop_duplicates().to_csv(out / ('observations_5_5.csv'), index = False)
-tbl6.drop_duplicates().to_csv(out / ('observations_5_6.csv'), index = False)
-tbl7.drop_duplicates().to_csv(out / ('observations_5_7.csv'), index = False)
-tbl8.drop_duplicates().to_csv(out / ('observations_5_8.csv'), index = False)
-tbl9.drop_duplicates().to_csv(out / ('observations_5_9.csv'), index = False)
-tbl10.drop_duplicates().to_csv(out / ('observations_5_10.csv'), index = False)
+#tbl1.drop_duplicates().to_csv(out / ('observations_5_1.csv'), index = False)
+#tbl2.drop_duplicates().to_csv(out / ('observations_5_2.csv'), index = False)
+#tbl3.drop_duplicates().to_csv(out / ('observations_5_3.csv'), index = False)
+#tbl4.drop_duplicates().to_csv(out / ('observations_5_4.csv'), index = False)
+#tbl5.drop_duplicates().to_csv(out / ('observations_5_5.csv'), index = False)
+#tbl6.drop_duplicates().to_csv(out / ('observations_5_6.csv'), index = False)
+#tbl7.drop_duplicates().to_csv(out / ('observations_5_7.csv'), index = False)
+#tbl8.drop_duplicates().to_csv(out / ('observations_5_8.csv'), index = False)
+#tbl9.drop_duplicates().to_csv(out / ('observations_5_9.csv'), index = False)
+#tbl10.drop_duplicates().to_csv(out / ('observations_5_10.csv'), index = False)
 
 # +
-scraper.dataset.family = 'disability'
-#scraper.dataset.license = 'http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/'
+#scraper.dataset.family = 'disability'
 
-with open(out / 'dataset.trig', 'wb') as metadata:
-    metadata.write(scraper.generate_trig())
+#with open(out / 'dataset.trig', 'wb') as metadata:metadata.write(scraper.generate_trig())
+    
+#with open(out / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:metadata.write(scraper.generate_trig())
 
 # +
-csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
+#csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 
-csvw.create(out / 'observations_5_1.csv', out / 'observations_5_1.csv-schema.json')
-csvw.create(out / 'observations_5_2.csv', out / 'observations_5_2.csv-schema.json')
-csvw.create(out / 'observations_5_3.csv', out / 'observations_5_3.csv-schema.json')
-csvw.create(out / 'observations_5_4.csv', out / 'observations_5_4.csv-schema.json')
-csvw.create(out / 'observations_5_5.csv', out / 'observations_5_5.csv-schema.json')
-csvw.create(out / 'observations_5_6.csv', out / 'observations_5_6.csv-schema.json')
-csvw.create(out / 'observations_5_7.csv', out / 'observations_5_7.csv-schema.json')
-csvw.create(out / 'observations_5_8.csv', out / 'observations_5_8.csv-schema.json')
-csvw.create(out / 'observations_5_9.csv', out / 'observations_5_9.csv-schema.json')
-csvw.create(out / 'observations_5_10.csv', out / 'observations_5_10.csv-schema.json')
+#csvw.create(out / 'observations_5_1.csv', out / 'observations_5_1.csv-schema.json')
+#csvw.create(out / 'observations_5_2.csv', out / 'observations_5_2.csv-schema.json')
+#csvw.create(out / 'observations_5_3.csv', out / 'observations_5_3.csv-schema.json')
+#csvw.create(out / 'observations_5_4.csv', out / 'observations_5_4.csv-schema.json')
+#csvw.create(out / 'observations_5_5.csv', out / 'observations_5_5.csv-schema.json')
+#csvw.create(out / 'observations_5_6.csv', out / 'observations_5_6.csv-schema.json')
+#csvw.create(out / 'observations_5_7.csv', out / 'observations_5_7.csv-schema.json')
+#csvw.create(out / 'observations_5_8.csv', out / 'observations_5_8.csv-schema.json')
+#csvw.create(out / 'observations_5_9.csv', out / 'observations_5_9.csv-schema.json')
+#csvw.create(out / 'observations_5_10.csv', out / 'observations_5_10.csv-schema.json')
 # -
 
 
