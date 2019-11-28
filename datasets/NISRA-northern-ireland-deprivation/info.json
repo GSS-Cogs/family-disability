@@ -2,13 +2,12 @@
   "title": "Northern Ireland deprivation",
   "publisher": "Northern IrelandI Statistics and Research Agency ",
   "description": "Includes ranks of the areas for each of 7 distinct types (or domains) of deprivation, which have been combined to produce an overall multiple deprivation measure (MDM) rank of the areas. The MDM ranks of the areas should be considered in conjunction with those for each of the 7 domains in order to gain a comprehensive picture of deprivation.",
-  "dataURL": "https://www.nisra.gov.uk/statistics/deprivation/northern-ireland-multiple-deprivation-measure-2017-nimdm2017",
+  "landingPage": "https://www.nisra.gov.uk/statistics/deprivation/northern-ireland-multiple-deprivation-measure-2017-nimdm2017",
   "contacts": [{
     "name": "Dr Jos IJpelaar",
     "tel": "028 90388489",
     "email": "deprivation@nisra.gov.uk"
   }],
-  "metaURL": "https://www.nisra.gov.uk/statistics/deprivation/northern-ireland-multiple-deprivation-measure-2017-nimdm2017",
   "published": "23 November 2017",
   "families": ["Disabilities", "People and places", "Neighbourhoods and Communities"],
   "stability": "Good",

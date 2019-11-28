@@ -2,13 +2,12 @@
   "title": "Family Resources Survey for financial year 2017 to 2018 - Carer",
   "publisher": "Department for Work and Pensions",
   "description": "Results from the Family Resources Survey for financial year 2017 to 2018, providing information on income and circumstances of UK households. Includes a table of Carer information.",
-  "dataURL": "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718",
+  "landingPage": "https://www.gov.uk/government/collections/family-resources-survey--2",
   "contacts": [{
     "name": "M A Vaughan",
     "tel": "",
     "email": "steam.frs@dwp.gov.uk"
   }],
-  "metaURL": "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718",
   "published": "28 March 2019",
   "families": ["Affordable Housing", "Disability", "Care"],
   "stability": "Good",

@@ -2,13 +2,15 @@
   "title": "Learning Disability Health Check Scheme, England",
   "publisher": "NHS Digital",
   "description": "The learning disabilities health check scheme is designed to encourage practices to identify all patients aged 14 and over with learning disabilities, to maintain a learning disabilities 'health check' register and offer them an annual health check, which will include producing a health action plan.",
-  "dataURL": "https://digital.nhs.uk/data-and-information/publications/statistical/learning-disabilities-health-check-scheme/england-quarter-1-2019-20",
+  "landingPage": "https://digital.nhs.uk/data-and-information/publications/statistical/learning-disabilities-health-check-scheme",
+  "datasetNotes": [
+    "Latest version: Learning Disability Health Check Scheme, England"
+  ],
   "contacts": [{
     "name": "Gemma Ramsay",
     "tel": "0300 303 5678",
     "email": "enquiries@nhsdigital.nhs.uk"
   }],
-  "metaURL": "https://digital.nhs.uk/data-and-information/publications/statistical/learning-disabilities-health-check-scheme/england-quarter-1-2019-20",
   "published": "04 October 2019",
   "due": "January 2020",
   "families": ["Disability"],

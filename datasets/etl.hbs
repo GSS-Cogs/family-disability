@@ -14,8 +14,8 @@
     <div>{{description}}</div>
   </div>
   <div class="col border-bottom border-right p-2">
-    <div class="font-weight-bold">Data Location:</div>
-    <div><a href="{{dataURL}}">{{dataURL}}</a></div>
+    <div class="font-weight-bold">Landing page:</div>
+    <div><a href="{{landingPage}}">{{landingPage}}</a></div>
   </div>
 </div>
 <div class="row">
@@ -28,8 +28,16 @@
     {{/each}}
   </div>
   <div class="col border-bottom border-right p-2">
-    <div class="font-weight-bold">Metadata Location:</div>
-    <div><a href="{{metaURL}}">{{metaURL}}</a></div>
+    <div class="font-weight-bold">Finding the dataset / distribution:</div>
+    <div>
+      {{#if datasetNotes}}
+      <ol>
+        {{#each datasetNotes}}
+        <li>{{this}}</li>
+        {{/each}}
+        </ol>
+    {{/if}}
+    </div>
   </div>
 </div>
 <div class="row">

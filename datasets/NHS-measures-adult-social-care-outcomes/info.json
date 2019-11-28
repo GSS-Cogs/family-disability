@@ -2,7 +2,10 @@
   "title": "Measures from the Adult Social Care Outcomes Framework, England, 2018-19",
   "publisher": "NHS Digital",
   "description": "The Adult Social Care Outcomes Framework (ASCOF) measures how well care and support services achieve the outcomes that matter most to people. The ASCOF is used both locally and nationally to set priorities for care and support, measure progress and strengthen transparency and accountability.",
-  "dataURL": "https://digital.nhs.uk/data-and-information/publications/statistical/adult-social-care-outcomes-framework-ascof/upcoming/measures-from-the-adult-social-care-outcomes-framework-england-2018-19",
+  "landingPage": "https://digital.nhs.uk/data-and-information/publications/statistical/adult-social-care-outcomes-framework-ascof",
+  "datasetNotes": [
+    "Latest version: Measures from the Adult Social Care Outcomes Framework, England"
+  ],
   "contacts": [{
     "name": "Robyn Wilson",
     "tel": "0300 303 5678",

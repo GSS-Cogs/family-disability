@@ -2,13 +2,15 @@
   "title": "Guardianship under the Mental Health Act 1983, England, 2016-17 and 2017-18, National Statistic",
   "publisher": "NHS Digital",
   "description": "This report contains information on the use of Guardianship under Sections 7 and 37 of the Mental Health Act 1983 during the reporting period 1 April 2016 to 31 March 2018, including a yearly time series since 2003-04.",
-  "dataURL": "https://digital.nhs.uk/data-and-information/publications/statistical/guardianship-under-the-mental-health-act-1983/england-2016-17-and-2017-18-national-statistic",
+  "landingPage": "https://digital.nhs.uk/data-and-information/publications/statistical/guardianship-under-the-mental-health-act-1983",
+  "datasetNotes": [
+    "Latest version: Guardianship under the Mental Health Act 1983..."
+  ],
   "contacts": [{
     "name": "Jane Winter",
     "tel": "0300 303 5678",
     "email": "enquiries@nhsdigital.nhs.uk"
   }],
-  "metaURL": "https://digital.nhs.uk/data-and-information/publications/statistical/guardianship-under-the-mental-health-act-1983/england-2016-17-and-2017-18-national-statistic",
   "published": "20 November 2018",
   "families": ["Mental health", "Health", "Disability"],
   "stability": "Good",

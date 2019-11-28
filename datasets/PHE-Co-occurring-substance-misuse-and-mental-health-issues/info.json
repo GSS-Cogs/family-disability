@@ -2,11 +2,10 @@
   "title": "Co-occurring substance misuse and mental health issues",
   "publisher": "PHE",
   "description": "It collates and analyses a wide range of publically available data around tobacco smoking, alcohol use and drug use, including data on prevalence, risk factors, treatment demand and treatment response. The tool also features indicators around mental health prevalence and services.",
-  "dataURL": "https://fingertips.phe.org.uk/profile-group/mental-health/profile/drugsandmentalhealth",
+  "landingPage": "https://fingertips.phe.org.uk/profile-group/mental-health/profile/drugsandmentalhealth",
   "contacts": [{
     "email": "profilefeedback@phe.gov.uk"
   }],
-  "metaURL": "https://fingertips.phe.org.uk/profile-group/mental-health/profile/drugsandmentalhealth",
   "published": "June 2019",
   "due": "",
   "families": ["Substance Misuse", "Disability"],
