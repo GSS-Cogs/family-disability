@@ -21,24 +21,24 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Age"
   }, {
-		"url": "codelists/nhs-geographies.csv",
-		"tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/nhs-geographies.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "NHS Geography"
   }, {
-  	"url": "codelists/sample_size.csv",
-  	"tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/sample_size.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Sample Size"
   }, {
-  	"url": "codelists/hours-per-week.csv",
-  	"tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/hours-per-week.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Hours per Week"
   }, {
-  	"url": "codelists/employment-status.csv",
-  	"tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/employment-status.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Employment Status"
   }, {
-  	"url": "codelists/employment-type.csv",
-  	"tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/employment-type.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Employment Type"
   }, {
     "url": "codelists/adult-carers.csv",
