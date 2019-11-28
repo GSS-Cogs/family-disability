@@ -24,5 +24,49 @@
 		"url": "codelists/nhs-geographies.csv",
 		"tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "NHS Geography"
+  }, {
+  	"url": "codelists/sample_size.csv",
+  	"tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Sample Size"
+  }, {
+  	"url": "codelists/hours-per-week.csv",
+  	"tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Hours per Week"
+  }, {
+  	"url": "codelists/employment-status.csv",
+  	"tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Employment Status"
+  }, {
+  	"url": "codelists/employment-type.csv",
+  	"tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Employment Type"
+  }, {
+    "url": "codelists/adult-carers.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Adult Carers"
+  }, {
+    "url": "codelists/source-of-income.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Source of Income"
+  }, {
+    "url": "codelists/net-weekly-income.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Net Weekly Income"
+  }, {
+    "url": "codelists/person-cared-for-type.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Person cared for Type"
+  }, {
+    "url": "codelists/person-cared-for.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Person cared for"
+  }, {
+    "url": "codelists/frequency-of-care.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Frequency of care"
+  }, {
+    "url": "codelists/people.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "People"
   }]
 }
