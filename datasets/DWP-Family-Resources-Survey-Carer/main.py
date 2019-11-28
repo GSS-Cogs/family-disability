@@ -414,7 +414,6 @@ def extract_sheet_5_10(tab):
         
         # Change the 2 Year period to match the standard for open data interval
         tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
-        tbl['Value'][tbl['Value'] == ''] = '0'
         
         return tbl
     except Exception as e:
@@ -470,6 +469,7 @@ csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 
 i = 1
 for t in tblSet:
+    t['Value'][t['Value'] == ''] = '0'
     fleNme = 'observations_5_' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
     csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
