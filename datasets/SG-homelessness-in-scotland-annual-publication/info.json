@@ -2,13 +2,12 @@
   "title": "Homelessness in Scotland: Annual Publication 2018-19",
   "publisher": "Scottish Government",
   "description": "Information on local authority homelessness applications, assessments and outcomes along with information on the use of temporary accommodation.",
-  "dataURL": "https://www2.gov.scot/Topics/Statistics/Browse/Housing-Regeneration/RefTables",
+  "landingPage": "https://www2.gov.scot/Topics/Statistics/Browse/Housing-Regeneration/RefTables",
   "contacts": [{
     "name": "Lee Bunce",
     "tel": "01312443861",
     "email": "homelessness_statistics_inbox@gov.scot"
   }],
-  "metaURL": "https://www2.gov.scot/Topics/Statistics/Browse/Housing-Regeneration/RefTables",
   "published": "26 June 2019",
   "families": ["Homelessness", "Disabilities"],
   "stability": "Good",

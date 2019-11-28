@@ -2,13 +2,16 @@
   "title": "Special educational needs in England: January 2019",
   "publisher": "Department for Education",
   "description": "Information from the school census on pupils with special educational needs (SEN) and SEN provision in schools.",
-  "dataURL": "https://www.gov.uk/government/statistics/special-educational-needs-in-england-january-2019",
+  "landingPage": "https://www.gov.uk/government/collections/statistics-special-educational-needs-sen",
+  "datasetNotes": [
+    "Top link in \"National statistics on special educational needs in England\"",
+    "Underlying data in ZIP"
+  ],
   "contacts": [{
     "name": "Sean Gibson",
     "tel": "01325 340 987",
     "email": "sen.statistics@education.gov.uk"
   }],
-  "metaURL": "https://www.gov.uk/government/statistics/statements-of-sen-and-ehc-plans-england-2019",
   "published": "04 July 2019",
   "families": ["Education", "Disability"],
   "stability": "?",
