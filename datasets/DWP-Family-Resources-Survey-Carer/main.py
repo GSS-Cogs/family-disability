@@ -472,7 +472,7 @@ for t in tblSet:
     fleNme = 'observations_5_' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
     csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
-    with open(out / (fleNme + '.csv-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
+    with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
     i = i + 1
     print(fleNme)
 
