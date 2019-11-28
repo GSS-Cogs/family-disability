@@ -414,7 +414,7 @@ def extract_sheet_5_10(tab):
         
         # Change the 2 Year period to match the standard for open data interval
         tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
-        tbl['Value'][tbl['Value'] == ''] = '-'
+        tbl['Value'][tbl['Value'] == ''] = '0'
         
         return tbl
     except Exception as e:
