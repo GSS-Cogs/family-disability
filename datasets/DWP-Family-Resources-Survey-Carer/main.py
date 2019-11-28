@@ -414,6 +414,7 @@ def extract_sheet_5_10(tab):
         
         # Change the 2 Year period to match the standard for open data interval
         tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
+        tbl['Value'][tbl['Value'] == ''] = '-'
         
         return tbl
     except Exception as e:
@@ -476,18 +477,9 @@ for t in tblSet:
     i = i + 1
     print(fleNme)
 
-# +
 #### Output the files
 #tbl1.drop_duplicates().to_csv(out / ('observations_5_1.csv'), index = False)
-#tbl2.drop_duplicates().to_csv(out / ('observations_5_2.csv'), index = False)
-#tbl3.drop_duplicates().to_csv(out / ('observations_5_3.csv'), index = False)
-#tbl4.drop_duplicates().to_csv(out / ('observations_5_4.csv'), index = False)
-#tbl5.drop_duplicates().to_csv(out / ('observations_5_5.csv'), index = False)
-#tbl6.drop_duplicates().to_csv(out / ('observations_5_6.csv'), index = False)
-#tbl7.drop_duplicates().to_csv(out / ('observations_5_7.csv'), index = False)
-#tbl8.drop_duplicates().to_csv(out / ('observations_5_8.csv'), index = False)
-#tbl9.drop_duplicates().to_csv(out / ('observations_5_9.csv'), index = False)
-#tbl10.drop_duplicates().to_csv(out / ('observations_5_10.csv'), index = False)
+
 
 # +
 #scraper.dataset.family = 'disability'
@@ -500,15 +492,7 @@ for t in tblSet:
 #csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 
 #csvw.create(out / 'observations_5_1.csv', out / 'observations_5_1.csv-schema.json')
-#csvw.create(out / 'observations_5_2.csv', out / 'observations_5_2.csv-schema.json')
-#csvw.create(out / 'observations_5_3.csv', out / 'observations_5_3.csv-schema.json')
-#csvw.create(out / 'observations_5_4.csv', out / 'observations_5_4.csv-schema.json')
-#csvw.create(out / 'observations_5_5.csv', out / 'observations_5_5.csv-schema.json')
-#csvw.create(out / 'observations_5_6.csv', out / 'observations_5_6.csv-schema.json')
-#csvw.create(out / 'observations_5_7.csv', out / 'observations_5_7.csv-schema.json')
-#csvw.create(out / 'observations_5_8.csv', out / 'observations_5_8.csv-schema.json')
-#csvw.create(out / 'observations_5_9.csv', out / 'observations_5_9.csv-schema.json')
-#csvw.create(out / 'observations_5_10.csv', out / 'observations_5_10.csv-schema.json')
+
 # -
 
 
