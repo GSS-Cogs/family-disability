@@ -49,7 +49,7 @@ pipeline {
                                 schemas.add("${DATASET_DIR}/out/${schema.name}")
                             }
                             for (String schema : schemas) {
-                                sh "csvlint --no-verbose -s ${schema}"
+                                sh "csvlint --no-verbose -s '${schema}'"
                             }
                         }
                     }
