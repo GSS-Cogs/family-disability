@@ -79,16 +79,19 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange)
         # Set some extra columns
         if whichTab == 1:
             tbl['Age'] = 'All'
-            tbl['Measure Type'] = 'Percentage of people providing informal care by gender, UK'
+            tbl['Measure Type'] = 'People providing informal care by gender'
         elif whichTab == 2: 
             tbl[yrRange] = yrStr2
-            tbl['Measure Type'] = 'Percentage of people providing informal care by age & gender, UK'
+            tbl['Measure Type'] = 'People providing informal care by age & gender'
         elif whichTab == 8:
             tbl[yrRange] = yrStr2
-            tbl['Measure Type'] = 'Percentage of people receiving care by age and gender, UK'
+            tbl['Measure Type'] = 'People receiving care by age and gender'
         
-        # Select the columns to return    
-        tbl = tbl[[yrRange,'Age',gHeading,'Sample Size','Measure Type','Value','Unit']]
+        # Select the columns to return   
+        if 'DATAMARKER' not in tbl.columns:
+            tbl['DATAMARKER'] = ''
+            
+        tbl = tbl[[yrRange,'Age',gHeading,'Sample Size','Measure Type','Value','Unit','DATAMARKER']]
         
         return tbl
     except Exception as e:
@@ -104,8 +107,12 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl, gHeading, yrRange):
     try:
         if whichTbl == 3: 
             rw = 10
+            mainHeading = 'Adult informal carers providing care by gender, age and number of hours per week'
+            mainCol = 'Hours per Week'
         elif whichTbl == 6: 
             rw = 9 
+            mainHeading = 'Adult informal care by gender, age and net individual weekly income'
+            mainCol = 'Net Weekly Income'
 
         col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
         col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()
@@ -113,7 +120,7 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl, gHeading, yrRange):
         # Create the table and convert to Pandas
         Dimensions = [
             HDim(col1,'Age', DIRECTLY, LEFT),
-            HDim(col3,'Hours per Week', CLOSEST, LEFT),
+            HDim(col3,mainCol, CLOSEST, LEFT),
             HDimConst('Unit','%'),
             HDimConst(gHeading,'All'),
             HDimConst(yrRange,yrStr2)
@@ -127,21 +134,21 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl, gHeading, yrRange):
         tbl[gHeading][mSt:fSt] = 'Male'
         tbl[gHeading][fSt:aEd] = 'Female'
 
-        tbl = tbl[tbl['Hours per Week'] != 'All'] # Get rid of the 100% rows, can't see the point
-        tblSS = tbl[tbl['Hours per Week'].str.contains('Sample', na=False, regex=True)] # Identify the Sample Size rows to join in with the data laterz
-        tbl = tbl[~tbl['Hours per Week'].str.contains('Sample', na=False, regex=True)] # Remove the Sample Size Rows from the main dataset
+        tbl = tbl[tbl[mainCol] != 'All'] # Get rid of the 100% rows, can't see the point
+        tblSS = tbl[tbl[mainCol].str.contains('Sample', na=False, regex=True)] # Identify the Sample Size rows to join in with the data laterz
+        tbl = tbl[~tbl[mainCol].str.contains('Sample', na=False, regex=True)] # Remove the Sample Size Rows from the main dataset
         tbl = pd.merge(tbl, tblSS, on=['Age', gHeading])
-        if whichTbl == 3:
-            tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Hours per Week','Unit_x':'Unit','OBS_y':'Sample Size', yrRange + '_x':yrRange})
-            tbl['Measure Type'] = 'Adult informal carers by gender, age and number of hours per week providing care, UK'
-            tbl = tbl[[yrRange, 'Age', 'Hours per Week', gHeading, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
-        elif whichTbl == 6:
-            tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Net Weekly Income','Unit_x':'Unit','OBS_y':'Sample Size', yrRange + '_x':yrRange})
-            tbl['Measure Type'] = 'Adult informal care by gender, age and net individual weekly income, UK'
-            tbl = tbl[[yrRange, 'Age', 'Net Weekly Income', gHeading, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
         
+        if 'DATAMARKER_x' not in tbl.columns:
+            tbl['DATAMARKER_x'] = ''
+            
+        tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER','OBS_x':'Value',mainCol + '_x':mainCol,'Unit_x':'Unit','OBS_y':'Sample Size', yrRange + '_x':yrRange})
+        tbl = tbl[[yrRange, 'Age', mainCol, gHeading, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
+       
         # make some changes to match standards for codelists
         tbl['Age'][tbl['Age'].str.contains('carers')] = 'All'
+        
+        tbl['Measure Type'] = mainHeading
         
         return tbl
     except Exception as e:
@@ -159,12 +166,13 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange):
             rw = 9
             col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
             col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()
-
+            mainHeading = 'Adult informal carers by employment status and gender'
         elif whichTbl == 7: 
             rw = 10
             rwEnd = 36
             col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank() - tab.excel_ref('B' + str(rwEnd)).expand(DOWN).is_not_blank()
             col2 = tab.excel_ref("C10:E36").is_not_blank() #### Some formulas in cells next to the dataset, font has also been changed to white! specified a range instead
+            mainHeading = 'Who informal carers care for by gender'
             
         col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()  
         
@@ -220,10 +228,13 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange):
             tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz
             tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
             tbl = pd.merge(tbl, tblSS, on=[gHeading, gsubHeading])
+            
+            if 'DATAMARKER_x' not in tbl.columns:
+                tbl['DATAMARKER_x'] = ''
+                
             #### Rename Columns
-            tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
-            tbl['Measure Type'] = 'Adult informal carers by employment status and gender, UK'
-            tbl = tbl[[yrRange, heading, subHeading, gHeading, gsubHeading, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
+            tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER', 'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
+            tbl = tbl[[yrRange, heading, subHeading, gHeading, gsubHeading, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
             
         elif whichTbl == 7:
             
@@ -251,16 +262,20 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange):
             tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz
             tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
             tbl = pd.merge(tbl, tblSS, on=[gHeading])
+            
+            if 'DATAMARKER_x' not in tbl.columns:
+                tbl['DATAMARKER_x'] = ''
+                
             #### Rename Columns
-            tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
-            tbl['Measure Type'] = 'Who informal carers care for by gender, UK'
-            tbl = tbl[[yrRange, heading, subHeading, gHeading, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
+            tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER','OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
+            tbl = tbl[[yrRange, heading, subHeading, gHeading, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
             
             tbl[subHeading][tbl[subHeading].str.contains('Friend')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Friend')]
             tbl[subHeading][tbl[subHeading].str.contains('Client')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Client')]
             tbl[subHeading][tbl[subHeading] == 'Other'] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading] == 'Other']
             tbl = tbl[~tbl[heading].str.contains('Non-relative')]
-            
+        
+        tbl['Measure Type'] = mainHeading
         return tbl
     except Exception as e:
         "Error for table 5_4 or 5_7: " + str(e) 
@@ -272,6 +287,7 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange):
 
 def extract_sheet_5_5(tab, headingG, yrRange):
     try:
+        mainHeading = 'Adult informal carers by main source of total weekly household income hours caring and gender'
         tab = [t for t in sheets if t.name == '5_5'][0]
         col1 = tab.excel_ref('B8').fill(DOWN).is_not_blank()
         col2 = tab.excel_ref('C8').fill(DOWN).expand(RIGHT).is_not_blank()
@@ -298,10 +314,12 @@ def extract_sheet_5_5(tab, headingG, yrRange):
         tbl = pd.merge(tbl, tblSS, on=[headingHrs, headingG])
         tbl[headingHrs][(tbl[headingHrs] == 'All adult carers')] = 'All'
 
+        if 'DATAMARKER_x' not in tbl.columns:
+            tbl['DATAMARKER_x'] = ''
+            
         #### Rename Columns
-        tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, headingHrs + '_x':headingHrs, 'OBS_y':'Sample Size'})
-        tbl['Measure Type'] = 'Adult informal carers by main source of total weekly household income hours caring and gender, UK'
-        tbl = tbl[[yrRange, heading, headingHrs, headingG, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
+        tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER','OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, headingHrs + '_x':headingHrs, 'OBS_y':'Sample Size'})
+        tbl = tbl[[yrRange, heading, headingHrs, headingG, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
 
         # Rename the items with a notes number attached
         tbl[heading][tbl[heading] == 'State Pension plus any IS/PC1,2'] = 'State Pension plus any IS/PC'
@@ -309,6 +327,7 @@ def extract_sheet_5_5(tab, headingG, yrRange):
         tbl[heading][tbl[heading] == 'Disability benefits4'] = 'Disability benefits'
         tbl[heading][tbl[heading] == 'Other benefits5,6'] = 'Other benefits'
         
+        tbl['Measure Type'] = mainHeading
         return tbl
     except Exception as e:
         "Error for table 5_5: " + str(e) 
@@ -320,6 +339,7 @@ def extract_sheet_5_5(tab, headingG, yrRange):
 
 def extract_sheet_5_9(tab, gHeading, yrRange):
     try:
+        mainHeading = 'People receiving care at least once a week by age and frequency of care'
         rw = 10
         heading = 'Frequency of care'
         col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
@@ -339,12 +359,16 @@ def extract_sheet_5_9(tab, gHeading, yrRange):
         tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz
         tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
         tbl = pd.merge(tbl, tblSS, on=['Age'])
+        
+        if 'DATAMARKER_x' not in tbl.columns:
+            tbl['DATAMARKER_x'] = ''
+            
         #### Rename Columns
-        tbl = tbl.rename(columns={'OBS_x':'Value', yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'OBS_y':'Sample Size'})
-        tbl['Measure Type'] = 'People receiving care at least once a week by age and frequency of care, UK'
-        tbl = tbl[[yrRange, 'Age', heading, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
+        tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER','OBS_x':'Value', yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'OBS_y':'Sample Size'})
+        tbl = tbl[[yrRange, 'Age', heading, 'Sample Size', 'Value', 'Unit','DATAMARKER']]
         tbl['Age'][tbl['Age'] == 'All receiving care'] = 'All'
         
+        tbl['Measure Type'] = mainHeading
         return tbl
     except Exception as e:
         err = pd.DataFrame(e.message, columns = ['Error']) 
@@ -356,7 +380,8 @@ def extract_sheet_5_9(tab, gHeading, yrRange):
 # -
 
 def extract_sheet_5_10(tab, headingG, yrRange):
-    try:                
+    try:   
+        mainHeading = 'People receiving care by main source of total weekly household income and gender'
         rw = 9
         col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
         col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()    
@@ -378,10 +403,14 @@ def extract_sheet_5_10(tab, headingG, yrRange):
         tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz
         tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
         tbl = pd.merge(tbl, tblSS, on=[headingG, 'People'])
+        
+        if 'DATAMARKER_x' not in tbl.columns:
+            tbl['DATAMARKER_x'] = ''
+        
         #### Rename Columns
-        tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'People_x':'People', 'OBS_y':'Sample Size'})
-        tbl['Measure Type'] = 'People receiving care by main source of total weekly household income and gender, UK'
-        tbl = tbl[[yrRange, heading, 'People', headingG, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
+        tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER','OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'People_x':'People', 'OBS_y':'Sample Size'})
+        tbl['Measure Type'] = 'People receiving care by main source of total weekly household income and gender'
+        tbl = tbl[[yrRange, heading, 'People', headingG, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
 
         # Rename the items with a notes number attached
         tbl[heading][tbl[heading] == 'State Pension plus any IS/PC2,3'] = 'State Pension plus any IS/PC'
@@ -390,6 +419,22 @@ def extract_sheet_5_10(tab, headingG, yrRange):
         tbl[heading][tbl[heading] == 'Other benefits6,7'] = 'Other benefits'
         tbl['People'] = tbl['People'].str.strip()
            
+        tbl['Measure Type'] = mainHeading
+        return tbl
+    except Exception as e:
+        return "Error for table 5_10: " + str(e)
+
+
+def changeDataMarkerValues(tbl):
+    try:
+        colName = 'DATAMARKER'
+        if colName in tbl.columns:
+            tbl[colName][tbl[colName] == '0'] = 'Nil none recorded in the sample)'
+            tbl[colName][tbl[colName] == '-'] = 'Negligible (less than 0.5 percent, or 0.1 million)'
+            tbl[colName][tbl[colName] == '.'] = 'N/A'
+            tbl[colName][tbl[colName] == '..'] = 'Not available due to small smaple size (fewer than 100)'
+        
+        tbl = tbl.rename(columns={colName:'Marker'})
         return tbl
     except Exception as e:
         return "Error for table 5_10: " + str(e)
@@ -435,15 +480,19 @@ from pathlib import Path
 
 out = Path('out')
 out.mkdir(exist_ok=True, parents=True)
-
-# +
-tblSet = [tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
-
-scraper.dataset.family = 'disability'
-
-csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 # -
 
+# Join all the tables together into one dataset so we can loop through them
+tblSet = [tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
+# Set the Familiy of these datasets
+scraper.dataset.family = 'disability'
+# create an instance of a csvw , my knowledge of this bit is a wholly at the moment :-)
+csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
+
+# Change some Values to match standardised codelists
+# Output Observation.csv files
+# Create and output Schema.json files
+# Create and output metadata.trig files
 i = 1
 for t in tblSet:
     # make some changes to match standards for codelists
@@ -454,10 +503,20 @@ for t in tblSet:
     # Change the 2 Year period to match the standard for open data interval
     if yrRange in t.columns:
         t[yrRange] = t[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
-            
-    t['Value'][t['Value'] == ''] = '0'
+    
+    t = changeDataMarkerValues(t)
+    
+    if 'Value' in t.columns:
+        t['Value'][t['Value'] == ''] = '0'
+        
     fleNme = 'observations_5_' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
     csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
     with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
     i = i + 1
+
+# +
+#tbl3
+# -
+
+
