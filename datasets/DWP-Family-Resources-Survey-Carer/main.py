@@ -438,9 +438,9 @@ i = 1
 for t in tblSet:
     # make some changes to match standards for codelists
     if gendHead in t.columns:
-        t[gendHead][t[gendHead] == 'Male'] = 'M'
-        t[gendHead][t[gendHead] == 'Female'] = 'F'
-        t[gendHead][t[gendHead] == 'All'] = 'T'
+        t[gendHead][(t[gendHead].str.contains('Male')) | (t[gendHead].str.contains('male'))] = 'M'
+        t[gendHead][(t[gendHead].str.contains('Female')) | (t[gendHead].str.contains('female'))] = 'F'
+        t[gendHead][(t[gendHead].str.contains('All')) | (t[gendHead].str.contains('all'))] = 'T'
     # Change the 2 Year period to match the standard for open data interval
     if yrRange in t.columns:
         t[yrRange] = t[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
