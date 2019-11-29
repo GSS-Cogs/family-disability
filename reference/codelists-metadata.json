@@ -1,33 +1,9 @@
 {
   "@context": ["http://www.w3.org/ns/csvw", {"@language": "en"}],
   "tables": [{
-    "url": "codelists/trend.csv",
+    "url": "codelists/adult-carer.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Trend"
-  }, {
-    "url": "codelists/indicator.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Indicator"
-  },{
-    "url": "codelists/household-disability-status.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Household Disability Status"
-  },{
-    "url": "codelists/workless-household-type.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Workless Household Type"
-  }, {
-    "url": "codelists/phe-co-occurring-substance-misuse-and-mental-health-issues-age.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Age"
-  }, {
-    "url": "codelists/nhs-geographies.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "NHS Geography"
-  }, {
-    "url": "codelists/hours-per-week.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Hours per Week"
+    "rdfs:label": "Adult Carer"
   }, {
     "url": "codelists/employment-status.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
@@ -37,17 +13,33 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Employment Type"
   }, {
-    "url": "codelists/adult-carer.csv",
+    "url": "codelists/frequency-of-care.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Adult Carer"
+    "rdfs:label": "Frequency of care"
   }, {
-    "url": "codelists/source-of-income.csv",
+    "url": "codelists/hours-per-week.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Source of Income"
+    "rdfs:label": "Hours per Week"
+  }, {
+    "url": "codelists/household-disability-status.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Household Disability Status"
+  }, {
+    "url": "codelists/indicator.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Indicator"
+  }, {
+    "url": "codelists/marker.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Marker"
   }, {
     "url": "codelists/net-weekly-income.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Net Weekly Income"
+  }, {
+    "url": "codelists/nhs-geographies.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "NHS Geography"
   }, {
     "url": "codelists/person-cared-for-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
@@ -57,12 +49,24 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Person cared for"
   }, {
-    "url": "codelists/frequency-of-care.csv",
+    "url": "codelists/phe-co-occurring-substance-misuse-and-mental-health-issues-age.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Frequency of care"
+    "rdfs:label": "Age"
   }, {
-    "url": "codelists/marker.csv",
+    "url": "codelists/SEN-educational-institutions.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Marker"
+    "rdfs:label": "Special Educational Needs Institutions"
+  }, {
+    "url": "codelists/source-of-income.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Source of Income"
+  }, {
+    "url": "codelists/trend.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Trend"
+  }, {
+    "url": "codelists/workless-household-type.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Workless Household Type"
   }]
 }
