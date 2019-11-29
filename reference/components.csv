@@ -16,4 +16,4 @@ Person cared for,A sub category of Person cared for type which defines who the p
 Frequency of care,Refers the number of times a person receives care in number of times a day or week,Dimension,http://gss-data.org.uk/def//frequency-of-care/indicator
 People,Refers to if the people being measure are receiving care or not,Dimension,http://gss-data.org.uk/def//people/indicator
 Percentage of People,The percentage of all people measured who meet the criteria,Measure,
-Marker, Defines the reason for any missing values,attribute,
+Marker,Defines the reason for any missing values,Attribute,
