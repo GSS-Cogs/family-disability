@@ -85,7 +85,11 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab):
             tbl[yrRange] = yrStr2
         elif whichTab == 8:
             tbl[yrRange] = yrStr2
-            
+         
+        # make some changes to match standars for codelists
+        tbl[gHeading][tbl[gHeading] == 'Male'] = 'M'
+        tbl[gHeading][tbl[gHeading] == 'Female'] = 'F'
+        tbl[gHeading][tbl[gHeading] == 'All'] = 'T'
         # Change the 2 Year period to match the standard for open data interval
         tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
         
@@ -141,7 +145,7 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl):
             tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Net Weekly Income','Unit_x':'Unit','OBS_y':'Sample Size', yrRange + '_x':yrRange})
             tbl = tbl[[yrRange, 'Age', 'Net Weekly Income', gHeading, 'Sample Size', 'Value', 'Unit']]
         
-        # make some changes to match standars for codelists
+        # make some changes to match standards for codelists
         tbl[gHeading][tbl[gHeading] == 'Male'] = 'M'
         tbl[gHeading][tbl[gHeading] == 'Female'] = 'F'
         tbl[gHeading][tbl[gHeading] == 'All'] = 'T'
@@ -477,22 +481,6 @@ for t in tblSet:
     i = i + 1
     print(fleNme)
 
-#### Output the files
-#tbl1.drop_duplicates().to_csv(out / ('observations_5_1.csv'), index = False)
-
-
-# +
-#scraper.dataset.family = 'disability'
-
-#with open(out / 'dataset.trig', 'wb') as metadata:metadata.write(scraper.generate_trig())
-    
-#with open(out / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:metadata.write(scraper.generate_trig())
-
-# +
-#csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-
-#csvw.create(out / 'observations_5_1.csv', out / 'observations_5_1.csv-schema.json')
-
-# -
-
+# ### Output the files
+# tbl1.drop_duplicates().to_csv(out / ('observations_5_1.csv'), index = False)
 
