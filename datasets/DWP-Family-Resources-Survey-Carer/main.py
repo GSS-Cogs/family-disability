@@ -31,11 +31,10 @@ scraper
 # Table 5.8: Percentage of people receiving care by age and gender, 2017,18, United Kingdom
 # -
 
-def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab):
+def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange):
     try:
         st = '9'    # Start Row
         ed = '22'   # End Row
-        gHeading = 'Sex'
         # Set up the data for All
         col = tab.excel_ref('B' + st).fill(DOWN).is_not_blank() - tab.excel_ref('B' + ed).expand(DOWN).is_not_blank()
         All = tab.excel_ref('C' + st).fill(DOWN).is_not_blank() - tab.excel_ref('C' + ed).expand(DOWN).is_not_blank()
@@ -76,7 +75,6 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab):
         # Join up the 3 tables
         tbl = pd.concat([c1, c2, c3])
         tbl.columns.values[0] = 'Value'
-        yrRange = 'Period'
         
         # Set some extra columns
         if whichTab == 1:
@@ -85,13 +83,6 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab):
             tbl[yrRange] = yrStr2
         elif whichTab == 8:
             tbl[yrRange] = yrStr2
-         
-        # make some changes to match standars for codelists
-        tbl[gHeading][tbl[gHeading] == 'Male'] = 'M'
-        tbl[gHeading][tbl[gHeading] == 'Female'] = 'F'
-        tbl[gHeading][tbl[gHeading] == 'All'] = 'T'
-        # Change the 2 Year period to match the standard for open data interval
-        tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
         
         # Select the columns to return    
         tbl = tbl[[yrRange,'Age',gHeading,'Sample Size','Value','Unit']]
@@ -106,14 +97,13 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab):
 # Table 5.6: Adult informal care by gender, age and net individual weekly income, 2017/18, United Kingdom
 # -
 
-def extract_sheet_5_3_and_5_6(tab, whichTbl):
+def extract_sheet_5_3_and_5_6(tab, whichTbl, gHeading, yrRange):
     try:
         if whichTbl == 3: 
             rw = 10
         elif whichTbl == 6: 
-            rw = 9
-        gHeading = 'Sex' 
-        yrRange = 'Period'
+            rw = 9 
+
         col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
         col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()
         col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
@@ -146,12 +136,7 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl):
             tbl = tbl[[yrRange, 'Age', 'Net Weekly Income', gHeading, 'Sample Size', 'Value', 'Unit']]
         
         # make some changes to match standards for codelists
-        tbl[gHeading][tbl[gHeading] == 'Male'] = 'M'
-        tbl[gHeading][tbl[gHeading] == 'Female'] = 'F'
-        tbl[gHeading][tbl[gHeading] == 'All'] = 'T'
         tbl['Age'][tbl['Age'].str.contains('carers')] = 'All'
-        # Change the 2 Year period to match the standard for open data interval
-        tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
         
         return tbl
     except Exception as e:
@@ -163,7 +148,7 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl):
 # Table 5.7: Who informal carers care for by gender, 2017/18, United Kingdom
 # -
 
-def extract_sheet_5_4_and_5_7(tab, whichTbl):
+def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange):
     try:
         if whichTbl == 4: 
             rw = 9
@@ -176,9 +161,8 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl):
             col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank() - tab.excel_ref('B' + str(rwEnd)).expand(DOWN).is_not_blank()
             col2 = tab.excel_ref("C10:E36").is_not_blank() #### Some formulas in cells next to the dataset, font has also been changed to white! specified a range instead
             
-        col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
-        gHeading = 'Sex'   
-        yrRange = 'Period'
+        col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()  
+        
         # Create the table and convert to Pandas
         heading = 'Employment Status'
         Dimensions = [
@@ -270,9 +254,6 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl):
             tbl[subHeading][tbl[subHeading] == 'Other'] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading] == 'Other']
             tbl = tbl[~tbl[heading].str.contains('Non-relative')]
             
-        # Change the 2 Year period to match the standard for open data interval
-        tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
-
         return tbl
     except Exception as e:
         "Error for table 5_4 or 5_7: " + str(e) 
@@ -282,7 +263,7 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl):
 # Table 5.5: Adult informal carers by main source of total weekly household income hours caring and gender, 2017/18, United Kingdom
 # -
 
-def extract_sheet_5_5(tab):
+def extract_sheet_5_5(tab, headingG, yrRange):
     try:
         tab = [t for t in sheets if t.name == '5_5'][0]
         col1 = tab.excel_ref('B8').fill(DOWN).is_not_blank()
@@ -291,8 +272,6 @@ def extract_sheet_5_5(tab):
         # Create the table and convert to Pandas
         heading = 'Source of Income'
         headingHrs = 'Hours per Week'
-        headingG = 'Sex'
-        yrRange = 'Period'
         Dimensions = [
             HDimConst(yrRange,yrStr2),
             HDim(col1,heading, DIRECTLY, LEFT),
@@ -315,18 +294,12 @@ def extract_sheet_5_5(tab):
         #### Rename Columns
         tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, headingHrs + '_x':headingHrs, 'OBS_y':'Sample Size'})
         tbl = tbl[[yrRange, heading, headingHrs, headingG, 'Sample Size', 'Value', 'Unit']]
-        # Rename the Gender items to match standards
-        tbl[headingG][tbl[headingG] == 'Male'] = 'M'
-        tbl[headingG][tbl[headingG] == 'Female'] = 'F'
-        tbl[headingG][tbl[headingG] == 'All'] = 'T'
+
         # Rename the items with a notes number attached
         tbl[heading][tbl[heading] == 'State Pension plus any IS/PC1,2'] = 'State Pension plus any IS/PC'
         tbl[heading][tbl[heading] == 'Non-state pensions3'] = 'Non-state pensions'
         tbl[heading][tbl[heading] == 'Disability benefits4'] = 'Disability benefits'
         tbl[heading][tbl[heading] == 'Other benefits5,6'] = 'Other benefits'
-    
-        # Change the 2 Year period to match the standard for open data interval
-        tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
         
         return tbl
     except Exception as e:
@@ -337,11 +310,10 @@ def extract_sheet_5_5(tab):
 # Table 5.9: People receiving care at least once a week by age and frequency of care, 2017/18, United Kingdom
 # -
 
-def extract_sheet_5_9(tab):
+def extract_sheet_5_9(tab, gHeading, yrRange):
     try:
         rw = 10
         heading = 'Frequency of care'
-        yrRange = 'Period'
         col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
         col2 = tab.excel_ref('C' + str(rw)).fill(DOWN).expand(RIGHT).is_not_blank()
         col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
@@ -364,9 +336,6 @@ def extract_sheet_5_9(tab):
         tbl = tbl[[yrRange, 'Age', heading, 'Sample Size', 'Value', 'Unit']]
         tbl['Age'][tbl['Age'] == 'All receiving care'] = 'All'
         
-        # Change the 2 Year period to match the standard for open data interval
-        tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
-        
         return tbl
     except Exception as e:
         err = pd.DataFrame(e.message, columns = ['Error']) 
@@ -377,7 +346,7 @@ def extract_sheet_5_9(tab):
 # Table 5.10: People receiving care by main source of total weekly household income and gender, 2017/18, United Kingdom
 # -
 
-def extract_sheet_5_10(tab):
+def extract_sheet_5_10(tab, headingG, yrRange):
     try:                
         rw = 9
         col1 = tab.excel_ref('B' + str(rw)).fill(DOWN).is_not_blank()
@@ -385,9 +354,7 @@ def extract_sheet_5_10(tab):
         col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
         col4 = tab.excel_ref('C' + str(rw - 2)).expand(RIGHT).is_not_blank()
         heading = 'Source of Income'
-        yrRange = 'Period'
-        # Create the table and convert to Pandas
-        headingG = 'Sex'
+
         Dimensions = [
             HDimConst(yrRange,yrStr2),
             HDim(col1,heading, DIRECTLY, LEFT),
@@ -405,20 +372,14 @@ def extract_sheet_5_10(tab):
         #### Rename Columns
         tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'People_x':'People', 'OBS_y':'Sample Size'})
         tbl = tbl[[yrRange, heading, 'People', headingG, 'Sample Size', 'Value', 'Unit']]
-        # Rename the Gender items to match standards
-        tbl[headingG][tbl[headingG] == 'Male'] = 'M'
-        tbl[headingG][tbl[headingG] == 'Female'] = 'F'
-        tbl[headingG][tbl[headingG] == 'All'] = 'T'
+
         # Rename the items with a notes number attached
         tbl[heading][tbl[heading] == 'State Pension plus any IS/PC2,3'] = 'State Pension plus any IS/PC'
         tbl[heading][tbl[heading] == 'Non-state pensions4'] = 'Non-state pensions'
         tbl[heading][tbl[heading] == 'Disability benefits5'] = 'Disability benefits'
         tbl[heading][tbl[heading] == 'Other benefits6,7'] = 'Other benefits'
         tbl['People'] = tbl['People'].str.strip()
-        
-        # Change the 2 Year period to match the standard for open data interval
-        tbl[yrRange] = tbl[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
-        
+           
         return tbl
     except Exception as e:
         return "Error for table 5_10: " + str(e)
@@ -441,17 +402,19 @@ except Exception as e:
     print(e.message, e.args)
 
 yrRange = 'Period'
+gendHead = 'Sex'
+
 try:
-    tbl1 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_1'][0], yrRange, 1)
-    tbl2 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_2'][0], 'Age', 2)
-    tbl3 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_3'][0], 3)
-    tbl4 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_4'][0], 4)
-    tbl5 = extract_sheet_5_5([t for t in sheets if t.name == '5_5'][0])
-    tbl6 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_6'][0], 6)
-    tbl7 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_7'][0], 7)
-    tbl8 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_8'][0], 'Age', 8)
-    tbl9 = extract_sheet_5_9([t for t in sheets if t.name == '5_9'][0])
-    tbl10 = extract_sheet_5_10([t for t in sheets if t.name == '5_10'][0])
+    tbl1 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_1'][0], yrRange, 1, gendHead, yrRange)
+    tbl2 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_2'][0], 'Age', 2, gendHead, yrRange)
+    tbl3 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_3'][0], 3, gendHead, yrRange)
+    tbl4 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_4'][0], 4, gendHead, yrRange)
+    tbl5 = extract_sheet_5_5([t for t in sheets if t.name == '5_5'][0], gendHead, yrRange)
+    tbl6 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_6'][0], 6, gendHead, yrRange)
+    tbl7 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_7'][0], 7, gendHead, yrRange)
+    tbl8 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_8'][0], 'Age', 8, gendHead, yrRange)
+    tbl9 = extract_sheet_5_9([t for t in sheets if t.name == '5_9'][0], gendHead, yrRange)
+    tbl10 = extract_sheet_5_10([t for t in sheets if t.name == '5_10'][0], gendHead, yrRange)
 except Exception as e:
     print(e.message, e.args)
 #tbl10
@@ -473,13 +436,21 @@ csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 
 i = 1
 for t in tblSet:
+    # make some changes to match standards for codelists
+    if gendHead in t.columns:
+        t[gendHead][t[gendHead] == 'Male'] = 'M'
+        t[gendHead][t[gendHead] == 'Female'] = 'F'
+        t[gendHead][t[gendHead] == 'All'] = 'T'
+    # Change the 2 Year period to match the standard for open data interval
+    if yrRange in t.columns:
+        t[yrRange] = t[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
+            
     t['Value'][t['Value'] == ''] = '0'
     fleNme = 'observations_5_' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
     csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
     with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
     i = i + 1
-    print(fleNme)
 
 # ### Output the files
 # tbl1.drop_duplicates().to_csv(out / ('observations_5_1.csv'), index = False)
