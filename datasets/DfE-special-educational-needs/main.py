@@ -14,7 +14,8 @@
 # ---
 
 from gssutils import *
-scraper = Scraper('https://www.gov.uk/government/statistics/special-educational-needs-in-england-january-2019')
+scraper = Scraper('https://www.gov.uk/government/collections/statistics-special-educational-needs-sen')
+scraper.select_dataset(title=lambda x: x.startswith('Special educational needs in England'), latest=True)
 
 next_table = pd.DataFrame()
 
@@ -44,6 +45,22 @@ next_table = pd.concat([next_table, new_table])
 # %run "Table 10.py"
 next_table = pd.concat([next_table, new_table])
 # %run "Table 11.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 12.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 13.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 14.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 15.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 16.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 17.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 18.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 19.py"
 next_table = pd.concat([next_table, new_table])
 # -
 

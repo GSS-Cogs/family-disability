@@ -16,7 +16,8 @@
 # All Schools (1) : Pupils with special educational needs by Education provider and type of provision (2)(3)
 
 from gssutils import *
-scraper = Scraper('https://www.gov.uk/government/statistics/special-educational-needs-in-england-january-2019')
+scraper = Scraper('https://www.gov.uk/government/collections/statistics-special-educational-needs-sen')
+scraper.select_dataset(title=lambda x: x.startswith('Special educational needs in England'), latest=True)
 tabs = { tab.name: tab for tab in scraper.distributions[1].as_databaker() }
 tab = tabs['Table 1']
 cell = tab.filter('England')
