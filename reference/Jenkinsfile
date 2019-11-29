@@ -15,7 +15,7 @@ pipeline {
                 script {
                     ansiColor('xterm') {
                         sh "csvlint -s reference/codelists-metadata.json"
-                        sh "csvlint reference/columns.csv"
+                        sh "csvlint -s reference/columns.csv"
                         sh "csvlint reference/components.csv"
                     }
                 }
