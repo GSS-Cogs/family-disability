@@ -68,5 +68,9 @@
     "url": "codelists/people.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "People"
+   }, {
+    "url": "codelists/marker.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Marker"
   }]
 }
