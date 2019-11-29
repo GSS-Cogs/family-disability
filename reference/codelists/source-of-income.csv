@@ -1,11 +1,11 @@
 Label,Notation,Parent Notation,Sort Priority
-All,All,,1
-Wages and salaries,Wages-and-salaries,All,2
-Self-employed income,Self-employed-income,All,3
-Investments,Investments,All,4
-Tax Credits,Tax-Credits,All,5
-State Pension plus any IS/PC,State-Pension-plus-any-IS-PC,All,6
-Non-state pensions,Non-state-pensions,All,7
-Disability benefits,Disability-benefits,All,8
-Other benefits,Other-benefits,All,9
-Other sources,Other-sources,All,10
+All,all,,1
+Wages and salaries,wages-and-salaries,all,2
+Self-employed income,self-employed-income,all,3
+Investments,investments,all,4
+Tax Credits,tax-credits,all,5
+State Pension plus any IS/PC,state-pension-plus-any-is-pc,all,6
+Non-state pensions,non-state-pensions,all,7
+Disability benefits,disability-benefits,all,8
+Other benefits,other-benefits,all,9
+Other sources,other-sources,all,10
