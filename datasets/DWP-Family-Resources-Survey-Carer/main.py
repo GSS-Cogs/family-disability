@@ -79,13 +79,16 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange)
         # Set some extra columns
         if whichTab == 1:
             tbl['Age'] = 'All'
+            tbl['Measure Type'] = 'Percentage of people providing informal care by gender, UK'
         elif whichTab == 2: 
             tbl[yrRange] = yrStr2
+            tbl['Measure Type'] = 'Percentage of people providing informal care by age & gender, UK'
         elif whichTab == 8:
             tbl[yrRange] = yrStr2
+            tbl['Measure Type'] = 'Percentage of people receiving care by age and gender, UK'
         
         # Select the columns to return    
-        tbl = tbl[[yrRange,'Age',gHeading,'Sample Size','Value','Unit']]
+        tbl = tbl[[yrRange,'Age',gHeading,'Sample Size','Measure Type','Value','Unit']]
         
         return tbl
     except Exception as e:
@@ -130,10 +133,12 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl, gHeading, yrRange):
         tbl = pd.merge(tbl, tblSS, on=['Age', gHeading])
         if whichTbl == 3:
             tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Hours per Week','Unit_x':'Unit','OBS_y':'Sample Size', yrRange + '_x':yrRange})
-            tbl = tbl[[yrRange, 'Age', 'Hours per Week', gHeading, 'Sample Size', 'Value', 'Unit']]
+            tbl['Measure Type'] = 'Adult informal carers by gender, age and number of hours per week providing care, UK'
+            tbl = tbl[[yrRange, 'Age', 'Hours per Week', gHeading, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
         elif whichTbl == 6:
             tbl = tbl.rename(columns={'OBS_x':'Value','Hours per Week_x':'Net Weekly Income','Unit_x':'Unit','OBS_y':'Sample Size', yrRange + '_x':yrRange})
-            tbl = tbl[[yrRange, 'Age', 'Net Weekly Income', gHeading, 'Sample Size', 'Value', 'Unit']]
+            tbl['Measure Type'] = 'Adult informal care by gender, age and net individual weekly income, UK'
+            tbl = tbl[[yrRange, 'Age', 'Net Weekly Income', gHeading, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
         
         # make some changes to match standards for codelists
         tbl['Age'][tbl['Age'].str.contains('carers')] = 'All'
@@ -217,7 +222,8 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange):
             tbl = pd.merge(tbl, tblSS, on=[gHeading, gsubHeading])
             #### Rename Columns
             tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
-            tbl = tbl[[yrRange, heading, subHeading, gHeading, gsubHeading, 'Sample Size', 'Value', 'Unit']]
+            tbl['Measure Type'] = 'Adult informal carers by employment status and gender, UK'
+            tbl = tbl[[yrRange, heading, subHeading, gHeading, gsubHeading, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
             
         elif whichTbl == 7:
             
@@ -247,7 +253,8 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange):
             tbl = pd.merge(tbl, tblSS, on=[gHeading])
             #### Rename Columns
             tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
-            tbl = tbl[[yrRange, heading, subHeading, gHeading, 'Sample Size', 'Value', 'Unit']]
+            tbl['Measure Type'] = 'Who informal carers care for by gender, UK'
+            tbl = tbl[[yrRange, heading, subHeading, gHeading, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
             
             tbl[subHeading][tbl[subHeading].str.contains('Friend')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Friend')]
             tbl[subHeading][tbl[subHeading].str.contains('Client')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Client')]
@@ -293,7 +300,8 @@ def extract_sheet_5_5(tab, headingG, yrRange):
 
         #### Rename Columns
         tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, headingHrs + '_x':headingHrs, 'OBS_y':'Sample Size'})
-        tbl = tbl[[yrRange, heading, headingHrs, headingG, 'Sample Size', 'Value', 'Unit']]
+        tbl['Measure Type'] = 'Adult informal carers by main source of total weekly household income hours caring and gender, UK'
+        tbl = tbl[[yrRange, heading, headingHrs, headingG, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
 
         # Rename the items with a notes number attached
         tbl[heading][tbl[heading] == 'State Pension plus any IS/PC1,2'] = 'State Pension plus any IS/PC'
@@ -333,7 +341,8 @@ def extract_sheet_5_9(tab, gHeading, yrRange):
         tbl = pd.merge(tbl, tblSS, on=['Age'])
         #### Rename Columns
         tbl = tbl.rename(columns={'OBS_x':'Value', yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'OBS_y':'Sample Size'})
-        tbl = tbl[[yrRange, 'Age', heading, 'Sample Size', 'Value', 'Unit']]
+        tbl['Measure Type'] = 'People receiving care at least once a week by age and frequency of care, UK'
+        tbl = tbl[[yrRange, 'Age', heading, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
         tbl['Age'][tbl['Age'] == 'All receiving care'] = 'All'
         
         return tbl
@@ -371,7 +380,8 @@ def extract_sheet_5_10(tab, headingG, yrRange):
         tbl = pd.merge(tbl, tblSS, on=[headingG, 'People'])
         #### Rename Columns
         tbl = tbl.rename(columns={'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'People_x':'People', 'OBS_y':'Sample Size'})
-        tbl = tbl[[yrRange, heading, 'People', headingG, 'Sample Size', 'Value', 'Unit']]
+        tbl['Measure Type'] = 'People receiving care by main source of total weekly household income and gender, UK'
+        tbl = tbl[[yrRange, heading, 'People', headingG, 'Sample Size', 'Measure Type', 'Value', 'Unit']]
 
         # Rename the items with a notes number attached
         tbl[heading][tbl[heading] == 'State Pension plus any IS/PC2,3'] = 'State Pension plus any IS/PC'
@@ -451,7 +461,3 @@ for t in tblSet:
     csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
     with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
     i = i + 1
-
-# ### Output the files
-# tbl1.drop_duplicates().to_csv(out / ('observations_5_1.csv'), index = False)
-
