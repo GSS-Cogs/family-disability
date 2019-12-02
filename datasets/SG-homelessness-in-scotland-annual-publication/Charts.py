@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[68]:
+# In[37]:
 
 
 from gssutils import *
@@ -23,7 +23,7 @@ scraper
 # NB:- Scraper needed to be directed to specific 2018/19 page rather than the landing page
 #   :- Also need to update the below to use a more standard pivot point ('cell') rather than the first entry in the column as this most likely won't be standard moving forward.
 
-# In[69]:
+# In[38]:
 
 
 distCharts = scraper.distribution(title=lambda t: 'Charts' in t)
@@ -32,7 +32,7 @@ distCharts = scraper.distribution(title=lambda t: 'Charts' in t)
 tabsCharts = {tab.name: tab for tab in distCharts.as_databaker()}
 
 
-# In[70]:
+# In[39]:
 
 
 tab = tabsCharts['Data6']
@@ -52,7 +52,7 @@ c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 savepreviewhtml(c1, fname="Preview.html")
 
 
-# In[71]:
+# In[40]:
 
 
 new_table = c1.topandas()
@@ -64,10 +64,11 @@ new_table['Value'] = new_table['Value'].astype(int)
 new_table['Period'] = new_table['Period'].map(
     lambda x: f'gregorian-interval/{right(x,4)}-03-31T00:00:00/P1Y')
 new_table = new_table[['Period','Reason(s) for failing to maintain accommodation','Measure Type','Value','Unit']]
+new_table['Reason(s) for failing to maintain accommodation'] = new_table.apply(lambda x: pathify(x['Reason(s) for failing to maintain accommodation']), axis = 1)
 new_table
 
 
-# In[72]:
+# In[41]:
 
 
 destinationFolder = Path('out')
@@ -78,7 +79,7 @@ TAB_NAME = 'Reason(s)-for-failing-to-maintain-accommodation'
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 
 
-# In[73]:
+# In[42]:
 
 
 destinationFolder = Path('out')
@@ -103,7 +104,7 @@ schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_
 new_table
 
 
-# In[74]:
+# In[43]:
 
 
 tab = tabsCharts['Data9']
@@ -123,7 +124,7 @@ c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 savepreviewhtml(c1, fname="Preview.html")
 
 
-# In[75]:
+# In[47]:
 
 
 new_table = c1.topandas()
@@ -139,7 +140,7 @@ new_table['Identified Support Needs of Homeless Households'] = new_table.apply(l
 new_table
 
 
-# In[76]:
+# In[45]:
 
 
 destinationFolder = Path('out')
@@ -150,7 +151,7 @@ TAB_NAME = 'Identified-Support-Needs-of-Homeless-Households-2018-19'
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 
 
-# In[77]:
+# In[46]:
 
 
 # +

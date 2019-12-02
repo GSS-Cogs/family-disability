@@ -65,6 +65,7 @@ new_table['Value'] = new_table['Value'].astype(int)
 new_table['Period'] = new_table['Period'].map(
     lambda x: f'gregorian-interval/{left(x,2) + right(x,2)}-03-31T00:00:00/P1Y')
 new_table = new_table[['Period','Reason(s) for homelessness application','Measure Type','Value','Unit']]
+new_table['Reason(s) for homelessness application'] = new_table.apply(lambda x: pathify(x['Reason(s) for homelessness application']), axis = 1)
 new_table
 
 
@@ -127,6 +128,7 @@ new_table['Value'] = new_table['Value'].astype(int)
 new_table['Period'] = new_table['Period'].map(
     lambda x: f'gregorian-interval/{left(x,2) + right(x,2)}-03-31T00:00:00/P1Y')
 new_table = new_table[['Period','Reason(s) for failing to maintain accommodation','Measure Type','Value','Unit']]
+new_table['Reason(s) for failing to maintain accommodation'] = new_table.apply(lambda x: pathify(x['Reason(s) for failing to maintain accommodation']), axis = 1)
 new_table
 
 
@@ -189,6 +191,7 @@ new_table['Value'] = new_table['Value'].astype(int)
 new_table['Period'] = new_table['Period'].map(
     lambda x: f'gregorian-interval/{left(x,2) + right(x,2)}-03-31T00:00:00/P1Y')
 new_table = new_table[['Period','Identified Support Needs of Homeless Households','Measure Type','Value','Unit']]
+new_table['Identified Support Needs of Homeless Households'] = new_table.apply(lambda x: pathify(x['Identified Support Needs of Homeless Households']), axis = 1)
 new_table
 
 
