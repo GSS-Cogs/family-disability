@@ -17,7 +17,7 @@
             "datatype": "string"
           }, {
             "titles": "Description",
-            "required": true,
+            "required": false,
             "name": "description",
             "datatype": "string"
           }, {
