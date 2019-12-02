@@ -68,7 +68,7 @@
     "url": "codelists/workless-household-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Workless Household Type"
-   }, {
+  }, {
     "url": "codelists/sample-size.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Sample Size"
