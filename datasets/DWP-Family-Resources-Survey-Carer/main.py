@@ -505,8 +505,9 @@ for t in tblSet:
         t[yrRange] = t[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
     
     if 'Measure Type' in t.columns:
-        t['Measure Type'] = t['Measure Type'].str.replace(' ', '-')
-    
+        #t['Measure Type'] = t['Measure Type'].str.replace(' ', '-')
+        t['Measure Type'] = 'Percent'
+        
     t = changeDataMarkerValues(t)
     
     if 'Value' in t.columns:
