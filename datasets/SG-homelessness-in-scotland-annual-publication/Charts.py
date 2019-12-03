@@ -43,7 +43,7 @@ period = cell.shift(1,-1).expand(RIGHT).is_not_blank().is_not_whitespace()
 observations = cell.shift(RIGHT).expand(RIGHT).expand(DOWN).is_not_blank().is_not_whitespace().is_number()
 
 Dimensions = [
-            HDim(reason,'Reason(s) for failing to maintain accommodation',DIRECTLY,LEFT),
+            HDim(reason,'Reasons for failing to maintain accommodation',DIRECTLY,LEFT),
             HDim(period,'Period',DIRECTLY,ABOVE),
             HDimConst('Measure Type','Count'),
             HDimConst('Unit','People')            
@@ -63,8 +63,8 @@ new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Value'] = new_table['Value'].astype(int)
 new_table['Period'] = new_table['Period'].map(
     lambda x: f'gregorian-interval/{right(x,4)}-03-31T00:00:00/P1Y')
-new_table = new_table[['Period','Reason(s) for failing to maintain accommodation','Measure Type','Value','Unit']]
-new_table['Reason(s) for failing to maintain accommodation'] = new_table.apply(lambda x: pathify(x['Reason(s) for failing to maintain accommodation']), axis = 1)
+new_table = new_table[['Period','Reasons for failing to maintain accommodation','Measure Type','Value','Unit']]
+new_table['Reasons for failing to maintain accommodation'] = new_table.apply(lambda x: pathify(x['Reasons for failing to maintain accommodation']), axis = 1)
 new_table
 
 
@@ -74,7 +74,7 @@ new_table
 destinationFolder = Path('out')
 destinationFolder.mkdir(exist_ok=True, parents=True)
 
-TAB_NAME = 'Reason(s)-for-failing-to-maintain-accommodation'
+TAB_NAME = 'Reasons-for-failing-to-maintain-accommodation'
 
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 
@@ -85,7 +85,7 @@ new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index 
 destinationFolder = Path('out')
 destinationFolder.mkdir(exist_ok=True, parents=True)
 
-TAB_NAME = 'Reason(s)-for-failing-to-maintain-accommodation'
+TAB_NAME = 'Reasons-for-failing-to-maintain-accommodation'
 
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 
