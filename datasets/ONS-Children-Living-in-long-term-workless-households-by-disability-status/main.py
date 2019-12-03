@@ -87,9 +87,6 @@ tbl_e = c3.topandas()
 #concatenate tables a,c,e
 new_table = pd.concat([tbl_a, tbl_c, tbl_e]).fillna('')
 
-# +
-#tidy up
-
 import numpy as np
 new_table = new_table[~new_table['Year'].isin(['break in series'])]
 new_table['Year'] = new_table['Year'].str[:4]
@@ -99,8 +96,6 @@ new_table['OBS'] = new_table['OBS'].apply(lambda x: pd.to_numeric(x, downcast='i
 new_table['OBS'].replace('', np.nan, inplace=True)
 new_table.dropna(subset=['OBS'], inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-
-# -
 
 from IPython.core.display import HTML
 for col in new_table:
@@ -119,7 +114,7 @@ out.mkdir(exist_ok=True, parents=True)
 
 # Output the files
 new_table.drop_duplicates().to_csv(out / ('observations.csv'), index = False)
-#new_table
+new_table
 
 # +
 scraper.dataset.family = 'disability'
