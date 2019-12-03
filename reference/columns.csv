@@ -37,4 +37,4 @@ Special Education Support Type,special_education_support_type,qb:dimension,http:
 Special Education Need Type,special_education_need_type,qb:dimension,http://gss-data.org.uk/def/dimension/special_education_need_type,http://gss-data.org.uk/def/concept/special_education_need_type/{special_education_need_type},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/special_education_need_type
 Dfe-Age,dfe_age,qb:dimension,http://gss-data.org.uk/def/dimension/dfe_age,http://gss-data.org.uk/def/concept/dfe_age/{dfe_age},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/dfe_age
 Dfe-Sex,dfe_sex,qb:dimension,http://gss-data.org.uk/def/dimension/dfe_sex,http://gss-data.org.uk/def/concept/dfe_sex/{dfe_sex},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/dfe_sex
-Year,year,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refPeriod,http://reference.data.gov.uk/id/year/{year},string,
+Year,year,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refPeriod,http://reference.data.gov.uk/id/year/{year},string,,,
