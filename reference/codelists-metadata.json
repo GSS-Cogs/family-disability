@@ -143,7 +143,7 @@
   {
     "rdfs:label": "Religion - 8 categories",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-religion--8-categories.csv"},
+    "url": "codelists/PHE-religion-8-categories.csv"},
   {
     "rdfs:label": "Country of birth",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
@@ -155,7 +155,7 @@
   {
     "rdfs:label": "Sexuality - 5 categories",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-sexuality--5-categories.csv"},
+    "url": "codelists/PHE-sexuality-5-categories.csv"},
   {
     "rdfs:label": "LSOA11 deprivation deciles in England (IMD2015)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",

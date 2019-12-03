@@ -121,7 +121,7 @@ def make_notation(value):
             value_split = value.split("+")[0].split("-")
             value = "-".join(value_split[:-1])+"-greater-than-"+value_split[-1]+value.split("+")[1]
 
-        return value.rstrip("-").lstrip("-")
+        return value.rstrip("-").lstrip("-").replace("--", "-")
     
 # TODO - can remove this once we have  scraper
 def make_schema(df):
