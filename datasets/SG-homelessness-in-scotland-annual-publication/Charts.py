@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[63]:
+# In[73]:
 
 
 from gssutils import *
@@ -23,7 +23,7 @@ scraper
 # NB:- Scraper needed to be directed to specific 2018/19 page rather than the landing page
 #   :- Also need to update the below to use a more standard pivot point ('cell') rather than the first entry in the column as this most likely won't be standard moving forward.
 
-# In[64]:
+# In[74]:
 
 
 distCharts = scraper.distribution(title=lambda t: 'Charts' in t)
@@ -32,7 +32,7 @@ distCharts = scraper.distribution(title=lambda t: 'Charts' in t)
 tabsCharts = {tab.name: tab for tab in distCharts.as_databaker()}
 
 
-# In[65]:
+# In[75]:
 
 
 tab = tabsCharts['Data6']
@@ -52,7 +52,7 @@ c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 savepreviewhtml(c1, fname="Preview.html")
 
 
-# In[66]:
+# In[76]:
 
 
 new_table = c1.topandas()
@@ -71,7 +71,7 @@ new_table = new_table.replace({'Reasons for failing to maintain accommodation' :
 new_table
 
 
-# In[67]:
+# In[77]:
 
 
 destinationFolder = Path('out')
@@ -82,7 +82,7 @@ TAB_NAME = 'Reasons-for-failing-to-maintain-accommodation'
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 
 
-# In[68]:
+# In[78]:
 
 
 destinationFolder = Path('out')
@@ -94,9 +94,9 @@ new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index 
 
 # +
 from gssutils.metadata import THEME
-scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
-scraper.dataset.title = f'{TAB_NAME}'
+#scraper.set_base_uri('http://gss-data.org.uk')
+#scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
+#scraper.dataset.title = f'{TAB_NAME}'
 
 scraper.dataset.family = 'health'
 scraper.dataset.theme = THEME['health-social-care']
@@ -110,7 +110,7 @@ schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_
 new_table
 
 
-# In[69]:
+# In[79]:
 
 
 tab = tabsCharts['Data9']
@@ -130,7 +130,7 @@ c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 savepreviewhtml(c1, fname="Preview.html")
 
 
-# In[70]:
+# In[80]:
 
 
 new_table = c1.topandas()
@@ -147,7 +147,7 @@ new_table['Identified Support Needs of Homeless Households'] = new_table.apply(l
 new_table
 
 
-# In[71]:
+# In[81]:
 
 
 destinationFolder = Path('out')
@@ -158,14 +158,14 @@ TAB_NAME = 'Identified-Support-Needs-of-Homeless-Households-2018-19'
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 
 
-# In[72]:
+# In[82]:
 
 
 # +
 from gssutils.metadata import THEME
-scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
-scraper.dataset.title = f'{TAB_NAME}'
+#scraper.set_base_uri('http://gss-data.org.uk')
+#scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
+#scraper.dataset.title = f'{TAB_NAME}'
 
 scraper.dataset.family = 'health'
 scraper.dataset.theme = THEME['health-social-care']

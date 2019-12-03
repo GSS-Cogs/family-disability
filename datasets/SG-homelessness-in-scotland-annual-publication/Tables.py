@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[24]:
+# In[219]:
 
 
 from gssutils import *
@@ -20,7 +20,7 @@ scraper = Scraper('https://www2.gov.scot/Topics/Statistics/Browse/Housing-Regene
 scraper
 
 
-# In[25]:
+# In[220]:
 
 
 distTables = scraper.distribution(title=lambda t: 'Tables' in t)
@@ -28,7 +28,7 @@ distTables = scraper.distribution(title=lambda t: 'Tables' in t)
 tabsTables = {tab.name: tab for tab in distTables.as_databaker()}
 
 
-# In[26]:
+# In[221]:
 
 
 tab = tabsTables['Table 9']
@@ -53,7 +53,7 @@ savepreviewhtml(c1, fname="Preview.html")
 
 # NB:- Find if there is a replacement for 'filter' which can find partial matches rather than full cell matches and replace cell_ref
 
-# In[29]:
+# In[222]:
 
 
 new_table = c1.topandas()
@@ -70,7 +70,7 @@ new_table['Reasons for homelessness application'] = new_table.apply(lambda x: x[
 new_table
 
 
-# In[ ]:
+# In[223]:
 
 
 destinationFolder = Path('out')
@@ -81,9 +81,9 @@ TAB_NAME = 'Reasons-for-homelessness-application'
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 # +
 from gssutils.metadata import THEME
-scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
-scraper.dataset.title = f'{TAB_NAME}'
+#scraper.set_base_uri('http://gss-data.org.uk')
+#scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
+#scraper.dataset.title = f'{TAB_NAME}'
 
 scraper.dataset.family = 'health'
 scraper.dataset.theme = THEME['health-social-care']
@@ -97,7 +97,7 @@ schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_
 new_table
 
 
-# In[ ]:
+# In[224]:
 
 
 tab = tabsTables['Table 10']
@@ -120,7 +120,7 @@ c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 savepreviewhtml(c1, fname="Preview.html")
 
 
-# In[ ]:
+# In[225]:
 
 
 new_table = c1.topandas()
@@ -135,11 +135,11 @@ new_table = new_table[['Period','Reasons for failing to maintain accommodation',
 new_table['Reasons for failing to maintain accommodation'] = new_table.apply(lambda x: pathify(x['Reasons for failing to maintain accommodation']), axis = 1)
 new_table['Reasons for failing to maintain accommodation'] = new_table.apply(lambda x: x['Reasons for failing to maintain accommodation'].replace('/', '-or'), axis = 1)
 new_table = new_table.replace({'Reasons for failing to maintain accommodation' : {
-    'not-to-do-with-applicant-household-e-g-landlord-selling-property-fire-circumstances-of-other-persons-sharing-previous-property-harassment-by-others-etc' : 'not-to-do-with-applicant-household', }})
+    'not-to-do-with-applicant-household-e-g-landlord-selling-property-fire-circumstances-of-other-persons-sharing-previous-property-harassment-by-others-etc' : 'not-to-do-with-applicant-household', }})                                                                             
 new_table
 
 
-# In[ ]:
+# In[226]:
 
 
 destinationFolder = Path('out')
@@ -150,9 +150,9 @@ TAB_NAME = 'Reasons-for-failing-to-maintain-accommodation-prior-to-application'
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 # +
 from gssutils.metadata import THEME
-scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
-scraper.dataset.title = f'{TAB_NAME}'
+#scraper.set_base_uri('http://gss-data.org.uk')
+#scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
+#scraper.dataset.title = f'{TAB_NAME}'
 
 scraper.dataset.family = 'health'
 scraper.dataset.theme = THEME['health-social-care']
@@ -166,7 +166,7 @@ schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_
 new_table
 
 
-# In[ ]:
+# In[227]:
 
 
 tab = tabsTables['Table 15']
@@ -189,7 +189,7 @@ c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 savepreviewhtml(c1, fname="Preview.html")
 
 
-# In[ ]:
+# In[228]:
 
 
 new_table = c1.topandas()
@@ -205,7 +205,7 @@ new_table['Identified Support Needs of Homeless Households'] = new_table.apply(l
 new_table
 
 
-# In[ ]:
+# In[229]:
 
 
 destinationFolder = Path('out')
@@ -216,9 +216,9 @@ TAB_NAME = 'Support-need-identified-for-those-homeless-2007-08-to-2018-19'
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 # +
 from gssutils.metadata import THEME
-scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
-scraper.dataset.title = f'{TAB_NAME}'
+#scraper.set_base_uri('http://gss-data.org.uk')
+#scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
+#scraper.dataset.title = f'{TAB_NAME}'
 
 scraper.dataset.family = 'health'
 scraper.dataset.theme = THEME['health-social-care']
