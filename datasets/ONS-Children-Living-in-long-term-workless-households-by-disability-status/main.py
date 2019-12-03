@@ -1,7 +1,7 @@
 # ---
 # jupyter:
 #   jupytext:
-#     formats: ipynb,py
+#     formats: ipynb,py:light
 #     text_representation:
 #       extension: .py
 #       format_name: light
@@ -36,7 +36,7 @@ a_exclude_totals = tab.excel_ref('E5').expand(DOWN).expand(RIGHT).is_not_blank()
 a_observations = a_observations - a_exclude_totals
 
 Dimensions = [
-             HDim(a_year,'Year',DIRECTLY,LEFT),
+             HDim(a_year,'Period',DIRECTLY,LEFT),
              HDim(a_household_disability_status,'Household Disability Status',DIRECTLY,ABOVE),
              HDim(a_workless_household_type,'Workless Household Type',CLOSEST,ABOVE),
              HDimConst('Measure Type', 'Thousands'), 
@@ -55,7 +55,7 @@ c_exclude_totals = tab.excel_ref('E45').expand(DOWN).expand(RIGHT).is_not_blank(
 c_observations = c_observations - c_exclude_totals
 
 Dimensions = [
-             HDim(c_year,'Year',DIRECTLY,LEFT),
+             HDim(c_year,'Period',DIRECTLY,LEFT),
              HDim(c_household_disability_status,'Household Disability Status',DIRECTLY,ABOVE),
              HDim(c_workless_household_type,'Workless Household Type',CLOSEST,ABOVE),
              HDimConst('Measure Type', 'Thousands'), 
@@ -74,7 +74,7 @@ e_exclude_totals = tab.excel_ref('E85').expand(DOWN).expand(RIGHT).is_not_blank(
 e_observations = e_observations - e_exclude_totals
 
 Dimensions = [
-             HDim(e_year,'Year',DIRECTLY,LEFT),
+             HDim(e_year,'Period',DIRECTLY,LEFT),
              HDim(e_household_disability_status,'Household Disability Status',DIRECTLY,ABOVE),
              HDim(e_workless_household_type,'Workless Household Type',CLOSEST,ABOVE),
              HDimConst('Measure Type', 'Thousands'), 
@@ -87,44 +87,45 @@ tbl_e = c3.topandas()
 #concatenate tables a,c,e
 new_table = pd.concat([tbl_a, tbl_c, tbl_e]).fillna('')
 
+# +
+#Tidy
 import numpy as np
-new_table = new_table[~new_table['Year'].isin(['break in series'])]
-new_table['Year'] = new_table['Year'].str[:4]
-new_table['Year'] = new_table['Year'].apply(lambda x: pd.to_numeric(x, downcast='integer'))
+new_table = new_table[~new_table['Period'].isin(['break in series'])]
+new_table['Period'] = new_table['Period'].str[:4]
+new_table['Period'] = new_table['Period'].apply(lambda x: pd.to_numeric(x, downcast='integer'))
 new_table['Workless Household Type'] = new_table['Workless Household Type'].str[:-1]
 new_table['OBS'] = new_table['OBS'].apply(lambda x: pd.to_numeric(x, downcast='integer'))
 new_table['OBS'].replace('', np.nan, inplace=True)
 new_table.dropna(subset=['OBS'], inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
+new_table = new_table[['Period','Household Disability Status','Workless Household Type','Value','Measure Type', 'Unit']]
+new_table['Household Disability Status'] = new_table.apply(lambda x: pathify(x['Household Disability Status']), axis = 1)
+new_table['Household Disability Status'] = new_table.apply(lambda x: x['Household Disability Status'].replace('/', 'or'), axis = 1)
+new_table['Workless Household Type'] = new_table.apply(lambda x: pathify(x['Workless Household Type']), axis = 1)
+new_table['Workless Household Type'] = new_table.apply(lambda x: x['Workless Household Type'].replace('/', 'or'), axis = 1)
+new_table
 
-from IPython.core.display import HTML
-for col in new_table:
-    if col not in ['Value']:
-        new_table[col] = new_table[col].astype('category')
-        display(HTML(f"<h2>{col}</h2>"))
-        display(new_table[col].cat.categories)
+
 
 # +
 #Set up the folder path for the output files
-from pathlib import Path
 
-out = Path('out')
-out.mkdir(exist_ok=True, parents=True)
-# -
+destinationFolder = Path('out')
+destinationFolder.mkdir(exist_ok=True, parents=True)
 
-# Output the files
-new_table.drop_duplicates().to_csv(out / ('observations.csv'), index = False)
-new_table
+TAB_NAME = 'observations'
+
+new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 
 # +
 scraper.dataset.family = 'disability'
 
-with open(out / 'dataset.trig', 'wb') as metadata:
+with open(destinationFolder / 'dataset.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
     
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
+csvw.create(destinationFolder / 'observations.csv', destinationFolder / 'observations.csv-schema.json')
 # -
 
 
