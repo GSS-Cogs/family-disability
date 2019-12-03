@@ -66,6 +66,8 @@ new_table['Period'] = new_table['Period'].map(
 new_table = new_table[['Period','Reasons for failing to maintain accommodation','Measure Type','Value','Unit']]
 new_table['Reasons for failing to maintain accommodation'] = new_table.apply(lambda x: pathify(x['Reasons for failing to maintain accommodation']), axis = 1)
 new_table['Reasons for failing to maintain accommodation'] = new_table.apply(lambda x: x['Reasons for failing to maintain accommodation'].replace('/', '-or'), axis = 1)
+new_table = new_table.replace({'Reasons for failing to maintain accommodation' : {
+    'not-to-do-with-applicant-household-e-g-landlord-selling-property-fire-circumstances-of-other-persons-sharing-previous-property-harassment-by-others-etc' : 'not-to-do-with-applicant-household', }})
 new_table
 
 
