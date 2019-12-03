@@ -62,7 +62,31 @@ next_table = pd.concat([next_table, new_table])
 next_table = pd.concat([next_table, new_table])
 # %run "Table 19.py"
 next_table = pd.concat([next_table, new_table])
+# %run "Table A.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table B.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table C1.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table C2.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table D.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table E.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table F.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table G.py"
+next_table = pd.concat([next_table, new_table])
 # -
+
+next_table.rename(columns={'Geography': 'ONS Geography',
+                             'Age' : 'Dfe-Age',
+                             'Sex' : 'Dfe-Sex',
+                             'Special support type' : 'Special Education Support Type',
+                             'Special need type' : 'Special Education Need Type',
+                             'Education provider' : 'Special Education Provider'
+                              }, inplace=True)
 
 from pathlib import Path
 out = Path('out')
@@ -76,3 +100,7 @@ with open(out / 'dataset.trig', 'wb') as metadata:
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
+
+next_table.tail()
+
+

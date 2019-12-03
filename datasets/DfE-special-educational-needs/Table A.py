@@ -18,22 +18,22 @@
 from gssutils import *
 scraper = Scraper('https://www.gov.uk/government/collections/statistics-special-educational-needs-sen')
 scraper.select_dataset(title=lambda x: x.startswith('Special educational needs in England'), latest=True)
-tabs = { tab.name: tab for tab in scraper.distributions[1].as_databaker() }
-tab = tabs['Table 3']
+tabs = { tab.name: tab for tab in scraper.distributions[3].as_databaker() }
+tab = tabs['Table A']
 cell = tab.filter('England')
-academy = tab.excel_ref('B').expand(DOWN).by_index([11,27,48,71])
-pupils = cell.shift(0,2).fill(RIGHT).is_not_blank().is_not_whitespace()
-age = tab.excel_ref('B').expand(DOWN).is_not_blank().is_not_whitespace() - academy
-sex = pupils.shift(-1,1).fill(RIGHT).is_not_blank().is_not_whitespace()
+support = cell.shift(0,2).fill(RIGHT).is_not_blank().is_not_whitespace()
+pupils = cell.fill(DOWN).is_not_blank().is_not_whitespace()
+sex = cell.shift(0,3).fill(RIGHT).is_not_blank().is_not_whitespace()
 observations1 = sex.fill(DOWN).is_number().is_not_blank().is_not_whitespace() 
 Dimensions1 = [
             HDimConst('Geography', 'E92000001'),
             HDimConst('Period','2019'),
-            HDim(academy,'Education provider',CLOSEST,ABOVE),
+            HDimConst('Education provider','state-funded-primary-secondary-and-special-schools'),
             HDimConst('Unit','children'),  
             HDimConst('Measure Type','Count'),
-            HDim(pupils, 'Special need type', CLOSEST, LEFT),
-            HDim(age,'Age',DIRECTLY,LEFT),
+            HDim(pupils, 'Special need type', DIRECTLY, LEFT),
+            HDim(support,'Special support type', CLOSEST,LEFT),
+            HDimConst('Age','all'),
             HDim(sex, 'Sex', DIRECTLY,ABOVE)
 ]
 c1 = ConversionSegment(observations1, Dimensions1, processTIMEUNIT=True)
@@ -41,5 +41,4 @@ new_table = c1.topandas()
 import numpy as np
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Value'] = new_table['Value'].astype(int)
-new_table['Special support type'] = 'Age and Gender'
 new_table = new_table [['Geography','Period','Education provider','Special support type', 'Special need type','Age','Sex','Unit','Value','Measure Type']]
