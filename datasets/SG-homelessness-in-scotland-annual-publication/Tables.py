@@ -133,6 +133,7 @@ new_table['Period'] = new_table['Period'].map(
     lambda x: f'gregorian-interval/{left(x,2) + right(x,2)}-03-31T00:00:00/P1Y')
 new_table = new_table[['Period','Reasons for failing to maintain accommodation','Measure Type','Value','Unit']]
 new_table['Reasons for failing to maintain accommodation'] = new_table.apply(lambda x: pathify(x['Reasons for failing to maintain accommodation']), axis = 1)
+new_table['Reasons for failing to maintain accommodation'] = new_table.apply(lambda x: x['Reasons for failing to maintain accommodation'].replace('/', '-or'), axis = 1)
 new_table
 
 
