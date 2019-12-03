@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[37]:
+# In[63]:
 
 
 from gssutils import *
@@ -23,7 +23,7 @@ scraper
 # NB:- Scraper needed to be directed to specific 2018/19 page rather than the landing page
 #   :- Also need to update the below to use a more standard pivot point ('cell') rather than the first entry in the column as this most likely won't be standard moving forward.
 
-# In[38]:
+# In[64]:
 
 
 distCharts = scraper.distribution(title=lambda t: 'Charts' in t)
@@ -32,7 +32,7 @@ distCharts = scraper.distribution(title=lambda t: 'Charts' in t)
 tabsCharts = {tab.name: tab for tab in distCharts.as_databaker()}
 
 
-# In[39]:
+# In[65]:
 
 
 tab = tabsCharts['Data6']
@@ -52,7 +52,7 @@ c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 savepreviewhtml(c1, fname="Preview.html")
 
 
-# In[40]:
+# In[66]:
 
 
 new_table = c1.topandas()
@@ -65,10 +65,13 @@ new_table['Period'] = new_table['Period'].map(
     lambda x: f'gregorian-interval/{right(x,4)}-03-31T00:00:00/P1Y')
 new_table = new_table[['Period','Reasons for failing to maintain accommodation','Measure Type','Value','Unit']]
 new_table['Reasons for failing to maintain accommodation'] = new_table.apply(lambda x: pathify(x['Reasons for failing to maintain accommodation']), axis = 1)
+new_table['Reasons for failing to maintain accommodation'] = new_table.apply(lambda x: x['Reasons for failing to maintain accommodation'].replace('/', '-or'), axis = 1)
+new_table = new_table.replace({'Reasons for failing to maintain accommodation' : {
+    'not-to-do-with-applicant-household-e-g-landlord-selling-property-fire-circumstances-of-other-persons-sharing-previous-property-harassment-by-others-etc' : 'not-to-do-with-applicant-household', }})
 new_table
 
 
-# In[41]:
+# In[67]:
 
 
 destinationFolder = Path('out')
@@ -79,7 +82,7 @@ TAB_NAME = 'Reasons-for-failing-to-maintain-accommodation'
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 
 
-# In[42]:
+# In[68]:
 
 
 destinationFolder = Path('out')
@@ -91,6 +94,9 @@ new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index 
 
 # +
 from gssutils.metadata import THEME
+scraper.set_base_uri('http://gss-data.org.uk')
+scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
+scraper.dataset.title = f'{TAB_NAME}'
 
 scraper.dataset.family = 'health'
 scraper.dataset.theme = THEME['health-social-care']
@@ -104,7 +110,7 @@ schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_
 new_table
 
 
-# In[43]:
+# In[69]:
 
 
 tab = tabsCharts['Data9']
@@ -124,7 +130,7 @@ c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 savepreviewhtml(c1, fname="Preview.html")
 
 
-# In[47]:
+# In[70]:
 
 
 new_table = c1.topandas()
@@ -137,10 +143,11 @@ new_table['Period'] = new_table['Period'].map(
     lambda x: f'gregorian-interval/{left(x,2) + right(x,2)}-03-31T00:00:00/P1Y')
 new_table = new_table[['Period','Identified Support Needs of Homeless Households','Measure Type','Value','Unit']]
 new_table['Identified Support Needs of Homeless Households'] = new_table.apply(lambda x: pathify(x['Identified Support Needs of Homeless Households']), axis = 1)
+new_table['Identified Support Needs of Homeless Households'] = new_table.apply(lambda x: x['Identified Support Needs of Homeless Households'].replace('/', 'or'), axis = 1)
 new_table
 
 
-# In[45]:
+# In[71]:
 
 
 destinationFolder = Path('out')
@@ -151,11 +158,14 @@ TAB_NAME = 'Identified-Support-Needs-of-Homeless-Households-2018-19'
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 
 
-# In[46]:
+# In[72]:
 
 
 # +
 from gssutils.metadata import THEME
+scraper.set_base_uri('http://gss-data.org.uk')
+scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
+scraper.dataset.title = f'{TAB_NAME}'
 
 scraper.dataset.family = 'health'
 scraper.dataset.theme = THEME['health-social-care']
