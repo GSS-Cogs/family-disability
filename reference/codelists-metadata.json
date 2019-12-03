@@ -99,63 +99,63 @@
   {
     "rdfs:label": "Standard Population",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-standard-population.csv"},
+    "url": "codelists/PHE-standard-population.csv",
   {
     "rdfs:label": "County & UA (pre Apr2019) deprivation deciles in England (IMD2015)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-county-ua-pre-apr2019-deprivation-deciles-in-england-imd2015.csv"},
+    "url": "codelists/PHE-county-ua-pre-apr2019-deprivation-deciles-in-england-imd2015.csv",
   {
     "rdfs:label": "District & UA (pre Apr2019)  deprivation deciles in England (IMD2015)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-district-ua-pre-apr2019-deprivation-deciles-in-england-imd2015.csv"},
+    "url": "codelists/PHE-district-ua-pre-apr2019-deprivation-deciles-in-england-imd2015.csv",
   {
     "rdfs:label": "County & UA deprivation deciles in England (IMD2015, 4/19 geog.)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-county-ua-deprivation-deciles-in-england-imd2015-419-geog.csv"},
+    "url": "codelists/PHE-county-ua-deprivation-deciles-in-england-imd2015-419-geog.csv",
   {
     "rdfs:label": "District & UA deprivation deciles in England (IMD2015, 4/19 geog.)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-district-ua-deprivation-deciles-in-england-imd2015-419-geog.csv"},
+    "url": "codelists/PHE-district-ua-deprivation-deciles-in-england-imd2015-419-geog.csv",
   {
     "rdfs:label": "County & UA deprivation deciles in England (IMD2019, 4/19 geog.)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-county-ua-deprivation-deciles-in-england-imd2019-419-geog.csv"},
+    "url": "codelists/PHE-county-ua-deprivation-deciles-in-england-imd2019-419-geog.csv",
   {
     "rdfs:label": "District & UA deprivation deciles in England (IMD2019, 4/19 geog.)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-district-ua-deprivation-deciles-in-england-imd2019-419-geog.csv"},
+    "url": "codelists/PHE-district-ua-deprivation-deciles-in-england-imd2019-419-geog.csv",
   {
     "rdfs:label": "County & UA deprivation deciles in England (IMD2010)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-county-ua-deprivation-deciles-in-england-imd2010.csv"},
+    "url": "codelists/PHE-county-ua-deprivation-deciles-in-england-imd2010.csv",
   {
     "rdfs:label": "District & UA deprivation deciles in England (IMD2010)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-district-ua-deprivation-deciles-in-england-imd2010.csv"},
+    "url": "codelists/PHE-district-ua-deprivation-deciles-in-england-imd2010.csv",
   {
     "rdfs:label": "Ethnic groups",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-ethnic-groups.csv"},
+    "url": "codelists/PHE-ethnic-groups.csv",
   {
     "rdfs:label": "Socioeconomic group (18-64 yrs)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-socioeconomic-group-18-64-yrs.csv"},
+    "url": "codelists/PHE-socioeconomic-group-18-64-yrs.csv",
   {
     "rdfs:label": "Religion - 8 categories",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-religion-8-categories.csv"},
+    "url": "codelists/PHE-religion-8-categories.csv",
   {
     "rdfs:label": "Country of birth",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-country-of-birth.csv"},
+    "url": "codelists/PHE-country-of-birth.csv",
   {
     "rdfs:label": "Health status",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-health-status.csv"},
+    "url": "codelists/PHE-health-status.csv",
   {
     "rdfs:label": "Sexuality - 5 categories",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/PHE-sexuality-5-categories.csv"},
+    "url": "codelists/PHE-sexuality-5-categories.csv",
   {
     "rdfs:label": "LSOA11 deprivation deciles in England (IMD2015)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
