@@ -36,7 +36,7 @@ a_exclude_totals = tab.excel_ref('E5').expand(DOWN).expand(RIGHT).is_not_blank()
 a_observations = a_observations - a_exclude_totals
 
 Dimensions = [
-             HDim(a_year,'Period',DIRECTLY,LEFT),
+             HDim(a_year,'Year',DIRECTLY,LEFT),
              HDim(a_household_disability_status,'Household Disability Status',DIRECTLY,ABOVE),
              HDim(a_workless_household_type,'Workless Household Type',CLOSEST,ABOVE),
              HDimConst('Measure Type', 'Thousands'), 
@@ -55,7 +55,7 @@ c_exclude_totals = tab.excel_ref('E45').expand(DOWN).expand(RIGHT).is_not_blank(
 c_observations = c_observations - c_exclude_totals
 
 Dimensions = [
-             HDim(c_year,'Period',DIRECTLY,LEFT),
+             HDim(c_year,'Year',DIRECTLY,LEFT),
              HDim(c_household_disability_status,'Household Disability Status',DIRECTLY,ABOVE),
              HDim(c_workless_household_type,'Workless Household Type',CLOSEST,ABOVE),
              HDimConst('Measure Type', 'Thousands'), 
@@ -74,7 +74,7 @@ e_exclude_totals = tab.excel_ref('E85').expand(DOWN).expand(RIGHT).is_not_blank(
 e_observations = e_observations - e_exclude_totals
 
 Dimensions = [
-             HDim(e_year,'Period',DIRECTLY,LEFT),
+             HDim(e_year,'Year',DIRECTLY,LEFT),
              HDim(e_household_disability_status,'Household Disability Status',DIRECTLY,ABOVE),
              HDim(e_workless_household_type,'Workless Household Type',CLOSEST,ABOVE),
              HDimConst('Measure Type', 'Thousands'), 
@@ -90,15 +90,15 @@ new_table = pd.concat([tbl_a, tbl_c, tbl_e]).fillna('')
 # +
 #Tidy
 import numpy as np
-new_table = new_table[~new_table['Period'].isin(['break in series'])]
-new_table['Period'] = new_table['Period'].str[:4]
-new_table['Period'] = new_table['Period'].apply(lambda x: pd.to_numeric(x, downcast='integer'))
+new_table = new_table[~new_table['Year'].isin(['break in series'])]
+new_table['Year'] = new_table['Year'].str[:4]
+new_table['Year'] = new_table['Year'].apply(lambda x: pd.to_numeric(x, downcast='integer'))
 new_table['Workless Household Type'] = new_table['Workless Household Type'].str[:-1]
 new_table['OBS'] = new_table['OBS'].apply(lambda x: pd.to_numeric(x, downcast='integer'))
 new_table['OBS'].replace('', np.nan, inplace=True)
 new_table.dropna(subset=['OBS'], inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-new_table = new_table[['Period','Household Disability Status','Workless Household Type','Value','Measure Type', 'Unit']]
+new_table = new_table[['Year','Household Disability Status','Workless Household Type','Value','Measure Type', 'Unit']]
 new_table['Household Disability Status'] = new_table.apply(lambda x: pathify(x['Household Disability Status']), axis = 1)
 new_table['Household Disability Status'] = new_table.apply(lambda x: x['Household Disability Status'].replace('/', 'or'), axis = 1)
 new_table['Workless Household Type'] = new_table.apply(lambda x: pathify(x['Workless Household Type']), axis = 1)
