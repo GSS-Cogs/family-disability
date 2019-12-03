@@ -79,6 +79,6 @@
   }, {
     "url": "codelists/reasons-for-homelessness-application.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Reasons for failing to homelessness application"
+    "rdfs:label": "Reasons for homelessness application"
   }]
 }
