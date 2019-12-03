@@ -8,6 +8,8 @@ import pandas as pd
 import requests
 import dateutil.parser
 from pathlib import Path
+import os
+import json
 
 def get_data_by_domain(url):
     
@@ -98,7 +100,7 @@ def make_notation(value):
         value = value.lower()
         replacers = [
             ["<", "-less-than-"],
-            [" ", "-"],
+            ["&", ""],
             ["%", "percentage"],
             [",", ""],
             [":", ""],
@@ -106,7 +108,9 @@ def make_notation(value):
             ["(", ""],
             ["/", ""],
             [".", ""],
-            ["--", "-"]
+            [" ", "-"],
+            ["--", "-"],
+            ["---", "-"],
         ]
         
         for replacer in replacers:
@@ -119,6 +123,10 @@ def make_notation(value):
 
         return value.rstrip("-").lstrip("-")
     
+# TODO - can remove this once we have  scraper
+def make_schema(df):
+    """ Starting from a dataframe, create a schema """
+
 
 
 # -
@@ -157,6 +165,8 @@ tidy_sheet.to_csv("all_but_tidied.csv", index=False)
 
 # +
 
+list_of_out_files = []
+
 for cat in tidy_sheet["Category Type"].unique():
     
     temp_sheet = tidy_sheet[tidy_sheet["Category Type"].astype(str) == cat]
@@ -171,10 +181,26 @@ for cat in tidy_sheet["Category Type"].unique():
     
     out = Path('out')
     out.mkdir(exist_ok=True)
-    tidy_sheet.to_csv(out / "obs_{}.csv".format(cat), index = False)
+    
+    out_path = out / "obs_{}.csv".format(cat)
+    tidy_sheet.to_csv(out_path, index = False)
+    
+    list_of_out_files.append(out_path)
 
 # -
-# # Generate Codelists
+# # Generate schema and trig files
+
+# +
+import os
+
+for out_file in list_of_out_files:
+    pass
+    
+    #df_4_schema = pd.read_csv(out_file)
+
+# -
+
+# # Generate Codelists & Columns CSV Entries
 #
 # We'll need codelists for of the above codes.
 #
@@ -183,11 +209,21 @@ for cat in tidy_sheet["Category Type"].unique():
 # **IMPORTANT** We're derriving codelists from the combined file (all_data.csv) with the exception of Categories which will change per putputted datacube. 
 
 # +
+import json
+
+column_data = None
 
 # TODO - always switch me off before you push
-GENERATE_REFERENCE_DATA = True
+GENERATE_REFERENCE_DATA = False
+
+all_concepts = []
 
 if GENERATE_REFERENCE_DATA:
+    
+    ref = Path('ref')
+    ref.mkdir(exist_ok=True)
+    
+    all_concepts = []
     
     # ---------------------------
     # First the generic codelists
@@ -196,6 +232,8 @@ if GENERATE_REFERENCE_DATA:
     # Generic codelists
     for col in [x for x in tidy_sheet.columns.values if x in generic_codelists_required]:
 
+        all_concepts.append(col)
+        
         df = pd.DataFrame()
         df["Label"] = tidy_sheet[col]
         df = df.drop_duplicates()
@@ -205,7 +243,7 @@ if GENERATE_REFERENCE_DATA:
         df["Parent Notation"] = ""
         df["Sort Priority"] = ""
 
-        df.to_csv("PHE-{}.csv".format(pathify_label(col)), index=False)
+        df.to_csv("ref/PHE-{}.csv".format(pathify_label(col)), index=False)
         
     # ---------------------------
     # Then the category codelists
@@ -215,6 +253,8 @@ if GENERATE_REFERENCE_DATA:
         if str(cat) == "nan":
             continue
             
+        all_concepts.append(cat)
+        
         df = pd.DataFrame()
         df["Label"] = tidy_sheet["Category"][tidy_sheet["Category Type"] == cat]
         
@@ -225,10 +265,80 @@ if GENERATE_REFERENCE_DATA:
         df["Parent Notation"] = ""
         df["Sort Priority"] = ""
 
-        df.to_csv("PHE-{}.csv".format(pathify_label(cat)), index=False)
+        df.to_csv("ref/PHE-{}.csv".format(pathify_label(cat)), index=False)
         
-    # --------------------------
-    # Generate entries for columns.csv
-    # For this one we'll just print to jupyter so it can be copy-pasted in
+    # ---------------------------------------------------
+    # Generate entries for columns.csv and components.csv
+
+    column_data = {
+        "title":[],
+        "name":[],
+        "component_attachment":[],
+        "property_template":[],
+        "value_template":[],
+        "datatype":[],
+        "value_transformation":[],
+        "regex":[],
+        "range":[]
+    }
     
+    component_data = {
+        "Label":[],
+        "Description":[],
+        "Component Type":[],
+        "Codelist":[]
+    }
+    
+    codelist_metadata = []
+    
+    for concept in all_concepts:
         
+        if concept in ["Standard Population", "Unit"]:
+            component = "qb:measure"
+        else:
+            component = "qb:dimension"
+            
+        notation = make_notation(concept)
+        codelist_notation = "PHE-" + make_notation(concept)
+        
+        # Create data frame of new rows for columns.csv
+        column_data["title"].append(concept)
+        column_data["name"].append(notation)
+        column_data["component_attachment"].append(component)
+        column_data["property_template"].append("http://gss-data.org.uk/def/dimension/" + codelist_notation)
+        column_data["value_template"].append("http://gss-data.org.uk/def/dimension/" + codelist_notation + '/{' + notation + '}')
+        column_data["datatype"].append("string")
+        column_data["value_transformation"].append("slugize")
+        column_data["regex"].append("")
+        column_data["range"].append("http://gss-data.org.uk/def/classes/{}/{}".format(notation, concept))
+        
+        # Create data frame of new rows for components.csv
+        component_data["Label"].append(concept)
+        component_data["Description"].append("")
+        component_data["Component Type"].append(component.split(":")[1].title())
+        component_data["Codelist"].append("http://gss-data.org.uk/def/dimension/" + codelist_notation)
+            
+        codelist_metadata.append({
+            "url": "codelists/{}.csv".format(codelist_notation),
+            "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+            "rdfs:label": concept
+            })
+            
+    # Output the new components
+    component_df = pd.DataFrame().from_dict(component_data)
+    component_df.to_csv("ref/components.csv", index=False)
+    
+    # Output the new columns
+    col_df = pd.DataFrame().from_dict(column_data)
+    col_df.to_csv("ref/columns.csv", index=False)
+    
+    # Output entries for codelists-metadata.json
+    with open("ref/entries-codelist-metadata.json", "w") as f:
+        json.dump(codelist_metadata, f)
+        
+    from pprint import pprint
+    pprint(codelist_metadata)
+    
+# -
+
+
