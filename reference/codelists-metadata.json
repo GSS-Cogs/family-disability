@@ -76,5 +76,9 @@
     "url": "codelists/workless-household-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Workless Household Type"
+  }, {
+    "url": "codelists/reasons-for-homelessness-application.csv.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Reasons for failing to homelessness application"
   }]
 }
