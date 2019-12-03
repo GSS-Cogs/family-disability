@@ -120,7 +120,7 @@ new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index 
 # +
 scraper.dataset.family = 'disability'
 
-with open(destinationFolder / 'dataset.trig', 'wb') as metadata:
+with open(destinationFolder / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
     
 
