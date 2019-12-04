@@ -29,10 +29,6 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Identified support needs of homeless households"
   }, {
-    "url": "codelists/indicator.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Indicator"
-  }, {
     "url": "codelists/marker.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Marker"
@@ -64,10 +60,6 @@
     "url": "codelists/source-of-income.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Source of Income"
-  }, {
-    "url": "codelists/trend.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Trend"
   }, {
     "url": "codelists/workless-household-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",

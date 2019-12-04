@@ -1,4 +1,5 @@
-# +
+# -*- coding: utf-8 -*-
+# + {}
 #### Family Resources Survey for Financial Year 2017 to 2018 - Carer ####
 
 # +
@@ -494,7 +495,8 @@ except Exception as e:
 
 tbl4['Employment Type'] = tbl4['Employment Type'].str.replace('/', '-', regex=True)
 tbl5['Source of Income'] = tbl5['Source of Income'].str.replace('/', '-', regex=True)
-#tbl4
+tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('ps', '£', regex=True)
+tbl6
 
 # +
 #### Set up the folder path for the output files
