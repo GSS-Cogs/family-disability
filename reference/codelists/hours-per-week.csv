@@ -1,10 +1,10 @@
 Label,Notation,Parent Notation,Sort Priority
-All,All,,1
+All,all,,1
 "0-4 hours",0-4-hours,All,2
 "5-19 hours",5-19-hours,All,3
-"20-34 hours",20-3-hours,All,4
-"Varies, less than 35 hours",Varies-less-than-35-hours,All,5
+"20-34 hours",20-34-hours,All,4
+"Varies, less than 35 hours",varies-less-than-35-hours,All,5
 "35-49 hours",35-49-hours,All,6
 "50 or more hours",50-or-more-hours,All,7
-"Varies, 35 or more hours",Varies-35-or-more-hours,All,8
-"Unknown",Unknown,All,9
+"Varies, 35 or more hours",varies-35-or-more-hours,All,8
+"Unknown",unknown,All,9
