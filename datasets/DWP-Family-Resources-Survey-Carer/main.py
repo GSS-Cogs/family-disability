@@ -546,7 +546,7 @@ for t in tblSet:
     t = t.drop(columns=['Marker'])
     
     fleNme = 'observations_5_' + str(i) + '.csv'
-    t.drop_duplicates().to_csv(out / (fleNme), index = False, encoding = 'ISO-8859-1')
+    t.drop_duplicates().to_csv(out / (fleNme), index = False)
     with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
     scraper.dataset.family = 'disability'
     csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
