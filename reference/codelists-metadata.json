@@ -160,5 +160,9 @@
     "rdfs:label": "LSOA11 deprivation deciles in England (IMD2015)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/PHE-lsoa11-deprivation-deciles-in-england-imd2015.csv"
+  }, {
+    "url": "codelists/frs-age-ranges.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "FRS Age Ranges"
   }]
 }
