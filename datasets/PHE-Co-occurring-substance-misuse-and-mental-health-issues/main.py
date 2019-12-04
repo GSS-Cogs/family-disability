@@ -314,6 +314,8 @@ for cat in list_of_categories:
             "suppressOutput": True
         })
         
+    obs_tableSchema = {}
+        
     # Tableschema for the observations files
     obs_tableSchema["columns"] = []
     obs_tableSchema["foreignKeys"] = []
