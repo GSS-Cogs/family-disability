@@ -121,6 +121,24 @@ pipeline {
     post {
         always {
             script {
+                if (fileExists("${DATASET_DIR}/info.json")) {
+                    def info = readJSON(text: readFile(file: "${DATASET_DIR}/info.json"))
+                    if (info.containsKey('transform') && info['transform'].containsKey('asana')) {
+                        String taskID = info['transform']['asana']
+                        configFileProvider([configFile(fileId: 'asana', variable: 'configfile')]) {
+                            def asana = readJSON(text: readFile(file: configfile))
+                            String data = """{"data": {"custom_fields": {"${asana['1152428198296530']}": "${config['results'][currentBuild.currentResult]}"}}}"""
+                            withCredentials([string(credentialsId: asana['auth'], variable: 'token')]) {
+                                def response = httpRequest(contentType: 'APPLICATION_JSON',
+                                   httpMode: 'PUT',
+                                   url: "${asana['api_base']}/tasks/${taskID}",
+                                   requestBody: data,
+                                   customHeaders: [[name: 'Authorization', value: "Bearer ${token}"]]
+                                )
+                            }
+                        }
+                    }
+                }
                 step([$class: 'GitHubIssueNotifier',
                       issueAppend: true,
                       issueLabel: '',
