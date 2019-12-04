@@ -1,8 +1,8 @@
 Label,Notation,Parent Notation,Sort Priority
-Learning disability,learning-disability,,
-Physical disability,physical-disability,,
-Medical condition,medical-condition,,
-Drug or alcohol dependency,drug-or-alcohol-dependency,,
-Basic housing management or independent living skills,basic-housing-management-or-independent-living-skills,,
-Mental health problem,mental-health-problem,,
-Where at least one support need identified,where-at-least-one-support-need-identified,,
+Learning disability,learning-disability,,1
+Physical disability,physical-disability,,2
+Medical condition,medical-condition,,3
+Drug or alcohol dependency,drug-or-alcohol-dependency,,4
+Basic housing management or independent living skills,basic-housing-management-or-independent-living-skills,,5
+Mental health problem,mental-health-problem,,6
+Where at least one support need identified,where-at-least-one-support-need-identified,,7

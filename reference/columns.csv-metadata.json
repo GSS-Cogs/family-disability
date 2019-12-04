@@ -21,7 +21,7 @@
             "name": "name",
             "datatype": {
               "base": "string",
-              "format": "^(([a-zA-Z]+)(_[a-zA-Z]+)*)$"
+              "format": "^\\w+$"
             }
           }, {
             "titles": "component_attachment",
