@@ -81,7 +81,7 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Reasons for homelessness application"
   }, {
-    "url": "codelists/FRS-Age-Ranges.csv",
+    "url": "codelists/frs-age-ranges.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "FRS Age Ranges"
   }]

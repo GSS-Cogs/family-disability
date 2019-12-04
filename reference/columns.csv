@@ -38,4 +38,4 @@ Special Education Need Type,special_education_need_type,qb:dimension,http://gss-
 Dfe-Age,dfe_age,qb:dimension,http://gss-data.org.uk/def/dimension/dfe_age,http://gss-data.org.uk/def/concept/dfe_age/{dfe_age},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/dfe_age
 Dfe-Sex,dfe_sex,qb:dimension,http://gss-data.org.uk/def/dimension/dfe_sex,http://gss-data.org.uk/def/concept/dfe_sex/{dfe_sex},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/dfe_sex
 Year,year,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refPeriod,http://reference.data.gov.uk/id/year/{year},string,,,
-FRS Age Ranges,FRS_Age_Ranges,qb:dimension,http://gss-data.org.uk/def/dimension/FRS-Age-Ranges,http://gss-data.org.uk/def/dimension/FRS-Age-Ranges/{FRS-Age-Ranges},string,slugize,,http://gss-data.org.uk/def/classes/FRS-Age-Ranges/FRS-Age-Ranges
+FRS Age Ranges,FRS_Age_Ranges,qb:dimension,http://gss-data.org.uk/def/dimension/frs-age-ranges,http://gss-data.org.uk/def/dimension/frs-age-ranges/{frs-age-ranges},string,slugize,,http://gss-data.org.uk/def/classes/frs-age-ranges/frs-age-ranges
