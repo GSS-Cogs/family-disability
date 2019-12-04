@@ -94,12 +94,12 @@ new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index 
 
 # +
 from gssutils.metadata import THEME
-scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
-scraper.dataset.title = f'{TAB_NAME}'
+#scraper.set_base_uri('http://gss-data.org.uk')
+#scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
+#scraper.dataset.title = f'{TAB_NAME}'
 
-scraper.dataset.family = 'health'
-scraper.dataset.theme = THEME['health-social-care']
+scraper.dataset.family = 'disability'
+#scraper.dataset.theme = THEME['health-social-care']
 with open(destinationFolder / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 # -
@@ -163,12 +163,12 @@ new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index 
 
 # +
 from gssutils.metadata import THEME
-scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
-scraper.dataset.title = f'{TAB_NAME}'
+#scraper.set_base_uri('http://gss-data.org.uk')
+#scraper.set_dataset_id(f'family-disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
+#scraper.dataset.title = f'{TAB_NAME}'
 
-scraper.dataset.family = 'health'
-scraper.dataset.theme = THEME['health-social-care']
+scraper.dataset.family = 'disability'
+#scraper.dataset.theme = THEME['health-social-care']
 with open(destinationFolder / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 # -
