@@ -61,10 +61,6 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Source of Income"
   }, {
-    "url": "codelists/trend.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Trend"
-  }, {
     "url": "codelists/workless-household-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Workless Household Type"
