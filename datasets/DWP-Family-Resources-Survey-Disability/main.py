@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[67]:
+# In[128]:
 
 
 from gssutils import *
@@ -18,7 +18,7 @@ def right(s, amount):
 scraper = Scraper('https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718')
 
 
-# In[68]:
+# In[129]:
 
 
 dist = scraper.distribution(title=lambda t: 'Disability data tables (XLS)' in t)
@@ -52,7 +52,7 @@ for tab in tabs:
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
         tidied_sheets.append(c1.topandas())
-        
+    
     elif tab.name in ['4_2']:
         
         cell = tab.excel_ref("B9")
@@ -109,7 +109,7 @@ for tab in tabs:
         
         age = tab.excel_ref("B11").expand(DOWN).is_not_blank().is_not_whitespace() - remove
     
-        gender = age.shift(1,-2).expand(RIGHT).is_not_blank().is_not_whitespace() - remove
+        gender = tab.excel_ref("B9").shift(RIGHT).expand(RIGHT).is_not_blank().is_not_whitespace() - remove
 
         observations = age.fill(RIGHT).is_not_blank().is_not_whitespace() - remove
 
@@ -128,7 +128,7 @@ for tab in tabs:
         tidied_sheets.append(c1.topandas())
         
         #Second build of table was due to duplicates which seemed to occur when reading all the data. Made no sense. I have 0 explanation but this works.
-
+    
     elif tab.name in ['4_4']:
         
         cell = tab.excel_ref("B7")
@@ -210,12 +210,13 @@ for tab in tabs:
         tidied_sheets.append(c1.topandas())
         
     #4_7,8,9 need looking into - doesn't look like something easily represented - also only percentages
-        
+           
     else:
         continue
+    
 
 
-# In[69]:
+# In[130]:
 
 
 new_table = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -232,7 +233,7 @@ new_table['Age Group'] = new_table['Age Group'].map(
 tidy = new_table[['Period','Region','Disability','Gender','Age Group','Measure type','Value','Unit']]
 
 
-# In[70]:
+# In[131]:
 
 
 tidy = tidy.replace({'Disability' : {
@@ -247,6 +248,7 @@ tidy = tidy.replace({'Disability' : {
     'Males' : 'Any Disability',
     'Stamina/\nbreathing/\nfatigue' : 'Stamina/breathing/fatigue'}})
 tidy = tidy.replace({'Gender' : {
+    'All' : 'T',
     'All disabled people' : 'T', 
     'All not disabled people' : 'T', 
     'All people' : 'T',
@@ -260,7 +262,7 @@ tidy = tidy.replace({'Age Group' : {
     'All people' : 'All'}})
 
 
-# In[71]:
+# In[132]:
 
 
 from IPython.core.display import HTML
@@ -271,7 +273,7 @@ for col in tidy:
         display(tidy[col].cat.categories)
 
 
-# In[72]:
+# In[133]:
 
 
 tidy.rename(columns={'Gender':'Sex',
@@ -281,7 +283,7 @@ tidy.rename(columns={'Gender':'Sex',
           inplace=True)
 
 
-# In[73]:
+# In[134]:
 
 
 destinationFolder = Path('out')
@@ -293,7 +295,7 @@ tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = Fal
 tidy
 
 
-# In[74]:
+# In[135]:
 
 
 scraper.dataset.family = 'disability'
