@@ -321,20 +321,24 @@ for cat in list_of_categories:
     obs_tableSchema["foreignKeys"] = []
     obs_tableSchema["primaryKey"] = []
     for col in df.columns.values:
+        
+        if not col.startswith("phe"):
+            path_col = "phe-"+col
+        
         obs_tableSchema["columns"].append({
             "titles": col,
             "required": True,
-            "name": pathify_label(col),
+            "name": path_col,
             "datatype": "string"
             })
         obs_tableSchema["foreignKeys"].append({
-            "columnReference": pathify_label(col),
+            "columnReference": path_col,
             "reference": {
-                "resource": "https://gss-cogs.github.io/ref_trade/codelists/{}.csv".format(pathify_label(col)),
+                "resource": "https://gss-cogs.github.io/ref_trade/codelists/{}.csv".format(path_col),
                 "columnReference": "notation"
                 }
             })
-        obs_tableSchema["primaryKey"].append(pathify_label(col))
+        obs_tableSchema["primaryKey"].append(path_col)
     
     # Table for obs file
     schema["tables"].append({
