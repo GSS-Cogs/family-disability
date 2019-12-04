@@ -31,7 +31,7 @@ scraper
 # Table 5.8: Percentage of people receiving care by age and gender, 2017,18, United Kingdom
 # -
 
-def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange):
+def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange,ageH):
     try:
         st = '9'    # Start Row
         ed = '22'   # End Row
@@ -78,7 +78,7 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange)
         
         # Set some extra columns
         if whichTab == 1:
-            tbl['Age'] = 'All'
+            tbl[ageH] = 'All'
             tbl['Measure Type'] = 'People providing informal care by gender'
         elif whichTab == 2: 
             tbl[yrRange] = yrStr2
@@ -91,7 +91,8 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange)
         if 'DATAMARKER' not in tbl.columns:
             tbl['DATAMARKER'] = ''
             
-        tbl = tbl[[yrRange,'Age',gHeading,'Sample Size','Measure Type','Value','Unit','DATAMARKER']]
+        #tbl = tbl[[yrRange,ageH,gHeading,'Sample Size','Measure Type','Value','Unit','DATAMARKER']]
+        tbl = tbl[[ageH,'Value','Unit','Measure Type','Sample Size']]
         
         return tbl
     except Exception as e:
@@ -103,7 +104,7 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange)
 # Table 5.6: Adult informal care by gender, age and net individual weekly income, 2017/18, United Kingdom
 # -
 
-def extract_sheet_5_3_and_5_6(tab, whichTbl, gHeading, yrRange):
+def extract_sheet_5_3_and_5_6(tab, whichTbl, gHeading, yrRange, ageH):
     try:
         if whichTbl == 3: 
             rw = 10
@@ -119,7 +120,7 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl, gHeading, yrRange):
         col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
         # Create the table and convert to Pandas
         Dimensions = [
-            HDim(col1,'Age', DIRECTLY, LEFT),
+            HDim(col1,ageH, DIRECTLY, LEFT),
             HDim(col3,mainCol, CLOSEST, LEFT),
             HDimConst('Unit','%'),
             HDimConst(gHeading,'All'),
@@ -128,25 +129,25 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl, gHeading, yrRange):
         tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)
         tbl = tbl.topandas()
         # Need to find where the Female and Male carer data starts and ends. Find it and then set Gender values
-        mSt = tbl.loc[tbl['Age'].str.contains('male', na=False, regex=True)].index[0]    # Find where the Male data starts
-        fSt = tbl.loc[tbl['Age'].str.contains('female', na=False, regex=True)].index[0]  # Find where the Female data starts
-        aEd = tbl['Age'].count()                                                         # Get the total number of rows
+        mSt = tbl.loc[tbl[ageH].str.contains('male', na=False, regex=True)].index[0]    # Find where the Male data starts
+        fSt = tbl.loc[tbl[ageH].str.contains('female', na=False, regex=True)].index[0]  # Find where the Female data starts
+        aEd = tbl[ageH].count()                                                         # Get the total number of rows
         tbl[gHeading][mSt:fSt] = 'Male'
         tbl[gHeading][fSt:aEd] = 'Female'
 
         tbl = tbl[tbl[mainCol] != 'All'] # Get rid of the 100% rows, can't see the point
         tblSS = tbl[tbl[mainCol].str.contains('Sample', na=False, regex=True)] # Identify the Sample Size rows to join in with the data laterz
         tbl = tbl[~tbl[mainCol].str.contains('Sample', na=False, regex=True)] # Remove the Sample Size Rows from the main dataset
-        tbl = pd.merge(tbl, tblSS, on=['Age', gHeading])
+        tbl = pd.merge(tbl, tblSS, on=[ageH, gHeading])
         
         if 'DATAMARKER_x' not in tbl.columns:
             tbl['DATAMARKER_x'] = ''
             
         tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER','OBS_x':'Value',mainCol + '_x':mainCol,'Unit_x':'Unit','OBS_y':'Sample Size', yrRange + '_x':yrRange})
-        tbl = tbl[[yrRange, 'Age', mainCol, gHeading, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
+        tbl = tbl[[yrRange, ageH, mainCol, gHeading, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
        
         # make some changes to match standards for codelists
-        tbl['Age'][tbl['Age'].str.contains('carers')] = 'All'
+        tbl[ageH][tbl[ageH].str.contains('carers')] = 'All'
         
         tbl['Measure Type'] = mainHeading
         
@@ -160,7 +161,7 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl, gHeading, yrRange):
 # Table 5.7: Who informal carers care for by gender, 2017/18, United Kingdom
 # -
 
-def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange):
+def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange, ageH):
     try:
         if whichTbl == 4: 
             rw = 9
@@ -285,7 +286,7 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange):
 # Table 5.5: Adult informal carers by main source of total weekly household income hours caring and gender, 2017/18, United Kingdom
 # -
 
-def extract_sheet_5_5(tab, headingG, yrRange):
+def extract_sheet_5_5(tab, headingG, yrRange, ageH):
     try:
         mainHeading = 'Adult informal carers by main source of total weekly household income hours caring and gender'
         tab = [t for t in sheets if t.name == '5_5'][0]
@@ -337,7 +338,7 @@ def extract_sheet_5_5(tab, headingG, yrRange):
 # Table 5.9: People receiving care at least once a week by age and frequency of care, 2017/18, United Kingdom
 # -
 
-def extract_sheet_5_9(tab, gHeading, yrRange):
+def extract_sheet_5_9(tab, gHeading, yrRange, ageH):
     try:
         mainHeading = 'People receiving care at least once a week by age and frequency of care'
         rw = 10
@@ -347,7 +348,7 @@ def extract_sheet_5_9(tab, gHeading, yrRange):
         col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
         # Create the table and convert to Pandas
         Dimensions = [
-            HDim(col1,'Age', DIRECTLY, LEFT),
+            HDim(col1,ageH, DIRECTLY, LEFT),
             HDim(col3,heading, CLOSEST, LEFT),
             HDimConst('Unit','%'),
             HDimConst(yrRange,yrStr2)
@@ -358,15 +359,15 @@ def extract_sheet_5_9(tab, gHeading, yrRange):
         tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point
         tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz
         tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
-        tbl = pd.merge(tbl, tblSS, on=['Age'])
+        tbl = pd.merge(tbl, tblSS, on=[ageH])
         
         if 'DATAMARKER_x' not in tbl.columns:
             tbl['DATAMARKER_x'] = ''
             
         #### Rename Columns
         tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER','OBS_x':'Value', yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'OBS_y':'Sample Size'})
-        tbl = tbl[[yrRange, 'Age', heading, 'Sample Size', 'Value', 'Unit','DATAMARKER']]
-        tbl['Age'][tbl['Age'] == 'All receiving care'] = 'All'
+        tbl = tbl[[yrRange, ageH, heading, 'Sample Size', 'Value', 'Unit','DATAMARKER']]
+        tbl[ageH][tbl[ageH] == 'All receiving care'] = 'All'
         
         tbl['Measure Type'] = mainHeading
         return tbl
@@ -379,7 +380,7 @@ def extract_sheet_5_9(tab, gHeading, yrRange):
 # Table 5.10: People receiving care by main source of total weekly household income and gender, 2017/18, United Kingdom
 # -
 
-def extract_sheet_5_10(tab, headingG, yrRange):
+def extract_sheet_5_10(tab, headingG, yrRange, ageH):
     try:   
         mainHeading = 'People receiving care by main source of total weekly household income and gender'
         rw = 9
@@ -458,21 +459,22 @@ except Exception as e:
 
 yrRange = 'Period'
 gendHead = 'Sex'
+ageHead = 'FRS-Age-Ranges'
 
 try:
-    tbl1 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_1'][0], yrRange, 1, gendHead, yrRange)
-    tbl2 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_2'][0], 'Age', 2, gendHead, yrRange)
-    tbl3 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_3'][0], 3, gendHead, yrRange)
-    tbl4 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_4'][0], 4, gendHead, yrRange)
-    tbl5 = extract_sheet_5_5([t for t in sheets if t.name == '5_5'][0], gendHead, yrRange)
-    tbl6 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_6'][0], 6, gendHead, yrRange)
-    tbl7 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_7'][0], 7, gendHead, yrRange)
-    tbl8 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_8'][0], 'Age', 8, gendHead, yrRange)
-    tbl9 = extract_sheet_5_9([t for t in sheets if t.name == '5_9'][0], gendHead, yrRange)
-    tbl10 = extract_sheet_5_10([t for t in sheets if t.name == '5_10'][0], gendHead, yrRange)
+    tbl1 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_1'][0], yrRange, 1, gendHead, yrRange, ageHead)
+    tbl2 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_2'][0], ageHead, 2, gendHead, yrRange, ageHead)
+    tbl3 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_3'][0], 3, gendHead, yrRange, ageHead)
+    tbl4 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_4'][0], 4, gendHead, yrRange, ageHead)
+    tbl5 = extract_sheet_5_5([t for t in sheets if t.name == '5_5'][0], gendHead, yrRange, ageHead)
+    tbl6 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_6'][0], 6, gendHead, yrRange, ageHead)
+    tbl7 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_7'][0], 7, gendHead, yrRange, ageHead)
+    tbl8 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_8'][0], ageHead, 8, gendHead, yrRange, ageHead)
+    tbl9 = extract_sheet_5_9([t for t in sheets if t.name == '5_9'][0], gendHead, yrRange, ageHead)
+    tbl10 = extract_sheet_5_10([t for t in sheets if t.name == '5_10'][0], gendHead, yrRange, ageHead)
 except Exception as e:
     print(e.message, e.args)
-#tbl10
+#tbl3
 
 # +
 #### Set up the folder path for the output files
@@ -487,7 +489,7 @@ tblSet = [tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
 # Set the Familiy of these datasets
 scraper.dataset.family = 'disability'
 # create an instance of a csvw , my knowledge of this bit is a wholly at the moment :-)
-csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
+#csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 
 # Change some Values to match standardised codelists
 # Output Observation.csv files
@@ -507,6 +509,10 @@ for t in tblSet:
     if 'Measure Type' in t.columns:
         #t['Measure Type'] = t['Measure Type'].str.replace(' ', '-')
         t['Measure Type'] = 'Percent'
+    
+    if ageHead in t.columns:
+        t[ageHead][(t[ageHead].str.contains('75'))] = '75plus'
+        t[ageHead][(t[ageHead].str.contains('85'))] = '85plus'
         
     t = changeDataMarkerValues(t)
     
@@ -515,12 +521,10 @@ for t in tblSet:
         
     fleNme = 'observations_5_' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
+    csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
     csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
     with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
     i = i + 1
 
 # +
 #tbl3
-# -
-
-
