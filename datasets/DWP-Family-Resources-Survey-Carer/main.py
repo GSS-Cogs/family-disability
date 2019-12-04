@@ -427,7 +427,7 @@ def extract_sheet_5_10(tab, headingG, yrRange, ageH):
         tbl = tbl[[yrRange, heading, 'People', headingG, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
 
         # Rename the items with a notes number attached
-        tbl[heading][tbl[heading] == 'State Pension plus any IS/PC2,3'] = 'State Pension plus any IS/PC'
+        tbl[heading][tbl[heading] == 'State Pension plus any IS/PC2,3'] = 'State Pension plus any IS-PC'
         tbl[heading][tbl[heading] == 'Non-state pensions4'] = 'Non-state pensions'
         tbl[heading][tbl[heading] == 'Disability benefits5'] = 'Disability benefits'
         tbl[heading][tbl[heading] == 'Other benefits6,7'] = 'Other benefits'
