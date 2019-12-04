@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[409]:
+# In[36]:
 
 
 from gssutils import *
@@ -12,10 +12,13 @@ from gssutils.metadata import THEME
 def left(s, amount):
     return s[:amount]
 
+def right(s, amount):
+    return s[-amount:]
+
 scraper = Scraper('https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718')
 
 
-# In[410]:
+# In[37]:
 
 
 dist = scraper.distribution(title=lambda t: 'Disability data tables (XLS)' in t)
@@ -212,7 +215,7 @@ for tab in tabs:
         continue
 
 
-# In[411]:
+# In[38]:
 
 
 new_table = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -220,8 +223,8 @@ import numpy as np
 new_table['OBS'].replace('', np.nan, inplace=True)
 new_table.dropna(subset=['OBS'], inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-#new_table['Period'] = new_table['Period'].map(
-    #lambda x: f'gregorian-interval/{left(x,2) + right(x,2)}-03-31T00:00:00/P1Y')
+new_table['Period'] = new_table['Period'].map(
+    lambda x: f'gregorian-interval/{left(x,4)}-03-31T00:00:00/P1Y')
 new_table['Age Group'] = new_table['Age Group'].map(
     lambda x: left(x, len(x) - 1) if x.endswith('1') else x)
 new_table['Age Group'] = new_table['Age Group'].map(
@@ -229,7 +232,7 @@ new_table['Age Group'] = new_table['Age Group'].map(
 tidy = new_table[['Period','Region','Disability','Gender','Age Group','Measure type','Value','Unit']]
 
 
-# In[412]:
+# In[39]:
 
 
 tidy = tidy.replace({'Disability' : {
@@ -257,7 +260,7 @@ tidy = tidy.replace({'Age Group' : {
     'All people' : 'All'}})
 
 
-# In[413]:
+# In[40]:
 
 
 from IPython.core.display import HTML
@@ -268,18 +271,17 @@ for col in tidy:
         display(tidy[col].cat.categories)
 
 
-# In[414]:
+# In[41]:
 
 
 tidy.rename(columns={'Gender':'Sex',
-                   'Period':'Time period',
                    'Region':'Area',
                    'Age Group':'Age',
                    'Measure type':'Measure Type'}, 
           inplace=True)
 
 
-# In[415]:
+# In[42]:
 
 
 destinationFolder = Path('out')
@@ -291,7 +293,7 @@ tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = Fal
 tidy
 
 
-# In[416]:
+# In[43]:
 
 
 scraper.dataset.family = 'health'
