@@ -1,6 +1,6 @@
 title,name,component_attachment,property_template,value_template,datatype,value_transformation,regex,range
 Measure Type,measure_type,qb:measure,http://purl.org/linked-data/cube#measureType,http://gss-data.org.uk/def/measure/{measure_type},string,slugize,,qb:MeasureProperty
-Area,geography,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refArea,http://statistics.data.gov.uk/id/statistical-geography/{geography},string,,,
+Area,area,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refArea,http://statistics.data.gov.uk/id/statistical-geography/{area},string,,,
 Sex,sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#sex,http://purl.org/linked-data/sdmx/2009/code#sex-{sex},string,,,http://purl.org/linked-data/sdmx/2009/code#Sex
 Age,age,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#age,http://gss-data.org.uk/def/concept/ages/{age},string,slugize,,
 Household Disability Status,household_disability_status,qb:dimension,http://gss-data.org.uk/def/dimension/household-disability-status,http://gss-data.org.uk/def/dimension/household-disability-status/{household-disability-status},string,slugize,,http://gss-data.org.uk/def/classes/household-disability-status/Household_disability_status

@@ -217,6 +217,8 @@ for cat in tidy_sheet["Category Type"].unique():
     temp_sheet.to_csv(out_path, index = False)
 
 # -
+
+
 # # Generate trig files
 #
 # These are almost (but not quite) identical. To get things working I've used a template and some hacky substitutions.
@@ -290,6 +292,34 @@ for cat in list_of_categories:
 
 # +
 
+# dictionary mapping in-csv column names to the notation field in columns.csv
+notation_lookup = {
+    "Indicator": "indicator",
+    "Area": "area",
+    "Sex": "sex",
+    "PHE Age": "phe_age",
+    "Period": "period",
+    "Trend": "trend",
+    "PHE Unit": "phe_unit",
+    "PHE Standard Population": "phe_standard_population",
+    'County & UA (pre Apr2019) deprivation deciles in England (IMD2015)': 'county-ua-pre-apr2019-deprivation-deciles-in-england-imd2015'.replace("-", "_"),
+    'District & UA (pre Apr2019)  deprivation deciles in England (IMD2015)': 'district-ua-pre-apr2019-deprivation-deciles-in-england-imd2015'.replace("-", "_"),
+    'County & UA deprivation deciles in England (IMD2015, 4/19 geog.)': 'county-ua-deprivation-deciles-in-england-imd2015-419-geog'.replace("-", "_"),
+    'District & UA deprivation deciles in England (IMD2015, 4/19 geog.)': 'district-ua-deprivation-deciles-in-england-imd2015-419-geog'.replace("-", "_"),
+    'County & UA deprivation deciles in England (IMD2019, 4/19 geog.)': 'county-ua-deprivation-deciles-in-england-imd2019-419-geog'.replace("-", "_"),
+    'District & UA deprivation deciles in England (IMD2019, 4/19 geog.)': 'district-ua-deprivation-deciles-in-england-imd2019-419-geog'.replace("-", "_"),
+    'County & UA deprivation deciles in England (IMD2010)': 'county-ua-deprivation-deciles-in-england-imd2010'.replace("-", "_"),
+    'District & UA deprivation deciles in England (IMD2010)': 'district-ua-deprivation-deciles-in-england-imd2010'.replace("-", "_"),
+    'Ethnic groups': 'ethnic-groups'.replace("-", "_"),
+    'Sexuality - 4 categories': 'sexuality-4-categories'.replace("-", "_"),
+    'Socioeconomic group (18-64 yrs)': 'socioeconomic-group-18-64-yrs'.replace("-", "_"),
+    'Religion - 8 categories': 'religion-8-categories'.replace("-", "_"),
+    'Country of birth': 'country-of-birth'.replace("-", "_"),
+    'Health status': 'health-status'.replace("-", "_"),
+    'Sexuality - 5 categories': 'sexuality-5-categories'.replace("-", "_"),
+    'LSOA11 deprivation deciles in England (IMD2015)': 'lsoa11-deprivation-deciles-in-england-imd2015'.replace("-", "_")
+}
+
 for cat in list_of_categories:
     
     fp = "out/obs_{}.csv".format(pathify_label(cat))
@@ -300,10 +330,8 @@ for cat in list_of_categories:
         "tables": []
     }
     
-    columns = [x for x in df.columns.values if x != "Value"]
-    
     # Tables for codelists
-    for col in columns:
+    for col in [x for x in df.columns.values if x != "Value"]:
             
         col = col.lower()
         
@@ -322,7 +350,7 @@ for cat in list_of_categories:
     obs_tableSchema["columns"] = []
     obs_tableSchema["foreignKeys"] = []
     obs_tableSchema["primaryKey"] = []
-    for col in columns:
+    for col in [x for x in df.columns.values if x != "Value"]:
         
         if not col.lower().startswith("phe"):
             path_col = pathify_label("phe-"+col.lower())
@@ -330,17 +358,17 @@ for cat in list_of_categories:
         obs_tableSchema["columns"].append({
             "titles": col,
             "required": True,
-            "name": path_col,
+            "name": notation_lookup[col],
             "datatype": "string"
             })
         obs_tableSchema["foreignKeys"].append({
-            "columnReference": path_col,
+            "columnReference": notation_lookup[col],
             "reference": {
                 "resource": "https://gss-cogs.github.io/ref_trade/codelists/{}.csv".format(path_col),
                 "columnReference": "notation"
                 }
             })
-        obs_tableSchema["primaryKey"].append(path_col)
+        obs_tableSchema["primaryKey"].append(notation_lookup[col])
     
     # Table for obs file
     schema["tables"].append({
@@ -364,6 +392,11 @@ for cat in list_of_categories:
 
 # +
 import json
+
+
+#
+# IMPORTANT - had to manually correct codelists.csv, so the below code is out somewhere.
+#
 
 # TODO - you should probably switch me off before you push
 GENERATE_REFERENCE_DATA = False
@@ -490,6 +523,3 @@ if GENERATE_REFERENCE_DATA:
         
     pprint(codelist_metadata)
     
-# -
-
-
