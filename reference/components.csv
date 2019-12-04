@@ -16,6 +16,6 @@ Frequency of care,Refers the number of times a person receives care in number of
 People,Refers to if the people being measure are receiving care or not,Dimension,http://gss-data.org.uk/def/concept-scheme/people
 Percentage of People,The percentage of all people measured who meet the criteria,Measure,
 Marker,Defines the reason for any missing values,Attribute,
-Identified support needs of homeless households,,Dimension,http://gss-data.org.uk/def/concept-scheme/identified_suppport_needs_of_homeless_households
-Reasons for failing to maintain accommodation,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons_for_failing_to_maintain_accommodation
-Reasons for homelessness application,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons_for_homelessness_application
+Identified support needs of homeless households,,Dimension,http://gss-data.org.uk/def/concept-scheme/identified-suppport-needs-of-homeless-households
+Reasons for failing to maintain accommodation,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons-for-failing-to-maintain-accommodation
+Reasons for homelessness application,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons-for-homelessness-application
