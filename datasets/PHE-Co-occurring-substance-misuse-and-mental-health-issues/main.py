@@ -137,6 +137,11 @@ def make_notation(value):
 
 # +
 
+# for when we need to fill some blanks
+UNSPECIFIED_TREND = "not-known"
+UNSPECIFIED_STAT_POP = "not-applicable"
+
+# load the data
 all_data = pd.read_csv("all_data.csv")
 
 # Create the principle dataframe of everything
@@ -153,18 +158,20 @@ tidy_sheet["Category Type"] = all_data["Category Type"]
 tidy_sheet["Category"] = all_data["Category"]
 tidy_sheet["PHE Standard Population"] = all_data["Standard population/values"].astype(str).apply(make_notation)
 
+# Get rid of unsorted nan values
+# TODO - there's a function for this that I can't remember
+for col in tidy_sheet.columns.values:
+    tidy_sheet[col] = tidy_sheet[col].map(lambda x: str(x).replace("nan", ""))
+    
 # Tweaks and things that I can't really genericize
 # ------------------------------------------------
-# In the context of a unit of measure, we'll want percentage not percent
 tidy_sheet["PHE Unit"] = tidy_sheet["PHE Unit"].map(lambda x: x.replace("precent", "percentage"))
-
+tidy_sheet["PHE Standard Population"][tidy_sheet["PHE Standard Population"] == ""] = UNSPECIFIED_STAT_POP
+tidy_sheet["Trend"][tidy_sheet["Trend"] == ""] = UNSPECIFIED_TREND
 
 # Remove rows without values and output
 tidy_sheet = tidy_sheet[tidy_sheet["Value"].astype(str) != "nan"]
 
-for col in tidy_sheet.columns.values:
-    tidy_sheet[col] = tidy_sheet[col].map(lambda x: str(x).replace("nan", ""))
-    
 tidy_sheet.to_csv("all_but_tidied.csv", index=False)
 # -
 # # Split the data
@@ -172,9 +179,6 @@ tidy_sheet.to_csv("all_but_tidied.csv", index=False)
 # Now the data is ready, we're going to split it up by category.
 
 # +
-
-UNSPECIFIED_TREND = "not-known"
-UNSPECIFIED_STAT_POP = "not-applicable"
 
 list_of_out_files = []
 
@@ -192,19 +196,17 @@ for cat in tidy_sheet["Category Type"].unique():
     cat = pathify_label(cat)
     
     # Standard population only applies to a narrow subet of the data
-    # if no observation in this slice have it - rip it out, else fill the blanks
-    if len([x for x in list(temp_sheet["PHE Standard Population"].unique()) if x != ""]) == 0:
+    # if no observation in this slice have it - rip it out
+    all_stat_pop = list(temp_sheet["PHE Standard Population"].unique())
+    if len(all_stat_pop) == 1 and all_stat_pop[0] == UNSPECIFIED_STAT_POP:
         temp_sheet = temp_sheet.drop("PHE Standard Population", axis=1)
-    else:
-        temp_sheet["PHE Standard Population"][temp_sheet["PHE Standard Population"] == ""] = UNSPECIFIED_STAT_POP
-    
+
     # For some categories, no observations have trend information
-    # if no observation in this slice have it - rip it out, else fill the blanks
-    if len([x for x in list(temp_sheet["Trend"].unique()) if x != ""]) == 0:
+    # if no observation in this slice have it - rip it out
+    all_trends = list(temp_sheet["Trend"].unique())
+    if len(all_trends) == 1 and all_trends[0] == UNSPECIFIED_TREND:
         temp_sheet = temp_sheet.drop("Trend", axis=1)
-    else:
-        temp_sheet["Trend"][temp_sheet["Trend"] == ""] = UNSPECIFIED_TREND
-    
+
     out = Path('out')
     out.mkdir(exist_ok=True)
     
@@ -364,6 +366,3 @@ if GENERATE_REFERENCE_DATA:
     from pprint import pprint
     pprint(codelist_metadata)
     
-# -
-
-
