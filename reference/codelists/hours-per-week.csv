@@ -6,5 +6,5 @@ All,all,,1
 "Varies, less than 35 hours",varies-less-than-35-hours,All,5
 "35-49 hours",35-49-hours,All,6
 "50 or more hours",50-or-more-hours,All,7
-"Varies, 35 or more hours",varies-35-or-more-hours,All,8
+"Varies, more than 35 hours",varies-more-than-35-hours,All,8
 "Unknown",unknown,All,9
