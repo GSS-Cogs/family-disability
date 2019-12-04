@@ -235,7 +235,7 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange, ageH):
             
             if 'DATAMARKER_x' not in tbl.columns:
                 tbl['DATAMARKER_x'] = ''
-             
+
             tbl[gsubHeading] = tbl[gsubHeading].apply(pathify)
             
             #### Rename Columns
@@ -477,20 +477,23 @@ gendHead = 'Sex'
 ageHead = 'Age'#'FRS Age Group'
 measType = 'Measure Type'
 
+# +
 try:
-    tbl1 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_1'][0], yrRange, 1, gendHead, yrRange, ageHead)
-    tbl2 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_2'][0], ageHead, 2, gendHead, yrRange, ageHead)
-    tbl3 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_3'][0], 3, gendHead, yrRange, ageHead)
+    #tbl1 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_1'][0], yrRange, 1, gendHead, yrRange, ageHead)
+    #tbl2 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_2'][0], ageHead, 2, gendHead, yrRange, ageHead)
+    #tbl3 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_3'][0], 3, gendHead, yrRange, ageHead)
     tbl4 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_4'][0], 4, gendHead, yrRange, ageHead)
-    tbl5 = extract_sheet_5_5([t for t in sheets if t.name == '5_5'][0], gendHead, yrRange, ageHead)
-    tbl6 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_6'][0], 6, gendHead, yrRange, ageHead)
-    tbl7 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_7'][0], 7, gendHead, yrRange, ageHead)
-    tbl8 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_8'][0], ageHead, 8, gendHead, yrRange, ageHead)
-    tbl9 = extract_sheet_5_9([t for t in sheets if t.name == '5_9'][0], gendHead, yrRange, ageHead)
-    tbl10 = extract_sheet_5_10([t for t in sheets if t.name == '5_10'][0], gendHead, yrRange, ageHead)
+    #tbl5 = extract_sheet_5_5([t for t in sheets if t.name == '5_5'][0], gendHead, yrRange, ageHead)
+    #tbl6 = extract_sheet_5_3_and_5_6([t for t in sheets if t.name == '5_6'][0], 6, gendHead, yrRange, ageHead)
+    #tbl7 = extract_sheet_5_4_and_5_7([t for t in sheets if t.name == '5_7'][0], 7, gendHead, yrRange, ageHead)
+    #tbl8 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_8'][0], ageHead, 8, gendHead, yrRange, ageHead)
+    #tbl9 = extract_sheet_5_9([t for t in sheets if t.name == '5_9'][0], gendHead, yrRange, ageHead)
+    #tbl10 = extract_sheet_5_10([t for t in sheets if t.name == '5_10'][0], gendHead, yrRange, ageHead)
 except Exception as e:
     print(e.message, e.args)
-#tbl10
+
+tbl4['Employment Type'] = tbl4['Employment Type'].str.replace('/', '-', regex=True)
+tbl4
 
 # +
 #### Set up the folder path for the output files
