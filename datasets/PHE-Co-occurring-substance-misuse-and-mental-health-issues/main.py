@@ -323,7 +323,7 @@ for cat in list_of_categories:
     for col in df.columns.values:
         
         if not col.startswith("phe"):
-            path_col = "phe-"+col
+            path_col = pathify_label("phe-"+col)
         
         obs_tableSchema["columns"].append({
             "titles": col,
