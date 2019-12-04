@@ -12,7 +12,6 @@
   "families": ["Education", "Disability"],
   "stability": "Good",
   "future": "Good",
-  "asana": "https://app.asana.com/0/1144400845748882/1149605042704978/f",
   "extract": {
     "source": "Excel spreadsheet",
     "subset": "All tabs",
@@ -38,6 +37,7 @@
     "Source: Annual Population Survey (Household)."
   ],
   "transform": {
-    "main_issue": 12
+    "main_issue": 12,
+    "asana": "1149605042704978"
   }
 }

@@ -10,7 +10,6 @@
   "future": "Good",
   "extract": {
     "source": "XLS, CSV, all",
-    "asana": "https://app.asana.com/0/1144400845748882/1149605042704972/f", 
     "subset": "All tabs",
     "breakdowns": [
       "Local Authority", "Rank",
@@ -35,6 +34,7 @@
     "This data may already be in http://opendatacommunities.org/data/societal-wellbeing/imd2019/indices already as an RDF data cube."
   ],
   "transform": {
-    "main_issue": 16
+    "main_issue": 16,
+    "asana": "1149605042704972"
   }
 }

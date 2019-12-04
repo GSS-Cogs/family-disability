@@ -17,18 +17,18 @@
   "future": "Good",
   "extract": {
     "source": "Excel spreadsheet, CSV",
-    "asana": "https://app.asana.com/0/1144400845748882/1145780845413497/f",
     "subset": "All tabs",
     "breakdowns": [
       "Reporting period", "Breakdown", "Level",
       {
         "Health": ["Cancer", "Mental illness", "Long-term"]
       },
-      "Survival rate", "Check", "Value" 
+      "Survival rate", "Check", "Value"
     ]
   },
   "notes": "",
   "transform": {
-    "main_issue": 13
+    "main_issue": 13,
+    "asana": "1145780845413497"
   }
 }

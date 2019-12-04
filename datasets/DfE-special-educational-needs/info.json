@@ -18,7 +18,6 @@
   "future": "?",
   "extract": {
     "source": "3 XLS spreadsheets",
-    "asana": "https://app.asana.com/0/1144400845748882/1149605042704974/f", 
     "subset": "All tabs",
     "breakdowns": [{
         "Education provider": ["School type", "Academy type"]
@@ -32,6 +31,7 @@
   },
   "notes": "There appears to be a different definition of provision e.g. table 1, table 9 and the disabilities appears to be referred to as Primary type of need in tables 16 -18",
   "transform": {
-    "main_issue": 15
+    "main_issue": 15,
+    "asana": "1149605042704974"
   }
 }
