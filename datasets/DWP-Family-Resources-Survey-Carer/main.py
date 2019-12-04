@@ -78,7 +78,7 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange,
         
         # Set some extra columns
         if whichTab == 1:
-            tbl[ageH] = 'All'
+            tbl[ageH] = 'all'
             tbl['Measure Type'] = 'People providing informal care by gender'
         elif whichTab == 2: 
             tbl[yrRange] = yrStr2
@@ -90,9 +90,9 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange,
         # Select the columns to return   
         if 'DATAMARKER' not in tbl.columns:
             tbl['DATAMARKER'] = ''
-            
-        #tbl = tbl[[yrRange,ageH,gHeading,'Sample Size','Measure Type','Value','Unit','DATAMARKER']]
-        tbl = tbl[[ageH,'Value','Unit','Measure Type','Sample Size']]
+        
+        tbl = tbl[[yrRange,ageH,gHeading,'Sample Size','Measure Type','Value','Unit','DATAMARKER']]
+        #tbl = tbl[[ageH,'Value','Unit','Measure Type','Sample Size']]
         
         return tbl
     except Exception as e:
@@ -147,7 +147,10 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl, gHeading, yrRange, ageH):
         tbl = tbl[[yrRange, ageH, mainCol, gHeading, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
        
         # make some changes to match standards for codelists
-        tbl[ageH][tbl[ageH].str.contains('carers')] = 'All'
+        tbl[ageH][tbl[ageH].str.contains('carers')] = 'all'
+        
+        tbl[ageH] = tbl[ageH].apply(pathify)
+        tbl[mainCol] = tbl[mainCol].apply(pathify)
         
         tbl['Measure Type'] = mainHeading
         
@@ -232,7 +235,9 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange, ageH):
             
             if 'DATAMARKER_x' not in tbl.columns:
                 tbl['DATAMARKER_x'] = ''
-                
+             
+            tbl[gsubHeading] = tbl[gsubHeading].apply(pathify)
+            
             #### Rename Columns
             tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER', 'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
             tbl = tbl[[yrRange, heading, subHeading, gHeading, gsubHeading, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
@@ -274,7 +279,10 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange, ageH):
             tbl[subHeading][tbl[subHeading].str.contains('Friend')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Friend')]
             tbl[subHeading][tbl[subHeading].str.contains('Client')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Client')]
             tbl[subHeading][tbl[subHeading] == 'Other'] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading] == 'Other']
-            tbl = tbl[~tbl[heading].str.contains('Non-relative')]
+            tbl = tbl[~tbl[heading].str.contains('Non-relative')]       
+        
+        tbl[heading] = tbl[heading].apply(pathify)
+        tbl[subHeading] = tbl[subHeading].apply(pathify)
         
         tbl['Measure Type'] = mainHeading
         return tbl
@@ -328,6 +336,9 @@ def extract_sheet_5_5(tab, headingG, yrRange, ageH):
         tbl[heading][tbl[heading] == 'Disability benefits4'] = 'Disability benefits'
         tbl[heading][tbl[heading] == 'Other benefits5,6'] = 'Other benefits'
         
+        tbl[heading] = tbl[heading].apply(pathify)
+        tbl[headingHrs] = tbl[headingHrs].apply(pathify)
+        
         tbl['Measure Type'] = mainHeading
         return tbl
     except Exception as e:
@@ -368,6 +379,8 @@ def extract_sheet_5_9(tab, gHeading, yrRange, ageH):
         tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER','OBS_x':'Value', yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'OBS_y':'Sample Size'})
         tbl = tbl[[yrRange, ageH, heading, 'Sample Size', 'Value', 'Unit','DATAMARKER']]
         tbl[ageH][tbl[ageH] == 'All receiving care'] = 'All'
+        
+        tbl[heading] = tbl[heading].apply(pathify)
         
         tbl['Measure Type'] = mainHeading
         return tbl
@@ -420,6 +433,8 @@ def extract_sheet_5_10(tab, headingG, yrRange, ageH):
         tbl[heading][tbl[heading] == 'Other benefits6,7'] = 'Other benefits'
         tbl['People'] = tbl['People'].str.strip()
            
+        tbl[heading] = tbl[heading].apply(pathify)    
+        
         tbl['Measure Type'] = mainHeading
         return tbl
     except Exception as e:
@@ -431,14 +446,14 @@ def changeDataMarkerValues(tbl):
         colName = 'DATAMARKER'
         if colName in tbl.columns:
             tbl[colName][tbl[colName] == '0'] = 'Nil none recorded in the sample'
-            tbl[colName][tbl[colName] == '-'] = 'Negligible less than 0.5 percent or 0.1 million'
+            tbl[colName][tbl[colName] == '-'] = 'Negligible less than 0-5 percent or 0-1 million'
             tbl[colName][tbl[colName] == '.'] = 'Not applicable'
             tbl[colName][tbl[colName] == '..'] = 'Not available due to small sample size fewer than 100'
-        
+            
         tbl = tbl.rename(columns={colName:'Marker'})
         return tbl
     except Exception as e:
-        return "Error for table 5_10: " + str(e)
+        return "Error for table 5_10: " + e.message
 
 
 #### There are several spreadsheets so look for the one you want, which in this case is Carers only
@@ -459,7 +474,8 @@ except Exception as e:
 
 yrRange = 'Period'
 gendHead = 'Sex'
-ageHead = 'FRS Age Group'
+ageHead = 'Age'#'FRS Age Group'
+measType = 'Measure Type'
 
 try:
     tbl1 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_1'][0], yrRange, 1, gendHead, yrRange, ageHead)
@@ -474,7 +490,7 @@ try:
     tbl10 = extract_sheet_5_10([t for t in sheets if t.name == '5_10'][0], gendHead, yrRange, ageHead)
 except Exception as e:
     print(e.message, e.args)
-#tbl3
+#tbl10
 
 # +
 #### Set up the folder path for the output files
@@ -487,9 +503,6 @@ out.mkdir(exist_ok=True, parents=True)
 # Join all the tables together into one dataset so we can loop through them
 tblSet = [tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
 # Set the Familiy of these datasets
-scraper.dataset.family = 'disability'
-# create an instance of a csvw , my knowledge of this bit is a wholly at the moment :-)
-#csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 
 # Change some Values to match standardised codelists
 # Output Observation.csv files
@@ -502,29 +515,40 @@ for t in tblSet:
         t[gendHead][(t[gendHead].str.contains('Male')) | (t[gendHead].str.contains('male'))] = 'M'
         t[gendHead][(t[gendHead].str.contains('Female')) | (t[gendHead].str.contains('female'))] = 'F'
         t[gendHead][(t[gendHead].str.contains('All')) | (t[gendHead].str.contains('all'))] = 'T'
+        
     # Change the 2 Year period to match the standard for open data interval
     if yrRange in t.columns:
         t[yrRange] = t[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
     
-    if 'Measure Type' in t.columns:
-        #t['Measure Type'] = t['Measure Type'].str.replace(' ', '-')
-        t['Measure Type'] = 'Percent'
+    if measType in t.columns:
+        #t[measType] = t[measType].str.replace(' ', '-')
+        t[measType] = 'Percent'
+        t[measType] = t[measType].apply(pathify)
     
     if ageHead in t.columns:
-        t[ageHead][(t[ageHead].str.contains('75'))] = '75plus'
-        t[ageHead][(t[ageHead].str.contains('85'))] = '85plus'
+        t[ageHead][(t[ageHead].str.contains('75'))] = '75-plus'
+        t[ageHead][(t[ageHead].str.contains('85'))] = '85-plus'
+        t[ageHead][(t[ageHead].str.contains('providing'))] = 'all'
+        t[ageHead][(t[ageHead] != 'all')] = 'agq/' + t[ageHead][(t[ageHead] != 'all')]
+        #t[ageHead] = t[ageHead].apply(pathify)
         
     t = changeDataMarkerValues(t)
     
     if 'Value' in t.columns:
         t['Value'][t['Value'] == ''] = '0'
-        
+    
+    t = t.drop(columns=['Marker'])
+    
     fleNme = 'observations_5_' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
+    with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
+    scraper.dataset.family = 'disability'
     csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
     csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
-    with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
     i = i + 1
 
 # +
 #tbl3
+# -
+
+
