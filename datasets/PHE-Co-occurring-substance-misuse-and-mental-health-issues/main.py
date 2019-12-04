@@ -10,6 +10,8 @@ import dateutil.parser
 from pathlib import Path
 import os
 import json
+import dateutil.parser
+from pprint import pprint
 
 def get_data_by_domain(url):
     
@@ -180,7 +182,7 @@ tidy_sheet.to_csv("all_but_tidied.csv", index=False)
 
 # +
 
-list_of_out_files = []
+list_of_categories = []
 
 for cat in tidy_sheet["Category Type"].unique():
     
@@ -194,6 +196,7 @@ for cat in tidy_sheet["Category Type"].unique():
     temp_sheet = temp_sheet.drop("Category Type", axis=1)
         
     cat = pathify_label(cat)
+    list_of_categories.append(cat)
     
     # Standard population only applies to a narrow subet of the data
     # if no observation in this slice have it - rip it out
@@ -212,20 +215,134 @@ for cat in tidy_sheet["Category Type"].unique():
     
     out_path = out / "obs_{}.csv".format(cat)
     temp_sheet.to_csv(out_path, index = False)
-    
-    list_of_out_files.append(out_path)
 
 # -
-# # Generate schema and trig files
+# # Generate trig files
+#
+# These are almost (but not quite) identical. To get things working I've used a template and some hacky substitutions.
 
 # +
 import os
 
-for out_file in list_of_out_files:
-    pass
-    
-    #df_4_schema = pd.read_csv(out_file)
+# For each trig-per-obs-file replace the following within the template-trig.text file
+# <ISSUED_DATETIME_REPLACE_ME>
+# <MODIFIED_DATETIME_REPLACE_ME>
+# <TITLE_REPLACE_ME> , which is "Co-occurring substance misuse and mental health issues:" + category
+# <DATASET_URL_REPLACE_ME> , http://gss-data.org.uk/data/gss_data/housing/phe-co-occurring-substance-misuse-and-mental-health-issues + notation(cat)
+# <LABEL_REPLACE_ME> i.e cat but written pretty
 
+all_data = pd.read_csv("all_data.csv")
+all_dates = []
+
+label_replacement = None
+for cat in list_of_categories:
+    
+    fp = "out/obs_{}.csv".format(pathify_label(cat))
+    df = pd.read_csv(fp)
+    
+    # Get the release/modified date of every indicator in this obs file
+    for indicator in list(df["Indicator"].unique()):
+        
+        indicator_ids = list(all_data["Indicator ID"][all_data["Indicator Name"].apply(make_notation) == indicator].unique())
+        if len(indicator_ids) != 1:
+            raise ValueError("Unable to determine specific indicator ID for indicator: " + ",".join(indicators))
+        indicator_id = indicator_ids[0]
+        label_replacement = str(indicator_id)
+        
+        url = "https://fingertips.phe.org.uk/api/data_changes?indicator_id="+str(indicator_id)
+        r = requests.get(url)
+        if r.status_code != 200:
+            raise ValueError("Failed to get date changed information for indicator via: " + url)
+
+        date =r.json()["LastUploadedAt"]
+        all_dates.append(dateutil.parser.parse(date))
+    
+    # Now create our variables to write in 
+    last_modified = str(max(all_dates))
+    title = "Co-occurring substance misuse and mental health issues"
+    if cat != "Uncategorised":
+        title = "Co-occurring substance misuse and mental health issues: " + cat
+    dataset_url = "http://gss-data.org.uk/data/gss_data/housing/phe-co-occurring-substance-misuse-and-mental-health-issues-" + cat 
+        
+    lines_for_new_trig = []
+    with open("template-trig.txt", "r") as f:
+        for line in f:
+            
+            line = line.replace("<ISSUED_DATETIME_REPLACE_ME>", last_modified)
+            line = line.replace("<MODIFIED_DATETIME_REPLACE_ME>", last_modified)
+            line = line.replace("<TITLE_REPLACE_ME>", last_modified)
+            line = line.replace("DATASET_URL_REPLACE_ME", dataset_url)
+            line = line.replace("LABEL_REPLACE_ME", label_replacement)
+                
+            lines_for_new_trig.append(line)
+            
+    with open(fp+"-metadata.trig", "w") as f:
+        
+        for line in lines_for_new_trig:
+            f.write(line)
+    
+# -
+
+# # Generate Schema Files
+#
+# We'll just generate these on the fly, using the load observation csvs.
+#
+
+# +
+
+for cat in list_of_categories:
+    
+    fp = "out/obs_{}.csv".format(pathify_label(cat))
+    df = pd.read_csv(fp)
+
+    schema = {
+        "@context": ["http://www.w3.org/ns/csvw",{"@language": "en"}],
+        "tables": []
+    }
+    
+    # Tables for codelists
+    for col in df.columns.values:
+        
+        col = col.lower()
+        
+        if not col.startswith("phe"):
+            col = "phe-"+col
+            
+        schema["tables"].append({
+            "url": "https://gss-cogs.github.io/ref_trade/codelists/{}.csv".format(pathify_label(col)),
+            "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+            "suppressOutput": True
+        })
+        
+    # Tableschema for the observations files
+    obs_tableSchema["columns"] = []
+    obs_tableSchema["foreignKeys"] = []
+    obs_tableSchema["primaryKey"] = []
+    for col in df.columns.values:
+        obs_tableSchema["columns"].append({
+            "titles": col,
+            "required": True,
+            "name": pathify_label(col),
+            "datatype": "string"
+            })
+        obs_tableSchema["foreignKeys"].append({
+            "columnReference": pathify_label(col),
+            "reference": {
+                "resource": "https://gss-cogs.github.io/ref_trade/codelists/{}.csv".format(pathify_label(col)),
+                "columnReference": "notation"
+                }
+            })
+        obs_tableSchema["primaryKey"].append(pathify_label(col))
+    
+    # Table for obs file
+    schema["tables"].append({
+        "url": fp[4:],
+        "tableSchema": obs_tableSchema
+    })
+
+    with open(str(fp)+"-schema.json", "w") as f:
+        json.dump(schema, f)
+    
 # -
 
 # # Generate Reference Data
@@ -363,6 +480,8 @@ if GENERATE_REFERENCE_DATA:
     with open("ref/entries-codelist-metadata.json", "w") as f:
         json.dump(codelist_metadata, f)
         
-    from pprint import pprint
     pprint(codelist_metadata)
     
+# -
+
+
