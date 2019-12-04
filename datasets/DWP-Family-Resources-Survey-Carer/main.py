@@ -493,6 +493,7 @@ except Exception as e:
     print(e.message, e.args)
 
 tbl4['Employment Type'] = tbl4['Employment Type'].str.replace('/', '-', regex=True)
+tbl5['Hours per Week'] = tbl5['Hours per Week'].str.replace('/', '-', regex=True)
 #tbl4
 
 # +
