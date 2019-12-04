@@ -151,7 +151,7 @@ tidy_sheet = pd.DataFrame()
 tidy_sheet["Indicator"] = all_data["Indicator Name"].apply(make_notation)
 tidy_sheet["Area"] = all_data["Area Code"]
 tidy_sheet["Sex"] = all_data["Sex"].apply(make_notation)
-tidy_sheet["PHE-Age"] = all_data["Age"].apply(make_notation)
+tidy_sheet["PHE Age"] = all_data["Age"].apply(make_notation)
 tidy_sheet["Period"] = all_data["Time period"].astype(str).apply(timeify)
 tidy_sheet["Value"] = all_data["Value"]
 tidy_sheet["Trend"] = all_data["Recent Trend"].astype(str).apply(make_notation)
@@ -321,6 +321,8 @@ for cat in list_of_categories:
     obs_tableSchema["foreignKeys"] = []
     obs_tableSchema["primaryKey"] = []
     for col in df.columns.values:
+        
+        col = col.lower()
         
         if not col.startswith("phe"):
             path_col = pathify_label("phe-"+col)
