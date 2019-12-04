@@ -7,14 +7,13 @@
     "name": "M A Vaughan",
     "tel": "",
     "email": "team.frs@dwp.gov.uk"
-  }], 
+  }],
   "published": "28 March 2019",
   "families": ["Affordable Housing", "Disability", "Care"],
   "stability": "Good",
   "future": "Good",
   "extract": {
     "source": "Excel spreadsheet, ODS",
-    "asana": "https://app.asana.com/0/1144400845748882/1149605042704980/f",
     "subset": "All tabs",
     "breakdowns": [{
         "Geography": ["United Kingdon", "Country", "Region"]
@@ -49,6 +48,7 @@
     "There are 2 Age group and Gender dimensions as listed above."
   ],
   "transform": {
-    "main_issue": 11
+    "main_issue": 11,
+    "asana": "1149605042704980"
   }
 }
