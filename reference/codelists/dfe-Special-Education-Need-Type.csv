@@ -1,0 +1,63 @@
+﻿Label,Notation,Parent Notation,Sort Priority
+All,all,,1
+Pupils On Roll ,pupils-on-roll ,all,2
+Pupils With SEN,pupils-with-sen,all,3
+Pupils With Statements Or EHC Plans,pupils-with-statements-or-ehc-plans,all,4
+Pupils With SEN Without Statements Or EHC Plans,pupils-with-sen-without-statements-or-ehc-plans,all,5
+Number On Roll ,number-on-roll ,all,6
+Pupils With EHC Plan,pupils-with-ehc-plan,all,7
+Pupils On SEN Support,pupils-on-sen-support,all,8
+Total Pupils With Special Educational Needs,total-pupils-with-special-educational-needs,all,9
+Number Of Academies,number-of-academies,all,10
+Total Number Of Pupils,total-number-of-pupils,all,11
+Number Of Pupils With Special Educational Needs,number-of-pupils-with-special-educational-needs,all,12
+All Pupils,all-pupils,all,13
+Pupils With EHC Plans,pupils-with-ehc-plans,all,14
+Pupils With SEN Support,pupils-with-sen-support,all,15
+Total Number Of Pupils With SEN,total-number-of-pupils-with-sen,all,16
+Pupils Without Special Educational Needs,pupils-without-special-educational-needs,all,17
+Total Number Of Pupils With Special Educational Needs,total-number-of-pupils-with-special-educational-needs,all,18
+All Children,all-children,all,19
+Pupils Without SEN,pupils-without-sen,all,20
+SEN Support,sen-support,all,21
+EHC Plan,ehc-plan,all,22
+Specific Learning Difficulty,specific-learning-difficulty,all,23
+Moderate Learning Difficulty,moderate-learning-difficulty,all,24
+Severe Learning Difficulty,severe-learning-difficulty,all,25
+Profound Multiple Learning Difficulty,profound-multiple-learning-difficulty,all,26
+Social Emotional And Mental Health,social-emotional-and-mental-health,all,27
+Speech Language And Communication Need,speech-language-and-communication-need,all,28
+Hearing Impairment,hearing-impairment,all,29
+Visual Impairment,visual-impairment,all,30
+Multi SENsory Impairment,multi-sensory-impairment,all,31
+Physical Disability,physical-disability,all,32
+Autistic Spectrum Disorder,autistic-spectrum-disorder,all,33
+Other,other,all,34
+Up To 15 Pupils,up-to-15-pupils,all,35
+16 To 30 Pupils,16-to-30-pupils,all,36
+31 To 45 Pupils,31-to-45-pupils,all,37
+46 To 60 Pupils,46-to-60-pupils,all,38
+61 To 75 Pupils,61-to-75-pupils,all,39
+76 To 100 Pupils,76-to-100-pupils,all,40
+101 To 120 Pupils,101-to-120-pupils,all,41
+121 To 140 Pupils,121-to-140-pupils,all,42
+141 To 160 Pupils,141-to-160-pupils,all,43
+161 To 180 Pupils,161-to-180-pupils,all,44
+181 To 200 Pupils,181-to-200-pupils,all,45
+201 To 250 Pupils,201-to-250-pupils,all,46
+251 To 300 Pupils,251-to-300-pupils,all,47
+301 Pupils And Over,301-pupils-and-over,all,48
+Total,total,all,49
+Total Number Of Schools,total-number-of-schools,all,50
+Number With SEN Units,number-with-sen-units,all,51
+Number With Resourced Provision,number-with-resourced-provision,all,52
+Total Pupils,total-pupils,all,53
+Pupils With Statements,pupils-with-statements,all,54
+Pupils Without Statements,pupils-without-statements,all,55
+Total Pupils With SEN,total-pupils-with-sen,all,56
+Speech Language And Communications Needs,speech-language-and-communications-needs,all,57
+Other Difficulty Disability,other-difficulty-disability,all,58
+SEN Support But No Specialist Assessment Of Type Of Need,sen-support-but-no-specialist-assessment-of-type-of-need,all,59
+Pupils Attending SEN Units,pupils-attending-sen-units,all,60
+Pupils Placed In Resourced Provision,pupils-placed-in-resourced-provision,all,61
+,,,
