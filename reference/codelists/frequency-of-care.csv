@@ -1,7 +1,7 @@
 Label,Notation,Parent Notation,Sort Priority
-All,All,,1
-Continuous,Continuous,All,2
-Several times a day,Several-times-a-day,All,3
-Once or twice a day,Once-or-twice-a-day,All,4
-Several times a week,Several-times-a-week,All,5
-Once a week,Once-a-week,All,6
+All,all,,1
+Continuous,continuous,all,2
+Several times a day,several-times-a-day,all,3
+Once or twice a day,once-or-twice-a-day,all,4
+Several times a week,several-times-a-week,all,5
+Once a week,once-a-week,all,6

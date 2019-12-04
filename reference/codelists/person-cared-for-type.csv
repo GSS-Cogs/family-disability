@@ -1,4 +1,4 @@
 Label,Notation,Parent Notation,Sort Priority
-Household member,Household-member,,1
-Non-household member,Non-household-member,,2
-More than 1 person cared for,More-than-1-person-cared-for,,3
+Household member,household-member,,1
+Non-household member,non-household-member,,2
+More than 1 person cared for,more-than-1-person-cared-for,,3
