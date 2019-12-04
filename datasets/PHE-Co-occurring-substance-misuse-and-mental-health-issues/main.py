@@ -332,7 +332,7 @@ for cat in list_of_categories:
             "datatype": "string"
             })
         obs_tableSchema["foreignKeys"].append({
-            "columnReference": path_col,
+            "columnReference": col,
             "reference": {
                 "resource": "https://gss-cogs.github.io/ref_trade/codelists/{}.csv".format(path_col),
                 "columnReference": "notation"
