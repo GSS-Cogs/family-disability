@@ -1,8 +1,8 @@
 Label,Notation,Parent Notation,Sort Priority
-All,All,,1
-All in employment,All-in-employment,All,2
-All employees,All-employees,All,3
-All self-employed,All-self-employed,All,4
-Unemployed,Unemployed,All,5
-Retired,Retired,All,6
-Other economically inactive,Other-economically-inactive,All,7
+All,all,,1
+All in employment,all-in-employment,all,2
+All employees,all-employees,all,3
+All self-employed,all-self-employed,all,4
+Unemployed,unemployed,all,5
+Retired,retired,all,6
+Other economically inactive,other-economically-inactive,all,7
