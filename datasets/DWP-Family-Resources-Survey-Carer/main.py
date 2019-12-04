@@ -459,7 +459,7 @@ except Exception as e:
 
 yrRange = 'Period'
 gendHead = 'Sex'
-ageHead = 'FRS Age Ranges'
+ageHead = 'FRS Age Group'
 
 try:
     tbl1 = extract_sheet_5_1_and_5_2_and_5_8([t for t in sheets if t.name == '5_1'][0], yrRange, 1, gendHead, yrRange, ageHead)
@@ -528,10 +528,3 @@ for t in tblSet:
 
 # +
 #tbl3
-# -
-
-
-
-
-
-
