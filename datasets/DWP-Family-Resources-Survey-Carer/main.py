@@ -1,4 +1,5 @@
-# +
+# -*- coding: utf-8 -*-
+# + {}
 #### Family Resources Survey for Financial Year 2017 to 2018 - Carer ####
 
 # +
@@ -494,7 +495,8 @@ except Exception as e:
 
 tbl4['Employment Type'] = tbl4['Employment Type'].str.replace('/', '-', regex=True)
 tbl5['Source of Income'] = tbl5['Source of Income'].str.replace('/', '-', regex=True)
-#tbl4
+tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('ps', '£', regex=True)
+tbl6
 
 # +
 #### Set up the folder path for the output files
@@ -544,7 +546,7 @@ for t in tblSet:
     t = t.drop(columns=['Marker'])
     
     fleNme = 'observations_5_' + str(i) + '.csv'
-    t.drop_duplicates().to_csv(out / (fleNme), index = False)
+    t.drop_duplicates().to_csv(out / (fleNme), index = False, encoding = 'ISO-8859-1')
     with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
     scraper.dataset.family = 'disability'
     csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
