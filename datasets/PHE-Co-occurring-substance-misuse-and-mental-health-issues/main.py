@@ -300,9 +300,11 @@ for cat in list_of_categories:
         "tables": []
     }
     
+    columns = [x for x in df.columns.values if x != "Value"]
+    
     # Tables for codelists
-    for col in df.columns.values:
-        
+    for col in columns:
+            
         col = col.lower()
         
         if not col.startswith("phe"):
@@ -320,12 +322,10 @@ for cat in list_of_categories:
     obs_tableSchema["columns"] = []
     obs_tableSchema["foreignKeys"] = []
     obs_tableSchema["primaryKey"] = []
-    for col in df.columns.values:
+    for col in columns:
         
-        col = col.lower()
-        
-        if not col.startswith("phe"):
-            path_col = pathify_label("phe-"+col)
+        if not col.lower().startswith("phe"):
+            path_col = pathify_label("phe-"+col.lower())
         
         obs_tableSchema["columns"].append({
             "titles": col,
