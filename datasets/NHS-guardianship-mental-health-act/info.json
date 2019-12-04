@@ -22,7 +22,7 @@
     "breakdowns": [
       "Section", "Relationship", "Year", "Gender",
       {
-        "Region and Local Authorit": ["ONS area code", "Local Authority code", "Local Authority name", "Region code"]
+        "Region and Local Authority": ["ONS area code", "Local Authority code", "Local Authority name", "Region code"]
       },
       {
         "Status": ["New", "Continuing", "Closed"]
