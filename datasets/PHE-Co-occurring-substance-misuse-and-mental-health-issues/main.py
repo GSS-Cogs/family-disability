@@ -339,7 +339,7 @@ for cat in list_of_categories:
             col = "phe-"+col
             
         schema["tables"].append({
-            "url": "https://gss-cogs.github.io/ref_trade/codelists/{}.csv".format(pathify_label(col)),
+            "url": "https://gss-cogs.github.io/ref_disability/codelists/{}.csv".format(pathify_label(col)),
             "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
             "suppressOutput": True
         })
@@ -364,7 +364,7 @@ for cat in list_of_categories:
         obs_tableSchema["foreignKeys"].append({
             "columnReference": notation_lookup[col],
             "reference": {
-                "resource": "https://gss-cogs.github.io/ref_trade/codelists/{}.csv".format(path_col),
+                "resource": "https://gss-cogs.github.io/ref_disability/codelists/{}.csv".format(path_col),
                 "columnReference": "notation"
                 }
             })
