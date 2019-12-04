@@ -221,7 +221,7 @@ scraper.set_dataset_id(f'disability/SG-homelessness-in-scotland-annual-publicati
 scraper.dataset.title = f'{TAB_NAME}'
 
 scraper.dataset.family = 'disability'
-#scraper.dataset.theme = THEME['health-social-care']
+scraper.dataset.theme = THEME['health-social-care']
 with open(destinationFolder / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 # -
