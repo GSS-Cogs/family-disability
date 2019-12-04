@@ -2,7 +2,7 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix gdp: <http://gss-data.org.uk/def/gdp#> .
 @prefix gov: <https://www.gov.uk/government/organisations/> .
-@prefix ns1: <http://gss-data.org.uk/graph/gss_data/housing/scotland-housing-empty-property-and-second-home/> .
+@prefix ns1: <DATASET_URL_REPLACE_ME/> .
 @prefix ns2: <urn:x-rdflib:> .
 @prefix pmd: <http://publishmydata.com/def/dataset#> .
 @prefix qb: <http://purl.org/linked-data/cube#> .
@@ -15,13 +15,13 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ns1:metadata {
-    <http://gss-data.org.uk/data/gss_data/housing/phe-co-occurring-substance-misuse-and-mental-health-issues> a pmd:Dataset,
+    <DATASET_URL_REPLACE_ME> a pmd:Dataset,
             pmd:LinkedDataset,
             qb:DataSet,
             dcat:Dataset ;
-        rdfs:label "Co-occurring substance misuse and mental health issues"@en ;
+        rdfs:label "<LABEL_REPLACE_ME>"@en ;
         gdp:family gdp:disability ;
-        pmd:graph <http://gss-data.org.uk/graph/gss_data/disability/phe-co-occurring-substance-misuse-and-mental-health-issues> ;
+        pmd:graph <DATASET_URL_REPLACE_ME> ;
         dct:creator gov:public-health-england ;
         dct:description """Welcome to the Co-occurring Substance Misuse and Mental Health Issues Profiling Tool. It has been developed to support an intelligence-driven approach to understanding and meeting need. It collates and analyses a wide range of publically available data around tobacco smoking, alcohol use and drug use, including data on prevalence, risk factors, treatment demand and treatment response. The tool also features indicators around mental health prevalence and services. From December 2016, it will also feature related indicators on mortality.
 
@@ -32,11 +32,11 @@ Although much of the data is already available, either in the public domain or t
 At the present time we lack good, direct local indicators of the levels of co-morbid substance misuse and mental health issues. However, the available research literature demonstrates strong links between mental health and smoking, alcohol use and drug use. Smoking is much more common among those with mental health disorders (McManus et al, 2010), and most users of drug and alcohol services also experience mental health problems (Weaver et al, 2003). Based on these associations, we have chosen, in lieu of more specific data, to release overall data around smoking, alcohol use and drug use, as well as data around mental health prevalence and services.
 
 """^^<https://www.w3.org/ns/iana/media-types/text/markdown#Resource> ;
-        dct:issued 2019-10-30 11:40:10^^xsd:dateTime ;
+        dct:issued <ISSUED_DATETIME_REPLACE_ME>^^xsd:dateTime ;
         dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
-        dct:modified "2019-11-07T11:37:59"^^xsd:dateTime ;
+        dct:modified <MODIFIED_DATETIME_REPLACE_ME>^^xsd:dateTime ;
         dct:publisher gov:gov:public-health-england ;
-        dct:title "Co-occurring substance misuse and mental health issues"@en ;
+        dct:title <TITLE_REPLACE_ME>@en ;
         void:sparqlEndpoint <http://gss-data.org.uk/sparql> ;
         dcat:landingPage <https://fingertips.phe.org.uk/profile-group/mental-health/profile/drugsandmentalhealth> ;
         dcat:theme theme:disability-drugs-and-mental-health .
