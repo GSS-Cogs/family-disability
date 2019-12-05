@@ -1,0 +1,6 @@
+Label,Notation,Parent Notation,Sort Priority
+All,all,,1
+Economically Active,economically-active,all,2
+Economically Inactive,economically-inactive,all,3
+In Employment,in-employment,all,4
+Unemployed,unemployed,all,5
