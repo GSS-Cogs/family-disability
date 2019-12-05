@@ -513,7 +513,13 @@ out.mkdir(exist_ok=True, parents=True)
 
 # Join all the tables together into one dataset so we can loop through them
 tblSet = [tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
-# Set the Familiy of these datasets
+
+
+def left(s, amount):
+    return s[:amount]
+
+def right(s, amount):
+    return s[-amount:]
 
 # Change some Values to match standardised codelists
 # Output Observation.csv files
@@ -529,7 +535,8 @@ for t in tblSet:
         
     # Change the 2 Year period to match the standard for open data interval
     if yrRange in t.columns:
-        t[yrRange] = t[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
+        #t[yrRange] = t[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
+        t[yrRange] = t[yrRange].map(lambda x: 'government-year/' + left(x,4) +'-20' + right(x,2))
     
     if measType in t.columns:
         #t[measType] = t[measType].str.replace(' ', '-')
