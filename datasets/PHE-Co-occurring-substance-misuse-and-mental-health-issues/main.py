@@ -91,6 +91,7 @@ def timeify(cell):
      
     
 # TODO - probably remove this since pathify_label and make_notation look like the same thing :)
+# TODO - we can proabbly replace both with the actual pathify, give it a shot
 def pathify_label(value):
     """ As it says, change into something we can use for an output file name """
     
@@ -172,7 +173,7 @@ tidy_sheet["PHE Standard Population"][tidy_sheet["PHE Standard Population"] == "
 tidy_sheet["Trend"][tidy_sheet["Trend"] == ""] = UNSPECIFIED_TREND
 
 # Remove rows without values and output
-tidy_sheet = tidy_sheet[tidy_sheet["Value"].astype(str) != "nan"]
+tidy_sheet = tidy_sheet[tidy_sheet["Value"].astype(str) != ""]
 
 tidy_sheet.to_csv("all_but_tidied.csv", index=False)
 
@@ -222,81 +223,9 @@ for cat in tidy_sheet["Category Type"].unique():
 # -
 
 
-# # Generate trig files
-#
-# These are almost (but not quite) identical. To get things working I've used a template and some hacky substitutions.
+# # TODO - replace
 
-# +
-import os
-
-# For each trig-per-obs-file replace the following within the template-trig.text file
-# <ISSUED_DATETIME_REPLACE_ME>
-# <MODIFIED_DATETIME_REPLACE_ME>
-# <TITLE_REPLACE_ME> , which is "Co-occurring substance misuse and mental health issues:" + category
-# <DATASET_URL_REPLACE_ME> , http://gss-data.org.uk/data/gss_data/housing/phe-co-occurring-substance-misuse-and-mental-health-issues + notation(cat)
-# <LABEL_REPLACE_ME> i.e cat but written pretty
-
-all_data = pd.read_csv("all_data.csv")
-all_dates = []
-
-label_replacement = None
-for cat in list_of_categories:
-    
-    fp = "out/obs_{}.csv".format(pathify_label(cat))
-    df = pd.read_csv(fp)
-    
-    # Get the release/modified date of every indicator in this obs file
-    for indicator in list(df["Indicator"].unique()):
-        
-        indicator_ids = list(all_data["Indicator ID"][all_data["Indicator Name"].apply(make_notation) == indicator].unique())
-        if len(indicator_ids) != 1:
-            raise ValueError("Unable to determine specific indicator ID for indicator: " + ",".join(indicators))
-        indicator_id = indicator_ids[0]
-        label_replacement = str(indicator_id)
-        
-        url = "https://fingertips.phe.org.uk/api/data_changes?indicator_id="+str(indicator_id)
-        r = requests.get(url)
-        if r.status_code != 200:
-            raise ValueError("Failed to get date changed information for indicator via: " + url)
-
-        date =r.json()["LastUploadedAt"]
-        all_dates.append(dateutil.parser.parse(date))
-    
-    # Now create our variables to write in 
-    last_modified = str(max(all_dates))
-    title = "Co-occurring substance misuse and mental health issues"
-    if cat != "Uncategorised":
-        title = "Co-occurring substance misuse and mental health issues: " + cat
-    dataset_url = "http://gss-data.org.uk/data/gss_data/housing/phe-co-occurring-substance-misuse-and-mental-health-issues-" + cat 
-        
-    lines_for_new_trig = []
-    with open("template-trig.txt", "r") as f:
-        for line in f:
-            
-            line = line.replace("<ISSUED_DATETIME_REPLACE_ME>", last_modified)
-            line = line.replace("<MODIFIED_DATETIME_REPLACE_ME>", last_modified)
-            line = line.replace("<TITLE_REPLACE_ME>", last_modified)
-            line = line.replace("DATASET_URL_REPLACE_ME", dataset_url)
-            line = line.replace("LABEL_REPLACE_ME", label_replacement)
-                
-            lines_for_new_trig.append(line)
-            
-    with open(fp+"-metadata.trig", "w") as f:
-        
-        for line in lines_for_new_trig:
-            f.write(line)
-    
-# -
-
-# # Generate Schema Files
-#
-# We'll just generate these on the fly, using the load observation csvs.
-#
-
-# +
-
-# dictionary mapping in-csv column names to the notation field in columns.csv
-# TODO - ewwwwww!!!
+# dictionary mapping in-csv column names to the notation field in columns.csv..... ewwwwww
 notation_lookup = {
     "Indicator": "indicator",
     "Area": "area",
@@ -324,6 +253,79 @@ notation_lookup = {
     'LSOA11 deprivation deciles in England (IMD2015)': 'lsoa11-deprivation-deciles-in-england-imd2015'.replace("-", "_"),
     'Value':"value"
 }
+
+# # Generate trig files
+#
+# These are almost (but not quite) identical. To get things working I've used a template and some hacky substitutions.
+
+# +
+
+import os
+
+# For each trig-per-obs-file replace the following within the template-trig.text file
+# <ISSUED_DATETIME_REPLACE_ME>
+# <MODIFIED_DATETIME_REPLACE_ME>
+# <TITLE_REPLACE_ME> , which is "Co-occurring substance misuse and mental health issues:" + category
+# <DATASET_URL_REPLACE_ME> , http://gss-data.org.uk/data/gss_data/housing/phe-co-occurring-substance-misuse-and-mental-health-issues + notation(cat)
+# <LABEL_REPLACE_ME> i.e cat but written pretty
+
+all_data = pd.read_csv("all_data.csv")
+all_dates = []
+
+for cat in list_of_categories:
+    
+    fp = "out/obs_{}.csv".format(pathify_label(cat))
+    df = pd.read_csv(fp)
+    
+    # Get the release/modified date of every indicator in this obs file
+    for indicator in list(df["Indicator"].unique()):
+        
+        indicator_ids = list(all_data["Indicator ID"][all_data["Indicator Name"].apply(make_notation) == indicator].unique())
+        if len(indicator_ids) != 1:
+            raise ValueError("Unable to determine specific indicator ID for indicator: " + ",".join(indicators))
+        indicator_id = indicator_ids[0]
+        
+        url = "https://fingertips.phe.org.uk/api/data_changes?indicator_id="+str(indicator_id)
+        r = requests.get(url)
+        if r.status_code != 200:
+            raise ValueError("Failed to get date changed information for indicator via: " + url)
+
+        date =r.json()["LastUploadedAt"]
+        all_dates.append(dateutil.parser.parse(date))
+    
+    # Now create our variables to write in 
+    last_modified = str(max(all_dates))
+    title = "Co-occurring substance misuse and mental health issues"
+    if cat != "uncategorised":
+        title_cat = [k for k,v in notation_lookup.items() if v.replace("_", "-") == cat][0]
+        title = "Co-occurring substance misuse and mental health issues: " + title_cat
+    dataset_url = "http://gss-data.org.uk/data/gss_data/housing/phe-co-occurring-substance-misuse-and-mental-health-issues-" + cat 
+        
+    lines_for_new_trig = []
+    with open("template-trig.txt", "r") as f:
+        for line in f:
+            
+            line = line.replace("<ISSUED_DATETIME_REPLACE_ME>", last_modified)
+            line = line.replace("<MODIFIED_DATETIME_REPLACE_ME>", last_modified)
+            line = line.replace("<TITLE_REPLACE_ME>", title)
+            line = line.replace("DATASET_URL_REPLACE_ME", dataset_url)
+            line = line.replace("<LABEL_REPLACE_ME>", title)
+                
+            lines_for_new_trig.append(line)
+            
+    with open(fp+"-metadata.trig", "w") as f:
+        
+        for line in lines_for_new_trig:
+            f.write(line)
+    
+# -
+
+# # Generate Schema Files
+#
+# We'll just generate these on the fly, using the load observation csvs.
+#
+
+# +
 
 for cat in list_of_categories:
     
