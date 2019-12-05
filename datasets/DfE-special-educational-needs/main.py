@@ -14,6 +14,7 @@
 # ---
 
 from gssutils import *
+from gssutils.metadata import THEME
 scraper = Scraper('https://www.gov.uk/government/collections/statistics-special-educational-needs-sen')
 scraper.select_dataset(title=lambda x: x.startswith('Special educational needs in England'), latest=True)
 
@@ -138,9 +139,8 @@ out = Path('out')
 out.mkdir(exist_ok=True)
 next_table.drop_duplicates().to_csv(out / 'observations.csv', index = False)
 
-scraper.dataset.family = 'health'
-scraper.dataset.theme = THEME['health-social-care']
-with open(out / 'dataset.trig', 'wb') as metadata:
+scraper.dataset.family = 'disability'
+with open(out / 'observations.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
