@@ -564,6 +564,7 @@ for t in tblSet:
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
     with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
     scraper.dataset.family = 'disability'
+    scraper.dataset.title = fleNme
     csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
     csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
     i = i + 1
