@@ -147,6 +147,14 @@ UNSPECIFIED_STAT_POP = "not-applicable"
 # load the data
 all_data = pd.read_csv("all_data.csv")
 
+#id_sheet = pd.DataFrame()
+#id_sheet["Label"] = all_data["Indicator Name"]
+#id_sheet["Notation"] = id_sheet["Label"].apply(make_notation)
+#id_sheet["Parent Notation"] = ""
+#id_sheet["Sort Priority"] = ""
+#id_sheet = id_sheet.drop_duplicates()
+#id_sheet.to_csv("phe-indicator.csv", index=False)
+
 # Create the principle dataframe of everything
 tidy_sheet = pd.DataFrame()
 tidy_sheet["Indicator"] = all_data["Indicator Name"].apply(make_notation)
