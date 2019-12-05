@@ -279,7 +279,7 @@ import os
 # <ISSUED_DATETIME_REPLACE_ME>
 # <MODIFIED_DATETIME_REPLACE_ME>
 # <TITLE_REPLACE_ME> , which is "Co-occurring substance misuse and mental health issues:" + category
-# <DATASET_URL_REPLACE_ME> , http://gss-data.org.uk/data/gss_data/housing/phe-co-occurring-substance-misuse-and-mental-health-issues + notation(cat)
+# <DATASET_URL_REPLACE_ME> , http://gss-data.org.uk/data/gss_data/disability/phe-co-occurring-substance-misuse-and-mental-health-issues + notation(cat)
 # <LABEL_REPLACE_ME> i.e cat but written pretty
 
 all_data = pd.read_csv("all_data.csv")
@@ -312,7 +312,9 @@ for cat in list_of_categories:
     if cat != "uncategorised":
         title_cat = [k for k,v in notation_lookup.items() if v.replace("_", "-") == cat][0]
         title = "Co-occurring substance misuse and mental health issues: " + title_cat
-    dataset_url = "http://gss-data.org.uk/data/gss_data/housing/phe-co-occurring-substance-misuse-and-mental-health-issues-" + cat 
+        dataset_url = "http://gss-data.org.uk/data/gss_data/disability/phe-co-occurring-substance-misuse-and-mental-health-issues-" + cat 
+    else:
+        
         
     lines_for_new_trig = []
     with open("template-trig.txt", "r") as f:
@@ -322,6 +324,7 @@ for cat in list_of_categories:
             line = line.replace("<MODIFIED_DATETIME_REPLACE_ME>", last_modified)
             line = line.replace("<TITLE_REPLACE_ME>", title)
             line = line.replace("DATASET_URL_REPLACE_ME", dataset_url)
+            line = line.replace("GRAPH_URL_REPLACE_ME", dataset_url.replace("/data/", "/graph/"))
             line = line.replace("<LABEL_REPLACE_ME>", title)
                 
             lines_for_new_trig.append(line)
