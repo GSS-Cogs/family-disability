@@ -335,17 +335,17 @@ for cat in list_of_categories:
     
     # Tables for codelists
     for col in [x for x in df.columns.values if x != "Value"]:
-            
-        col = col.lower()
-            
-        schema["tables"].append({
-            "url": "https://gss-cogs.github.io/family-disability/reference/codelists/{}.csv".format(pathify_label(col)),
-            "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-            "suppressOutput": True
-        })
         
-        if not col.startswith("phe"):
-            col = "phe-"+col
+        if col not in ["Area", "Period"]:
+            
+            if not col.lower().startswith("phe"):
+                path_col = pathify_label("phe-"+col.lower())
+
+            schema["tables"].append({
+                "url": "https://gss-cogs.github.io/family-disability/reference/codelists/{}.csv".format(path_col),
+                "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+                "suppressOutput": True
+            })
         
     obs_tableSchema = {}
         
