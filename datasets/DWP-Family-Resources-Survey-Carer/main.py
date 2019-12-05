@@ -499,8 +499,8 @@ except Exception as e:
 
 tbl4['Employment Type'] = tbl4['Employment Type'].str.replace('/', '-', regex=True)
 tbl5['Source of Income'] = tbl5['Source of Income'].str.replace('/', '-', regex=True)
-tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('ps', '£', regex=True) # ££££££££
-tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('.99', '-99', regex=True) # replce the .99 with -99
+tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('ps', '', regex=True) # ££££££££
+tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('.', '-', regex=True) # replce the .99 with -99
 tbl4
 
 # +
