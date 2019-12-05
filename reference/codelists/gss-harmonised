@@ -1,0 +1,6 @@
+Label,Notation,Parent Notation,Sort Priority
+All,all,,1
+Equality Act Core Disabled,equality-act-core-disabled,,2
+Harmonised Standard Definition Disabled,harmonised-standard-definition-disabled,all,3
+Not Equality Act Core Disabled,not-equality-act-core-disabled,all,4
+Not Harmonised Standard Definition Disabled,not-harmonised-standard-definition-disabled,all,5
