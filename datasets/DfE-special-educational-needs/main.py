@@ -88,6 +88,8 @@ next_table.rename(columns={'Geography': 'ONS Geography',
                              'Education provider' : 'Special Education Provider'
                               }, inplace=True)
 
+next_table = next_table[next_table['ONS Geography'] != '.']
+
 new_table['Period'] = pd.to_numeric(new_table['Period'], errors='coerce').fillna(0)
 new_table['Period'] = new_table['Period'].astype('Int64')
 next_table['Period'] = 'year/'+ next_table['Period'].astype(str)
@@ -143,7 +145,3 @@ with open(out / 'dataset.trig', 'wb') as metadata:
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
-
-next_table
-
-
