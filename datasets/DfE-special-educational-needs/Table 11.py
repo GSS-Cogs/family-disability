@@ -39,6 +39,8 @@ new_table = c1.topandas()
 import numpy as np
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Value'] = new_table['Value'].astype(int)
+new_table['Period'] = pd.to_numeric(new_table['Period'], errors='coerce').fillna(0)
+new_table['Period'] = new_table['Period'].astype('Int64')
 new_table['Age']  = 'All'
 new_table['Sex']  = 'All'
 new_table['Special support type'] = 'Resources'
