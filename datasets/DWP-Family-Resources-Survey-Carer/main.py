@@ -544,6 +544,8 @@ for t in tblSet:
     
     t = changeDataMarkerValues(t)
     
+    t = t.rename(columns={'Unit':'FRS Units'})
+    
     if 'Value' in t.columns:
         t['Value'][t['Value'] == ''] = '0'
     
