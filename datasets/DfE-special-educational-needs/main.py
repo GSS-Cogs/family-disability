@@ -101,6 +101,43 @@ with open(out / 'dataset.trig', 'wb') as metadata:
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
 
-next_table.tail()
+next_table['Dfe-Age'] = next_table['Dfe-Age'].str.replace('\.0', '')
+next_table['Dfe-Age'] = ('year/') + next_table['Dfe-Age']
+next_table['Dfe-Age'] = next_table['Dfe-Age'].map(
+    lambda x: {
+        'year/All' : 'all', 'year/2 and under' : 'under-2', 
+       'year/12 and above': '12-plus', 'year/Total All Ages' :'all', 'year/4 and under' :'under-4',
+       'year/19+' : '19-plus', 'year/all' : 'all'
+        }.get(x, x))
+
+next_table['Dfe-Sex'] = next_table['Dfe-Sex'].map(
+    lambda x: { 'All' : 'T', 'Boys' :'B', 'Girls' :'G', 'Total' : 'T', 'Total(5)' :'T', 'all' :'T'        
+        }.get(x, x))
+
+next_table['Special Education Provider'] = next_table['Special Education Provider'].apply(pathify)
+next_table['Special Education Provider'] = next_table['Special Education Provider'].map(
+    lambda x: { 'total' : 'all-schools'     
+        }.get(x, x))
+
+next_table['Special Education Need Type'] = next_table['Special Education Need Type'].str.rstrip('()24569')
+next_table['Special Education Need Type'] = next_table['Special Education Need Type'].apply(pathify)
+next_table['Special Education Need Type'] = next_table['Special Education Need Type'].map(
+    lambda x: {  'other-difficulty/disability' : 'other-difficulty-or-disability',
+               'speech-language-and-communications-needs' : 'speech-language-and-communications-need'
+        }.get(x, x))
+
+next_table['Special Education Support Type'] = next_table['Special Education Support Type'].str.rstrip('()57')
+next_table['Special Education Support Type'] = next_table['Special Education Support Type'].str.replace('\.0', '')
+next_table['Special Education Support Type'] = next_table['Special Education Support Type'].apply(pathify)
+
+next_table['Special Education Support Type'] = next_table['Special Education Support Type'].map(
+    lambda x: {  'gypsy-/-roma' : 'gypsy-or-roma', 
+                 'other-difficulty/disability' : 'other-difficulty-or-disability',
+                'sen-support-by-ethnic-group-gypsy-/-roma' : 'sen-support-by-ethnic-group-gypsy-or-roma',
+                'statements-or-ehc-plans-support-by-ethnic-group-gypsy-/-roma' : 'statements-or-ehc-plans-support-by-ethnic-group-gypsy-or-roma',
+               'pupils-on-sen-support-secondary-other-difficulty/disability' : 'pupils-on-sen-support-secondary-other-difficulty-or-disability',
+               'pupils-with-statements-or-ehc-plans-secondary-other-difficulty/disability' : 'pupils-with-statements-or-ehc-plans-secondary-other-difficulty-or-disability',
+                'pupils-on-sen-supporteligible-and-claiming-free-school-meals' : 'pupils-on-sen-support-eligible-and-claiming-free-school-meals',       
+        }.get(x, x))
 
 
