@@ -533,7 +533,7 @@ for t in tblSet:
     
     if measType in t.columns:
         #t[measType] = t[measType].str.replace(' ', '-')
-        t[measType] = 'Percent'
+        t[measType] = 'Percentage'
         t[measType] = t[measType].apply(pathify)
     
     if ageHead in t.columns:
