@@ -213,6 +213,8 @@ for cat in tidy_sheet["Category Type"].unique():
     out = Path('out')
     out.mkdir(exist_ok=True)
     
+    temp_sheet = temp_sheet.drop_duplicates()
+    
     out_path = out / "obs_{}.csv".format(cat)
     temp_sheet.to_csv(out_path, index = False)
 
