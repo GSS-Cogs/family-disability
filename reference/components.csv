@@ -8,7 +8,6 @@ Reasons for homelessness application,,Dimension,http://gss-data.org.uk/def/conce
 Indicator,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-indicator
 Sex,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-sex
 Trend,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-trend
-Unit,,Measure,http://gss-data.org.uk/def/concept-scheme/phe-unit
 Standard Population,,Attribute,http://gss-data.org.uk/def/concept-scheme/phe-standard-population
 County & UA (pre Apr2019) deprivation deciles in England (IMD2015),,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-county-ua-pre-apr2019-deprivation-deciles-in-england-imd2015
 District & UA (pre Apr2019)  deprivation deciles in England (IMD2015),,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-district-ua-pre-apr2019-deprivation-deciles-in-england-imd2015
