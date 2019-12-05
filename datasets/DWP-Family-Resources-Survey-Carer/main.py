@@ -242,10 +242,10 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange, ageH):
                 tbl['DATAMARKER_x'] = ''
 
             tbl[gsubHeading] = tbl[gsubHeading].apply(pathify)
-            tbl['Unit'] = 'adult-informal-carers'
             #### Rename Columns
             tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER', 'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
             tbl = tbl[[yrRange, heading, subHeading, gHeading, gsubHeading, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
+            tbl['Unit'] = 'adult-informal-carers'
             
         elif whichTbl == 7:
             
@@ -501,7 +501,7 @@ tbl4['Employment Type'] = tbl4['Employment Type'].str.replace('/', '-', regex=Tr
 tbl5['Source of Income'] = tbl5['Source of Income'].str.replace('/', '-', regex=True)
 tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('ps', '£', regex=True) # ££££££££
 tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('.99', '-99', regex=True) # replce the .99 with -99
-#tbl1
+tbl4
 
 # +
 #### Set up the folder path for the output files
