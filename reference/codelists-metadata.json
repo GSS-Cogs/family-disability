@@ -154,7 +154,7 @@
     "url": "codelists/phe-lsoa11-deprivation-deciles-in-england-imd2015.csv"
   }, {
     "rdfs:label": "FRS Units",
-    "ableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/frs-units.csv"
   }]
 }
