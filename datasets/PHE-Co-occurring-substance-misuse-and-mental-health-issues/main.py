@@ -293,6 +293,7 @@ for cat in list_of_categories:
 # +
 
 # dictionary mapping in-csv column names to the notation field in columns.csv
+# TODO - ewwwwww!!!
 notation_lookup = {
     "Indicator": "indicator",
     "Area": "area",
@@ -334,15 +335,15 @@ for cat in list_of_categories:
     for col in [x for x in df.columns.values if x != "Value"]:
             
         col = col.lower()
-        
-        if not col.startswith("phe"):
-            col = "phe-"+col
             
         schema["tables"].append({
             "url": "https://gss-cogs.github.io/family-disability/reference/codelists/{}.csv".format(pathify_label(col)),
             "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
             "suppressOutput": True
         })
+        
+        if not col.startswith("phe"):
+            col = "phe-"+col
         
     obs_tableSchema = {}
         
@@ -361,13 +362,17 @@ for cat in list_of_categories:
             "name": notation_lookup[col],
             "datatype": "string"
             })
-        obs_tableSchema["foreignKeys"].append({
-            "columnReference": notation_lookup[col],
-            "reference": {
-                "resource": "https://gss-cogs.github.io/family-disability/reference/codelists/{}.csv".format(path_col),
-                "columnReference": "notation"
-                }
-            })
+        
+        # only add a foreign key if its a codelist I've made
+        if col not in ["Area", "Period"]:
+            obs_tableSchema["foreignKeys"].append({
+                "columnReference": notation_lookup[col],
+                "reference": {
+                    "resource": "https://gss-cogs.github.io/family-disability/reference/codelists/{}.csv".format(path_col),
+                    "columnReference": "notation"
+                    }
+                })
+        
         obs_tableSchema["primaryKey"].append(notation_lookup[col])
     
     # Table for obs file
