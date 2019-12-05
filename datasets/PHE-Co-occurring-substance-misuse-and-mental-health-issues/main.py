@@ -157,7 +157,7 @@ tidy_sheet["Value"] = all_data["Value"]
 tidy_sheet["Trend"] = all_data["Recent Trend"].astype(str).apply(make_notation)
 tidy_sheet["PHE Unit"] = all_data["Unit"].astype(str).apply(make_notation)
 tidy_sheet["Category Type"] = all_data["Category Type"]
-tidy_sheet["Category"] = all_data["Category"]
+tidy_sheet["Category"] = all_data["Category"].astype(str).apply(make_notation)
 tidy_sheet["PHE Standard Population"] = all_data["Standard population/values"].astype(str).apply(make_notation)
 
 # Get rid of unsorted nan values
@@ -175,6 +175,7 @@ tidy_sheet["Trend"][tidy_sheet["Trend"] == ""] = UNSPECIFIED_TREND
 tidy_sheet = tidy_sheet[tidy_sheet["Value"].astype(str) != "nan"]
 
 tidy_sheet.to_csv("all_but_tidied.csv", index=False)
+
 # -
 # # Split the data
 #
