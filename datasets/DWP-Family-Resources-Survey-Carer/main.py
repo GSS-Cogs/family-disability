@@ -501,7 +501,7 @@ tbl4['Employment Type'] = tbl4['Employment Type'].str.replace('/', '-', regex=Tr
 tbl5['Source of Income'] = tbl5['Source of Income'].str.replace('/', '-', regex=True)
 tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('ps', '', regex=True) # ££££££££
 tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('.', '-', regex=True) # replce the .99 with -99
-tbl4
+#tbl4
 
 # +
 #### Set up the folder path for the output files
@@ -513,18 +513,24 @@ out.mkdir(exist_ok=True, parents=True)
 
 # Join all the tables together into one dataset so we can loop through them
 tblSet = [tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
+# Set the Familiy of these datasets
 
-
+# +
 def left(s, amount):
     return s[:amount]
 
 def right(s, amount):
     return s[-amount:]
 
+
+# -
+
 # Change some Values to match standardised codelists
 # Output Observation.csv files
 # Create and output Schema.json files
 # Create and output metadata.trig files
+import numpy as np
+scraper.set_base_uri('http://gss-data.org.uk')
 i = 1
 for t in tblSet:
     # make some changes to match standards for codelists
@@ -537,7 +543,6 @@ for t in tblSet:
     if yrRange in t.columns:
         #t[yrRange] = t[yrRange].map(lambda x: f'gregorian-interval/{str(x)[:4]}-03-31T00:00:00/P2Y')
         t[yrRange] = t[yrRange].map(lambda x: 'government-year/' + left(x,4) +'-20' + right(x,2))
-    
     if measType in t.columns:
         #t[measType] = t[measType].str.replace(' ', '-')
         t[measType] = 'Percentage'
@@ -553,7 +558,7 @@ for t in tblSet:
     t = changeDataMarkerValues(t)
     
     #t = t.rename(columns={'Unit':'FRS Units'})
-    t['Unit'] = "Percent"
+    t['Unit'] = 'Percent'
     
     if 'Value' in t.columns:
         t['Value'][t['Value'] == ''] = '0'
@@ -562,9 +567,12 @@ for t in tblSet:
     
     fleNme = 'observations_5_' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
+    
+    scraper.set_dataset_id(f'disability/DWP-Family-Resources-Survey-Carer_5_{i}')
+    
     with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
     scraper.dataset.family = 'disability'
-    scraper.dataset.title = fleNme
+
     csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
     csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
     i = i + 1
