@@ -21,23 +21,14 @@ ns1:metadata {
             dcat:Dataset ;
         rdfs:label "<LABEL_REPLACE_ME>"@en ;
         gdp:family gdp:disability ;
-        pmd:graph <DATASET_URL_REPLACE_ME> ;
+        pmd:graph <GRAPH_URL_REPLACE_ME> ;
         dct:creator gov:public-health-england ;
-        dct:description """Welcome to the Co-occurring Substance Misuse and Mental Health Issues Profiling Tool. It has been developed to support an intelligence-driven approach to understanding and meeting need. It collates and analyses a wide range of publically available data around tobacco smoking, alcohol use and drug use, including data on prevalence, risk factors, treatment demand and treatment response. The tool also features indicators around mental health prevalence and services. From December 2016, it will also feature related indicators on mortality.
-
-The tool provides commissioners, service providers, clinicians, service users and their families with the means to benchmark their area against other areas.
-
-Although much of the data is already available, either in the public domain or through supporting data sent to local authority commissioners, this profiling tool pulls together relevant data from different sources into one place for the first time.
-
-At the present time we lack good, direct local indicators of the levels of co-morbid substance misuse and mental health issues. However, the available research literature demonstrates strong links between mental health and smoking, alcohol use and drug use. Smoking is much more common among those with mental health disorders (McManus et al, 2010), and most users of drug and alcohol services also experience mental health problems (Weaver et al, 2003). Based on these associations, we have chosen, in lieu of more specific data, to release overall data around smoking, alcohol use and drug use, as well as data around mental health prevalence and services.
-
-"""^^<https://www.w3.org/ns/iana/media-types/text/markdown#Resource> ;
+        dct:description """Co-occurring Substance Misuse and Mental Health Issues"""^^<https://www.w3.org/ns/iana/media-types/text/markdown#Resource> ;
         dct:issued <ISSUED_DATETIME_REPLACE_ME>^^xsd:dateTime ;
         dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
         dct:modified <MODIFIED_DATETIME_REPLACE_ME>^^xsd:dateTime ;
         dct:publisher gov:gov:public-health-england ;
         dct:title "<TITLE_REPLACE_ME>"@en ;
         void:sparqlEndpoint <http://gss-data.org.uk/sparql> ;
-        dcat:landingPage <https://fingertips.phe.org.uk/profile-group/mental-health/profile/drugsandmentalhealth> ;
-        dcat:theme theme:disability-drugs-and-mental-health .
+        dcat:landingPage <https://fingertips.phe.org.uk/profile-group/mental-health/profile/drugsandmentalhealth> .
 }
