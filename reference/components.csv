@@ -1,19 +1,7 @@
 Label,Description,Component Type,Codelist
 Household Disability Status,,Dimension,http://gss-data.org.uk/def/concept-scheme/household-disability-status
 Workless Household Type,,Dimension,http://gss-data.org.uk/def/concept-scheme/workless-household-type
-Hours per Week,Refers to a range of hours such as hours of care provided per week,Dimension,http://gss-data.org.uk/def/concept-scheme/hours-per-week
-Employment Status,Employment status of people being measure such as Employed or self-employed,Dimension,http://gss-data.org.uk/def/concept-scheme/employment-status
-Employment Type,A sub category of Employment status that defines the employment type such as full-time or part-time etc.,Dimension,http://gss-data.org.uk/def/concept-scheme/employment-type
-Adult Carers,Used to define if the statistic involves just Carers or all Adults,Dimension,http://gss-data.org.uk/def/concept-scheme/adult-carers
-Source of Income,Main source of income of people being measured such as Wages and Salaries Investments or Tax credits etc.,Dimension,http://gss-data.org.uk/def/concept-scheme/source-of-income
-Net Weekly Income,Range of net weekly income in £s for people the being measured,Dimension,http://gss-data.org.uk/def/concept-scheme/net-weekly-income
-Person cared for Type,Refers to who a Carer is caring for such as in their own household or not or if they care for more than one person,Dimension,http://gss-data.org.uk/def/concept-scheme/person-cared-for-type
-Person cared for,A sub category of Person cared for type which defines who the person being cared for is such as Parent Spouse Brother or relative etc.,Dimension,http://gss-data.org.uk/def/concept-scheme/person-cared-for
-Frequency of care,Refers the number of times a person receives care in number of times a day or week,Dimension,http://gss-data.org.uk/def/concept-scheme/frequency-of-care
-People,Refers to if the people being measure are receiving care or not,Dimension,http://gss-data.org.uk/def/concept-scheme/people
 Percentage of People,The percentage of all people measured who meet the criteria,Measure,
-FRS Units,Describes the type of statistic being shown,Dimension,http://gss-data.org.uk/def/concept-scheme/net-weekly-income
-Marker,Defines the reason for any missing values,Attribute,
 Identified support needs of homeless households,,Dimension,http://gss-data.org.uk/def/concept-scheme/identified-suppport-needs-of-homeless-households
 Reasons for failing to maintain accommodation,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons-for-failing-to-maintain-accommodation
 Reasons for homelessness application,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons-for-homelessness-application
