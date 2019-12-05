@@ -88,18 +88,9 @@ next_table.rename(columns={'Geography': 'ONS Geography',
                              'Education provider' : 'Special Education Provider'
                               }, inplace=True)
 
-from pathlib import Path
-out = Path('out')
-out.mkdir(exist_ok=True)
-next_table.drop_duplicates().to_csv(out / 'observations.csv', index = False)
-
-scraper.dataset.family = 'health'
-scraper.dataset.theme = THEME['health-social-care']
-with open(out / 'dataset.trig', 'wb') as metadata:
-    metadata.write(scraper.generate_trig())
-
-csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
+new_table['Period'] = pd.to_numeric(new_table['Period'], errors='coerce').fillna(0)
+new_table['Period'] = new_table['Period'].astype('Int64')
+next_table['Period'] = 'year/'+ next_table['Period'].astype(str)
 
 next_table['Dfe-Age'] = next_table['Dfe-Age'].str.replace('\.0', '')
 next_table['Dfe-Age'] = ('year/') + next_table['Dfe-Age']
@@ -139,5 +130,20 @@ next_table['Special Education Support Type'] = next_table['Special Education Sup
                'pupils-with-statements-or-ehc-plans-secondary-other-difficulty/disability' : 'pupils-with-statements-or-ehc-plans-secondary-other-difficulty-or-disability',
                 'pupils-on-sen-supporteligible-and-claiming-free-school-meals' : 'pupils-on-sen-support-eligible-and-claiming-free-school-meals',       
         }.get(x, x))
+
+from pathlib import Path
+out = Path('out')
+out.mkdir(exist_ok=True)
+next_table.drop_duplicates().to_csv(out / 'observations.csv', index = False)
+
+scraper.dataset.family = 'health'
+scraper.dataset.theme = THEME['health-social-care']
+with open(out / 'dataset.trig', 'wb') as metadata:
+    metadata.write(scraper.generate_trig())
+
+csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
+csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
+
+next_table
 
 

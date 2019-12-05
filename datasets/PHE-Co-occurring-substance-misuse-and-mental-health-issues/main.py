@@ -320,7 +320,8 @@ notation_lookup = {
     'Country of birth': 'country-of-birth'.replace("-", "_"),
     'Health status': 'health-status'.replace("-", "_"),
     'Sexuality - 5 categories': 'sexuality-5-categories'.replace("-", "_"),
-    'LSOA11 deprivation deciles in England (IMD2015)': 'lsoa11-deprivation-deciles-in-england-imd2015'.replace("-", "_")
+    'LSOA11 deprivation deciles in England (IMD2015)': 'lsoa11-deprivation-deciles-in-england-imd2015'.replace("-", "_"),
+    'Value':"value"
 }
 
 for cat in list_of_categories:
@@ -335,17 +336,19 @@ for cat in list_of_categories:
     
     # Tables for codelists
     for col in [x for x in df.columns.values if x != "Value"]:
-            
-        col = col.lower()
-            
-        schema["tables"].append({
-            "url": "https://gss-cogs.github.io/family-disability/reference/codelists/{}.csv".format(pathify_label(col)),
-            "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-            "suppressOutput": True
-        })
         
-        if not col.startswith("phe"):
-            col = "phe-"+col
+        if col not in ["Area", "Period"]:
+            
+            col = col.lower()
+            if not col.startswith("phe"):
+                col = pathify_label("phe-"+col)
+            col = col.replace(" ", "-")
+
+            schema["tables"].append({
+                "url": "https://gss-cogs.github.io/family-disability/reference/codelists/{}.csv".format(col),
+                "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+                "suppressOutput": True
+            })
         
     obs_tableSchema = {}
         
@@ -353,20 +356,27 @@ for cat in list_of_categories:
     obs_tableSchema["columns"] = []
     obs_tableSchema["foreignKeys"] = []
     obs_tableSchema["primaryKey"] = []
-    for col in [x for x in df.columns.values if x != "Value"]:
+    for col in df.columns.values:
         
         if not col.lower().startswith("phe"):
             path_col = pathify_label("phe-"+col.lower())
+        else:
+            path_col = pathify_label(col.lower())
         
+        if col == "Value":
+            data_type = "number"
+        else:
+            data_type = "string"
+            
         obs_tableSchema["columns"].append({
-            "titles": col,
-            "required": True,
-            "name": notation_lookup[col],
-            "datatype": "string"
-            })
+                "titles": col,
+                "required": True,
+                "name": notation_lookup[col],
+                "datatype": data_type
+                })
         
         # only add a foreign key if its a codelist I've made
-        if col not in ["Area", "Period"]:
+        if col not in ["Area", "Period", "Value"]:
             obs_tableSchema["foreignKeys"].append({
                 "columnReference": notation_lookup[col],
                 "reference": {
@@ -530,3 +540,8 @@ if GENERATE_REFERENCE_DATA:
         
     pprint(codelist_metadata)
     
+# -
+
+
+
+
