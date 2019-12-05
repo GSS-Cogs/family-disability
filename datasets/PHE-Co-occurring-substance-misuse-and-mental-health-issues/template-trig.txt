@@ -23,7 +23,7 @@ ns1:metadata {
         gdp:family gdp:disability ;
         pmd:graph <GRAPH_URL_REPLACE_ME> ;
         dct:creator gov:public-health-england ;
-        dct:description """Co-occurring Substance Misuse and Mental Health Issues"""^^<https://www.w3.org/ns/iana/media-types/text/markdown#Resource> ;
+        dct:description "Co-occurring Substance Misuse and Mental Health Issues"^^<https://www.w3.org/ns/iana/media-types/text/markdown#Resource> ;
         dct:issued <ISSUED_DATETIME_REPLACE_ME>^^xsd:dateTime ;
         dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
         dct:modified <MODIFIED_DATETIME_REPLACE_ME>^^xsd:dateTime ;
