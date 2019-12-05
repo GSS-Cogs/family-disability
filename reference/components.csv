@@ -25,3 +25,4 @@ Country of birth,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-countr
 Health status,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-health-status
 Sexuality - 5 categories,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-sexuality-5-categories
 Percentage,Percentage,Measure,
+FRS Units,,Dimension,http://gss-data.org.uk/def/concept-scheme/frs-units
