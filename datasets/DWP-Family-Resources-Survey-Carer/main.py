@@ -496,7 +496,7 @@ except Exception as e:
 tbl4['Employment Type'] = tbl4['Employment Type'].str.replace('/', '-', regex=True)
 tbl5['Source of Income'] = tbl5['Source of Income'].str.replace('/', '-', regex=True)
 tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('ps', '£', regex=True)
-tbl6
+tbl1
 
 # +
 #### Set up the folder path for the output files
@@ -518,9 +518,9 @@ i = 1
 for t in tblSet:
     # make some changes to match standards for codelists
     if gendHead in t.columns:
-        t[gendHead][(t[gendHead].str.contains('Male')) | (t[gendHead].str.contains('male'))] = 'M'
-        t[gendHead][(t[gendHead].str.contains('Female')) | (t[gendHead].str.contains('female'))] = 'F'
-        t[gendHead][(t[gendHead].str.contains('All')) | (t[gendHead].str.contains('all'))] = 'T'
+        t[gendHead][(t[gendHead] == 'Female') | (t[gendHead] == 'female')] = 'F'
+        t[gendHead][(t[gendHead] == 'Male') | (t[gendHead] == 'male')] = 'M'
+        t[gendHead][(t[gendHead] == 'All') | (t[gendHead] == 'all')] = 'T'
         
     # Change the 2 Year period to match the standard for open data interval
     if yrRange in t.columns:
