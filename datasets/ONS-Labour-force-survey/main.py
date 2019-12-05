@@ -113,7 +113,7 @@ for tab in tabs:
         dimensions = [
                 #HDimConst('Dimension Name', 'Variable'),
                 HDim(sex, 'Sex', CLOSEST, ABOVE),
-                HDimConst('Seasonally Adjusted', SA),
+                #HDimConst('Seasonally Adjusted', SA),
                 HDim(period, 'Month', DIRECTLY, LEFT), 
                 HDim(period, 'Year', DIRECTLY, LEFT), 
                 HDim(disability, 'GSS Harmonised', CLOSEST, LEFT),
