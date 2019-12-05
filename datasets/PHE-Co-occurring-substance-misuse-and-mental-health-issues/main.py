@@ -309,12 +309,11 @@ for cat in list_of_categories:
     # Now create our variables to write in 
     last_modified = str(max(all_dates))
     title = "Co-occurring substance misuse and mental health issues"
+    dataset_url = "http://gss-data.org.uk/data/gss_data/disability/phe-co-occurring-substance-misuse-and-mental-health-issues"
     if cat != "uncategorised":
         title_cat = [k for k,v in notation_lookup.items() if v.replace("_", "-") == cat][0]
         title = "Co-occurring substance misuse and mental health issues: " + title_cat
-        dataset_url = "http://gss-data.org.uk/data/gss_data/disability/phe-co-occurring-substance-misuse-and-mental-health-issues-" + cat 
-    else:
-        
+        dataset_url = dataset_url + "-" + cat 
         
     lines_for_new_trig = []
     with open("template-trig.txt", "r") as f:
