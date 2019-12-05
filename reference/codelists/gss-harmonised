@@ -1,6 +1,12 @@
 Label,Notation,Parent Notation,Sort Priority
-All,all,,1
+All People With a Long Term Health Problem or Disability,all-people-with-a-long-term-health-problem-or-disability,,1
 Equality Act Core Disabled,equality-act-core-disabled,,2
-Harmonised Standard Definition Disabled,harmonised-standard-definition-disabled,all,3
-Not Equality Act Core Disabled,not-equality-act-core-disabled,all,4
-Not Harmonised Standard Definition Disabled,not-harmonised-standard-definition-disabled,all,5
+Harmonised Standard Definition Disabled,harmonised-standard-definition-disabled,,3
+No Self Reported Ill Health,no-self-reported-ill-health,,4
+Not Equality Act Core Disabled,not-equality-act-core-disabled,,5
+Not Harmonised Standard Definition Disabled,not-harmonised-standard-definition-disabled,,6
+Not Long Term Disabled,not-long-term-disabled,,7
+People with Disablities that Limit their Day to Day Activities,people-with-disabilities-that-limit-their-day-to-day-activities,,8
+People with Work Limiting Disabilities,people-with-work-limiting-disabilities,,9
+Self Reported Ill Health,self-reported-ill-health,,10
+Work Limiting Disabled,work-limiting-disabled,,11
