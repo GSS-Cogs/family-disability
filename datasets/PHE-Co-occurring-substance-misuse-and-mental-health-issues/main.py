@@ -175,6 +175,11 @@ tidy_sheet["Trend"][tidy_sheet["Trend"] == ""] = UNSPECIFIED_TREND
 # Remove rows without values and output
 tidy_sheet = tidy_sheet[tidy_sheet["Value"].astype(str) != ""]
 
+# Add default units
+tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "deprivation-score-imd-2015"] = "index"
+tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "number-in-treatment-at-specialist-drug-misuse-services"] = "count"
+tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "number-in-treatment-at-specialist-alcohol-misuse-services"] = "count"
+
 tidy_sheet.to_csv("all_but_tidied.csv", index=False)
 
 # -
