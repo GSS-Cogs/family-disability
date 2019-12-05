@@ -156,5 +156,9 @@
     "url": "codelists/frs-age-ranges.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "FRS Age Ranges"
+  }, {
+    "url": "codelists/frs-units.csv",
+    "ableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+      "rdfs:label": "FRS Units"
   }]
 }
