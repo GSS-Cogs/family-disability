@@ -81,12 +81,15 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange,
         if whichTab == 1:
             tbl[ageH] = 'all'
             tbl['Measure Type'] = 'People providing informal care by gender'
+            tbl['Unit'] = 'people-providing-informal-care'
         elif whichTab == 2: 
             tbl[yrRange] = yrStr2
             tbl['Measure Type'] = 'People providing informal care by age & gender'
+            tbl['Unit'] = 'people-providing-informal-care'
         elif whichTab == 8:
             tbl[yrRange] = yrStr2
             tbl['Measure Type'] = 'People receiving care by age and gender'
+            tbl['Unit'] = 'people-receiving-care'
         
         # Select the columns to return   
         if 'DATAMARKER' not in tbl.columns:
@@ -154,6 +157,7 @@ def extract_sheet_5_3_and_5_6(tab, whichTbl, gHeading, yrRange, ageH):
         tbl[mainCol] = tbl[mainCol].apply(pathify)
         
         tbl['Measure Type'] = mainHeading
+        tbl['Unit'] = 'adult-informal-carers'
         
         return tbl
     except Exception as e:
@@ -238,7 +242,7 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange, ageH):
                 tbl['DATAMARKER_x'] = ''
 
             tbl[gsubHeading] = tbl[gsubHeading].apply(pathify)
-            
+            tbl['Unit'] = 'adult-informal-carers'
             #### Rename Columns
             tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER', 'OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
             tbl = tbl[[yrRange, heading, subHeading, gHeading, gsubHeading, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
@@ -276,7 +280,7 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange, ageH):
             #### Rename Columns
             tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER','OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
             tbl = tbl[[yrRange, heading, subHeading, gHeading, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
-            
+            tbl['Unit'] = 'who-informal-carers-care-for'
             tbl[subHeading][tbl[subHeading].str.contains('Friend')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Friend')]
             tbl[subHeading][tbl[subHeading].str.contains('Client')] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading].str.contains('Client')]
             tbl[subHeading][tbl[subHeading] == 'Other'] = 'Non-Relative ' + tbl[subHeading][tbl[subHeading] == 'Other']
@@ -339,7 +343,7 @@ def extract_sheet_5_5(tab, headingG, yrRange, ageH):
         
         tbl[heading] = tbl[heading].apply(pathify)
         tbl[headingHrs] = tbl[headingHrs].apply(pathify)
-        
+        tbl['Unit'] = 'adult-informal-carers'
         tbl['Measure Type'] = mainHeading
         return tbl
     except Exception as e:
@@ -382,7 +386,7 @@ def extract_sheet_5_9(tab, gHeading, yrRange, ageH):
         tbl[ageH][tbl[ageH] == 'All receiving care'] = 'All'
         
         tbl[heading] = tbl[heading].apply(pathify)
-        
+        tbl['Unit'] = 'people-receiving-care'
         tbl['Measure Type'] = mainHeading
         return tbl
     except Exception as e:
@@ -435,7 +439,7 @@ def extract_sheet_5_10(tab, headingG, yrRange, ageH):
         tbl['People'] = tbl['People'].str.strip()
            
         tbl[heading] = tbl[heading].apply(pathify)    
-        
+        tbl['Unit'] = 'people-receiving-care'
         tbl['Measure Type'] = mainHeading
         return tbl
     except Exception as e:
@@ -496,7 +500,7 @@ except Exception as e:
 tbl4['Employment Type'] = tbl4['Employment Type'].str.replace('/', '-', regex=True)
 tbl5['Source of Income'] = tbl5['Source of Income'].str.replace('/', '-', regex=True)
 tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('ps', '£', regex=True)
-tbl6
+tbl1
 
 # +
 #### Set up the folder path for the output files
@@ -518,8 +522,8 @@ i = 1
 for t in tblSet:
     # make some changes to match standards for codelists
     if gendHead in t.columns:
-        t[gendHead][(t[gendHead].str.contains('Male')) | (t[gendHead].str.contains('male'))] = 'M'
-        t[gendHead][(t[gendHead].str.contains('Female')) | (t[gendHead].str.contains('female'))] = 'F'
+        t[gendHead][(t[gendHead] == 'Female') | (t[gendHead] == 'female')] = 'F'
+        t[gendHead][(t[gendHead] == 'Male') | (t[gendHead] == 'male')] = 'M'
         t[gendHead][(t[gendHead].str.contains('All')) | (t[gendHead].str.contains('all'))] = 'T'
         
     # Change the 2 Year period to match the standard for open data interval
@@ -537,8 +541,10 @@ for t in tblSet:
         t[ageHead][(t[ageHead].str.contains('providing'))] = 'all'
         t[ageHead][(t[ageHead] != 'all')] = 'agq/' + t[ageHead][(t[ageHead] != 'all')]
         #t[ageHead] = t[ageHead].apply(pathify)
-        
+    
     t = changeDataMarkerValues(t)
+    
+    t = t.rename(columns={'Unit':'FRS Units'})
     
     if 'Value' in t.columns:
         t['Value'][t['Value'] == ''] = '0'

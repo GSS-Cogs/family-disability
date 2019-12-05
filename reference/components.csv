@@ -12,6 +12,7 @@ Person cared for,A sub category of Person cared for type which defines who the p
 Frequency of care,Refers the number of times a person receives care in number of times a day or week,Dimension,http://gss-data.org.uk/def/concept-scheme/frequency-of-care
 People,Refers to if the people being measure are receiving care or not,Dimension,http://gss-data.org.uk/def/concept-scheme/people
 Percentage of People,The percentage of all people measured who meet the criteria,Measure,
+FRS Units,Describes the type of statistic being shown,Dimension,http://gss-data.org.uk/def/concept-scheme/net-weekly-income
 Marker,Defines the reason for any missing values,Attribute,
 Identified support needs of homeless households,,Dimension,http://gss-data.org.uk/def/concept-scheme/identified-suppport-needs-of-homeless-households
 Reasons for failing to maintain accommodation,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons-for-failing-to-maintain-accommodation
