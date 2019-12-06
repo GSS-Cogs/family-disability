@@ -535,7 +535,9 @@ for t in tblSet:
     # make some changes to match standards for codelists
     if gendHead in t.columns:
         t[gendHead][(t[gendHead] == 'Female') | (t[gendHead] == 'female')] = 'F'
+        t[gendHead][(t[gendHead] == 'Females') | (t[gendHead] == 'females')] = 'F
         t[gendHead][(t[gendHead] == 'Male') | (t[gendHead] == 'male')] = 'M'
+        t[gendHead][(t[gendHead] == 'Males') | (t[gendHead] == 'males')] = 'M'
         t[gendHead][(t[gendHead].str.contains('All')) | (t[gendHead].str.contains('all'))] = 'T'
         
     # Change the 2 Year period to match the standard for open data interval
