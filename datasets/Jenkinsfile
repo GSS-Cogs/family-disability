@@ -62,13 +62,19 @@ pipeline {
                     jobDraft.replace()
                     def datasets = []
                     String dspath = util.slugise(env.JOB_NAME)
-                    for (def observations : findFiles(glob: "${DATASET_DIR}/out/*.csv")) {
-                        def dataset = [
-                                "csv": "${DATASET_DIR}/out/${observations.name}",
-                                "metadata": "${DATASET_DIR}/out/${observations.name}-metadata.trig",
-                                "path": "${dspath}/${observations.name.take(observations.name.lastIndexOf('.'))}"
-                        ]
-                        datasets.add(dataset)
+                    def outputFiles = findFiles(glob: "${DATASET_DIR}/out/*.csv")
+                    if (outputFiles.length == 0) {
+                        error(message: "No output CSV files found")
+                    } else {
+                        for (def observations : outputFiles) {
+                            String thisPath = (outputFiles.length == 1) ? dspath : "${dspath}/${observations.name.take(observations.name.lastIndexOf('.'))}"
+                            def dataset = [
+                                    "csv": "${DATASET_DIR}/out/${observations.name}",
+                                    "metadata": "${DATASET_DIR}/out/${observations.name}-metadata.trig",
+                                    "path": thisPath
+                            ]
+                            datasets.add(dataset)
+                        }
                     }
                     for (def dataset : datasets) {
                         uploadTidy([dataset.csv],
