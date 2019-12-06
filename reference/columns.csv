@@ -1,12 +1,12 @@
 title,name,component_attachment,property_template,value_template,datatype,value_transformation,regex,range
 Measure Type,measure_type,qb:measure,http://purl.org/linked-data/cube#measureType,http://gss-data.org.uk/def/measure/{measure_type},string,slugize,,qb:MeasureProperty
 Area,area,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refArea,http://statistics.data.gov.uk/id/statistical-geography/{area},string,,,
-Sex,sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#sex,http://purl.org/linked-data/sdmx/2009/code#sex-{sex},string,,,http://purl.org/linked-data/sdmx/2009/code#Sex
+Sex,sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#sex,http://purl.org/linked-data/sdmx/2009/code#sex-{sex},string,,^(M|F|T)$,http://purl.org/linked-data/sdmx/2009/code#Sex
 Age,age,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#age,http://gss-data.org.uk/def/concept/ages/{age},string,slugize,,
 Household Disability Status,household_disability_status,qb:dimension,http://gss-data.org.uk/def/dimension/household-disability-status,http://gss-data.org.uk/def/dimension/household-disability-status/{household-disability-status},string,slugize,,http://gss-data.org.uk/def/classes/household-disability-status/Household_disability_status
 Workless Household Type,workless_household_type,qb:dimension,http://gss-data.org.uk/def/dimension/workless-household-type,http://gss-data.org.uk/def/dimension/workless-household-type/{workless-household-type},string,slugize,,http://gss-data.org.uk/def/classes/workless-household-type/workless-household-type
 Unit,unit,qb:attribute,http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure,http://gss-data.org.uk/def/concept/measurement-units/{unit},string,unitize,,
-Value,value,qb:measure,,http://gss-data.org.uk/def/measure/{measure_type},number,,,
+Value,value,,http://gss-data.org.uk/def/measure/{measure_type},,number,,,
 Severity,severity,qb:dimension,http://gss-data.org.uk/def/dimension/severity,http://gss-data.org.uk/def/concept/severity/{severity},string,slugize,,
 Sample Size,sample_size,qb:measure,,http://gss-data.org.uk/def/measure/{measure_type},number,,,
 Hours per Week,hours_per_week,qb:dimension,http://gss-data.org.uk/def/dimension/hours_per_week,http://gss-data.org.uk/def/concept/hours_per_week/{hours_per_week},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/hours_per_week
@@ -59,3 +59,4 @@ Sexuality - 5 categories,sexuality_5_categories,qb:dimension,http://gss-data.org
 LSOA11 deprivation deciles in England (IMD2015),lsoa11_deprivation_deciles_in_england_imd2015,qb:dimension,http://gss-data.org.uk/def/dimension/PHE-lsoa11-deprivation-deciles-in-england-imd2015,http://gss-data.org.uk/def/concept/PHE-lsoa11-deprivation-deciles-in-england-imd2015/{lsoa11-deprivation-deciles-in-england-imd2015},string,slugize,,http://gss-data.org.uk/def/classes/PHE-lsoa11-deprivation-deciles-in-england-imd2015/lsoa11_deprivation_deciles_in_england_imd2015
 Economic Activity,economic_activity,qb:dimension,http://gss-data.org.uk/def/dimension/economic-activity,http://gss-data.org.uk/def/concept/economic-activity/{economic-activity},string,slugize,,http://gss-data.org.uk/def/classes/disability/economic-activity
 GSS Harmonised,gss_harmonised,qb:dimension,http://gss-data.org.uk/def/dimension/gss-harmonised,http://gss-data.org.uk/def/concept/gss-harmonised/{gss-harmonised},string,slugize,,http://gss-data.org.uk/def/classes/disability/gss-harmonised
+Percentage,percentage,qb:measure,http://gss-data.org.uk/def/measure/percentage,,number,,,

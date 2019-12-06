@@ -93,11 +93,11 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange,
         
         # Select the columns to return   
         if 'DATAMARKER' not in tbl.columns:
-            tbl['DATAMARKER'] = ''
+            tbl['DATAMARKER'] = 'not-applicable'
         
         tbl = tbl[[yrRange,ageH,gHeading,'Sample Size','Measure Type','Value','Unit','DATAMARKER']]
         #tbl = tbl[[ageH,'Value','Unit','Measure Type','Sample Size']]
-        
+
         return tbl
     except Exception as e:
         return "Error for table 5_1 or 5_2 or 5_8: " + str(e)
@@ -535,7 +535,9 @@ for t in tblSet:
     # make some changes to match standards for codelists
     if gendHead in t.columns:
         t[gendHead][(t[gendHead] == 'Female') | (t[gendHead] == 'female')] = 'F'
+        t[gendHead][(t[gendHead] == 'Females') | (t[gendHead] == 'females')] = 'F'
         t[gendHead][(t[gendHead] == 'Male') | (t[gendHead] == 'male')] = 'M'
+        t[gendHead][(t[gendHead] == 'Males') | (t[gendHead] == 'males')] = 'M'
         t[gendHead][(t[gendHead].str.contains('All')) | (t[gendHead].str.contains('all'))] = 'T'
         
     # Change the 2 Year period to match the standard for open data interval
@@ -569,8 +571,9 @@ for t in tblSet:
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
     
     #scraper.set_dataset_id(f'disability/dwp-family-resources-survey-carer/observations_5_{i}')
-    scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer/observations_5_{i}')
-
+    scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer-observations_5_{i}/')
+    #scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer')
+    
     scraper.dataset.family = 'disability'
     
     with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
