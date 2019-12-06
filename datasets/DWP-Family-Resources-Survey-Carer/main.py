@@ -568,7 +568,7 @@ for t in tblSet:
     fleNme = 'observations_5_' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
     
-    scraper.set_dataset_id(f'disability/DWP-Family-Resources-Survey-Carer_5_{i}')
+    scraper.set_dataset_id(f'disability/dwp-family-resources-survey-carer/observations_5_{i}')
     
     with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
     scraper.dataset.family = 'disability'
