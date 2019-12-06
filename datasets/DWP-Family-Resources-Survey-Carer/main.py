@@ -465,7 +465,7 @@ def changeDataMarkerValues(tbl):
 try:
     for i in scraper.distributions:
         if i.title == 'Carers data tables (XLS)':
-            print(i.title)
+            #print(i.title)
             sheets = i
             break
 except Exception as e:
@@ -513,7 +513,7 @@ out.mkdir(exist_ok=True, parents=True)
 
 # Join all the tables together into one dataset so we can loop through them
 tblSet = [tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
-# Set the Familiy of these datasets
+
 
 # +
 def left(s, amount):
@@ -576,8 +576,9 @@ for t in tblSet:
     csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
     csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
     i = i + 1
-  
 
-scraper.dataset
 
+# +
+#scraper.dataset
+# -
 
