@@ -239,7 +239,7 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange, ageH):
             tbl = pd.merge(tbl, tblSS, on=[gHeading, gsubHeading])
             
             if 'DATAMARKER_x' not in tbl.columns:
-                tbl['DATAMARKER_x'] = ''
+                tbl['DATAMARKER_x'] = 'not-applicable'
 
             tbl[gsubHeading] = tbl[gsubHeading].apply(pathify)
             #### Rename Columns
