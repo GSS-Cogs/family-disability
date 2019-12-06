@@ -512,8 +512,7 @@ out.mkdir(exist_ok=True, parents=True)
 # -
 
 # Join all the tables together into one dataset so we can loop through them
-#tblSet = [tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
-tblSet = [tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
+tblSet = [tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
 # Set the Familiy of these datasets
 
 # +
