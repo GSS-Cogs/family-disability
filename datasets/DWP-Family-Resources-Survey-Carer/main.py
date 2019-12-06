@@ -512,7 +512,8 @@ out.mkdir(exist_ok=True, parents=True)
 # -
 
 # Join all the tables together into one dataset so we can loop through them
-tblSet = [tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
+#tblSet = [tbl1, tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
+tblSet = [tbl2, tbl3, tbl4, tbl5, tbl6, tbl7, tbl8, tbl9, tbl10]
 # Set the Familiy of these datasets
 
 # +
@@ -531,7 +532,7 @@ def right(s, amount):
 # Create and output metadata.trig files
 import numpy as np
 scraper.set_base_uri('http://gss-data.org.uk')
-i = 1
+i = 2
 for t in tblSet:
     # make some changes to match standards for codelists
     if gendHead in t.columns:
@@ -576,9 +577,8 @@ for t in tblSet:
     csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
     csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
     i = i + 1
+  
 
-# +
-#tbl3
-# -
+scraper.dataset
 
 
