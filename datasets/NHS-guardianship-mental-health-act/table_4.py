@@ -38,6 +38,7 @@ dimensions = [
     HDimConst('Unit', 'Number of Cases'),
     HDimConst('Period', '2007-2008'),
     HDimConst('Guardianship', 'Local Authority'),
+    HDimConst('Status', 'continuing cases'),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
     HDim(localAuthorityName, 'Local authority name', DIRECTLY, LEFT),
@@ -60,6 +61,7 @@ dimensions = [
     HDimConst('Unit', 'Number of Cases'),
     HDimConst('Period', '2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
+    HDimConst('Status', 'continuing cases'),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
     HDim(localAuthorityName, 'Local authority name', DIRECTLY, LEFT),
@@ -79,6 +81,8 @@ new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Unit'] = new_table['Unit'].map(
     lambda x: pathify(x))
 new_table['Guardianship'] = new_table['Guardianship'].map(
+    lambda x: pathify(x))
+new_table['Region name'] = new_table['Region name'].map(
     lambda x: pathify(x))
 new_table['Region name'] = new_table['Region name'].map(
     lambda x: pathify(x))
