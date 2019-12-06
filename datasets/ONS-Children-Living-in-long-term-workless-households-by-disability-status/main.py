@@ -39,8 +39,8 @@ Dimensions = [
              HDim(a_year,'Year',DIRECTLY,LEFT),
              HDim(a_household_disability_status,'Household Disability Status',DIRECTLY,ABOVE),
              HDim(a_workless_household_type,'Workless Household Type',CLOSEST,ABOVE),
-             HDimConst('Measure Type', 'Thousands'), 
-             HDimConst('Unit','People')
+             HDimConst('Measure Type', 'People'), 
+             HDimConst('Unit','Thousands')
              ]
 c1 = ConversionSegment(a_observations, Dimensions, processTIMEUNIT=True)
 tbl_a = c1.topandas()
@@ -58,8 +58,8 @@ Dimensions = [
              HDim(c_year,'Year',DIRECTLY,LEFT),
              HDim(c_household_disability_status,'Household Disability Status',DIRECTLY,ABOVE),
              HDim(c_workless_household_type,'Workless Household Type',CLOSEST,ABOVE),
-             HDimConst('Measure Type', 'Thousands'), 
-             HDimConst('Unit','People')
+             HDimConst('Measure Type', 'People'), 
+             HDimConst('Unit','Thousands')
              ]
 c2 = ConversionSegment(c_observations, Dimensions, processTIMEUNIT=True)
 tbl_c = c2.topandas()
@@ -77,8 +77,8 @@ Dimensions = [
              HDim(e_year,'Year',DIRECTLY,LEFT),
              HDim(e_household_disability_status,'Household Disability Status',DIRECTLY,ABOVE),
              HDim(e_workless_household_type,'Workless Household Type',CLOSEST,ABOVE),
-             HDimConst('Measure Type', 'Thousands'), 
-             HDimConst('Unit','People')
+             HDimConst('Measure Type', 'People'), 
+             HDimConst('Unit','Thousands')
              ]
 c3 = ConversionSegment(e_observations, Dimensions, processTIMEUNIT=True)
 tbl_e = c3.topandas()
@@ -87,7 +87,6 @@ tbl_e = c3.topandas()
 #concatenate tables a,c,e
 new_table = pd.concat([tbl_a, tbl_c, tbl_e]).fillna('')
 
-# +
 #Tidy
 import numpy as np
 new_table = new_table[~new_table['Year'].isin(['break in series'])]

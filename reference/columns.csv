@@ -60,3 +60,4 @@ LSOA11 deprivation deciles in England (IMD2015),lsoa11_deprivation_deciles_in_en
 Economic Activity,economic_activity,qb:dimension,http://gss-data.org.uk/def/dimension/economic-activity,http://gss-data.org.uk/def/concept/economic-activity/{economic-activity},string,slugize,,http://gss-data.org.uk/def/classes/disability/economic-activity
 GSS Harmonised,gss_harmonised,qb:dimension,http://gss-data.org.uk/def/dimension/gss-harmonised,http://gss-data.org.uk/def/concept/gss-harmonised/{gss-harmonised},string,slugize,,http://gss-data.org.uk/def/classes/disability/gss-harmonised
 Percentage,percentage,qb:measure,http://gss-data.org.uk/def/measure/percentage,,number,,,
+People,people,qb:measure,http://gss-data.org.uk/def/measure/people,,number,,,
