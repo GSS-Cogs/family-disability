@@ -95,8 +95,8 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange,
         if 'DATAMARKER' not in tbl.columns:
             tbl['DATAMARKER'] = 'not-applicable'
         
-        #tbl = tbl[[yrRange,ageH,gHeading,'Sample Size','Measure Type','Value','Unit','DATAMARKER']]
-        tbl = tbl[[yrRange,ageH,gHeading,'Measure Type','Value','Unit','DATAMARKER']]
+        tbl = tbl[[yrRange,ageH,gHeading,'Sample Size','Measure Type','Value','Unit','DATAMARKER']]
+        #tbl = tbl[[yrRange,ageH,gHeading,'Measure Type','Value','Unit','DATAMARKER']]
         return tbl
     except Exception as e:
         return "Error for table 5_1 or 5_2 or 5_8: " + str(e)
@@ -570,8 +570,8 @@ for t in tblSet:
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
     
     #scraper.set_dataset_id(f'disability/dwp-family-resources-survey-carer/observations_5_{i}')
-    #scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer-observations_5_{i}/')
-    scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer')
+    scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer-observations_5_{i}/')
+    #scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer')
     
     scraper.dataset.family = 'disability'
     
