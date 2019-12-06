@@ -24,19 +24,19 @@ scraper.select_dataset(latest=True)
 
 tabs = {tab.name: tab for tab in scraper.distribution(latest=True, mediaType='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet').as_databaker()}
 
-#Table 5a: Duration of closed cases of Guardianship under the Mental Health Act 1983 by local authority region, 2016-17
-#Number of cases by region - all cases
+#Number of cases by region - Section 7 cases
 tab = tabs['Table 5']
-regionName = tab.excel_ref('B14').expand(DOWN).is_not_blank() - tab.excel_ref('B26').expand(DOWN)
-totalCases = tab.excel_ref('C13').expand(DOWN).is_not_blank() - tab.excel_ref('C26').expand(DOWN) 
-median = tab.excel_ref('M13').expand(DOWN).is_not_blank() - tab.excel_ref('M26').expand(DOWN) 
-duration = tab.excel_ref('E13').expand(RIGHT).is_not_blank() - tab.excel_ref('M13').expand(RIGHT) 
-observations_16_17 = duration.fill(DOWN).is_not_blank() - tab.excel_ref('E26').expand(RIGHT).expand(DOWN)
+regionName = tab.excel_ref('B30').expand(DOWN).is_not_blank() - tab.excel_ref('B42').expand(DOWN)
+totalCases = tab.excel_ref('C29').expand(DOWN).is_not_blank() - tab.excel_ref('C42').expand(DOWN) 
+median = tab.excel_ref('M29').expand(DOWN).is_not_blank() - tab.excel_ref('M42').expand(DOWN) 
+duration = tab.excel_ref('E29').expand(RIGHT).is_not_blank() - tab.excel_ref('M29').expand(RIGHT) 
+observations_16_17 = duration.fill(DOWN).is_not_blank() - tab.excel_ref('E42').expand(RIGHT).expand(DOWN)
 #savepreviewhtml(observations)
 dimensions = [
     HDimConst('Unit', 'Number of Cases'),
     HDimConst('Period', '2016-2017'),
     HDimConst('Status', 'closed cases'),
+    HDimConst('Section', 'Section 7'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration', DIRECTLY, ABOVE),
     HDim(regionName, 'Region Name', DIRECTLY, LEFT),
@@ -48,17 +48,17 @@ c1 = ConversionSegment(observations_16_17, dimensions, processTIMEUNIT=True)
 table_16_17 = c1.topandas()
 
 #Table 5b: Duration of closed cases of Guardianship under the Mental Health Act 1983 by local authority region, 2017-18
-#Number of cases by region - all cases
-regionName = tab.excel_ref('O14').expand(DOWN).is_not_blank() - tab.excel_ref('O26').expand(DOWN)
-totalCases = tab.excel_ref('P13').expand(DOWN).is_not_blank() - tab.excel_ref('P26').expand(DOWN) 
-median = tab.excel_ref('Z13').expand(DOWN).is_not_blank() - tab.excel_ref('Z26').expand(DOWN) 
-duration = tab.excel_ref('R13').expand(RIGHT).is_not_blank() - tab.excel_ref('Z13').expand(RIGHT) 
-observations_17_18 = duration.fill(DOWN).is_not_blank() - tab.excel_ref('R26').expand(RIGHT).expand(DOWN)
+regionName = tab.excel_ref('O30').expand(DOWN).is_not_blank() - tab.excel_ref('O42').expand(DOWN)
+totalCases = tab.excel_ref('P29').expand(DOWN).is_not_blank() - tab.excel_ref('P42').expand(DOWN) 
+median = tab.excel_ref('Z29').expand(DOWN).is_not_blank() - tab.excel_ref('Z42').expand(DOWN) 
+duration = tab.excel_ref('R29').expand(RIGHT).is_not_blank() - tab.excel_ref('Z29').expand(RIGHT) 
+observations_17_18 = duration.fill(DOWN).is_not_blank() - tab.excel_ref('R42').expand(RIGHT).expand(DOWN)
 #savepreviewhtml(observations)
 dimensions = [
     HDimConst('Unit', 'Number of Cases'),
     HDimConst('Period', '2017-2018'),
     HDimConst('Status', 'closed cases'),
+    HDimConst('Section', 'Section 7'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration', DIRECTLY, ABOVE),
     HDim(regionName, 'Region Name', DIRECTLY, LEFT),
@@ -66,6 +66,7 @@ dimensions = [
     HDim(median, 'Median1 Length Of Cases Closed (months)', DIRECTLY, RIGHT),
 ]
 c2 = ConversionSegment(observations_17_18, dimensions, processTIMEUNIT=True)
+#savepreviewhtml(c2, fname="Preview.html")
 table_17_18 = c2.topandas()
 
 new_table = pd.concat([table_16_17, table_17_18])
@@ -83,8 +84,10 @@ new_table['Region Name'] = new_table['Region Name'].map(
     lambda x: pathify(x))
 new_table['Status'] = new_table['Status'].map(
     lambda x: pathify(x))
+new_table['Section'] = new_table['Section'].map(
+    lambda x: pathify(x))
 #new_table
-tidy = new_table[['Period','Guardianship', 'Status','Region Name', 'Duration', 
+tidy = new_table[['Period','Guardianship', 'Status','Section','Region Name', 'Duration', 
                   'Value','DATAMARKER', 'Unit', 'Total Cases', 'Median1 Length Of Cases Closed (months)']]
 tidy
 
