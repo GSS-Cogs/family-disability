@@ -93,7 +93,7 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange,
         
         # Select the columns to return   
         if 'DATAMARKER' not in tbl.columns:
-            tbl['DATAMARKER'] = ''
+            tbl['DATAMARKER'] = 'not-applicable'
         
         tbl = tbl[[yrRange,ageH,gHeading,'Sample Size','Measure Type','Value','Unit','DATAMARKER']]
         #tbl = tbl[[ageH,'Value','Unit','Measure Type','Sample Size']]
