@@ -530,7 +530,6 @@ def right(s, amount):
 # Create and output Schema.json files
 # Create and output metadata.trig files
 import numpy as np
-#scraper.set_base_uri('http://gss-data.org.uk')
 i = 1
 for t in tblSet:
     # make some changes to match standards for codelists
@@ -568,7 +567,9 @@ for t in tblSet:
     fleNme = 'observations_5_' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
     
-    scraper.set_dataset_id(f'disability/dwp-family-resources-survey-carer/observations_5_{i}')
+    #scraper.set_dataset_id(f'disability/dwp-family-resources-survey-carer/observations_5_{i}')
+    scraper.set_dataset_id(f'{urlStr}-observations_5_{i}')
+    
     scraper.dataset.family = 'disability'
     
     with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
