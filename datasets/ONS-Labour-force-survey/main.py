@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
+# %%
 
-# In[148]:
+# %%
 
 
 import pandas as pd
@@ -25,7 +26,7 @@ scraper = Scraper('https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork
 scraper
 
 
-# In[157]:
+# %%
 
 
 dist = scraper.distributions[0]
@@ -119,7 +120,7 @@ for tab in tabs:
                 HDim(disability, 'GSS Harmonised', CLOSEST, LEFT),
                 HDim(econActive, 'Economic Activity', DIRECTLY, ABOVE),
                 HDimConst('Measure Type','Count'),
-                HDimConst('Unit','Person'),
+                HDimConst('Unit','People'),
                 HDimConst('Age','16-64')
         ]
         
@@ -131,7 +132,7 @@ for tab in tabs:
         continue
 
 
-# In[158]:
+# %%
 
 
 pd.set_option('display.float_format', lambda x: '%.0f' % x)
@@ -147,7 +148,7 @@ new_table['Period'] = 'gregorian-interval/' + new_table['Year'] + '-' +  new_tab
 new_table
 
 
-# In[159]:
+# %%
 
 
 tidy = new_table[['Period','Age','Sex','GSS Harmonised','Economic Activity','Measure Type','Value','Unit']]
@@ -179,7 +180,7 @@ for col in tidy:
         display(tidy[col].cat.categories)
 
 
-# In[160]:
+# %%
 
 
 destinationFolder = Path('out')
@@ -199,7 +200,7 @@ csvw.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_NA
 tidy
 
 
-# In[ ]:
+# %%
 
 
 
