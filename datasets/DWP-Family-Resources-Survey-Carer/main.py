@@ -562,7 +562,7 @@ for t in tblSet:
     if 'Value' in t.columns:
         t['Value'][t['Value'] == ''] = '0'
     
-    t = t.drop(columns=['Marker'])
+    #t = t.drop(columns=['Marker'])
     
     fleNme = 'observations_5_' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
