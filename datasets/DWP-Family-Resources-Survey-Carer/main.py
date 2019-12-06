@@ -96,7 +96,7 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange,
             tbl['DATAMARKER'] = 'not-applicable'
         
         #tbl = tbl[[yrRange,ageH,gHeading,'Measure Type','Sample Size','DATAMARKER','Value','Unit']]
-        bl = tbl[[yrRange,ageH,gHeading,'Sample Size','Measure Type','Value','Unit','DATAMARKER']]
+        tbl = tbl[[yrRange,ageH,gHeading,'Sample Size','Measure Type','Value','Unit','DATAMARKER']]
 
         return tbl
     except Exception as e:
