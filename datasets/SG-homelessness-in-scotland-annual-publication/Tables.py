@@ -49,7 +49,7 @@ Dimensions = [
             HDimConst('Unit','People')            
             ]
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
-savepreviewhtml(c1, fname="Preview.html")
+savepreviewhtml(c1)
 
 
 # NB:- Find if there is a replacement for 'filter' which can find partial matches rather than full cell matches and replace cell_ref
@@ -118,7 +118,7 @@ Dimensions = [
             HDimConst('Unit','People')            
             ]
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
-savepreviewhtml(c1, fname="Preview.html")
+savepreviewhtml(c1)
 
 
 # %%
@@ -187,7 +187,7 @@ Dimensions = [
             HDimConst('Unit','People')            
             ]
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
-savepreviewhtml(c1, fname="Preview.html")
+savepreviewhtml(c1)
 
 
 # %%
@@ -202,7 +202,7 @@ new_table['Value'] = new_table['Value'].astype(int)
 new_table['Period'] = new_table['Period'].map(
     lambda x: f'gregorian-interval/{left(x,2) + right(x,2)}-03-31T00:00:00/P1Y')
 new_table = new_table[['Period','Identified support needs of homeless households','Measure Type','Value','Unit']]
-new_table['Identified support needs of homeless households'] = new_table.apply(lambda x: pathify(x['Identified support needs of homeless households']), axis = 1)
+new_table['Identified support needs of homeless households'] = new_table.apply(lambda x: pathify(x['Identified support needs of homeless households'].replace('/', 'or')), axis = 1)
 new_table
 
 

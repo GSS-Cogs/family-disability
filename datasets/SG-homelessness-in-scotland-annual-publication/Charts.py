@@ -50,7 +50,7 @@ Dimensions = [
             HDimConst('Unit','People')            
             ]
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
-savepreviewhtml(c1, fname="Preview.html")
+savepreviewhtml(c1)
 
 
 # %%
@@ -128,7 +128,7 @@ Dimensions = [
             HDimConst('Unit','People')            
             ]
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
-savepreviewhtml(c1, fname="Preview.html")
+savepreviewhtml(c1)
 
 
 # %%
