@@ -71,7 +71,7 @@ for tab in tabs:
                 HDim(disability, 'GSS Harmonised', CLOSEST, LEFT),
                 HDim(econActive, 'Economic Activity', DIRECTLY, ABOVE),
                 HDimConst('Measure Type','Count'),
-                HDimConst('Unit','Person'),
+                HDimConst('Unit','People'),
                 HDimConst('Age','16-64')
         ]
         
