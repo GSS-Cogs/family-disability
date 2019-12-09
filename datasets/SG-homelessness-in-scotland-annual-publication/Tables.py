@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 # %%
-
-# %%
-
-
 from gssutils import *
 from databaker.framework import *
 
@@ -22,16 +18,12 @@ scraper
 
 
 # %%
-
-
 distTables = scraper.distribution(title=lambda t: 'Tables' in t)
 
 tabsTables = {tab.name: tab for tab in distTables.as_databaker()}
 
 
 # %%
-
-
 tab = tabsTables['Table 9']
 
 cell = tab.excel_ref('A5')
@@ -55,8 +47,6 @@ savepreviewhtml(c1)
 # NB:- Find if there is a replacement for 'filter' which can find partial matches rather than full cell matches and replace cell_ref
 
 # %%
-
-
 new_table = c1.topandas()
 import numpy as np
 new_table['OBS'].replace('', np.nan, inplace=True)
@@ -72,35 +62,33 @@ new_table
 
 
 # %%
-
-
 destinationFolder = Path('out')
 destinationFolder.mkdir(exist_ok=True, parents=True)
 
-TAB_NAME = 'Reasons-for-homelessness-application'
+TITLE = 'Homelessness in Scotland: Applications: Main reason for making an application for homelenessness to a Local Authority'
+OBS_ID = pathify(TITLE)
+GROUP_ID = 'sg-homelessness-in-scotland-annual-publication'
 
-new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
+new_table.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = False)
 # +
 from gssutils.metadata import THEME
 scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
-scraper.dataset.title = f'{TAB_NAME}'
+scraper.set_dataset_id(f'disability/{GROUP_ID}/{OBS_ID}')
+scraper.dataset.title = TITLE
 
 scraper.dataset.family = 'disability'
 #scraper.dataset.theme = THEME['health-social-care']
-with open(destinationFolder / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:
+with open(destinationFolder / f'{OBS_ID}.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 # -
 
 schema = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_NAME}.csv-schema.json')
+schema.create(destinationFolder / f'{OBS_ID}.csv', destinationFolder / f'{OBS_ID}.csv-schema.json')
 
 new_table
 
 
 # %%
-
-
 tab = tabsTables['Table 10']
 
 cell = tab.excel_ref('A5')
@@ -122,8 +110,6 @@ savepreviewhtml(c1)
 
 
 # %%
-
-
 new_table = c1.topandas()
 import numpy as np
 new_table['OBS'].replace('', np.nan, inplace=True)
@@ -141,35 +127,32 @@ new_table
 
 
 # %%
-
-
 destinationFolder = Path('out')
 destinationFolder.mkdir(exist_ok=True, parents=True)
 
-TAB_NAME = 'Reasons-for-failing-to-maintain-accommodation-prior-to-application'
+TITLE = 'Homelessness in Scotland: Applications: Reasons for failing to maintain accommodation prior to application'
+OBS_ID = pathify(TITLE)
 
-new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
+new_table.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = False)
 # +
 from gssutils.metadata import THEME
 scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
-scraper.dataset.title = f'{TAB_NAME}'
+scraper.set_dataset_id(f'disability/{GROUP_ID}/{OBS_ID}')
+scraper.dataset.title = TITLE
 
 scraper.dataset.family = 'disability'
 #scraper.dataset.theme = THEME['health-social-care']
-with open(destinationFolder / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:
+with open(destinationFolder / f'{OBS_ID}.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 # -
 
 schema = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_NAME}.csv-schema.json')
+schema.create(destinationFolder / f'{OBS_ID}.csv', destinationFolder / f'{OBS_ID}.csv-schema.json')
 
 new_table
 
 
 # %%
-
-
 tab = tabsTables['Table 15']
 
 cell = tab.excel_ref('A4')
@@ -191,8 +174,6 @@ savepreviewhtml(c1)
 
 
 # %%
-
-
 new_table = c1.topandas()
 import numpy as np
 new_table['OBS'].replace('', np.nan, inplace=True)
@@ -207,28 +188,27 @@ new_table
 
 
 # %%
-
-
 destinationFolder = Path('out')
 destinationFolder.mkdir(exist_ok=True, parents=True)
 
-TAB_NAME = 'Support-need-identified-for-those-homeless-2007-08-to-2018-19'
+TITLE = 'Homelessness in Scotland: Applications: Support need identified for those homeless (or threatened with homelessness) households'
+OBS_ID = pathify(TITLE)
 
-new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
+new_table.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = False)
 # +
 from gssutils.metadata import THEME
 scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
-scraper.dataset.title = f'{TAB_NAME}'
+scraper.set_dataset_id(f'disability/{GROUP_ID}/'+ f'{OBS_ID}')
+scraper.dataset.title = TITLE
 
 scraper.dataset.family = 'disability'
 scraper.dataset.theme = THEME['health-social-care']
-with open(destinationFolder / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:
+with open(destinationFolder / f'{OBS_ID}.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 # -
 
 schema = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_NAME}.csv-schema.json')
+schema.create(destinationFolder / f'{OBS_ID}.csv', destinationFolder / f'{OBS_ID}.csv-schema.json')
 
 new_table
 
