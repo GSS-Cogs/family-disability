@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 # %%
-
-# %%
-
-
 from gssutils import *
 from databaker.framework import *
 
@@ -25,8 +21,6 @@ scraper
 #   :- Also need to update the below to use a more standard pivot point ('cell') rather than the first entry in the column as this most likely won't be standard moving forward.
 
 # %%
-
-
 distCharts = scraper.distribution(title=lambda t: 'Charts' in t)
 #distTables = scraper.distribution(title=lambda t: 'Tables' in t)
 
@@ -34,8 +28,6 @@ tabsCharts = {tab.name: tab for tab in distCharts.as_databaker()}
 
 
 # %%
-
-
 tab = tabsCharts['Data6']
 
 cell = tab.filter('Refused')
@@ -54,8 +46,6 @@ savepreviewhtml(c1)
 
 
 # %%
-
-
 new_table = c1.topandas()
 import numpy as np
 new_table['OBS'].replace('', np.nan, inplace=True)
@@ -73,47 +63,36 @@ new_table
 
 
 # %%
-
-
 destinationFolder = Path('out')
 destinationFolder.mkdir(exist_ok=True, parents=True)
 
-TAB_NAME = 'Reasons-for-failing-to-maintain-accommodation'
+TITLE = 'Homelessness in Scotland: Reason(s) for failing to maintain accommodation'
+OBS_ID = pathify(TITLE.replace('(s)', ''))
 
-new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
+new_table.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = False)
 
 
 # %%
+GROUP_ID = 'sg-homelessness-in-scotland-annual-publication'
 
-
-destinationFolder = Path('out')
-destinationFolder.mkdir(exist_ok=True, parents=True)
-
-TAB_NAME = 'Reasons-for-failing-to-maintain-accommodation'
-
-new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
-
-# +
 from gssutils.metadata import THEME
 scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
-scraper.dataset.title = f'{TAB_NAME}'
+scraper.set_dataset_id(f'disability/{GROUP_ID}/{OBS_ID}')
+scraper.dataset.title = f'{TITLE}'
 
 scraper.dataset.family = 'disability'
 #scraper.dataset.theme = THEME['health-social-care']
-with open(destinationFolder / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:
+with open(destinationFolder / f'{OBS_ID}.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 # -
 
 schema = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_NAME}.csv-schema.json')
+schema.create(destinationFolder / f'{OBS_ID}.csv', destinationFolder / f'{OBS_ID}.csv-schema.json')
 
 new_table
 
 
 # %%
-
-
 tab = tabsCharts['Data9']
 
 cell = tab.filter('Learning disability')
@@ -132,8 +111,6 @@ savepreviewhtml(c1)
 
 
 # %%
-
-
 new_table = c1.topandas()
 import numpy as np
 new_table['OBS'].replace('', np.nan, inplace=True)
@@ -149,39 +126,30 @@ new_table
 
 
 # %%
-
-
 destinationFolder = Path('out')
 destinationFolder.mkdir(exist_ok=True, parents=True)
 
-TAB_NAME = 'Identified-Support-Needs-of-Homeless-Households-2018-19'
+TITLE = 'Homelessness in Scotland: Identified Support Needs of Homeless Households'
+OBS_ID = pathify(TITLE.replace('(s)', ''))
 
-new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
+new_table.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = False)
 
 
 # %%
-
-
 # +
 from gssutils.metadata import THEME
 scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'disability/SG-homelessness-in-scotland-annual-publication/'+ f'{TAB_NAME}')
-scraper.dataset.title = f'{TAB_NAME}'
-
+scraper.set_dataset_id(f'disability/{GROUP_ID}/{OBS_ID}')
+scraper.dataset.title = f'{TITLE}'
 scraper.dataset.family = 'disability'
+
 #scraper.dataset.theme = THEME['health-social-care']
-with open(destinationFolder / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:
+with open(destinationFolder / f'{OBS_ID}.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 # -
 
 schema = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_NAME}.csv-schema.json')
+schema.create(destinationFolder / f'{OBS_ID}.csv', destinationFolder / f'{OBS_ID}.csv-schema.json')
 
 new_table
-
-
-# %%
-
-
-
 

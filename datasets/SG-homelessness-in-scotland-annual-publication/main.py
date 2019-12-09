@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[ ]:
-
-
+# %%
 import glob
 
 py_files = [i for i in glob.glob('*.{}'.format('py'))]

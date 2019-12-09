@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
-# %%
 
-# %%
+# In[17]:
 
 
 import pandas as pd
@@ -26,7 +25,7 @@ scraper = Scraper('https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork
 scraper
 
 
-# %%
+# In[18]:
 
 
 dist = scraper.distributions[0]
@@ -49,6 +48,18 @@ for tab in tabs:
             SA = 'ERROR - CHECK TAB'
         """ # Currently every tab in the data is not-seasonally adjusted, if this changes then uncomment and add back to output
         
+        if 'GSS_Standard' in tabName:
+            dd = 'GSS Standard Disabled'
+            area = 'K02000001'
+        elif 'Equality_Act' in tabName:
+            dd = 'Equality Act Disabled'
+            area = 'K03000001'
+        elif 'Self-Report' in tabName:
+            dd = 'Self-Report Disabled'
+            area = 'K02000001'
+        else:
+            break
+            
         cell = tab.excel_ref("B5")
         
         remove = tab.filter("Total aged 16-64: Including those who did not state their health situation").expand(DOWN)
@@ -63,7 +74,6 @@ for tab in tabs:
         #remember to devide by 1000 to match the unit of the source data
         
         dimensions = [
-                #HDimConst('Dimension Name', 'Variable'),
                 HDimConst('Sex', right(tabName, len(tabName) - findnth(tabName.replace('-', '_'), '_', 2) - 1)),
                 #HDimConst('Seasonally Adjusted', SA),
                 HDim(period, 'Month', DIRECTLY, LEFT), 
@@ -72,7 +82,8 @@ for tab in tabs:
                 HDim(econActive, 'Economic Activity', DIRECTLY, ABOVE),
                 HDimConst('Measure Type','Count'),
                 HDimConst('Unit','People'),
-                HDimConst('Age','16-64')
+                HDimConst('Disability Definitions', dd),
+                HDimConst('Area', area),
         ]
         
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -82,6 +93,15 @@ for tab in tabs:
     if 'DDA' in tab.name:
         
         tabName = str(tab.name)
+        
+        if 'pre-2010' in tabName:
+            dd = 'DDA pre-2010'
+            area = 'K02000001'
+        elif '2010-2013' in tabName:
+            dd = 'DDA 2010-2013'
+            area = 'K02000001'
+        else:
+            break
         
         """
         if 'not seasonally adjusted' in str(tab.excel_ref('A4')).lower():
@@ -112,7 +132,6 @@ for tab in tabs:
         sex = cell.shift(-1,3).expand(DOWN).is_not_blank() - remove - remove2 - observations.shift(LEFT)
         
         dimensions = [
-                #HDimConst('Dimension Name', 'Variable'),
                 HDim(sex, 'Sex', CLOSEST, ABOVE),
                 #HDimConst('Seasonally Adjusted', SA),
                 HDim(period, 'Month', DIRECTLY, LEFT), 
@@ -121,7 +140,8 @@ for tab in tabs:
                 HDim(econActive, 'Economic Activity', DIRECTLY, ABOVE),
                 HDimConst('Measure Type','Count'),
                 HDimConst('Unit','People'),
-                HDimConst('Age','16-64')
+                HDimConst('Disability Definitions', dd),
+                HDimConst('Area', area),
         ]
         
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -132,7 +152,7 @@ for tab in tabs:
         continue
 
 
-# %%
+# In[19]:
 
 
 pd.set_option('display.float_format', lambda x: '%.0f' % x)
@@ -144,18 +164,21 @@ new_table.rename(columns={'OBS':'Value'}, inplace=True)
 new_table['Economic Activity'] = new_table['Economic Activity'].map(lambda x: 'All' if 'Total' in x else x)
 new_table['GSS Harmonised'] = new_table['GSS Harmonised'].map(lambda x: pathify(x))
 new_table['Economic Activity'] = new_table['Economic Activity'].map(lambda x: pathify(x))
+new_table['Disability Definitions'] = new_table['Disability Definitions'].map(lambda x: pathify(x))
 new_table['Period'] = 'gregorian-interval/' + new_table['Year'] + '-' +  new_table['Month'] + '-01T00:00:00/P3M'
 new_table
 
 
-# %%
+# In[20]:
 
 
-tidy = new_table[['Period','Age','Sex','GSS Harmonised','Economic Activity','Measure Type','Value','Unit']]
+tidy = new_table[['Period','Area','Sex','GSS Harmonised','Disability Definitions','Economic Activity','Measure Type','Value','Unit']]
 tidy = tidy.replace({'Sex' : {
     'Men' : 'M',
     'People' : 'T',
     'Women' : 'F'}})
+
+tidy['Value'] = tidy['Value'].map(lambda x: int(x))
 
 tidy = tidy.replace({'GSS Harmonised' : {
     'equality-act-core-disabled2' : 'equality-act-core-disabled',
@@ -180,7 +203,7 @@ for col in tidy:
         display(tidy[col].cat.categories)
 
 
-# %%
+# In[21]:
 
 
 destinationFolder = Path('out')
@@ -200,7 +223,7 @@ csvw.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_NA
 tidy
 
 
-# %%
+# In[ ]:
 
 
 
