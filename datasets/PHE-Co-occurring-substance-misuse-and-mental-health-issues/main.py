@@ -55,15 +55,19 @@ def get_data_by_domain(url):
     metadata = ftp.get_metadata_for_profile_as_dataframe(profile[0]["Id"])
     metadata.to_csv("metadata_for_profile.csv", index=False)
     
+    # TODO - this will be slow
     data = pd.concat(all_indicator_dataframes)
     unit_lookup = {}
+    value_lookup = {}
     stat_pop_lookup = {}
     for indicator in metadata["Indicator ID"].unique():
         stat_pop_lookup[indicator] = metadata["Standard population/values"][metadata["Indicator ID"] == indicator].unique()[0]
         unit_lookup[indicator] = metadata["Unit"][metadata["Indicator ID"] == indicator].unique()[0]
+        value_lookup[indicator] = metadata["Value type"][metadata["Indicator ID"] == indicator].unique()[0]
         
     data["Unit"] = data["Indicator ID"].map(lambda x: unit_lookup[int(x)])
     data["Standard population/values"] = data["Indicator ID"].map(lambda x: stat_pop_lookup[int(x)])
+    data["Measure Type"] = data["Indicator ID"].map(lambda x: value_lookup[int(x)])
         
     # We're just gonna dump to csv for now, as it saves rerunning this slow bit after local restarts
     data.to_csv("all_data.csv", index=False)
@@ -170,6 +174,7 @@ tidy_sheet["PHE Unit"] = all_data["Unit"].astype(str).apply(make_notation)
 tidy_sheet["Category Type"] = all_data["Category Type"]
 tidy_sheet["Category"] = all_data["Category"].astype(str).apply(make_notation)
 tidy_sheet["PHE Standard Population"] = all_data["Standard population/values"].astype(str).apply(make_notation)
+tidy_sheet["Measure Type"] = all_data["Measure Type"]
 
 # Get rid of unsorted nan values
 # TODO - there's a function for this that I can't remember
@@ -187,22 +192,15 @@ tidy_sheet = tidy_sheet[tidy_sheet["Value"].astype(str) != ""]
 
 # Add default units
 tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "deprivation-score-imd-2015"] = "index"
-tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "number-in-treatment-at-specialist-drug-misuse-services"] = "count"
-tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "number-in-treatment-at-specialist-alcohol-misuse-services"] = "count"
+tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "number-in-treatment-at-specialist-drug-misuse-services"] = "number"
+tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "number-in-treatment-at-specialist-alcohol-misuse-services"] = "number"
 
-measure_lookup = { 
-    'per-1000': 'Count', 
-    'per-10000': 'Count', 
-    'per-100000': 'Count', 
-    'count': 'Count',
-    'per-100000-smokers-aged-16-years-and-older': 'Count',
-    'index': 'Indices',
-    'percent': 'Percentage'
-}
-tidy_sheet["Measure Type"] = tidy_sheet["PHE Unit"].map(lambda x: measure_lookup[x])
+# Some changes for Measure Type
+tidy_sheet["Measure Type"][tidy_sheet["Measure Type"] == "Proportion"] = "Percentage"
 
 tidy_sheet.to_csv("all_but_tidied.csv", index=False)
 
+tidy_sheet["Measure Type"].unique()
 # -
 # # Split the data
 #
@@ -438,8 +436,8 @@ for cat in list_of_categories:
 #
 # Notes
 # * This is not intended to run as part of the transform (hence flagged to False) but I wanted to be able to generate the reference data automatically (as we'll probably iterate this).
-# * We're not generating codlists for area or period as they'll already exist.
-# * We're derriving codelists from the combined file (all_data.csv) with the exception of Categories which will change per outputted datacube. 
+# * We're derriving codelists from the combined file (all_data.csv) with the exception of Categories which will change per outputted datacube.
+# * We're generating a codelist from every column. They're not all necessary, but it's easier to just generate every possibility and just take what you need.
 
 # +
 import json
@@ -459,12 +457,8 @@ if GENERATE_REFERENCE_DATA:
     
     all_concepts = []
     
-    # ---------------------------
-    # First the generic codelists
-    generic_codelists_required = ["Indicator", "PHE Age", "Sex", "Trend", "PHE Unit", "PHE Standard Population"]
-
     # Generic codelists
-    for col in [x for x in tidy_sheet.columns.values if x in generic_codelists_required]:
+    for col in [x for x in tidy_sheet.columns.values]:
 
         all_concepts.append(col)
         

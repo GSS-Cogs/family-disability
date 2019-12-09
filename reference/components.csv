@@ -27,3 +27,8 @@ FRS Units,,Dimension,http://gss-data.org.uk/def/concept-scheme/frs-units
 GSS Harmonised,,Dimension,http://gss-data.org.uk/def/concept-scheme/gss-harmonised
 Economic Activity,,Dimension,http://gss-data.org.uk/def/concept-scheme/economic-activity
 DWP Disability,,Dimension,http://gss-data.org.uk/def/concept-scheme/dwp-disability
+Crude rate,,Measure,
+Score,,Measure,
+Directly standardised rate,,Measure,
+Indirectly standardised rate,,Measure,
+Indirectly standardised ratio,,Measure,
