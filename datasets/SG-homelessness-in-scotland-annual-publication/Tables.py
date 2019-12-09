@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
+# %%
 
-# In[219]:
+# %%
 
 
 from gssutils import *
@@ -20,7 +21,7 @@ scraper = Scraper('https://www2.gov.scot/Topics/Statistics/Browse/Housing-Regene
 scraper
 
 
-# In[220]:
+# %%
 
 
 distTables = scraper.distribution(title=lambda t: 'Tables' in t)
@@ -28,7 +29,7 @@ distTables = scraper.distribution(title=lambda t: 'Tables' in t)
 tabsTables = {tab.name: tab for tab in distTables.as_databaker()}
 
 
-# In[221]:
+# %%
 
 
 tab = tabsTables['Table 9']
@@ -53,7 +54,7 @@ savepreviewhtml(c1, fname="Preview.html")
 
 # NB:- Find if there is a replacement for 'filter' which can find partial matches rather than full cell matches and replace cell_ref
 
-# In[222]:
+# %%
 
 
 new_table = c1.topandas()
@@ -70,7 +71,7 @@ new_table['Reasons for homelessness application'] = new_table.apply(lambda x: x[
 new_table
 
 
-# In[223]:
+# %%
 
 
 destinationFolder = Path('out')
@@ -97,7 +98,7 @@ schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_
 new_table
 
 
-# In[224]:
+# %%
 
 
 tab = tabsTables['Table 10']
@@ -120,7 +121,7 @@ c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 savepreviewhtml(c1, fname="Preview.html")
 
 
-# In[225]:
+# %%
 
 
 new_table = c1.topandas()
@@ -139,7 +140,7 @@ new_table = new_table.replace({'Reasons for failing to maintain accommodation' :
 new_table
 
 
-# In[226]:
+# %%
 
 
 destinationFolder = Path('out')
@@ -166,7 +167,7 @@ schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_
 new_table
 
 
-# In[227]:
+# %%
 
 
 tab = tabsTables['Table 15']
@@ -180,7 +181,7 @@ period = cell.shift(1,-1).expand(RIGHT).is_not_blank().is_not_whitespace() - exc
 observations = cell.shift(RIGHT).expand(RIGHT).expand(DOWN).is_not_blank().is_not_whitespace().is_number() - exclude - exclude2
 
 Dimensions = [
-            HDim(reason2,'Identified Support Needs of Homeless Households',DIRECTLY,LEFT),
+            HDim(reason2,'Identified support needs of homeless households',DIRECTLY,LEFT),
             HDim(period,'Period',DIRECTLY,ABOVE),
             HDimConst('Measure Type','Count'),
             HDimConst('Unit','People')            
@@ -189,7 +190,7 @@ c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 savepreviewhtml(c1, fname="Preview.html")
 
 
-# In[228]:
+# %%
 
 
 new_table = c1.topandas()
@@ -200,12 +201,12 @@ new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Value'] = new_table['Value'].astype(int)
 new_table['Period'] = new_table['Period'].map(
     lambda x: f'gregorian-interval/{left(x,2) + right(x,2)}-03-31T00:00:00/P1Y')
-new_table = new_table[['Period','Identified Support Needs of Homeless Households','Measure Type','Value','Unit']]
-new_table['Identified Support Needs of Homeless Households'] = new_table.apply(lambda x: pathify(x['Identified Support Needs of Homeless Households']), axis = 1)
+new_table = new_table[['Period','Identified support needs of homeless households','Measure Type','Value','Unit']]
+new_table['Identified support needs of homeless households'] = new_table.apply(lambda x: pathify(x['Identified support needs of homeless households']), axis = 1)
 new_table
 
 
-# In[229]:
+# %%
 
 
 destinationFolder = Path('out')
