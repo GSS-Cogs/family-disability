@@ -410,7 +410,7 @@ for cat in list_of_categories:
                 })
         
         # only add a foreign key if its a codelist I've made
-        if col not in ["Area", "Period", "Value"]:
+        if col not in ["Area", "Period", "Value", "Measure Type"]:
             obs_tableSchema["foreignKeys"].append({
                 "columnReference": notation_lookup[col],
                 "reference": {
@@ -574,8 +574,3 @@ if GENERATE_REFERENCE_DATA:
         
     pprint(codelist_metadata)
     
-# -
-
-
-
-
