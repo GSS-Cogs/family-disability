@@ -196,7 +196,7 @@ measure_lookup = {
     'per-100000': 'Count', 
     'count': 'Count',
     'per-100000-smokers-aged-16-years-and-older': 'Count',
-    'index': 'Index',
+    'index': 'Indices',
     'percent': 'Percentage'
 }
 tidy_sheet["Measure Type"] = tidy_sheet["PHE Unit"].map(lambda x: measure_lookup[x])
