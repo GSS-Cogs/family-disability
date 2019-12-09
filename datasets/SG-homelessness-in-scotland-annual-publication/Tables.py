@@ -73,7 +73,7 @@ new_table.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = 
 # +
 from gssutils.metadata import THEME
 scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'disability/{GROUP_ID}/{OBS_ID}')
+scraper.set_dataset_id(f'gss_data/disability/{GROUP_ID}/{OBS_ID}')
 scraper.dataset.title = TITLE
 
 scraper.dataset.family = 'disability'
@@ -137,7 +137,7 @@ new_table.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = 
 # +
 from gssutils.metadata import THEME
 scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'disability/{GROUP_ID}/{OBS_ID}')
+scraper.set_dataset_id(f'gss_data/disability/{GROUP_ID}/{OBS_ID}')
 scraper.dataset.title = TITLE
 
 scraper.dataset.family = 'disability'
@@ -198,7 +198,7 @@ new_table.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = 
 # +
 from gssutils.metadata import THEME
 scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'disability/{GROUP_ID}/'+ f'{OBS_ID}')
+scraper.set_dataset_id(f'gss_data/disability/{GROUP_ID}/'+ f'{OBS_ID}')
 scraper.dataset.title = TITLE
 
 scraper.dataset.family = 'disability'
