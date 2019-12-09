@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[12]:
 
 
 from gssutils import *
@@ -18,7 +18,7 @@ def right(s, amount):
 scraper = Scraper('https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718')
 
 
-# In[2]:
+# In[13]:
 
 
 dist = scraper.distribution(title=lambda t: 'Disability data tables (XLS)' in t)
@@ -104,7 +104,7 @@ for tab in tabs:
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
         tidied_sheets.append(c1.topandas())
-        
+    
     elif tab.name in ['4_4']:
         
         cell = tab.excel_ref("B7")
@@ -192,7 +192,7 @@ for tab in tabs:
     
 
 
-# In[3]:
+# In[14]:
 
 
 new_table = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -213,7 +213,7 @@ new_table['Region'] = new_table['Region'].map(
 tidy = new_table[['Period','Region','Disability','Gender','Age Group','Measure type','Value','Unit']]
 
 
-# In[4]:
+# In[15]:
 
 
 tidy = tidy.replace({'Disability' : {
@@ -242,8 +242,14 @@ tidy = tidy.replace({'Age Group' : {
     'All people' : 'All'}})
 
 
-# In[5]:
+# In[16]:
 
+
+tidy['Disability'] = tidy['Disability'].map(
+    lambda x: pathify(x))
+
+tidy.rename(columns={'Disability':'DWP Disability'}, 
+                 inplace=True)
 
 from IPython.core.display import HTML
 for col in tidy:
@@ -252,11 +258,9 @@ for col in tidy:
         display(HTML(f"<h2>{col}</h2>"))
         display(tidy[col].cat.categories)
         
-tidy['Disability'] = tidy['Disability'].map(
-    lambda x: pathify(x))
 
 
-# In[6]:
+# In[17]:
 
 
 tidy.rename(columns={'Gender':'Sex',
@@ -266,7 +270,7 @@ tidy.rename(columns={'Gender':'Sex',
           inplace=True)
 
 
-# In[7]:
+# In[18]:
 
 
 destinationFolder = Path('out')
@@ -278,7 +282,7 @@ tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = Fal
 tidy
 
 
-# In[8]:
+# In[19]:
 
 
 scraper.dataset.family = 'disability'
@@ -288,8 +292,4 @@ with open(destinationFolder / 'observations.csv-metadata.trig', 'wb') as metadat
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(destinationFolder / 'observations.csv', destinationFolder / 'observations.csv-schema.json')
-
-
-
-
 
