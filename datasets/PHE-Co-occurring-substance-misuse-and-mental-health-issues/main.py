@@ -190,6 +190,17 @@ tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "deprivation-score-imd-2015"] 
 tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "number-in-treatment-at-specialist-drug-misuse-services"] = "count"
 tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "number-in-treatment-at-specialist-alcohol-misuse-services"] = "count"
 
+measure_lookup = { 
+    'per-1000': 'number', 
+    'per-10000': 'number', 
+    'per-100000': 'number', 
+    'count': 'number',
+    'per-100000-smokers-aged-16-years-and-older': 'number',
+    'index': 'indicies',
+    'percent': 'percentage'
+}
+tidy_sheet["Measure Type"] = tidy_sheet["PHE Unit"].map(lambda x: measure_lookup[x])
+
 tidy_sheet.to_csv("all_but_tidied.csv", index=False)
 
 # -
@@ -266,7 +277,8 @@ notation_lookup = {
     'Health status': 'health-status'.replace("-", "_"),
     'Sexuality - 5 categories': 'sexuality-5-categories'.replace("-", "_"),
     'LSOA11 deprivation deciles in England (IMD2015)': 'lsoa11-deprivation-deciles-in-england-imd2015'.replace("-", "_"),
-    'Value':"value"
+    'Value':"value",
+    "Measure Type": "measure_type"
 }
 
 # # Generate trig files
@@ -357,7 +369,7 @@ for cat in list_of_categories:
     }
     
     # Tables for codelists
-    for col in [x for x in df.columns.values if x != "Value"]:
+    for col in [x for x in df.columns.values if x != "Value" and x != "Measure Type"]:
         
         if col not in ["Area", "Period"]:
             
