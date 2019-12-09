@@ -191,13 +191,13 @@ tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "number-in-treatment-at-specia
 tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "number-in-treatment-at-specialist-alcohol-misuse-services"] = "count"
 
 measure_lookup = { 
-    'per-1000': 'number', 
-    'per-10000': 'number', 
-    'per-100000': 'number', 
-    'count': 'number',
-    'per-100000-smokers-aged-16-years-and-older': 'number',
-    'index': 'indicies',
-    'percent': 'percentage'
+    'per-1000': 'Count', 
+    'per-10000': 'Count', 
+    'per-100000': 'Count', 
+    'count': 'Count',
+    'per-100000-smokers-aged-16-years-and-older': 'Count',
+    'index': 'Index',
+    'percent': 'Percentage'
 }
 tidy_sheet["Measure Type"] = tidy_sheet["PHE Unit"].map(lambda x: measure_lookup[x])
 
