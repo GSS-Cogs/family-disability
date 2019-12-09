@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[160]:
+# In[1]:
 
 
 from gssutils import *
@@ -18,7 +18,7 @@ def right(s, amount):
 scraper = Scraper('https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718')
 
 
-# In[161]:
+# In[2]:
 
 
 dist = scraper.distribution(title=lambda t: 'Disability data tables (XLS)' in t)
@@ -81,7 +81,7 @@ for tab in tabs:
         
     elif tab.name in ['4_3']:
         
-        cell = tab.excel_ref("B15")
+        cell = tab.excel_ref("B9")
 
         remove = tab.filter('Percentage of people').expand(RIGHT).expand(DOWN).expand(LEFT)
     
@@ -105,30 +105,6 @@ for tab in tabs:
         savepreviewhtml(c1, fname="Preview.html")
         tidied_sheets.append(c1.topandas())
         
-        remove = tab.excel_ref("B15").expand(RIGHT).expand(DOWN).expand(LEFT)
-        
-        age = tab.excel_ref("B11").expand(DOWN).is_not_blank().is_not_whitespace() - remove
-    
-        gender = tab.excel_ref("B9").shift(RIGHT).expand(RIGHT).is_not_blank().is_not_whitespace() - remove
-
-        observations = age.fill(RIGHT).is_not_blank().is_not_whitespace() - remove
-
-        dimensions = [
-                HDim(gender,'Disability', DIRECTLY, ABOVE),
-                HDim(age, 'Age Group', DIRECTLY, LEFT), 
-                HDimConst('Region', 'United Kingdom'), 
-                HDimConst('Period', '2015-18'),
-                HDim(gender, 'Gender', DIRECTLY, ABOVE),
-                HDimConst('Measure type','Count'),
-                HDimConst('Unit','People (Millions)')
-        ]
-    
-        c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
-        savepreviewhtml(c1, fname="Preview.html")
-        tidied_sheets.append(c1.topandas())
-        
-        #Second build of table was due to duplicates which seemed to occur when reading all the data. Made no sense. I have 0 explanation but this works.
-    
     elif tab.name in ['4_4']:
         
         cell = tab.excel_ref("B7")
@@ -180,7 +156,7 @@ for tab in tabs:
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
         tidied_sheets.append(c1.topandas())
-    
+        
     elif tab.name in ['4_6']:
         
         cell = tab.excel_ref("B8")
@@ -216,7 +192,7 @@ for tab in tabs:
     
 
 
-# In[162]:
+# In[3]:
 
 
 new_table = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -237,7 +213,7 @@ new_table['Region'] = new_table['Region'].map(
 tidy = new_table[['Period','Region','Disability','Gender','Age Group','Measure type','Value','Unit']]
 
 
-# In[163]:
+# In[4]:
 
 
 tidy = tidy.replace({'Disability' : {
@@ -266,7 +242,7 @@ tidy = tidy.replace({'Age Group' : {
     'All people' : 'All'}})
 
 
-# In[164]:
+# In[5]:
 
 
 from IPython.core.display import HTML
@@ -280,7 +256,7 @@ tidy['Disability'] = tidy['Disability'].map(
     lambda x: pathify(x))
 
 
-# In[165]:
+# In[6]:
 
 
 tidy.rename(columns={'Gender':'Sex',
@@ -290,7 +266,7 @@ tidy.rename(columns={'Gender':'Sex',
           inplace=True)
 
 
-# In[166]:
+# In[7]:
 
 
 destinationFolder = Path('out')
@@ -302,7 +278,7 @@ tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = Fal
 tidy
 
 
-# In[167]:
+# In[8]:
 
 
 scraper.dataset.family = 'disability'
@@ -312,4 +288,39 @@ with open(destinationFolder / 'observations.csv-metadata.trig', 'wb') as metadat
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(destinationFolder / 'observations.csv', destinationFolder / 'observations.csv-schema.json')
+
+
+# In[9]:
+
+
+import pandas as pd
+df = pd.read_csv("out/observations.csv")
+df["all_dimensions_concatenated"] = ""
+for col in df.columns.values:
+    if col != "Value":
+        df["all_dimensions_concatenated"] = df["all_dimensions_concatenated"]+df[col].astype(str)
+found = []
+bad_combos = []
+for item in df["all_dimensions_concatenated"]:
+    if item not in found:
+        found.append(item)
+    else:
+        bad_combos.append(item)
+df = df[df["all_dimensions_concatenated"].map(lambda x: x in bad_combos)]
+drop_these_cols = []
+for col in df.columns.values:
+    if col != "all_dimensions_concatenated" and col != "Value":
+        drop_these_cols.append(col)
+for dtc in drop_these_cols:
+    df = df.drop(dtc, axis=1)
+df = df[["all_dimensions_concatenated", "Value"]]
+df = df.sort_values(by=['all_dimensions_concatenated'])
+df.to_csv("duplicates_with_values.csv", index=False)
+# Find duplicates
+
+
+# In[ ]:
+
+
+
 
