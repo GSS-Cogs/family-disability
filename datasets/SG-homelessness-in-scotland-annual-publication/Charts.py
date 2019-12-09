@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
+# %%
 
-# In[73]:
+# %%
 
 
 from gssutils import *
@@ -23,7 +24,7 @@ scraper
 # NB:- Scraper needed to be directed to specific 2018/19 page rather than the landing page
 #   :- Also need to update the below to use a more standard pivot point ('cell') rather than the first entry in the column as this most likely won't be standard moving forward.
 
-# In[74]:
+# %%
 
 
 distCharts = scraper.distribution(title=lambda t: 'Charts' in t)
@@ -32,7 +33,7 @@ distCharts = scraper.distribution(title=lambda t: 'Charts' in t)
 tabsCharts = {tab.name: tab for tab in distCharts.as_databaker()}
 
 
-# In[75]:
+# %%
 
 
 tab = tabsCharts['Data6']
@@ -52,7 +53,7 @@ c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 savepreviewhtml(c1, fname="Preview.html")
 
 
-# In[76]:
+# %%
 
 
 new_table = c1.topandas()
@@ -71,7 +72,7 @@ new_table = new_table.replace({'Reasons for failing to maintain accommodation' :
 new_table
 
 
-# In[77]:
+# %%
 
 
 destinationFolder = Path('out')
@@ -82,7 +83,7 @@ TAB_NAME = 'Reasons-for-failing-to-maintain-accommodation'
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 
 
-# In[78]:
+# %%
 
 
 destinationFolder = Path('out')
@@ -110,7 +111,7 @@ schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_
 new_table
 
 
-# In[79]:
+# %%
 
 
 tab = tabsCharts['Data9']
@@ -121,7 +122,7 @@ period = cell.shift(1,-1)
 observations = cell.shift(RIGHT).expand(RIGHT).expand(DOWN).is_not_blank().is_not_whitespace().is_number()
 
 Dimensions = [
-            HDim(support,'Identified Support Needs of Homeless Households',DIRECTLY,LEFT),
+            HDim(support,'Identified support needs of homeless households',DIRECTLY,LEFT),
             HDim(period,'Period',DIRECTLY,ABOVE),
             HDimConst('Measure Type','Count'),
             HDimConst('Unit','People')            
@@ -130,7 +131,7 @@ c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 savepreviewhtml(c1, fname="Preview.html")
 
 
-# In[80]:
+# %%
 
 
 new_table = c1.topandas()
@@ -141,13 +142,13 @@ new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Value'] = new_table['Value'].astype(int)
 new_table['Period'] = new_table['Period'].map(
     lambda x: f'gregorian-interval/{left(x,2) + right(x,2)}-03-31T00:00:00/P1Y')
-new_table = new_table[['Period','Identified Support Needs of Homeless Households','Measure Type','Value','Unit']]
-new_table['Identified Support Needs of Homeless Households'] = new_table.apply(lambda x: pathify(x['Identified Support Needs of Homeless Households']), axis = 1)
-new_table['Identified Support Needs of Homeless Households'] = new_table.apply(lambda x: x['Identified Support Needs of Homeless Households'].replace('/', 'or'), axis = 1)
+new_table = new_table[['Period','Identified support needs of homeless households','Measure Type','Value','Unit']]
+new_table['Identified support needs of homeless households'] = new_table.apply(lambda x: pathify(x['Identified support needs of homeless households']), axis = 1)
+new_table['Identified support needs of homeless households'] = new_table.apply(lambda x: x['Identified support needs of homeless households'].replace('/', 'or'), axis = 1)
 new_table
 
 
-# In[81]:
+# %%
 
 
 destinationFolder = Path('out')
@@ -158,7 +159,7 @@ TAB_NAME = 'Identified-Support-Needs-of-Homeless-Households-2018-19'
 new_table.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
 
 
-# In[82]:
+# %%
 
 
 # +
@@ -179,7 +180,7 @@ schema.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_
 new_table
 
 
-# In[ ]:
+# %%
 
 
 
