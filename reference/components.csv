@@ -32,3 +32,8 @@ Score,,Measure,
 Directly standardised rate,,Measure,
 Indirectly standardised rate,,Measure,
 Indirectly standardised ratio,,Measure,
+PHE Age,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-age
+PHE Trend,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-trend
+PHE Country Of Birth,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-country-of-birth
+PHE Indicator,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-indicator
+PHE Unit,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-county_ua_deprivation_deciles_in_england_imd2010
