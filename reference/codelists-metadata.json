@@ -168,5 +168,9 @@
     "rdfs:label": "DWP Disability",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/dwp-disability.csv"
+  }, {
+    "rdfs:label": "Disability definition",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/disability-definitions.csv"
   }]
 }
