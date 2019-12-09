@@ -290,37 +290,6 @@ csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(destinationFolder / 'observations.csv', destinationFolder / 'observations.csv-schema.json')
 
 
-# In[9]:
-
-
-import pandas as pd
-df = pd.read_csv("out/observations.csv")
-df["all_dimensions_concatenated"] = ""
-for col in df.columns.values:
-    if col != "Value":
-        df["all_dimensions_concatenated"] = df["all_dimensions_concatenated"]+df[col].astype(str)
-found = []
-bad_combos = []
-for item in df["all_dimensions_concatenated"]:
-    if item not in found:
-        found.append(item)
-    else:
-        bad_combos.append(item)
-df = df[df["all_dimensions_concatenated"].map(lambda x: x in bad_combos)]
-drop_these_cols = []
-for col in df.columns.values:
-    if col != "all_dimensions_concatenated" and col != "Value":
-        drop_these_cols.append(col)
-for dtc in drop_these_cols:
-    df = df.drop(dtc, axis=1)
-df = df[["all_dimensions_concatenated", "Value"]]
-df = df.sort_values(by=['all_dimensions_concatenated'])
-df.to_csv("duplicates_with_values.csv", index=False)
-# Find duplicates
-
-
-# In[ ]:
-
 
 
 
