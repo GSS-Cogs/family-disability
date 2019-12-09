@@ -61,3 +61,8 @@ GSS Harmonised,gss_harmonised,qb:dimension,http://gss-data.org.uk/def/dimension/
 Percentage,percentage,qb:measure,http://gss-data.org.uk/def/measure/percentage,,number,,,
 DWP Disability,dwp_disability,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-disability,http://gss-data.org.uk/def/concept/dwp-disability/{dwp_disability},string,slugize,,http://gss-data.org.uk/def/classes/disability/dwp-disability
 Disability Definitions,disability_definitions,qb:dimension,http://gss-data.org.uk/def/dimension/disability-definitions,http://gss-data.org.uk/def/concept/disability-definitions/{disability_definitions},string,slugize,,http://gss-data.org.uk/def/classes/disability/disability-definitions
+Crude rate,crude_rate,qb:measure,http://gss-data.org.uk/def/measure/crude-rate,,number,,,
+Score,score,qb:measure,http://gss-data.org.uk/def/measure/score,,number,,,
+Directly standardised rate,directly_standardised_rate,qb:measure,http://gss-data.org.uk/def/measure/directly-standardised-rate,,number,,,
+Indirectly standardised rate,indirectly_standardised_rate,qb:measure,http://gss-data.org.uk/def/measure/indirectly-standardised-rate,,number,,,
+Indirectly standardised ratio,indirectly_standardised_ratio,qb:measure,http://gss-data.org.uk/def/measure/indirectly-standardised-ratio,,number,,,
