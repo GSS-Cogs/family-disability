@@ -178,6 +178,8 @@ tidy = tidy.replace({'Sex' : {
     'People' : 'T',
     'Women' : 'F'}})
 
+tidy['Value'] = tidy['Value'].map(lambda x: int(x))
+
 tidy = tidy.replace({'GSS Harmonised' : {
     'equality-act-core-disabled2' : 'equality-act-core-disabled',
     'harmonised-standard-definition-disabled1' : 'harmonised-standard-definition-disabled',
