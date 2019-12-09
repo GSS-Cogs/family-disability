@@ -2,7 +2,7 @@ Label,Description,Component Type,Codelist
 Household Disability Status,,Dimension,http://gss-data.org.uk/def/concept-scheme/household-disability-status
 Workless Household Type,,Dimension,http://gss-data.org.uk/def/concept-scheme/workless-household-type
 Percentage of People,The percentage of all people measured who meet the criteria,Measure,
-Identified support needs of homeless households,,Dimension,http://gss-data.org.uk/def/concept-scheme/identified-suppport-needs-of-homeless-households
+Identified support needs of homeless households,,Dimension,http://gss-data.org.uk/def/concept-scheme/identified-support-needs-of-homeless-households
 Reasons for failing to maintain accommodation,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons-for-failing-to-maintain-accommodation
 Reasons for homelessness application,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons-for-homelessness-application
 Indicator,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-indicator
