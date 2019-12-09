@@ -11,7 +11,9 @@ from pathlib import Path
 import os
 import json
 import dateutil.parser
+
 from pprint import pprint
+from datetime import datetime
 
 def get_data_by_domain(url):
     
@@ -307,7 +309,9 @@ for cat in list_of_categories:
         all_dates.append(dateutil.parser.parse(date))
     
     # Now create our variables to write in 
-    last_modified = str(max(all_dates))
+    issued_date = str(max(all_dates)).replace(" ", "T")
+    last_modified = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+    
     title = "Co-occurring substance misuse and mental health issues"
     dataset_url = "http://gss-data.org.uk/data/gss_data/disability/phe-co-occurring-substance-misuse-and-mental-health-issues"
     if cat != "uncategorised":
@@ -319,7 +323,7 @@ for cat in list_of_categories:
     with open("template-trig.txt", "r") as f:
         for line in f:
             
-            line = line.replace("<ISSUED_DATETIME_REPLACE_ME>", last_modified)
+            line = line.replace("<ISSUED_DATETIME_REPLACE_ME>", issued_date)
             line = line.replace("<MODIFIED_DATETIME_REPLACE_ME>", last_modified)
             line = line.replace("<TITLE_REPLACE_ME>", title)
             line = line.replace("DATASET_URL_REPLACE_ME", dataset_url)
