@@ -49,13 +49,13 @@ for tab in tabs:
         """ # Currently every tab in the data is not-seasonally adjusted, if this changes then uncomment and add back to output
         
         if 'GSS_Standard' in tabName:
-            dd = 'GSS Standard Disabled'
+            dd = 'GSS Standard'
             area = 'K02000001'
         elif 'Equality_Act' in tabName:
-            dd = 'Equality Act Disabled'
+            dd = 'Equality Act'
             area = 'K03000001'
         elif 'Self-Report' in tabName:
-            dd = 'Self-Report Disabled'
+            dd = 'Self-Report'
             area = 'K02000001'
         else:
             break
