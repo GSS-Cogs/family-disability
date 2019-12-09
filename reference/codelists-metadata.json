@@ -164,5 +164,9 @@
     "rdfs:label": "Economic Activity",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/economic-activity.csv"
+  }, {
+    "rdfs:label": "DWP Disability",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/dwp-disability.csv"
   }]
 }
