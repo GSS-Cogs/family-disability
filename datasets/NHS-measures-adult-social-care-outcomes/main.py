@@ -67,6 +67,12 @@ Final_table = Final_table[Final_table['Value'].isnull() == False]
 Final_table = Final_table[Final_table['Value'] != 'c' ]
 
 # %%
+Final_table['Disaggregation Level'] = Final_table['Disaggregation Level'].map(
+                        lambda x: {
+                            'Female' : 'F', 'Total' : 'T', '65 and over': '65-plus', 'Male' :'M', 
+                            '64 and under':'under-64', '85 and over' : '85-plus'}.get(x, x))
+
+# %%
 Final_table = Final_table[['NHS Geography','ASCOF Measure Code','Disaggregation Level','Measure Group','Measure Type','Value','CI']]
 
 # %%
