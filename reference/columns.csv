@@ -67,4 +67,4 @@ Directly standardised rate,directly_standardised_rate,qb:measure,http://gss-data
 Indirectly standardised rate,indirectly_standardised_rate,qb:measure,http://gss-data.org.uk/def/measure/indirectly-standardised-rate,,number,,,
 Indirectly standardised ratio,indirectly_standardised_ratio,qb:measure,http://gss-data.org.uk/def/measure/indirectly-standardised-ratio,,number,,,
 PHE Sex,phe_sex,qb:dimension,http://gss-data.org.uk/def/dimension/phe-sex,http://gss-data.org.uk/def/concept/phe_sex/{phe_sex},string,slugize,,http://gss-data.org.uk/def/classes/phe-sex/phe_sex
-DWP Age Groups,dwp_age_groups,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-age-groups,http://gss-data.org.uk/def/concept/dwp-age-groups/{dwp_age_groups},string,slugize,,http://gss-data.org.uk/def/classes/disability/dwp-age-groups
+DWP Age Group,dwp_age_group,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-age-group,http://gss-data.org.uk/def/concept/dwp-age-group/{dwp_age_group},string,slugize,,http://gss-data.org.uk/def/classes/disability/dwp-age-group
