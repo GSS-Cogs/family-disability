@@ -73,7 +73,7 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-indicator.csv"
   }, {
-    "rdfs:label": "Sex",
+    "rdfs:label": "PHE Sex",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-sex.csv"
   }, {
