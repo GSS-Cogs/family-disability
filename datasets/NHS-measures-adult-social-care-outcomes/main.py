@@ -73,9 +73,6 @@ Final_table['Disaggregation Level'] = Final_table['Disaggregation Level'].map(
                             '64 and under':'under-64', '85 and over' : '85-plus'}.get(x, x))
 
 # %%
-Final_table['Measure Type'] = Final_table['Measure Type'].str.lower()
-
-# %%
 Final_table = Final_table[['NHS Geography','ASCOF Measure Code','Disaggregation Level','Measure Group','Measure Type','Value']]
 
 # %%
