@@ -7,21 +7,21 @@ Reasons for failing to maintain accommodation,,Dimension,http://gss-data.org.uk/
 Reasons for homelessness application,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons-for-homelessness-application
 Indicator,,Dimension,http://gss-data.org.uk/def/concept-scheme/indicator
 Trend,,Dimension,http://gss-data.org.uk/def/concept-scheme/trend
-Standard Population,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-standard-population
-County & UA (pre Apr2019) deprivation deciles in England (IMD2015),,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-county-ua-pre-apr2019-deprivation-deciles-in-england-imd2015
-District & UA (pre Apr2019)  deprivation deciles in England (IMD2015),,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-district-ua-pre-apr2019-deprivation-deciles-in-england-imd2015
-"County & UA deprivation deciles in England (IMD2015, 4/19 geog.)",,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-county-ua-deprivation-deciles-in-england-imd2015-419-geog
-"District & UA deprivation deciles in England (IMD2015, 4/19 geog.)",,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-district-ua-deprivation-deciles-in-england-imd2015-419-geog
-"County & UA deprivation deciles in England (IMD2019, 4/19 geog.)",,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-county-ua-deprivation-deciles-in-england-imd2019-419-geog
-"District & UA deprivation deciles in England (IMD2019, 4/19 geog.)",,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-district-ua-deprivation-deciles-in-england-imd2019-419-geog
-County & UA deprivation deciles in England (IMD2010),,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-county-ua-deprivation-deciles-in-england-imd2010
-District & UA deprivation deciles in England (IMD2010),,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-district-ua-deprivation-deciles-in-england-imd2010
-Ethnic groups,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-ethnic-groups
-Socioeconomic group (18-64 yrs),,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-socioeconomic-group-18-64-yrs
-Religion - 8 categories,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-religion-8-categories
+PHE Standard Population,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-standard-population
+County & UA (pre Apr2019) deprivation deciles in England (IMD2015),,Dimension,http://gss-data.org.uk/def/concept-scheme/county-ua-pre-apr2019-deprivation-deciles-in-england-imd2015
+District & UA (pre Apr2019)  deprivation deciles in England (IMD2015),,Dimension,http://gss-data.org.uk/def/concept-scheme/district-ua-pre-apr2019-deprivation-deciles-in-england-imd2015
+"County & UA deprivation deciles in England (IMD2015, 4/19 geog.)",,Dimension,http://gss-data.org.uk/def/concept-scheme/county-ua-deprivation-deciles-in-england-imd2015-419-geog
+"District & UA deprivation deciles in England (IMD2015, 4/19 geog.)",,Dimension,http://gss-data.org.uk/def/concept-scheme/district-ua-deprivation-deciles-in-england-imd2015-419-geog
+"County & UA deprivation deciles in England (IMD2019, 4/19 geog.)",,Dimension,http://gss-data.org.uk/def/concept-scheme/county-ua-deprivation-deciles-in-england-imd2019-419-geog
+"District & UA deprivation deciles in England (IMD2019, 4/19 geog.)",,Dimension,http://gss-data.org.uk/def/concept-scheme/district-ua-deprivation-deciles-in-england-imd2019-419-geog
+County & UA deprivation deciles in England (IMD2010),,Dimension,http://gss-data.org.uk/def/concept-scheme/county-ua-deprivation-deciles-in-england-imd2010
+District & UA deprivation deciles in England (IMD2010),,Dimension,http://gss-data.org.uk/def/concept-scheme/district-ua-deprivation-deciles-in-england-imd2010
+Ethnic groups,,Dimension,http://gss-data.org.uk/def/concept-scheme/ethnic-groups
+Socioeconomic group (18-64 yrs),,Dimension,http://gss-data.org.uk/def/concept-scheme/socioeconomic-group-18-64-yrs
+Religion - 8 categories,,Dimension,http://gss-data.org.uk/def/concept-scheme/religion-8-categories
 Country of birth,,Dimension,http://gss-data.org.uk/def/concept-scheme/country-of-birth
-Health status,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-health-status
-Sexuality - 5 categories,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-sexuality-5-categories
+Health status,,Dimension,http://gss-data.org.uk/def/concept-scheme/health-status
+Sexuality - 5 categories,,Dimension,http://gss-data.org.uk/def/concept-scheme/sexuality-5-categories
 Percentage,Percentage,Measure,
 FRS Units,,Dimension,http://gss-data.org.uk/def/concept-scheme/frs-units
 GSS Harmonised,,Dimension,http://gss-data.org.uk/def/concept-scheme/gss-harmonised
