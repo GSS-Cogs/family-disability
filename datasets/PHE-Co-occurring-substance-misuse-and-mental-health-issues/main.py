@@ -171,7 +171,7 @@ tidy_sheet["Period"] = all_data["Time period"].astype(str).apply(timeify)
 tidy_sheet["Value"] = all_data["Value"]
 tidy_sheet["Trend"] = all_data["Recent Trend"].astype(str).apply(make_notation)
 tidy_sheet["PHE Unit"] = all_data["Unit"].astype(str).apply(make_notation)
-tidy_sheet["Category Type"] = all_data["Category Type"]
+tidy_sheet["Category Type"] = all_data["Category Type"].astype(str).map(lambda x: x.replace(".)", ")"))
 tidy_sheet["Category"] = all_data["Category"].astype(str).apply(make_notation)
 tidy_sheet["PHE Standard Population"] = all_data["Standard population/values"].astype(str).apply(make_notation)
 tidy_sheet["Measure Type"] = all_data["Measure Type"]
@@ -200,7 +200,7 @@ tidy_sheet["Measure Type"][tidy_sheet["Measure Type"] == "Proportion"] = "Percen
 
 tidy_sheet.to_csv("all_but_tidied.csv", index=False)
 
-tidy_sheet["Measure Type"].unique()
+tidy_sheet["Category Type"].unique()
 # -
 # # Split the data
 #
