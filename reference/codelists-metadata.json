@@ -101,19 +101,19 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-district-ua-pre-apr2019-deprivation-deciles-in-england-imd2015.csv"
   }, {
-    "rdfs:label": "County & UA deprivation deciles in England (IMD2015, 4/19 geog.)",
+    "rdfs:label": "County & UA deprivation deciles in England (IMD2015, 4/19 geog)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-county-ua-deprivation-deciles-in-england-imd2015-419-geog.csv"
   }, {
-    "rdfs:label": "District & UA deprivation deciles in England (IMD2015, 4/19 geog.)",
+    "rdfs:label": "District & UA deprivation deciles in England (IMD2015, 4/19 geog)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-district-ua-deprivation-deciles-in-england-imd2015-419-geog.csv"
   }, {
-    "rdfs:label": "County & UA deprivation deciles in England (IMD2019, 4/19 geog.)",
+    "rdfs:label": "County & UA deprivation deciles in England (IMD2019, 4/19 geog)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-county-ua-deprivation-deciles-in-england-imd2019-419-geog.csv"
   }, {
-    "rdfs:label": "District & UA deprivation deciles in England (IMD2019, 4/19 geog.)",
+    "rdfs:label": "District & UA deprivation deciles in England (IMD2019, 4/19 geog)",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-district-ua-deprivation-deciles-in-england-imd2019-419-geog.csv"
   }, {
