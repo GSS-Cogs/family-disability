@@ -200,7 +200,7 @@ import numpy as np
 new_table['OBS'].replace('', np.nan, inplace=True)
 new_table.dropna(subset=['OBS'], inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-new_table['Value'] = new_table.apply(lambda x: x['Value'] * 1000000 if 'Millions' in x['Unit'] else x['Value'], axis = 1)
+new_table['Value'] = new_table.apply(lambda x: x['Value'] * 1000000 if 'People' in x['Unit'] else x['Value'], axis = 1)
 new_table['Period'] = new_table['Period'].map(
     lambda x: 'government-year/' + left(x,4) +'-20' + right(x,2))
 new_table['Age Group'] = new_table['Age Group'].map(
