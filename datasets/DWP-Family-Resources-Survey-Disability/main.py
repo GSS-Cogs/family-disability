@@ -1,13 +1,19 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[12]:
+# In[17]:
 
 
+import pandas as pd
 from gssutils import *
 from databaker.framework import *
-import pandas as pd
 from gssutils.metadata import THEME
+    
+def findnth(haystack, needle, n):
+    parts= haystack.split(needle, n+1)
+    if len(parts)<=n+1:
+        return -1
+    return len(haystack)-len(parts[-1])-len(needle)
 
 def left(s, amount):
     return s[:amount]
@@ -15,258 +21,177 @@ def left(s, amount):
 def right(s, amount):
     return s[-amount:]
 
-scraper = Scraper('https://www.gov.uk/government/statistics/family-resources-survey-financial-year-201718')
+scraper = Scraper('https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork/employmentandemployeetypes/datasets/labourmarketstatusofdisabledpeoplea08')
+scraper
 
 
-# In[13]:
+# In[18]:
 
 
-dist = scraper.distribution(title=lambda t: 'Disability data tables (XLS)' in t)
-tabs = (t for t in dist.as_databaker())
+dist = scraper.distributions[0]
+tabs = (t for t in dist.as_databaker() if 'Rates' not in t.name)
 tidied_sheets = []
 
-for tab in tabs:
-    
-    if tab.name in ['4_1']:
-        cell = tab.filter("Year")
-    
-        year = cell.shift(RIGHT).expand(DOWN).is_not_blank().shift(LEFT)
-
-        remove = tab.filter("Sample size").expand(DOWN)
-
-        age = cell.shift(RIGHT).expand(RIGHT).is_not_blank() - remove
-
-        observations = year.shift(RIGHT).expand(RIGHT).is_not_blank() - remove
-
-        dimensions = [
-                #HDimConst('Dimension Name', 'Variable'),
-                HDimConst('Disability','Disabled'),
-                HDimConst('Gender','All'),
-                HDim(year, 'Period', DIRECTLY, LEFT), 
-                HDim(age, 'Age Group', DIRECTLY, ABOVE),
-                HDimConst('Measure type','Percentage'),
-                HDimConst('Unit','Percent'),
-                HDimConst('Region', 'United Kingdom')
-        ]
-    
-        c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
-        savepreviewhtml(c1, fname="Preview.html")
-        tidied_sheets.append(c1.topandas())
-    
-    elif tab.name in ['4_2']:
+for tab in tabs:    
+    if 'GSS_Standard' in tab.name or 'Equality_Act' in tab.name or 'Self-Report' in tab.name in tab.name:
         
-        cell = tab.excel_ref("B9")
-
-        remove = tab.filter('Percentage of people').expand(RIGHT).expand(LEFT).expand(DOWN)
-    
-        year = cell.shift(RIGHT).expand(DOWN).is_not_blank().is_not_whitespace().shift(LEFT) - remove
-
-        gender = cell.shift(1,0).expand(RIGHT).is_not_blank().is_not_whitespace()
-
-        observations = gender.fill(DOWN).is_not_blank().is_not_whitespace() - remove
-
-        dimensions = [
-                HDim(gender, 'Disability', DIRECTLY, ABOVE),
-                HDim(year, 'Period', DIRECTLY, LEFT), 
-                HDim(gender, 'Gender', DIRECTLY, ABOVE), 
-                HDimConst('Age Group', 'All people'),
-                HDimConst('Measure type','Count'),
-                HDimConst('Unit','People (Millions)') ,
-                HDimConst('Region', 'United Kingdom')
-        ]
-    
-        c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
-        savepreviewhtml(c1, fname="Preview.html")
-        tidied_sheets.append(c1.topandas())
+        tabName = str(tab.name)
         
-    elif tab.name in ['4_3']:
+        """
+        if 'not seasonally adjusted' in str(tab.excel_ref('A4')).lower():
+            SA = 'not-seasonally-adjusted'
+        elif 'seasonally adjusted' not in str(tab.excel_ref('A4')).lower():
+            SA = 'ERROR - CHECK TAB'
+        elif 'not' not in str(tab.excel_ref('A4')).lower():
+            SA = 'seasonally-adjusted'
+        else:
+            SA = 'ERROR - CHECK TAB'
+        """ # Currently every tab in the data is not-seasonally adjusted, if this changes then uncomment and add back to output
         
-        cell = tab.excel_ref("B9")
-
-        remove = tab.filter('Percentage of people').expand(RIGHT).expand(DOWN).expand(LEFT)
-    
-        age = cell.shift(RIGHT).expand(DOWN).is_not_blank().is_not_whitespace().shift(LEFT) - remove
-
-        gender = tab.excel_ref("C9").expand(RIGHT).is_not_blank().is_not_whitespace() - remove
-
-        observations = gender.shift(0,5).fill(DOWN).is_not_blank().is_not_whitespace() - remove
-
-        dimensions = [
-                HDim(gender,'Disability', DIRECTLY, ABOVE),
-                HDim(age, 'Age Group', DIRECTLY, LEFT), 
-                HDimConst('Region', 'United Kingdom'), 
-                HDimConst('Period', '2015-18'),
-                HDim(gender, 'Gender', DIRECTLY, ABOVE),
-                HDimConst('Measure type','Count'),
-                HDimConst('Unit','People (Millions)')
-        ]
-    
-        c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
-        savepreviewhtml(c1, fname="Preview.html")
-        tidied_sheets.append(c1.topandas())
-    
-    elif tab.name in ['4_4']:
+        if 'GSS_Standard' in tabName:
+            dd = 'GSS Standard Disabled'
+            area = 'K02000001'
+        elif 'Equality_Act' in tabName:
+            dd = 'Equality Act Disabled'
+            area = 'K03000001'
+        elif 'Self-Report' in tabName:
+            dd = 'Self-Report Disabled'
+            area = 'K02000001'
+        else:
+            break
+            
+        cell = tab.excel_ref("B5")
         
-        cell = tab.excel_ref("B7")
-
-        remove = tab.filter('Percentage of people').expand(RIGHT).expand(DOWN)
+        remove = tab.filter("Total aged 16-64: Including those who did not state their health situation").expand(DOWN)
     
-        #age = cell.shift(RIGHT).expand(DOWN).is_not_blank().is_not_whitespace().shift(LEFT) - remove
-
-        region = cell.expand(DOWN).is_not_blank().is_not_whitespace()
-
-        observations = region.fill(RIGHT).is_not_blank().is_not_whitespace() - remove
-
+        period = cell.shift(0,3).expand(DOWN).is_not_blank().shift(LEFT)
+        
+        disability = cell.expand(RIGHT).is_not_blank() - remove
+        
+        econActive = cell.shift(DOWN).expand(RIGHT).is_not_blank()
+        
+        observations = period.shift(RIGHT).expand(RIGHT).is_not_blank() - remove
+        #remember to devide by 1000 to match the unit of the source data
+        
         dimensions = [
-                HDimConst('Disability','Disabled'),
-                HDimConst('Age Group', 'All people'), 
-                HDim(region, 'Region', DIRECTLY, LEFT), 
-                HDimConst('Period', '2017/18'),
-                HDimConst('Gender', 'All people'),
-                HDimConst('Measure type','Count'),
-                HDimConst('Unit','People (Millions)')
+                HDimConst('Sex', right(tabName, len(tabName) - findnth(tabName.replace('-', '_'), '_', 2) - 1)),
+                #HDimConst('Seasonally Adjusted', SA),
+                HDim(period, 'Month', DIRECTLY, LEFT), 
+                HDim(period, 'Year', DIRECTLY, LEFT), 
+                HDim(disability, 'GSS Harmonised', CLOSEST, LEFT),
+                HDim(econActive, 'Economic Activity', DIRECTLY, ABOVE),
+                HDimConst('Measure Type','Count'),
+                HDimConst('Unit','People'),
+                HDimConst('Disability Definitions', dd),
+                HDimConst('Area', area),
         ]
-    
+        
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
         tidied_sheets.append(c1.topandas())
         
-    elif tab.name in ['4_5']:
+    if 'DDA' in tab.name:
         
-        cell = tab.excel_ref("B9")
-
-        remove = tab.filter('Sample size').expand(RIGHT).expand(LEFT).expand(DOWN)
+        tabName = str(tab.name)
+        
+        if 'pre-2010' in tabName:
+            dd = 'DDA pre-2010'
+            area = 'K02000001'
+        elif '2010-2013' in tabName:
+            dd = 'DDA 2010-2013'
+            area = 'K02000001'
+        else:
+            break
+        
+        """
+        if 'not seasonally adjusted' in str(tab.excel_ref('A4')).lower():
+            SA = 'not-seasonally-adjusted'
+        elif 'seasonally adjusted' not in str(tab.excel_ref('A4')).lower():
+            SA = 'ERROR - CHECK TAB'
+        elif 'not' not in str(tab.excel_ref('A4')).lower():
+            SA = 'seasonally-adjusted'
+        else:
+            SA = 'ERROR - CHECK TAB'
+        """ # Currently every tab in the data is not-seasonally adjusted, if this changes then uncomment and add back to output
+        
+        cell = tab.excel_ref("B2")
     
-        disability = cell.fill(DOWN).is_not_blank().is_not_whitespace() - remove
-
-        year = cell.shift(1,0).expand(RIGHT).is_not_blank().is_not_whitespace()
-
-        observations = year.fill(DOWN).is_not_blank().is_not_whitespace() - remove
-
+        period = cell.shift(0,3).expand(DOWN).is_not_blank().shift(LEFT)
+        
+        remove = tab.filter('Source: Labour Force Survey').expand(LEFT).expand(DOWN)
+        
+        remove2 = tab.filter('Mar-May 1983')
+        
+        disability = cell.expand(RIGHT).is_not_blank() - remove
+        
+        econActive = cell.shift(DOWN).expand(RIGHT).is_not_blank()
+        
+        observations = period.shift(RIGHT).expand(RIGHT).is_not_blank() - remove
+        #remember to devide by 1000 to match the unit of the source data
+        
+        sex = cell.shift(-1,3).expand(DOWN).is_not_blank() - remove - remove2 - observations.shift(LEFT)
+        
         dimensions = [
-                HDim(disability, 'Disability', DIRECTLY, LEFT),
-                HDimConst('Age Group', 'All people'), 
-                HDimConst('Gender', 'All people'), 
-                HDim(year, 'Period', DIRECTLY, ABOVE),
-                HDimConst('Measure type','Count'),
-                HDimConst('Unit','People (Millions)'),
-                HDimConst('Region', 'United Kingdom') 
+                HDim(sex, 'Sex', CLOSEST, ABOVE),
+                #HDimConst('Seasonally Adjusted', SA),
+                HDim(period, 'Month', DIRECTLY, LEFT), 
+                HDim(period, 'Year', DIRECTLY, LEFT), 
+                HDim(disability, 'GSS Harmonised', CLOSEST, LEFT),
+                HDim(econActive, 'Economic Activity', DIRECTLY, ABOVE),
+                HDimConst('Measure Type','Count'),
+                HDimConst('Unit','People'),
+                HDimConst('Disability Definitions', dd),
+                HDimConst('Area', area),
         ]
-    
+        
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
         tidied_sheets.append(c1.topandas())
         
-    elif tab.name in ['4_6']:
-        
-        cell = tab.excel_ref("B8")
-
-        remove = tab.filter('Sample size').expand(RIGHT).expand(LEFT).expand(DOWN)
-    
-        disability = cell.fill(DOWN).is_not_blank().is_not_whitespace() - remove
-
-        age = cell.shift(1,0).expand(RIGHT).is_not_blank().is_not_whitespace()
-
-        observations = age.fill(DOWN).is_not_blank().is_not_whitespace() - remove
-        
-        over = {'All disabled people': 'All people'}
-
-        dimensions = [
-                HDim(disability, 'Disability', DIRECTLY, LEFT),
-                HDim(age, 'Age Group', DIRECTLY, ABOVE, cellvalueoverride = over), 
-                HDimConst('Gender', 'All people'), 
-                HDimConst('Period', '2017/18'),
-                HDimConst('Measure type','Percentage'),
-                HDimConst('Unit','Percent'),
-                HDimConst('Region', 'United Kingdom')
-        ]
-    
-        c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
-        savepreviewhtml(c1, fname="Preview.html")
-        tidied_sheets.append(c1.topandas())
-        
-    #4_7,8,9 need looking into - doesn't look like something easily represented - also only percentages
-           
     else:
         continue
-    
 
 
-# In[14]:
+# In[19]:
 
 
+pd.set_option('display.float_format', lambda x: '%.0f' % x)
 new_table = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
-import numpy as np
-new_table['OBS'].replace('', np.nan, inplace=True)
-new_table.dropna(subset=['OBS'], inplace=True)
-new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-new_table['Period'] = new_table['Period'].map(
-    lambda x: 'government-year/' + left(x,4) +'-20' + right(x,2))
-new_table['Age Group'] = new_table['Age Group'].map(
-    lambda x: left(x, len(x) - 1) if x.endswith('1') else x)
-new_table['Age Group'] = new_table['Age Group'].map(
-    lambda x: x.replace('2', '') if '2' in x else x)
-new_table['Age Group'] = new_table['Age Group'].map(
-    lambda x: pathify(x))
-new_table['Region'] = new_table['Region'].map(
-    lambda x: pathify(x))
-tidy = new_table[['Period','Region','Disability','Gender','Age Group','Measure type','Value','Unit']]
+new_table['Year'] = new_table['Year'].map(lambda x: right(x, 4))
+new_table['Month'] = new_table['Month'].map(lambda x: left(x, len(x) - 9))
+new_table = new_table.replace({'Month' : {'Apr' : '04','Jan' : '01','Jul' : '07','Oct' : '10',}})
+new_table.rename(columns={'OBS':'Value'}, inplace=True)
+new_table['Economic Activity'] = new_table['Economic Activity'].map(lambda x: 'All' if 'Total' in x else x)
+new_table['GSS Harmonised'] = new_table['GSS Harmonised'].map(lambda x: pathify(x))
+new_table['Economic Activity'] = new_table['Economic Activity'].map(lambda x: pathify(x))
+new_table['Disability Definitions'] = new_table['Disability Definitions'].map(lambda x: pathify(x))
+new_table['Period'] = 'gregorian-interval/' + new_table['Year'] + '-' +  new_table['Month'] + '-01T00:00:00/P3M'
+new_table
 
 
-# In[15]:
+# In[20]:
 
 
-tidy = tidy.replace({'Disability' : {
-    'All disabled people' : 'Any Disability', 
-    'All not disabled people' : 'No Disability', 
-    'All people' : 'All',
-    'Female, disabled' : 'Any Disability', 
-    'Female, not disabled' : 'No Disability', 
-    'Females' : 'Any Disability', 
-    'Male, disabled' : 'Any Disability',
-    'Male, not disabled' : 'No Disability', 
-    'Males' : 'Any Disability',
-    'Stamina/\nbreathing/\nfatigue' : 'Stamina/breathing/fatigue'}})
-tidy = tidy.replace({'Gender' : {
-    'All' : 'T',
-    'All disabled people' : 'T', 
-    'All not disabled people' : 'T', 
-    'All people' : 'T',
-    'Female, disabled' : 'F', 
-    'Female, not disabled' : 'F', 
-    'Females' : 'F', 
-    'Male, disabled' : 'M',
-    'Male, not disabled' : 'M', 
-    'Males' : 'M'}}) 
-tidy = tidy.replace({'Age Group' : { 
-    'All people' : 'All'}})
-tidy = tidy.replace({'Region' : { 
-    'east' : 'E12000006', 
-    'east-midlands' : 'E12000004', 
-    'england' : 'E92000001',
-    'great-britain' : 'K03000001',
-    'inner-london' : 'E13000001',
-    'london' : 'E12000007',
-    'north-east' : 'E12000001',
-    'north-west' : 'E12000002',
-    'northern-ireland' : 'N07000001',
-    'outer-london' : 'E13000002',
-    'scotland' : 'S04000001',
-    'south-east' : 'E12000008',
-    'south-west' : 'E12000009',
-    'united-kingdom' : 'K02000001',
-    'wales' : 'W08000001',
-    'west-midlands' : 'E12000005',
-    'yorkshire-and-the-humber' : 'E12000003',}})
+tidy = new_table[['Period','Area','Sex','GSS Harmonised','Disability Definitions','Economic Activity','Measure Type','Value','Unit']]
+tidy = tidy.replace({'Sex' : {
+    'Men' : 'M',
+    'People' : 'T',
+    'Women' : 'F'}})
 
-# In[16]:
-
-
-tidy['Disability'] = tidy['Disability'].map(
-    lambda x: pathify(x))
-
-tidy.rename(columns={'Disability':'DWP Disability'}, 
-                 inplace=True)
+tidy = tidy.replace({'GSS Harmonised' : {
+    'equality-act-core-disabled2' : 'equality-act-core-disabled',
+    'harmonised-standard-definition-disabled1' : 'harmonised-standard-definition-disabled',
+    'no-self-reported-ill-health3' : 'no-self-reported-ill-health',
+    'people-who-do-not-meet-the-equality-act-core-definition-of-disability-excluding-those-who-did-not-state-their-health-situation-3' : 'not-equality-act-core-disabled',
+    'people-who-do-not-meet-the-harmonised-standard-definition-of-disability-excluding-those-who-did-not-state-their-health-situation-2' : 'not-harmonised-standard-definition-disabled',
+    'self-reported-ill-health2' : 'self-reported-ill-health',
+    'work-limiting-disabled1' : 'work-limiting-disabled',
+    'all-people-with-a-long-term-health-problem-or-disability3' : 'all-people-with-a-long-term-health-problem-or-disability',
+    'all-people-with-a-long-term-health-problem-or-disability4' : 'all-people-with-a-long-term-health-problem-or-disability',
+    'people-with-disabilities-that-limit-their-day-to-day-activities2' : 'people-with-disabilities-that-limit-their-day-to-day-activities',
+    'people-with-disabilities-that-limit-their-day-to-day-activities3' : 'people-with-disabilities-that-limit-their-day-to-day-activities',
+    'people-with-work-limiting-disabilities1' : 'people-with-work-limiting-disabilities',
+    'people-with-work-limiting-disabilities2' : 'people-with-work-limiting-disabilities'}})
 
 from IPython.core.display import HTML
 for col in tidy:
@@ -274,20 +199,9 @@ for col in tidy:
         tidy[col] = tidy[col].astype('category')
         display(HTML(f"<h2>{col}</h2>"))
         display(tidy[col].cat.categories)
-        
 
 
-# In[17]:
-
-
-tidy.rename(columns={'Gender':'Sex',
-                   'Region':'Area',
-                   'Age Group':'DWP Age Group',
-                   'Measure type':'Measure Type'}, 
-          inplace=True)
-
-
-# In[18]:
+# In[21]:
 
 
 destinationFolder = Path('out')
@@ -296,17 +210,19 @@ destinationFolder.mkdir(exist_ok=True, parents=True)
 TAB_NAME = 'observations'
 
 tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
-tidy
-
-
-# In[19]:
-
 
 scraper.dataset.family = 'disability'
-#scraper.dataset.theme = THEME['health-social-care']
-with open(destinationFolder / 'observations.csv-metadata.trig', 'wb') as metadata:
+
+with open(destinationFolder / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-csvw.create(destinationFolder / 'observations.csv', destinationFolder / 'observations.csv-schema.json')
+csvw.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_NAME}.csv-schema.json')
+tidy
+
+
+# In[ ]:
+
+
+
 
