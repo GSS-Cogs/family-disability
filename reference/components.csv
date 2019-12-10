@@ -5,8 +5,8 @@ Percentage of People,The percentage of all people measured who meet the criteria
 Identified support needs of homeless households,,Dimension,http://gss-data.org.uk/def/concept-scheme/identified-support-needs-of-homeless-households
 Reasons for failing to maintain accommodation,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons-for-failing-to-maintain-accommodation
 Reasons for homelessness application,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons-for-homelessness-application
-Indicator,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-indicator
-Trend,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-trend
+Indicator,,Dimension,http://gss-data.org.uk/def/concept-scheme/indicator
+Trend,,Dimension,http://gss-data.org.uk/def/concept-scheme/trend
 Standard Population,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-standard-population
 County & UA (pre Apr2019) deprivation deciles in England (IMD2015),,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-county-ua-pre-apr2019-deprivation-deciles-in-england-imd2015
 District & UA (pre Apr2019)  deprivation deciles in England (IMD2015),,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-district-ua-pre-apr2019-deprivation-deciles-in-england-imd2015
@@ -19,7 +19,7 @@ District & UA deprivation deciles in England (IMD2010),,Dimension,http://gss-dat
 Ethnic groups,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-ethnic-groups
 Socioeconomic group (18-64 yrs),,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-socioeconomic-group-18-64-yrs
 Religion - 8 categories,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-religion-8-categories
-Country of birth,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-country-of-birth
+Country of birth,,Dimension,http://gss-data.org.uk/def/concept-scheme/country-of-birth
 Health status,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-health-status
 Sexuality - 5 categories,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-sexuality-5-categories
 Percentage,Percentage,Measure,
@@ -32,7 +32,4 @@ Directly standardised rate,,Measure,
 Indirectly standardised rate,,Measure,
 Indirectly standardised ratio,,Measure,
 PHE Age,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-age
-PHE Trend,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-trend
-PHE Country Of Birth,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-country-of-birth
-PHE Indicator,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-indicator
 PHE Unit,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-unit
