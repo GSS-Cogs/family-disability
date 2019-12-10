@@ -71,7 +71,7 @@ for tab in tabs:
                 HDim(gender, 'Gender', DIRECTLY, ABOVE), 
                 HDimConst('Age Group', 'All people'),
                 HDimConst('Measure type','Count'),
-                HDimConst('Unit','People') ,
+                HDimConst('Unit','people-millions') ,
                 HDimConst('Region', 'United Kingdom')
         ]
     
@@ -98,7 +98,7 @@ for tab in tabs:
                 HDimConst('Period', '2015-18'),
                 HDim(gender, 'Gender', DIRECTLY, ABOVE),
                 HDimConst('Measure type','Count'),
-                HDimConst('Unit','People')
+                HDimConst('Unit','people-millions')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -124,7 +124,7 @@ for tab in tabs:
                 HDimConst('Period', '2017/18'),
                 HDimConst('Gender', 'All people'),
                 HDimConst('Measure type','Count'),
-                HDimConst('Unit','People')
+                HDimConst('Unit','people-millions')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -149,7 +149,7 @@ for tab in tabs:
                 HDimConst('Gender', 'All people'), 
                 HDim(year, 'Period', DIRECTLY, ABOVE),
                 HDimConst('Measure type','Count'),
-                HDimConst('Unit','People'),
+                HDimConst('Unit','people-millions'),
                 HDimConst('Region', 'United Kingdom') 
         ]
     
@@ -200,7 +200,6 @@ import numpy as np
 new_table['OBS'].replace('', np.nan, inplace=True)
 new_table.dropna(subset=['OBS'], inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-new_table['Value'] = new_table.apply(lambda x: x['Value'] * 1000000 if 'People' in x['Unit'] else x['Value'], axis = 1)
 new_table['Period'] = new_table['Period'].map(
     lambda x: 'government-year/' + left(x,4) +'-20' + right(x,2))
 new_table['Age Group'] = new_table['Age Group'].map(
