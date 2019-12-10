@@ -240,7 +240,24 @@ tidy = tidy.replace({'Gender' : {
     'Males' : 'M'}}) 
 tidy = tidy.replace({'Age Group' : { 
     'All people' : 'All'}})
-
+tidy = tidy.replace({'Region' : { 
+    'east' : 'E12000006', 
+    'east-midlands' : 'E12000004', 
+    'england' : 'E92000001',
+    'great-britain' : 'K03000001',
+    'inner-london' : 'E13000001',
+    'london' : 'E12000007',
+    'north-east' : 'E12000001',
+    'north-west' : 'E12000002',
+    'northern-ireland' : 'N07000001',
+    'outer-london' : 'E13000002',
+    'scotland' : 'S04000001',
+    'south-east' : 'E12000008',
+    'south-west' : 'E12000009',
+    'united-kingdom' : 'K02000001',
+    'wales' : 'W08000001',
+    'west-midlands' : 'E12000005',
+    'yorkshire-and-the-humber' : 'E12000003',}})
 
 # In[16]:
 
