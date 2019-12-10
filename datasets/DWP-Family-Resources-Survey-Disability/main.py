@@ -282,7 +282,7 @@ for col in tidy:
 
 tidy.rename(columns={'Gender':'Sex',
                    'Region':'Area',
-                   'Age Group':'Age',
+                   'Age Group':'DWP Age Group',
                    'Measure type':'Measure Type'}, 
           inplace=True)
 
