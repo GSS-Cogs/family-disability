@@ -172,5 +172,9 @@
     "rdfs:label": "Disability Definitions",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/disability-definitions.csv"
+  }, {
+    "rdfs:label": "DWP Age Group",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/dwp-age-group.csv"
   }]
 }
