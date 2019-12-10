@@ -92,9 +92,9 @@ new_table = new_table.replace({'Guardianship' : {
 new_table['Guardianship'] = new_table['Guardianship'].fillna('all').map(lambda x: pathify(x))
 
 new_table = new_table.replace({'Status' : {
-    'NEW CASES DURING THE YEAR (1 April to 31 March)' : 'New Cases',
-    'CASES CONTINUING AT THE END OF THE YEAR' : 'Continuing Cases',
-    'CASES CLOSED DURING THE YEAR (1 April to 31 March)' : 'Closed Cases'}})
+    'NEW CASES DURING THE YEAR (1 April to 31 March)' : 'Cases opened in year',
+    'CASES CONTINUING AT THE END OF THE YEAR' : 'Cases continuing at end of year',
+    'CASES CLOSED DURING THE YEAR (1 April to 31 March)' : 'Cases closed during year'}})
 new_table['Section'] = new_table['Section'].fillna('all').map(lambda x: pathify(x))
 
 new_table['Status'] = new_table['Status'].fillna('all').map(lambda x: pathify(x))

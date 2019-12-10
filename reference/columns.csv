@@ -71,3 +71,4 @@ DWP Age Group,dwp_age_group,qb:dimension,http://gss-data.org.uk/def/dimension/dw
 ASCOF Measure Code,ascof_measure_code,qb:dimension,http://gss-data.org.uk/def/dimension/ascof_measure_code,http://gss-data.org.uk/def/concept/ascof_measure_code/{ascof_measure_code},string,slugize,,
 Disaggregation Level,disaggregation_level,qb:dimension,http://gss-data.org.uk/def/dimension/disaggregation_level,http://gss-data.org.uk/def/concept/disaggregation_level/{disaggregation_level},string,slugize,,
 Measure Group,measure_group,qb:dimension,http://gss-data.org.uk/def/dimension/measure_group,http://gss-data.org.uk/def/concept/measure_group/{measure_group},string,slugize,,
+Outcome,outcome,qb:measure,http://gss-data.org.uk/def/measure/outcome,,string,,,
