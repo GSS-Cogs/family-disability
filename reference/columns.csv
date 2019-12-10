@@ -66,3 +66,4 @@ Score,score,qb:measure,http://gss-data.org.uk/def/measure/score,,number,,,
 Directly standardised rate,directly_standardised_rate,qb:measure,http://gss-data.org.uk/def/measure/directly-standardised-rate,,number,,,
 Indirectly standardised rate,indirectly_standardised_rate,qb:measure,http://gss-data.org.uk/def/measure/indirectly-standardised-rate,,number,,,
 Indirectly standardised ratio,indirectly_standardised_ratio,qb:measure,http://gss-data.org.uk/def/measure/indirectly-standardised-ratio,,number,,,
+PHE Sex,phe_sex,qb:dimension,http://gss-data.org.uk/def/dimension/phe_sex,http://gss-data.org.uk/def/concept/phe_sex/{phe_sex},string,slugize,,http://gss-data.org.uk/def/classes/phe-sex/phe_sex

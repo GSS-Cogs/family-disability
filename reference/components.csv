@@ -33,3 +33,4 @@ Indirectly standardised rate,,Measure,
 Indirectly standardised ratio,,Measure,
 PHE Age,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-age
 PHE Unit,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-unit
+PHE Sex,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-sex

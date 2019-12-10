@@ -165,7 +165,7 @@ all_data = pd.read_csv("all_data.csv")
 tidy_sheet = pd.DataFrame()
 tidy_sheet["Indicator"] = all_data["Indicator Name"].apply(make_notation)
 tidy_sheet["Area"] = all_data["Area Code"]
-tidy_sheet["Sex"] = all_data["Sex"].apply(make_notation)
+tidy_sheet["PHE Sex"] = all_data["Sex"].apply(make_notation)
 tidy_sheet["PHE Age"] = all_data["Age"].apply(make_notation)
 tidy_sheet["Period"] = all_data["Time period"].astype(str).apply(timeify)
 tidy_sheet["Value"] = all_data["Value"]
@@ -253,7 +253,7 @@ for cat in tidy_sheet["Category Type"].unique():
 notation_lookup = {
     "Indicator": "indicator",
     "Area": "area",
-    "Sex": "sex",
+    "PHE Sex": "phe_sex",
     "PHE Age": "phe_age",
     "Period": "period",
     "Trend": "trend",
