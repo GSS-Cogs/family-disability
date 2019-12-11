@@ -14,12 +14,15 @@
 # ---
 
 # +
-from gssutils import *
-import json
+import glob
 
-info = json.load(open('info.json'))
-scraper = Scraper(info['landingPage'])
-scraper
+py_files = [i for i in glob.glob('*.{}'.format('py'))]
+
+for i in py_files:
+    file = "'" + i + "'"
+    if file.startswith("'main") == True:
+        continue
+    %run $file
 # -
 
 

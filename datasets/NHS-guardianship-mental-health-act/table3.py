@@ -67,11 +67,11 @@ new_table['Guardianship'] = new_table['Guardianship'].map(
     lambda x: pathify(x))
 new_table['Region'] = new_table['Region'].map(
     lambda x: pathify(x))
-new_table['Case Status'] = new_table['Status'].map(
+new_table['Status'] = new_table['Status'].map(
     lambda x: pathify(x))
 new_table
 
-tidy = new_table[['Period', 'Period Duration', 'Guardianship', 'Region', 'Case Status', 'Value']]
+tidy = new_table[['Period', 'Period Duration', 'Guardianship', 'Region', 'Status', 'Value']]
 tidy
 
 # +

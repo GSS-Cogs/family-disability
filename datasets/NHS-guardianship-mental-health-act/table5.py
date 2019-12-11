@@ -186,10 +186,3 @@ OBS_ID = pathify(TITLE)
 GROUP_ID = 'NHS-guardianship-mental-health-act'
 
 tidy.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = False)
-
-
-
-# -
-
-
-
