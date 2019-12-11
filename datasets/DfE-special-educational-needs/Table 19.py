@@ -45,4 +45,5 @@ new_table = new_table[new_table['Value'] !=  '' ]
 new_table['Value'] = new_table['Value'].astype(int)
 new_table['Age']  = 'All'
 new_table['Sex']  = 'All'
+new_table['Education provider'] = 'Local Authority'+ ' ' + new_table['Education provider']
 new_table = new_table [['Geography','Period','Education provider','Special support type', 'Special need type','Age','Sex','Unit','Value','Measure Type']]
