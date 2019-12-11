@@ -81,6 +81,15 @@ guardianship_table = c3.topandas()
 
 new_table = pd.concat([status_table, section_table, guardianship_table], sort=True)
 
+
+# +
+def left(s, amount):
+    return s[:amount]
+
+def right(s, amount):
+    return s[-amount:]
+
+
 # +
 new_table['DATAMARKER'].replace('*', 'Below-3', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
@@ -99,6 +108,9 @@ new_table['Section'] = new_table['Section'].fillna('all').map(lambda x: pathify(
 
 new_table['Status'] = new_table['Status'].fillna('all').map(lambda x: pathify(x))
 new_table = new_table.replace({'Sex' : {'Male' : 'M',' Female' : 'F','Total' : 'T' }})
+
+new_table['Period'] = new_table['Period'].str[:-1]
+new_table['Period'] = new_table['Period'].map(lambda x: 'government-year/' + left(x,4) +'-20' + right(x,2))
 new_table = new_table.fillna('')
 
 # -
