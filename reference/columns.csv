@@ -8,7 +8,7 @@ Workless Household Type,workless_household_type,qb:dimension,http://gss-data.org
 Unit,unit,qb:attribute,http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure,http://gss-data.org.uk/def/concept/measurement-units/{unit},string,unitize,,
 Value,value,,http://gss-data.org.uk/def/measure/{measure_type},,number,,,
 Severity,severity,qb:dimension,http://gss-data.org.uk/def/dimension/severity,http://gss-data.org.uk/def/concept/severity/{severity},string,slugize,,
-Sample Size,sample_size,qb:measure,,http://gss-data.org.uk/def/measure/{measure_type},number,,,
+Sample Size,sample_size,qb:dimenson,,http://gss-data.org.uk/def/dimension/{measure_type},number,slugize,,
 Hours per Week,hours_per_week,qb:dimension,http://gss-data.org.uk/def/dimension/hours_per_week,http://gss-data.org.uk/def/concept/hours_per_week/{hours_per_week},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/hours_per_week
 FRS Units,frs_units,qb:dimension,http://gss-data.org.uk/def/dimension/frs_units,http://gss-data.org.uk/def/concept/frs_units/{frs_units},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/frs_units
 Employment Status,employment_status,qb:dimension,http://gss-data.org.uk/def/dimension/employment_status,http://gss-data.org.uk/def/concept/employment_status/{employment_status},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/employment_status
