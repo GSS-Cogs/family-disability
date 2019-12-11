@@ -82,6 +82,8 @@ get_data_by_domain("https://fingertips.phe.org.uk/profile-group/mental-health/pr
 # Some functions we'll reuse a few times
 
 # +
+from gssutils import *
+
 def timeify(cell):
     """ Simple function to style time to match our requirements """
     
@@ -136,8 +138,6 @@ def make_notation(value):
 
         return value.rstrip("-").lstrip("-").replace("--", "-")
     
-
-
 # -
 
 # # Clean the data
@@ -145,6 +145,7 @@ def make_notation(value):
 # We're keeping the data within a single dataframe while we clean up the entires (it's simpler this way)
 
 # +
+
 
 # for when we need to fill some blanks
 UNSPECIFIED_TREND = "not-known"
@@ -198,9 +199,15 @@ tidy_sheet["PHE Unit"][tidy_sheet["Indicator"] == "number-in-treatment-at-specia
 # Some changes for Measure Type
 tidy_sheet["Measure Type"][tidy_sheet["Measure Type"] == "Proportion"] = "Percentage"
 
+# Possible back end issues with "/"'s, remove for now to confirm
+# TODO fix the back end, not the input
+tidy_sheet["Category Type"] = tidy_sheet["Category Type"].astype(str).map(lambda x: x.replace("/", ""))
+
 tidy_sheet.to_csv("all_but_tidied.csv", index=False)
 
-tidy_sheet["Category Type"].unique()
+c = tidy_sheet["Category Type"].unique()
+
+[pathify(x) for x in c]
 # -
 # # Split the data
 #
@@ -568,3 +575,6 @@ if GENERATE_REFERENCE_DATA:
         
     pprint(codelist_metadata)
     
+# -
+
+
