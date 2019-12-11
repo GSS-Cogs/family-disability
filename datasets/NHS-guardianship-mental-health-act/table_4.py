@@ -36,9 +36,9 @@ observations_08_09 = tab.excel_ref('F14').expand(DOWN).is_not_blank()
 #savepreviewhtml(observations)
 dimensions = [
     HDimConst('Unit', 'Number of Cases'),
-    HDimConst('Period', '2007-2008'),
+    HDimConst('Period', 'government-year/2007-2008'),
     HDimConst('Guardianship', 'Local Authority'),
-    HDimConst('Status', 'continuing cases'),
+    HDimConst('Status', 'Cases continuing at end of year'),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
     HDim(localAuthorityName, 'Local authority name', DIRECTLY, LEFT),
@@ -59,9 +59,9 @@ observations_17_18 = tab.excel_ref('M14').expand(DOWN).is_not_blank()
 #savepreviewhtml(observations)
 dimensions = [
     HDimConst('Unit', 'Number of Cases'),
-    HDimConst('Period', '2017-2018'),
+    HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
-    HDimConst('Status', 'continuing cases'),
+    HDimConst('Status', 'Cases continuing at end of year'),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
     HDim(localAuthorityName, 'Local authority name', DIRECTLY, LEFT),
@@ -74,7 +74,6 @@ table_17_18 = c2.topandas()
 
 new_table = pd.concat([table_07_08, table_17_18]).fillna('')
 
-# +
 #Tidy up
 new_table['DATAMARKER'].replace('*', 'Below-3', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
@@ -89,10 +88,15 @@ new_table['Status'] = new_table['Status'].map(
 #new_table
 tidy = new_table[['Period','Guardianship', 'Status','ONS area code','Local authority code','Local authority name'
                   ,'Region name','Value','DATAMARKER', 'Unit', 'Median3 Length Of Continuing Cases (months)']]
-
-
-# -
 tidy
 
+# +
+destinationFolder = Path('out')
+destinationFolder.mkdir(exist_ok=True, parents=True)
 
+TITLE = 'Duration of continuing cases of guardianship under the Mental Health Act 1983 by region and local authority 2007-08 to 2017-18'
+OBS_ID = pathify(TITLE)
+GROUP_ID = 'NHS-guardianship-mental-health-act'
+
+tidy.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = False)
 
