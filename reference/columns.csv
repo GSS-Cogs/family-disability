@@ -67,7 +67,7 @@ Directly standardised rate,directly_standardised_rate,qb:measure,http://gss-data
 Indirectly standardised rate,indirectly_standardised_rate,qb:measure,http://gss-data.org.uk/def/measure/indirectly-standardised-rate,,number,,,
 Indirectly standardised ratio,indirectly_standardised_ratio,qb:measure,http://gss-data.org.uk/def/measure/indirectly-standardised-ratio,,number,,,
 PHE Sex,phe_sex,qb:dimension,http://gss-data.org.uk/def/dimension/phe-sex,http://gss-data.org.uk/def/concept/phe-sex/{phe_sex},string,slugize,,http://gss-data.org.uk/def/classes/phe-sex/phe_sex
-DWP Age Group,dwp_age_group,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-age-group,http://gss-data.org.uk/def/concept/dwp-age-group/{dwp_age_group},string,slugize,,http://gss-data.org.uk/def/classes/disability/dwp-age-group
+DWP Age Group,dwp_age_group,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-age-group,http://gss-data.org.uk/def/concept/dwp-age-group/{dwp_age_group},string,slugize,,
 ASCOF Measure Code,ascof_measure_code,qb:dimension,http://gss-data.org.uk/def/dimension/ascof_measure_code,http://gss-data.org.uk/def/concept/ascof_measure_code/{ascof_measure_code},string,slugize,,
 Disaggregation Level,disaggregation_level,qb:dimension,http://gss-data.org.uk/def/dimension/disaggregation_level,http://gss-data.org.uk/def/concept/disaggregation_level/{disaggregation_level},string,slugize,,
 Measure Group,measure_group,qb:dimension,http://gss-data.org.uk/def/dimension/measure_group,http://gss-data.org.uk/def/concept/measure_group/{measure_group},string,slugize,,
