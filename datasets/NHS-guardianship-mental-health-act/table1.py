@@ -47,7 +47,6 @@ totals = year.fill(DOWN).is_not_blank() - section.expand(RIGHT) - guardianship.e
 #by status
 dimensions = [
                HDim(year, 'Period', CLOSEST, LEFT), 
-               HDimConst('Period Duration', '1 April to 31 March'),
                HDim(status, 'Status', CLOSEST, ABOVE),  
         ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -57,7 +56,6 @@ status_table = c1.topandas()
 section_observations = year.fill(DOWN).is_not_blank() - totals - guardianship.expand(RIGHT)
 dimensions = [
                HDim(year, 'Period', CLOSEST, LEFT), 
-               HDimConst('Period Duration', '1 April to 31 March'),
                HDim(section, 'Section', DIRECTLY, LEFT)
         ]
 c2 = ConversionSegment(section_observations, dimensions, processTIMEUNIT=True)
@@ -67,7 +65,6 @@ section_table = c2.topandas()
 guardianship_observations = year.fill(DOWN).is_not_blank() - totals - section_observations
 dimensions = [
                HDim(year, 'Period', CLOSEST, LEFT), 
-               HDimConst('Period Duration', '1 April to 31 March'),
                HDim(guardianship, 'Guardianship', DIRECTLY, LEFT)
         ]
 c3 = ConversionSegment(guardianship_observations, dimensions, processTIMEUNIT=True)
@@ -88,7 +85,6 @@ def right(s, amount):
 # +
 new_table['DATAMARKER'].replace('*', 'Below-3', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-new_table['Period Duration'] = new_table['Period Duration'].map(lambda x: pathify(x))
 
 new_table = new_table.replace({'Guardianship' : {
     '      Local Authority' : 'Local Authority',
@@ -110,7 +106,7 @@ new_table = new_table.fillna('')
 
 # -
 
-tidy = new_table[['Period', 'Period Duration', 'Status', 'Guardianship','Section', 'Value', 'DATAMARKER']]
+tidy = new_table[['Period', 'Status', 'Guardianship','Section', 'Value', 'DATAMARKER']]
 tidy
 
 # +

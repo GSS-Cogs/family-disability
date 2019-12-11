@@ -48,7 +48,6 @@ observations = gender.fill(DOWN).is_not_blank() - section.expand(RIGHT) - guardi
 #by status
 dimensions = [
                HDim(year, 'Period', CLOSEST, LEFT), 
-               HDimConst('Period Duration', '1 April to 31 March'),
                HDim(gender, 'Sex', DIRECTLY, ABOVE),
                HDim(status, 'Status', CLOSEST, ABOVE),  
         ]
@@ -60,7 +59,6 @@ totals = gender.fill(DOWN).is_not_blank() - section.expand(RIGHT) - guardianship
 section_observations = gender.fill(DOWN).is_not_blank() - totals - guardianship.expand(RIGHT)
 dimensions = [
                HDim(year, 'Period', CLOSEST, LEFT), 
-               HDimConst('Period Duration', '1 April to 31 March'),
                HDim(gender, 'Sex', DIRECTLY, ABOVE),
                HDim(section, 'Section', DIRECTLY, LEFT)
         ]
@@ -71,7 +69,6 @@ section_table = c2.topandas()
 guardianship_observations = gender.fill(DOWN).is_not_blank() - totals - section_observations
 dimensions = [
                HDim(year, 'Period', CLOSEST, LEFT), 
-               HDimConst('Period Duration', '1 April to 31 March'),
                HDim(gender, 'Sex', DIRECTLY, ABOVE),
                HDim(guardianship, 'Guardianship', DIRECTLY, LEFT)
         ]
@@ -93,7 +90,6 @@ def right(s, amount):
 # +
 new_table['DATAMARKER'].replace('*', 'Below-3', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-new_table['Period Duration'] = new_table['Period Duration'].map(lambda x: pathify(x))
 
 new_table = new_table.replace({'Guardianship' : {
     '      Local Authority' : 'Local Authority',
@@ -114,7 +110,7 @@ new_table = new_table.fillna('')
 
 # -
 
-tidy = new_table[['Period', 'Period Duration', 'Sex', 'Status', 'Guardianship','Section', 'Value', 'DATAMARKER']]
+tidy = new_table[['Period', 'Sex', 'Status', 'Guardianship','Section', 'Value', 'DATAMARKER']]
 tidy
 
 # +

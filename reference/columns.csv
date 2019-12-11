@@ -72,3 +72,8 @@ ASCOF Measure Code,ascof_measure_code,qb:dimension,http://gss-data.org.uk/def/di
 Disaggregation Level,disaggregation_level,qb:dimension,http://gss-data.org.uk/def/dimension/disaggregation_level,http://gss-data.org.uk/def/concept/disaggregation_level/{disaggregation_level},string,slugize,,
 Measure Group,measure_group,qb:dimension,http://gss-data.org.uk/def/dimension/measure_group,http://gss-data.org.uk/def/concept/measure_group/{measure_group},string,slugize,,
 Outcome,outcome,qb:measure,http://gss-data.org.uk/def/measure/outcome,,string,,,
+Status,status,qb:dimension,http://gss-data.org.uk/def/dimension/status,http://gss-data.org.uk/def/concept/status/{status},string,,,http://gss-data.org.uk/def/classes/status/status
+Guardianship,guardianship,qb:dimension,http://gss-data.org.uk/def/dimension/guardianship,http://gss-data.org.uk/def/concept/guardianship/{guardianship},string,,,http://gss-data.org.uk/def/classes/guardianship/guardianship
+Section,section,qb:dimension,http://gss-data.org.uk/def/dimension/section,http://gss-data.org.uk/def/concept/section/{section},string,,,http://gss-data.org.uk/def/classes/section/section
+Section,section,qb:dimension,http://gss-data.org.uk/def/dimension/section,http://gss-data.org.uk/def/concept/section/{section},string,,,http://gss-data.org.uk/def/classes/section/section
+Region,region,qb:dimension,http://gss-data.org.uk/def/dimension/region,http://gss-data.org.uk/def/concept/region/{region},string,,,http://gss-data.org.uk/def/classes/region/region

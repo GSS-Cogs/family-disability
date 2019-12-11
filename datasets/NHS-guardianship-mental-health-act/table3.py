@@ -35,7 +35,6 @@ observations = caseStstus.fill(DOWN).is_not_blank()
 dimensions = [
     HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Guardianship', 'Local Authority'),
-    HDimConst('Period Duration', '1 April to 31 March'),
     HDim(region, 'Region', DIRECTLY, LEFT),
     HDim(caseStstus, 'Status', DIRECTLY, ABOVE) 
 ]
@@ -52,7 +51,6 @@ observations = caseStstus.fill(DOWN).is_not_blank()
 dimensions = [
     HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
-    HDimConst('Period Duration', '1 April to 31 March'),
     HDim(region, 'Region', DIRECTLY, LEFT),
     HDim(caseStstus, 'Status', DIRECTLY, ABOVE) 
 ]
@@ -71,7 +69,7 @@ new_table['Status'] = new_table['Status'].map(
     lambda x: pathify(x))
 new_table
 
-tidy = new_table[['Period', 'Period Duration', 'Guardianship', 'Region', 'Status', 'Value']]
+tidy = new_table[['Period', 'Guardianship', 'Region', 'Status', 'Value']]
 tidy
 
 # +
