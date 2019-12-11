@@ -38,13 +38,16 @@ Total State Funded Primary Secondary And Special Schools, total-state-funded-pri
 Total State Funded Primary State Funded Secondary And Special Schools, total-state-funded-primary-state-funded-secondary-and-special-schools,all,37
 Number Of State Funded Special Schools, number-of-state-funded-special-schools,all,38
 Number Of Non Maintained Special Schools,number-of-non-maintained-special-schools,all,39
-State Funded Special Schools Non Maintained Special Schools,state-funded-special-schools,all,40
+State Funded Special Schools,state-funded-special-schools,all,40
 Non Maintained Special Schools,non-maintained-special-schools,all,41
 All Special Schools,all-special-schools,all,42
 Primary Schools,primary-schools,all,43
 Secondary Schools,secondary-schools,all,44
 Primary and Secondary Schools ,primary-and-secondary-schools,all,45
-,,,
-,,,
-,,,
-,,,
+Total,total,all,46
+Local Authority All Schools,local-authority-all-schools,all,47
+Local Authority Primary Schools,local-authority-primary-schools,all,48
+Local Authority Secondary Schools,local-authority-secondary-schools,all,49
+Local Authority Special Schools,local-authority-special-schools,all,50
+Local Authority State Funded Primary Schools,local-authority-state-funded-primary-schools,all,51
+Local Authority State Funded Secondary Schools,local-authority-state-funded-secondary-schools,all,52

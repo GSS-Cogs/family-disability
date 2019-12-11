@@ -31,7 +31,7 @@ observations = geography.shift(3,0).fill(RIGHT).is_not_blank().is_not_whitespace
 Dimensions = [
             HDim(geography,'Geography', CLOSEST,ABOVE),
             HDim(Year,'Period', CLOSEST,LEFT),
-            HDimConst('Education provider','all-schools'),
+            HDimConst('Education provider','Local Authority all schools'),
             HDimConst('Unit','children'),  
             HDimConst('Measure Type','Count'),
             HDim(typeofprovision, 'Special need type', DIRECTLY, ABOVE)

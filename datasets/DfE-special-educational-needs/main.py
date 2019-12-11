@@ -109,9 +109,6 @@ next_table['Dfe-Sex'] = next_table['Dfe-Sex'].map(
         }.get(x, x))
 
 next_table['Special Education Provider'] = next_table['Special Education Provider'].apply(pathify)
-next_table['Special Education Provider'] = next_table['Special Education Provider'].map(
-    lambda x: { 'total' : 'all-schools'     
-        }.get(x, x))
 
 next_table['Special Education Need Type'] = next_table['Special Education Need Type'].str.rstrip('()24569')
 next_table['Special Education Need Type'] = next_table['Special Education Need Type'].apply(pathify)
