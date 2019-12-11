@@ -33,7 +33,7 @@ caseStstus = tab.excel_ref('B12').expand(RIGHT).is_not_blank() - tab.excel_ref('
 caseStstus = caseStstus - removePercentage1 - removePercentage2
 observations = caseStstus.fill(DOWN).is_not_blank()
 dimensions = [
-    HDimConst('Period', '2016-17'),
+    HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Guardianship', 'Local Authority'),
     HDimConst('Period Duration', '1 April to 31 March'),
     HDim(region, 'Region', DIRECTLY, LEFT),
@@ -50,7 +50,7 @@ caseStstus = tab.excel_ref('W12').expand(RIGHT).is_not_blank() - tab.excel_ref('
 caseStstus = caseStstus - removePercentage1 - removePercentage2
 observations = caseStstus.fill(DOWN).is_not_blank()
 dimensions = [
-    HDimConst('Period', '2017-18'),
+    HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
     HDimConst('Period Duration', '1 April to 31 March'),
     HDim(region, 'Region', DIRECTLY, LEFT),
