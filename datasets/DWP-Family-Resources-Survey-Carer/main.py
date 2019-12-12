@@ -407,12 +407,12 @@ def extract_sheet_5_10(tab, headingG, yrRange, ageH):
         col3 = tab.excel_ref('C' + str(rw - 1)).expand(RIGHT).is_not_blank()
         col4 = tab.excel_ref('C' + str(rw - 2)).expand(RIGHT).is_not_blank()
         heading = 'Source of Income'
-
+        subHeading = 'DWP FRS People'
         Dimensions = [
             HDimConst(yrRange,yrStr2),
             HDim(col1,heading, DIRECTLY, LEFT),
             HDim(col3,headingG, CLOSEST, LEFT),
-            HDim(col4,'People', CLOSEST, LEFT),
+            HDim(col4,subHeading, CLOSEST, LEFT),
             HDimConst('Unit','%')
             ]
         tbl = ConversionSegment(col2, Dimensions, processTIMEUNIT=True)
@@ -421,24 +421,25 @@ def extract_sheet_5_10(tab, headingG, yrRange, ageH):
         tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point
         tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz
         tbl = tbl[~tbl[heading].str.contains('Sample')] # Remove the Sample Size Rows from the main dataset
-        tbl = pd.merge(tbl, tblSS, on=[headingG, 'People'])
+        tbl = pd.merge(tbl, tblSS, on=[headingG, subHeading])
         
         if 'DATAMARKER_x' not in tbl.columns:
             tbl['DATAMARKER_x'] = ''
         
         #### Rename Columns
-        tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER','OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'People_x':'People', 'OBS_y':'Sample Size'})
+        tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER','OBS_x':'Value',yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, subHeading + '_x':subHeading, 'OBS_y':'Sample Size'})
         tbl['Measure Type'] = 'People receiving care by main source of total weekly household income and gender'
-        tbl = tbl[[yrRange, heading, 'People', headingG, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
+        tbl = tbl[[yrRange, heading, subHeading, headingG, 'Sample Size', 'Value', 'Unit', 'DATAMARKER']]
 
         # Rename the items with a notes number attached
         tbl[heading][tbl[heading] == 'State Pension plus any IS/PC2,3'] = 'State Pension plus any IS-PC'
         tbl[heading][tbl[heading] == 'Non-state pensions4'] = 'Non-state pensions'
         tbl[heading][tbl[heading] == 'Disability benefits5'] = 'Disability benefits'
         tbl[heading][tbl[heading] == 'Other benefits6,7'] = 'Other benefits'
-        tbl['People'] = tbl['People'].str.strip()
+        tbl[subHeading] = tbl[subHeading].str.strip()
            
-        tbl[heading] = tbl[heading].apply(pathify)    
+        tbl[heading] = tbl[heading].apply(pathify)
+        tbl[subHeading] = tbl[subHeading].apply(pathify)
         tbl['Unit'] = 'people-receiving-care'
         tbl['Measure Type'] = mainHeading
         return tbl
@@ -501,7 +502,7 @@ tbl4['Employment Type'] = tbl4['Employment Type'].str.replace('/', '-', regex=Tr
 tbl5['Source of Income'] = tbl5['Source of Income'].str.replace('/', '-', regex=True)
 tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('ps', '', regex=True) # ££££££££
 tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('.', '-', regex=True) # replce the .99 with -99
-#tbl4
+tbl10
 
 # +
 #### Set up the folder path for the output files
