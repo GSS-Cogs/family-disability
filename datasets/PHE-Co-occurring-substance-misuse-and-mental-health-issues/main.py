@@ -304,7 +304,12 @@ import os
 all_data = pd.read_csv("all_data.csv")
 all_dates = []
 
+count = 1
 for cat in list_of_categories:
+    
+    # Skip counts of 2, as its's being used in '@prefix ns2: <urn:x-rdflib:>'
+    if count == 2:
+        count+= 1
     
     fp = "out/obs_{}.csv".format(pathify_label(cat))
     df = pd.read_csv(fp)
@@ -339,13 +344,14 @@ for cat in list_of_categories:
     lines_for_new_trig = []
     with open("template-trig.txt", "r") as f:
         for line in f:
-            
+
             line = line.replace("<ISSUED_DATETIME_REPLACE_ME>", issued_date)
             line = line.replace("<MODIFIED_DATETIME_REPLACE_ME>", last_modified)
             line = line.replace("<TITLE_REPLACE_ME>", title)
             line = line.replace("DATASET_URL_REPLACE_ME", dataset_url)
             line = line.replace("GRAPH_URL_REPLACE_ME", dataset_url.replace("/data/", "/graph/"))
             line = line.replace("<LABEL_REPLACE_ME>", title)
+            line = line.replace("<DATASET_COUNT_REPLACE_ME>", str(count))
                 
             lines_for_new_trig.append(line)
             
@@ -353,6 +359,9 @@ for cat in list_of_categories:
         
         for line in lines_for_new_trig:
             f.write(line)
+            
+    # Use a counter to unique match dataset and metadata identifier ns1, ns2 etc
+    count+=1
     
 # -
 

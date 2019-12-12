@@ -2,7 +2,7 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix gdp: <http://gss-data.org.uk/def/gdp#> .
 @prefix gov: <https://www.gov.uk/government/organisations/> .
-@prefix ns1: <GRAPH_URL_REPLACE_ME/> .
+@prefix ns<DATASET_COUNT_REPLACE_ME>: <GRAPH_URL_REPLACE_ME/> .
 @prefix ns2: <urn:x-rdflib:> .
 @prefix pmd: <http://publishmydata.com/def/dataset#> .
 @prefix qb: <http://purl.org/linked-data/cube#> .
@@ -14,7 +14,7 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ns1:metadata {
+ns<DATASET_COUNT_REPLACE_ME>:metadata {
     <DATASET_URL_REPLACE_ME> a pmd:Dataset,
             pmd:LinkedDataset,
             qb:DataSet,
