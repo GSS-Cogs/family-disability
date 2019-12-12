@@ -27,7 +27,7 @@ ns1:metadata {
         dct:issued "<ISSUED_DATETIME_REPLACE_ME>"^^xsd:dateTime ;
         dct:license <http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/> ;
         dct:modified "<MODIFIED_DATETIME_REPLACE_ME>"^^xsd:dateTime ;
-        dct:publisher gov:gov:public-health-england ;
+        dct:publisher gov:public-health-england ;
         dct:title "<TITLE_REPLACE_ME>"@en ;
         void:sparqlEndpoint <http://gss-data.org.uk/sparql> ;
         dcat:landingPage <https://fingertips.phe.org.uk/profile-group/mental-health/profile/drugsandmentalhealth> .
