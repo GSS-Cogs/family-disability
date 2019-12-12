@@ -565,7 +565,7 @@ for t in tblSet:
     if 'Value' in t.columns:
         t['Value'][t['Value'] == ''] = '0'
     
-    t = t.drop(columns=['Unit'])
+    #t = t.drop(columns=['Unit'])
     t['Marker'] = t['Marker'].str.replace(' ', '-')
     
     fleNme = 'observations_5_' + str(i) + '.csv'
