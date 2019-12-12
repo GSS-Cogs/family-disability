@@ -572,7 +572,7 @@ for t in tblSet:
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
     
     #scraper.set_dataset_id(f'disability/dwp-family-resources-survey-carer/observations_5_{i}')
-    scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer-observations_5_{i}/')
+    scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer/observations_5_{i}/')
     #scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer')
     
     scraper.dataset.family = 'disability'
