@@ -248,7 +248,7 @@ for cat in tidy_sheet["Category Type"].unique():
     
     temp_sheet = temp_sheet.drop_duplicates()
     
-    out_path = out / "obs_{}.csv".format(cat)
+    out_path = out / "{}.csv".format(cat)
     temp_sheet.to_csv(out_path, index = False)
 
 # -
@@ -311,7 +311,7 @@ for cat in list_of_categories:
     if count == 2:
         count+= 1
     
-    fp = "out/obs_{}.csv".format(pathify_label(cat))
+    fp = "out/{}.csv".format(pathify_label(cat))
     df = pd.read_csv(fp)
     
     # Get the release/modified date of every indicator in this obs file
@@ -374,7 +374,7 @@ for cat in list_of_categories:
 
 for cat in list_of_categories:
     
-    fp = "out/obs_{}.csv".format(pathify_label(cat))
+    fp = "out/{}.csv".format(pathify_label(cat))
     df = pd.read_csv(fp)
 
     schema = {
@@ -444,3 +444,6 @@ for cat in list_of_categories:
     with open(str(fp)+"-schema.json", "w") as f:
         json.dump(schema, f)
     
+# -
+
+
