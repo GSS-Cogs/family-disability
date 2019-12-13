@@ -42,4 +42,9 @@ new_table['Value'] = new_table['Value'].astype(int)
 new_table['Age']  = 'All'
 new_table['Sex']  = 'All'
 new_table['Special support type'] = new_table['Special support type'].str.rstrip('34() ')
+new_table['Special support type'] = new_table['Special support type'].map(
+                                        lambda x: {
+                                            'Classified' : 'Classified ethnic group', 
+                                            'Unclassified' : 'Unclassified ethnic group',
+                                            'Mixed' : 'Mixed ethnic group'}.get(x, x))
 new_table = new_table [['Geography','Period','Education provider','Special support type', 'Special need type','Age','Sex','Unit','Value','Measure Type']]
