@@ -451,10 +451,10 @@ def changeDataMarkerValues(tbl):
     try:
         colName = 'DATAMARKER'
         if colName in tbl.columns:
-            tbl[colName][tbl[colName] == '0'] = 'Nil none recorded in the sample'
-            tbl[colName][tbl[colName] == '-'] = 'Negligible less than 0-5 percent or 0-1 million'
-            tbl[colName][tbl[colName] == '.'] = 'Not applicable'
-            tbl[colName][tbl[colName] == '..'] = 'Not available due to small sample size fewer than 100'
+            tbl[colName][tbl[colName] == '0'] = 'nil-none-recorded-in-the-sample'
+            tbl[colName][tbl[colName] == '-'] = 'negligible-less-than-0-5-percent-or-0-1-million'
+            tbl[colName][tbl[colName] == '.'] = 'not-applicable'
+            tbl[colName][tbl[colName] == '..'] = 'not-available-due-to-small-sample-size-fewer-than-100'
             
         tbl = tbl.rename(columns={colName:'Marker'})
         return tbl
