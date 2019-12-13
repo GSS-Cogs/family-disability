@@ -6,9 +6,9 @@ Age,age,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#age,http://
 Household Disability Status,household_disability_status,qb:dimension,http://gss-data.org.uk/def/dimension/household-disability-status,http://gss-data.org.uk/def/concept/household-disability-status/{household_disability_status},string,slugize,,http://gss-data.org.uk/def/classes/household-disability-status/Household_disability_status
 Workless Household Type,workless_household_type,qb:dimension,http://gss-data.org.uk/def/dimension/workless-household-type,http://gss-data.org.uk/def/concept/workless-household-type/{workless_household_type},string,slugize,,http://gss-data.org.uk/def/classes/workless-household-type/workless-household-type
 Unit,unit,qb:attribute,http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure,http://gss-data.org.uk/def/concept/measurement-units/{unit},string,unitize,,
+Sample Size,sample_size,qb:attribute,http://gss-data.org.uk/def/attribute/sample-size,http://gss-data.org.uk/def/concept/sample-size/{sample_size},number,,,
 Value,value,,http://gss-data.org.uk/def/measure/{measure_type},,number,,,
 Severity,severity,qb:dimension,http://gss-data.org.uk/def/dimension/severity,http://gss-data.org.uk/def/concept/severity/{severity},string,slugize,,
-Sample Size,sample_size,qb:attribute,http://gss-data.org.uk/def/attribute/sample-size,,number,,,
 Hours per Week,hours_per_week,qb:dimension,http://gss-data.org.uk/def/dimension/hours-per-week,http://gss-data.org.uk/def/concept/hours-per-week/{hours_per_week},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/hours-per-week
 FRS Units,frs_units,qb:dimension,http://gss-data.org.uk/def/dimension/frs-units,http://gss-data.org.uk/def/concept/frs-units/{frs_units},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/frs-units
 Employment Status,employment_status,qb:dimension,http://gss-data.org.uk/def/dimension/employment-status,http://gss-data.org.uk/def/concept/employment-status/{employment_status},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/employment-status
