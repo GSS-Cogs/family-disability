@@ -43,7 +43,7 @@ dimensions = [
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
     HDim(localAuthorityName, 'Local authority name', DIRECTLY, LEFT),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
-    HDim(medianOfContinuingCases, 'Median3 Length Of Continuing Cases (months)', DIRECTLY, RIGHT)
+    HDim(medianOfContinuingCases, 'Median Length Of Continuing Cases (months)', DIRECTLY, RIGHT)
 ]
 c1 = ConversionSegment(observations_08_09, dimensions, processTIMEUNIT=True)
 #savepreviewhtml(c1, fname="Preview.html")
@@ -66,7 +66,7 @@ dimensions = [
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
     HDim(localAuthorityName, 'Local authority name', DIRECTLY, LEFT),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
-    HDim(medianOfContinuingCases, 'Median3 Length Of Continuing Cases (months)', DIRECTLY, RIGHT)
+    HDim(medianOfContinuingCases, 'Median Length Of Continuing Cases (months)', DIRECTLY, RIGHT)
 ]
 c2 = ConversionSegment(observations_17_18, dimensions, processTIMEUNIT=True)
 #savepreviewhtml(c2, fname="Preview.html")
@@ -87,7 +87,7 @@ new_table['Status'] = new_table['Status'].map(
     lambda x: pathify(x))
 #new_table
 tidy = new_table[['Period','Guardianship', 'Status','ONS area code','Local authority code','Local authority name'
-                  ,'Region name','Value','DATAMARKER', 'Unit', 'Median3 Length Of Continuing Cases (months)']]
+                  ,'Region name','Value','DATAMARKER', 'Unit', 'Median Length Of Continuing Cases (months)']]
 tidy
 
 # +
