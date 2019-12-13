@@ -15,7 +15,15 @@ import dateutil.parser
 from pprint import pprint
 from datetime import datetime
 
-def get_data_by_domain(url):
+def write_data_for_profile(url):
+    """
+    Write all data for a domain, plus Measure Type, Standard Population and Unit of Measure to all_data.csv
+    Also writes the domain to that csv.
+    
+    Additionally writes a metadata_for_profile.csv
+    
+    NOTE: uses whatever geography is in the url, kinda arbitrary.
+    """
     
     # get the profile_key out of the url
     group_key = url.split("/profile/")[1].split("/")[0]
@@ -28,12 +36,12 @@ def get_data_by_domain(url):
     
     # For each domain within this profile
     all_indicator_dataframes = []
-    for i, domain in enumerate(profile[0]["GroupIds"]):
+    for i, group in enumerate(profile[0]["GroupIds"]):
         
         # Get the indicator metadata for the domain
-        r = requests.get("https://fingertips.phe.org.uk/api/indicator_metadata/by_group_id?group_ids=" + str(domain))
+        r = requests.get("https://fingertips.phe.org.uk/api/indicator_metadata/by_group_id?group_ids=" + str(group))
         if r.status_code != 200:
-            raise ValueError("Aborting, unable to acquire domain metadata for domain:" + str(domain))
+            raise ValueError("Aborting, unable to acquire domain metadata for domain:" + str(group))
         
         indicator_metadata = r.json()
         
@@ -42,13 +50,13 @@ def get_data_by_domain(url):
         indicator_data = ftp.get_data_by_indicator_ids(indicators, area_type_id)
 
         # get domain name as a string
-        r2 = requests.get("https://fingertips.phe.org.uk/api/group_metadata?group_ids=" + str(domain))
+        r2 = requests.get("https://fingertips.phe.org.uk/api/group_metadata?group_ids=" + str(group))
         if r2.status_code != 200:
-            raise ValueError("Aborting. Cant get domain level data for: " + str(domain))
-        domain_name = r2.json()[0]["Name"]
+            raise ValueError("Aborting. Cant get domain level data for: " + str(group))
+        group_name = r2.json()[0]["Name"]
         
         # attach the domain name to the indicator data
-        indicator_data["Domain"] = domain_name
+        indicator_data["Group"] = group_name
         all_indicator_dataframes.append(indicator_data)
             
     # create a dataframe containing all profile level metadata
@@ -72,7 +80,7 @@ def get_data_by_domain(url):
     # We're just gonna dump to csv for now, as it saves rerunning this slow bit after local restarts
     data.to_csv("all_data.csv", index=False)
     
-get_data_by_domain("https://fingertips.phe.org.uk/profile-group/mental-health/profile/drugsandmentalhealth/data#page/0/gid/1938132935/pat/6/par/E12000006/ati/102/are/E06000055")
+write_data_for_profile("https://fingertips.phe.org.uk/profile-group/mental-health/profile/drugsandmentalhealth/data#page/0/gid/1938132935/pat/6/par/E12000006/ati/102/are/E06000055")
 
 # -
 
@@ -98,8 +106,7 @@ def timeify(cell):
                          "with a length of either 4 or 7 characters".format(cell))
      
     
-# TODO - probably remove this since pathify_label and make_notation look like the same thing :)
-# TODO - we can proabbly replace both with the actual pathify, give it a shot
+# TODO - we can probably remove this since pathify_label and make_notation look like the same thing
 def pathify_label(value):
     """ As it says, change into something we can use for an output file name """
     
@@ -138,6 +145,8 @@ def make_notation(value):
 
         return value.rstrip("-").lstrip("-").replace("--", "-")
     
+
+
 # -
 
 # # Clean the data
@@ -146,21 +155,12 @@ def make_notation(value):
 
 # +
 
-
 # for when we need to fill some blanks
 UNSPECIFIED_TREND = "not-known"
 UNSPECIFIED_STAT_POP = "not-applicable"
 
 # load the data
 all_data = pd.read_csv("all_data.csv")
-
-#id_sheet = pd.DataFrame()
-#id_sheet["Label"] = all_data["Indicator Name"]
-#id_sheet["Notation"] = id_sheet["Label"].apply(make_notation)
-#id_sheet["Parent Notation"] = ""
-#id_sheet["Sort Priority"] = ""
-#id_sheet = id_sheet.drop_duplicates()
-#id_sheet.to_csv("phe-indicator.csv", index=False)
 
 # Create the principle dataframe of everything
 tidy_sheet = pd.DataFrame()
@@ -176,6 +176,7 @@ tidy_sheet["Category Type"] = all_data["Category Type"].astype(str).map(lambda x
 tidy_sheet["Category"] = all_data["Category"].astype(str).apply(make_notation)
 tidy_sheet["PHE Standard Population"] = all_data["Standard population/values"].astype(str).apply(make_notation)
 tidy_sheet["Measure Type"] = all_data["Measure Type"]
+tidy_sheet["PHE Group"] = all_data["Group"].apply(make_notation)
 
 # Get rid of unsorted nan values
 # TODO - there's a function for this that I can't remember
@@ -204,10 +205,6 @@ tidy_sheet["Measure Type"][tidy_sheet["Measure Type"] == "Proportion"] = "Percen
 tidy_sheet["Category Type"] = tidy_sheet["Category Type"].astype(str).map(lambda x: x.replace("/", ""))
 
 tidy_sheet.to_csv("all_but_tidied.csv", index=False)
-
-c = tidy_sheet["Category Type"].unique()
-
-[pathify(x) for x in c]
 # -
 # # Split the data
 #
@@ -256,7 +253,11 @@ for cat in tidy_sheet["Category Type"].unique():
 
 # # TODO - replace
 
+# +
 # dictionary mapping in-csv column names to the notation field in columns.csv..... ewwwwww
+
+# TODO - nasty hack as I was puzzling through this, what we SHOULD do, is get some dictionaries of Label, Notation, 
+# Pathified-Label early on for all potential columns and just refer to as needed.
 notation_lookup = {
     "Indicator": "indicator",
     "Area": "area",
@@ -283,8 +284,11 @@ notation_lookup = {
     'Sexuality - 5 categories': 'sexuality-5-categories'.replace("-", "_"),
     'LSOA11 deprivation deciles in England (IMD2015)': 'lsoa11-deprivation-deciles-in-england-imd2015'.replace("-", "_"),
     'Value':"value",
-    "Measure Type": "measure_type"
+    "Measure Type": "measure_type",
+    "Domain": "domain",
+    "PHE Group": "phe_group"
 }
+# -
 
 # # Generate trig files
 #
@@ -294,17 +298,10 @@ notation_lookup = {
 
 import os
 
-# For each trig-per-obs-file replace the following within the template-trig.text file
-# <ISSUED_DATETIME_REPLACE_ME>
-# <MODIFIED_DATETIME_REPLACE_ME>
-# <TITLE_REPLACE_ME> , which is "Co-occurring substance misuse and mental health issues:" + category
-# <DATASET_URL_REPLACE_ME> , http://gss-data.org.uk/data/gss_data/disability/phe-co-occurring-substance-misuse-and-mental-health-issues + notation(cat)
-# <LABEL_REPLACE_ME> i.e cat but written pretty
-
 all_data = pd.read_csv("all_data.csv")
 all_dates = []
 
-count = 1
+count = 1 # can't use enumerate as ns2 is in use. Probably a cleaner way though (as per everything)
 for cat in list_of_categories:
     
     # Skip counts of 2, as its's being used in '@prefix ns2: <urn:x-rdflib:>'
