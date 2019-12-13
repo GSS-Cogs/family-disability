@@ -1,10 +1,10 @@
-﻿Label,Notation,Parent Notation,Sort Priority
+Label,Notation,Parent Notation,Sort Priority
 All,all,,1
-Pupils On Roll ,pupils-on-roll ,all,2
+Pupils On Roll ,pupils-on-roll,all,2
 Pupils With SEN,pupils-with-sen,all,3
 Pupils With Statements Or EHC Plans,pupils-with-statements-or-ehc-plans,all,4
 Pupils With SEN Without Statements Or EHC Plans,pupils-with-sen-without-statements-or-ehc-plans,all,5
-Number On Roll ,number-on-roll ,all,6
+Number On Roll ,number-on-roll,all,6
 Pupils With EHC Plan,pupils-with-ehc-plan,all,7
 Pupils On SEN Support,pupils-on-sen-support,all,8
 Total Pupils With Special Educational Needs,total-pupils-with-special-educational-needs,all,9
