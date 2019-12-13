@@ -180,5 +180,9 @@
     "rdfs:label": "DWP Age Group",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/dwp-age-group.csv"
+  }, {
+    "rdfs:label": "PHE Group",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/phe-group.csv"
   }]
 }

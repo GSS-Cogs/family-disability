@@ -36,3 +36,4 @@ PHE Age,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-age
 PHE Unit,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-unit
 PHE Sex,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-sex
 DWP Age Group,,Dimension,http://gss-data.org.uk/def/concept-scheme/dwp-age-group
+PHE Group,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-group
