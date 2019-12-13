@@ -105,7 +105,7 @@ next_table['Dfe-Age'] = next_table['Dfe-Age'].map(
         }.get(x, x))
 
 next_table['Dfe-Sex'] = next_table['Dfe-Sex'].map(
-    lambda x: { 'All' : 'T', 'Boys' :'B', 'Girls' :'G', 'Total' : 'T', 'Total(5)' :'T', 'all' :'T'        
+    lambda x: { 'All' : 'all', 'Boys' :'B', 'Girls' :'G', 'Total' : 'T', 'Total(5)' :'T'        
         }.get(x, x))
 
 next_table['Special Education Provider'] = next_table['Special Education Provider'].apply(pathify)
