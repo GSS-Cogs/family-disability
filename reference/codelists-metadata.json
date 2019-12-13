@@ -9,6 +9,10 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Employment Status"
   }, {
+    "url": "codelists/dwp-frs-people.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "DWP FRS People"
+  }, {
     "url": "codelists/employment-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Employment Type"
