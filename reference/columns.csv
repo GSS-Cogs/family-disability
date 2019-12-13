@@ -7,6 +7,7 @@ Household Disability Status,household_disability_status,qb:dimension,http://gss-
 Workless Household Type,workless_household_type,qb:dimension,http://gss-data.org.uk/def/dimension/workless-household-type,http://gss-data.org.uk/def/concept/workless-household-type/{workless_household_type},string,slugize,,http://gss-data.org.uk/def/classes/workless-household-type/workless-household-type
 Unit,unit,qb:attribute,http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure,http://gss-data.org.uk/def/concept/measurement-units/{unit},string,unitize,,
 Value,value,,http://gss-data.org.uk/def/measure/{measure_type},,number,,,
+DWP FRS People,dwp_frs_people,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-frs-people,http://gss-data.org.uk/def/concept/dwp-frs-people/{dwp_frs_people},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/dwp-frs-people
 Severity,severity,qb:dimension,http://gss-data.org.uk/def/dimension/severity,http://gss-data.org.uk/def/concept/severity/{severity},string,slugize,,
 Sample Size,sample_size,qb:attribute,http://gss-data.org.uk/def/attribute/sample-size,,number,,,
 Hours per Week,hours_per_week,qb:dimension,http://gss-data.org.uk/def/dimension/hours-per-week,http://gss-data.org.uk/def/concept/hours-per-week/{hours_per_week},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/hours-per-week
@@ -78,4 +79,3 @@ Section,section,qb:dimension,http://gss-data.org.uk/def/dimension/section,http:/
 Region,region,qb:dimension,http://gss-data.org.uk/def/dimension/region,http://gss-data.org.uk/def/concept/region/{region},string,,,http://gss-data.org.uk/def/classes/region/region
 NHS IDHCS Measure,nhs_idhcs_measure,qb:dimension,http://gss-data.org.uk/def/dimension/nhs_idhcs_measure,http://gss-data.org.uk/def/concept/nhs_idhcs_measure/{nhs_idhcs_measure},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/nhs_idhcs_measure
 NHS IDHCS Quality Service,nhs_ldhcs_quality_service,qb:dimension,http://gss-data.org.uk/def/dimension/nhs_ldhcs_quality_service,http://gss-data.org.uk/def/concept/nhs_ldhcs_quality_service/{nhs_ldhcs_quality_service},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/nhs_ldhcs_quality_service
-DWP FRS People,dwp_frs_people,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-frs-people,http://gss-data.org.uk/def/concept/dwp-frs-people/{dwp_frs_people},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/dwp-frs-people
