@@ -58,7 +58,7 @@ def write_data_for_profile(url):
         # attach the domain name to the indicator data
         indicator_data["Group"] = group_name
         all_indicator_dataframes.append(indicator_data)
-            
+
     # create a dataframe containing all profile level metadata
     metadata = ftp.get_metadata_for_profile_as_dataframe(profile[0]["Id"])
     metadata.to_csv("metadata_for_profile.csv", index=False)

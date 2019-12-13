@@ -43,4 +43,8 @@ new_table['Age']  = 'All'
 new_table['Sex']  = 'All'
 new_table['Special support type'] = new_table['Special support type'].str.rstrip('(4)')
 new_table['Special support type'] = new_table['Special support type'].str.rstrip('(4)')
+new_table['Special support type'] = new_table['Special support type'].map(
+                                        lambda x: {
+                                            'Unclassified ' : 'First language unclassifed',
+                                            'Total' : 'First language Total'}.get(x, x))
 new_table = new_table [['Geography','Period','Education provider','Special support type', 'Special need type','Age','Sex','Unit','Value','Measure Type']]
