@@ -84,6 +84,7 @@ def right(s, amount):
 
 # +
 new_table['DATAMARKER'].replace('*', 'Below-3', inplace=True)
+
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 
 new_table = new_table.replace({'Guardianship' : {
@@ -106,7 +107,9 @@ new_table = new_table.fillna('')
 
 # -
 
-tidy = new_table[['Period', 'Status', 'Guardianship','Section', 'Value', 'DATAMARKER']]
+new_table = new_table.rename(columns={'DATAMARKER':'Estimated values'})
+
+tidy = new_table[['Period', 'Status', 'Guardianship','Section', 'Value', 'Estimated values']]
 tidy
 
 # +

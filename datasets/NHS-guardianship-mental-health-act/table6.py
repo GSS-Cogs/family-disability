@@ -121,9 +121,11 @@ new_table = new_table.fillna('')
 new_table
 
 
+new_table = new_table.rename(columns={'DATAMARKER':'Estimated values'})
+
 tidy = new_table[['Period','Guardianship', 'Status', 'Duration of closed cases', 
                   'ONS area code','Local authority code','Local authority name',
-                  'Region name','Value','DATAMARKER', 'Unit', 'Measure Type']]
+                  'Region name','Value','Estimated values', 'Unit', 'Measure Type']]
 tidy
 
 # +

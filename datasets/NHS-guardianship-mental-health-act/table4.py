@@ -86,8 +86,12 @@ new_table['Region name'] = new_table['Region name'].map(
 new_table['Status'] = new_table['Status'].map(
     lambda x: pathify(x))
 #new_table
+
+
+new_table = new_table.rename(columns={'DATAMARKER':'Estimated values'})
+
 tidy = new_table[['Period','Guardianship', 'Status','ONS area code','Local authority code','Local authority name'
-                  ,'Region name','Value','DATAMARKER', 'Unit', 'Median (months)']]
+                  ,'Region name','Value','Estimated values', 'Unit', 'Median (months)']]
 tidy
 
 # +

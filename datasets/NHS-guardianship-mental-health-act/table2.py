@@ -110,7 +110,9 @@ new_table = new_table.fillna('')
 
 # -
 
-tidy = new_table[['Period', 'Sex', 'Status', 'Guardianship','Section', 'Value', 'DATAMARKER']]
+new_table = new_table.rename(columns={'DATAMARKER':'Estimated values'})
+
+tidy = new_table[['Period', 'Sex', 'Status', 'Guardianship','Section', 'Value', 'Estimated values']]
 tidy
 
 # +
