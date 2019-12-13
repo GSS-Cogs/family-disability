@@ -442,7 +442,7 @@ def extract_sheet_5_10(tab, headingG, yrRange, ageH):
         tbl[subHeading] = tbl[subHeading].apply(pathify)
         tbl['Unit'] = 'people-receiving-care'
         tbl['Measure Type'] = mainHeading
-        tbl = tbl.drop(columns=[subHeading])
+        #tbl = tbl.drop(columns=[subHeading])
         return tbl
     except Exception as e:
         return "Error for table 5_10: " + str(e)
