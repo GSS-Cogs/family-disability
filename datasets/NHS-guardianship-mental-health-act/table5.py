@@ -41,7 +41,7 @@ dimensions = [
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
-    HDim(median, 'Median Length Of Cases Closed (months)', DIRECTLY, RIGHT),
+    HDim(median, 'Median (months)', DIRECTLY, RIGHT),
 ]
 c1 = ConversionSegment(observations_16_17_all, dimensions, processTIMEUNIT=True)
 #savepreviewhtml(c1, fname="Preview.html")
@@ -63,7 +63,7 @@ dimensions = [
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
     #HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
-    HDim(median, 'Median Length Of Cases Closed (months)', DIRECTLY, RIGHT),
+    HDim(median, 'Median (months)', DIRECTLY, RIGHT),
 ]
 c2 = ConversionSegment(observations_17_18_all, dimensions, processTIMEUNIT=True)
 table_17_18_all = c2.topandas()
@@ -85,7 +85,7 @@ dimensions = [
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
     #HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
-    HDim(median, 'Median Length Of Cases Closed (months)', DIRECTLY, RIGHT),
+    HDim(median, 'Median (months)', DIRECTLY, RIGHT),
 ]
 c1 = ConversionSegment(observations_16_17_section7, dimensions, processTIMEUNIT=True)
 #savepreviewhtml(c1, fname="Preview.html")
@@ -107,7 +107,7 @@ dimensions = [
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
     #HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
-    HDim(median, 'Median Length Of Cases Closed (months)', DIRECTLY, RIGHT),
+    HDim(median, 'Median (months)', DIRECTLY, RIGHT),
 ]
 c2 = ConversionSegment(observations_17_18_section7, dimensions, processTIMEUNIT=True)
 #savepreviewhtml(c2, fname="Preview.html")
@@ -129,7 +129,7 @@ dimensions = [
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
     #HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
-    HDim(median, 'Median Length Of Cases Closed (months)', DIRECTLY, RIGHT),
+    HDim(median, 'Median (months)', DIRECTLY, RIGHT),
 ]
 c1 = ConversionSegment(observations_16_17_section37, dimensions, processTIMEUNIT=True)
 #savepreviewhtml(c1, fname="Preview.html")
@@ -151,7 +151,7 @@ dimensions = [
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
    # HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
-    HDim(median, 'Median Length Of Cases Closed (months)', DIRECTLY, RIGHT),
+    HDim(median, 'Median (months)', DIRECTLY, RIGHT),
 ]
 c2 = ConversionSegment(observations_17_18_section37, dimensions, processTIMEUNIT=True)
 #savepreviewhtml(c2, fname="Preview.html")
@@ -171,7 +171,7 @@ new_table['Status'] = new_table['Status'].map(lambda x: pathify(x))
 new_table['Section'] = new_table['Section'].map(lambda x: pathify(x))
 new_table = new_table.fillna('')
 tidy = new_table[['Period','Guardianship', 'Status','Region name', 'Section',
-                  'Duration of closed cases','Value','DATAMARKER', 'Unit', 'Median Length Of Cases Closed (months)']]
+                  'Duration of closed cases','Value','DATAMARKER', 'Unit', 'Median (months)']]
 tidy
 
 # +
