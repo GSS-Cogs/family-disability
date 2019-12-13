@@ -35,7 +35,7 @@ observations = caseStstus.fill(DOWN).is_not_blank()
 dimensions = [
     HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Guardianship', 'Local Authority'),
-    HDim(region, 'Region Name', DIRECTLY, LEFT),
+    HDim(region, 'Region name', DIRECTLY, LEFT),
     HDim(caseStstus, 'Status', DIRECTLY, ABOVE) 
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -51,7 +51,7 @@ observations = caseStstus.fill(DOWN).is_not_blank()
 dimensions = [
     HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
-    HDim(region, 'Region Name', DIRECTLY, LEFT),
+    HDim(region, 'Region name', DIRECTLY, LEFT),
     HDim(caseStstus, 'Status', DIRECTLY, ABOVE) 
 ]
 c2 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -63,13 +63,13 @@ new_table = pd.concat([table_16_17, table_17_18])
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Guardianship'] = new_table['Guardianship'].map(
     lambda x: pathify(x))
-new_table['Region Name'] = new_table['Region Name'].map(
+new_table['Region name'] = new_table['Region name'].map(
     lambda x: pathify(x))
 new_table['Status'] = new_table['Status'].map(
     lambda x: pathify(x))
 new_table
 
-tidy = new_table[['Period', 'Guardianship', 'Region Name', 'Status', 'Value']]
+tidy = new_table[['Period', 'Guardianship', 'Region name', 'Status', 'Value']]
 tidy
 
 # +

@@ -40,7 +40,7 @@ dimensions = [
     HDimConst('Status', 'cases-closed-during-year'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
-    HDim(regionName, 'Region Name', DIRECTLY, LEFT),
+    HDim(regionName, 'Region name', DIRECTLY, LEFT),
     HDim(median, 'Median Length Of Cases Closed (months)', DIRECTLY, RIGHT),
 ]
 c1 = ConversionSegment(observations_16_17_all, dimensions, processTIMEUNIT=True)
@@ -61,7 +61,7 @@ dimensions = [
     HDimConst('Status', 'cases-closed-during-year'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
-    HDim(regionName, 'Region Name', DIRECTLY, LEFT),
+    HDim(regionName, 'Region name', DIRECTLY, LEFT),
     #HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
     HDim(median, 'Median Length Of Cases Closed (months)', DIRECTLY, RIGHT),
 ]
@@ -83,7 +83,7 @@ dimensions = [
     HDimConst('Status', 'cases-closed-during-year'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
-    HDim(regionName, 'Region Name', DIRECTLY, LEFT),
+    HDim(regionName, 'Region name', DIRECTLY, LEFT),
     #HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
     HDim(median, 'Median Length Of Cases Closed (months)', DIRECTLY, RIGHT),
 ]
@@ -105,7 +105,7 @@ dimensions = [
     HDimConst('Status', 'cases-closed-during-year'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
-    HDim(regionName, 'Region Name', DIRECTLY, LEFT),
+    HDim(regionName, 'Region name', DIRECTLY, LEFT),
     #HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
     HDim(median, 'Median Length Of Cases Closed (months)', DIRECTLY, RIGHT),
 ]
@@ -127,7 +127,7 @@ dimensions = [
     HDimConst('Section', 'following-conviction-section-37'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
-    HDim(regionName, 'Region Name', DIRECTLY, LEFT),
+    HDim(regionName, 'Region name', DIRECTLY, LEFT),
     #HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
     HDim(median, 'Median Length Of Cases Closed (months)', DIRECTLY, RIGHT),
 ]
@@ -149,7 +149,7 @@ dimensions = [
     HDimConst('Section', 'following-conviction-section-37'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
-    HDim(regionName, 'Region Name', DIRECTLY, LEFT),
+    HDim(regionName, 'Region name', DIRECTLY, LEFT),
    # HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
     HDim(median, 'Median Length Of Cases Closed (months)', DIRECTLY, RIGHT),
 ]
@@ -166,11 +166,11 @@ new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Unit'] = new_table['Unit'].map(lambda x: pathify(x))
 new_table['Guardianship'] = new_table['Guardianship'].map(lambda x: pathify(x))
 new_table['Duration of closed cases'] = new_table['Duration of closed cases'].map(lambda x: pathify(x))
-new_table['Region Name'] = new_table['Region Name'].map(lambda x: pathify(x))
+new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
 new_table['Status'] = new_table['Status'].map(lambda x: pathify(x))
 new_table['Section'] = new_table['Section'].map(lambda x: pathify(x))
 new_table = new_table.fillna('')
-tidy = new_table[['Period','Guardianship', 'Status','Region Name', 'Section',
+tidy = new_table[['Period','Guardianship', 'Status','Region name', 'Section',
                   'Duration of closed cases','Value','DATAMARKER', 'Unit', 'Median Length Of Cases Closed (months)']]
 tidy
 
