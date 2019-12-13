@@ -9,10 +9,6 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Employment Status"
   }, {
-    "url": "codelists/dwp-frs-people.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "DWP FRS People"
-  }, {
     "url": "codelists/employment-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Employment Type"
@@ -64,6 +60,10 @@
     "url": "codelists/source-of-income.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Source of Income"
+  }, {
+    "url": "codelists/dwp-frs-people.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "DWP FRS People"
   }, {
     "url": "codelists/workless-household-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
