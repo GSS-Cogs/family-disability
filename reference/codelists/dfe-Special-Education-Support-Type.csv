@@ -195,8 +195,12 @@ Label,Notation,Parent Notation,Sort Priority
  Pupils With Statements Or EHC Plans Secondary Other Difficulty Or Disability  ,pupils-with-statements-or-ehc-plans-secondary-other-difficulty-or-disability,all,194
  Pupils With Statements Or EHC Plans Secondary No Secondary SEN Identified  ,pupils-with-statements-or-ehc-plans-secondary-no-secondary-sen-identified,all,195
  Pupils With Statements Or EHC Plans Secondary Total,pupils-with-statements-or-ehc-plans-secondary-total,all,196
-First language unclassifed,first-language-unclassifed,,nan
-First language Total,first-language-total,,nan
-Classified ethnic group,classified-ethnic-group,,nan
-Unclassified ethnic group,unclassified-ethnic-group,,nan
-Mixed ethnic group,mixed-ethnic-group,,nan
+First language unclassifed,first-language-unclassifed,all,197
+First language Total,first-language-total,all,198
+Classified ethnic group,classified-ethnic-group,all,199
+Unclassified ethnic group,unclassified-ethnic-group,all,200
+Mixed ethnic group,mixed-ethnic-group,all,201
+All pupils on sen support,all-pupils-on-sen-support,all,202
+Number of pupils known to be eligible for and claiming free school meals on sen support,number-of-pupils-known-to-be-eligible-for-and-claiming-free-school-meals-on-sen-support,all,203
+All pupils with sen with statements or ehc plan,all-pupils-with-sen-with-statements-or-ehc-plan,all,204
+Number of pupils known to be eligible for and claiming free school meals with sen with statements or ehc plan,number-of-pupils-known-to-be-eligible-for-and-claiming-free-school-meals-with-sen-with-statements-or-ehc-plan,all,205
