@@ -15,7 +15,6 @@
 
 # State-funded primary, secondary and special schools (1,2): Pupils with special educational needs by age (3) and gender (4,5)
 
-# +
 from gssutils import *
 scraper = Scraper('https://www.gov.uk/government/collections/statistics-special-educational-needs-sen')
 scraper.select_dataset(title=lambda x: x.startswith('Special educational needs in England'), latest=True)
@@ -24,7 +23,7 @@ tab = tabs['Table B']
 cell = tab.filter('England')
 pupils = cell.shift(0,3).fill(RIGHT).is_not_blank().is_not_whitespace()
 Age = cell.fill(DOWN).is_not_blank().is_not_whitespace() | cell.shift(1,0).fill(DOWN).is_not_blank().is_not_whitespace()
-        
+support = tab.excel_ref('B').expand(DOWN).by_index([11,36]) 
 observations1 = pupils.fill(DOWN).is_number().is_not_blank().is_not_whitespace() 
 Dimensions1 = [
             HDimConst('Geography', 'E92000001'),
@@ -33,7 +32,7 @@ Dimensions1 = [
             HDimConst('Unit','children'),  
             HDimConst('Measure Type','Count'),
             HDim(pupils, 'Special need type', DIRECTLY, ABOVE),
-            HDimConst('Special support type', 'all'),
+            HDim(support,'Special support type', CLOSEST,ABOVE),
             HDimConst('Sex','all'),
             HDim(Age, 'Age', DIRECTLY,LEFT)
 ]
