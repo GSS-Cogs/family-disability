@@ -180,5 +180,9 @@
     "rdfs:label": "DWP FRS People",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/dwp-frs-people.csv"
+  }, {
+    "rdfs:label": "PHE Group",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/phe-group.csv"
   }]
 }
