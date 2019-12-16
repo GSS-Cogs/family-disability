@@ -157,9 +157,9 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/frs-units.csv"
   }, {
-    "rdfs:label": "GSS Harmonised",
+    "rdfs:label": "LFS questionnaire GSS Harmonised post 2013",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/gss-harmonised.csv"
+    "url": "codelists/lfs_questionnaire_gss_harmonised_post_2013.csv"
   }, {
     "rdfs:label": "Economic Activity",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
@@ -169,9 +169,9 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/dwp-disability.csv"
   }, {
-    "rdfs:label": "Disability Definitions",
+    "rdfs:label": "Disability Definitions Used",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/disability-definitions.csv"
+    "url": "codelists/disability-definitions-used.csv"
   }, {
     "rdfs:label": "DWP Age Group",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
