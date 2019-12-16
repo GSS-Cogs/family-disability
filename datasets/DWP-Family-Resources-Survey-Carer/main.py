@@ -481,7 +481,7 @@ except Exception as e:
 
 yrRange = 'Period'
 gendHead = 'Sex'
-ageHead = 'Age'#'FRS Age Group'
+ageHead = 'FRS Ages'
 measType = 'Measure Type'
 
 # +
@@ -555,7 +555,7 @@ for t in tblSet:
         t[ageHead][(t[ageHead].str.contains('75'))] = '75-plus'
         t[ageHead][(t[ageHead].str.contains('85'))] = '85-plus'
         t[ageHead][(t[ageHead].str.contains('providing'))] = 'all'
-        t[ageHead][(t[ageHead] != 'all')] = 'agq/' + t[ageHead][(t[ageHead] != 'all')]
+        #t[ageHead][(t[ageHead] != 'all')] = 'agq/' + t[ageHead][(t[ageHead] != 'all')]
         #t[ageHead] = t[ageHead].apply(pathify)
     
     t = changeDataMarkerValues(t)
