@@ -192,5 +192,13 @@
     "rdfs:label": "ONS Age Range",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/ons-age-range.csv"
+  }, {
+    "rdfs:label": "NHS LDHC Measure Code",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/nhs-ldhc-measure-code.csv"
+  }, {
+    "rdfs:label": "NHS LDHC Quality Service",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/nhs-ldhc-quality-service.csv"
   }]
 }
