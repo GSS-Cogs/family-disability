@@ -170,8 +170,7 @@ new_table['GSS Harmonised'] = new_table['GSS Harmonised'].map(lambda x: pathify(
 new_table['Economic Activity'] = new_table['Economic Activity'].map(lambda x: pathify(x))
 new_table['Disability Definitions'] = new_table['Disability Definitions'].map(lambda x: pathify(x))
 new_table['Period'] = 'gregorian-interval/' + new_table['Year'] + '-' +  new_table['Month'] + '-01T00:00:00/P3M'
-new_table.rename(columns={'GSS Harmonised':'LFS questionnaire GSS Harmonised post 2013',
-                          'Disability Definitions':'Disability Definition Used'}, inplace=True)
+new_table.rename(columns={'Disability Definitions':'Disability Definition Used'}, inplace=True)
 new_table['Economic Activity'] = new_table.apply(lambda x: 'all' if 'total-aged-16-64' in x['LFS questionnaire GSS Harmonised post 2013'] else x['Economic Activity'], axis = 1)
 new_table
 
@@ -179,7 +178,7 @@ new_table
 # In[56]:
 
 
-tidy = new_table[['Period','Area','Sex','ONS Age Range','LFS questionnaire GSS Harmonised post 2013','Disability Definition Used','Economic Activity','Measure Type','Value','Unit']]
+tidy = new_table[['Period','Area','Sex','ONS Age Range','GSS Harmonised','Disability Definition Used','Economic Activity','Measure Type','Value','Unit']]
 tidy = tidy.replace({'Sex' : {
     'Men' : 'M',
     'People' : 'T',
@@ -187,7 +186,7 @@ tidy = tidy.replace({'Sex' : {
 
 tidy['Value'] = tidy['Value'].map(lambda x: int(x))
 
-tidy = tidy.replace({'LFS questionnaire GSS Harmonised post 2013' : {
+tidy = tidy.replace({'GSS Harmonised' : {
     'equality-act-core-disabled2' : 'equality-act-core-disabled',
     'harmonised-standard-definition-disabled1' : 'harmonised-standard-definition-disabled',
     'no-self-reported-ill-health3' : 'no-self-reported-ill-health',
