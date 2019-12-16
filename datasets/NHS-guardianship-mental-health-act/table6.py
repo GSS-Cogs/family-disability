@@ -34,10 +34,8 @@ regionName = tab.excel_ref('E13').expand(DOWN).is_not_blank()
 caseStatus = tab.excel_ref('F12').expand(RIGHT).is_not_blank() - tab.excel_ref('H12').expand(RIGHT)
 case_observations_16_17 = caseStatus.fill(DOWN).is_not_blank()
 dimensions = [
-    HDimConst('Unit', 'Number of Cases'),
-    HDimConst('Period', 'government-year/2016-2017'),
-    HDimConst('Guardianship', 'Local Authority'),
-    HDimConst('Measure Type', 'rounded-to-the-nearest-multiple-of-5'), 
+    HDimConst('Period', 'financial-year/2016-2017'),
+    HDimConst('Guardianship', 'Local Authority'), 
     HDim(caseStatus, 'Status', DIRECTLY, ABOVE),
     HDimConst('Duration of closed cases', ' '),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
@@ -47,14 +45,13 @@ dimensions = [
 ]
 c1 = ConversionSegment(case_observations_16_17, dimensions, processTIMEUNIT=True)
 table_16_17_Status = c1.topandas()
+table_16_17_Status
 
 duration = tab.excel_ref('I12').expand(RIGHT).is_not_blank() - tab.excel_ref('Q12').expand(RIGHT) 
 duration_observations_16_17 = duration.fill(DOWN).is_not_blank()
 dimensions = [
-    HDimConst('Unit', 'Number of Cases'),
-    HDimConst('Period', 'government-year/2016-2017'),
+    HDimConst('Period', 'financial-year/2016-2017'),
     HDimConst('Guardianship', 'Local Authority'),
-    HDimConst('Measure Type', 'rounded-to-the-nearest-multiple-of-5'),
     HDimConst('Status', 'Cases closed in  year'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
@@ -74,10 +71,8 @@ regionName = tab.excel_ref('U13').expand(DOWN).is_not_blank()
 caseStatus = tab.excel_ref('V12').expand(RIGHT).is_not_blank() - tab.excel_ref('X12').expand(RIGHT)
 case_observations_17_18 = caseStatus.fill(DOWN).is_not_blank()
 dimensions = [
-    HDimConst('Unit', 'Number of Cases'),
-    HDimConst('Period', 'government-year/2017-2018'),
+    HDimConst('Period', 'financial-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
-    HDimConst('Measure Type', 'rounded-to-the-nearest-multiple-of-5'),
     HDim(caseStatus, 'Status', DIRECTLY, ABOVE),
     HDimConst('Duration of closed cases', ' '),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
@@ -91,9 +86,7 @@ table_17_18_Status = c3.topandas()
 duration = tab.excel_ref('Y12').expand(RIGHT).is_not_blank() 
 duration_observations_17_18 = duration.fill(DOWN).is_not_blank()
 dimensions = [
-    HDimConst('Unit', 'Number of Cases'),
-    HDimConst('Period', 'government-year/2017-2018'),
-    HDimConst('Measure Type', 'rounded-to-the-nearest-multiple-of-5'),
+    HDimConst('Period', 'financial-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
     HDimConst('Status', 'Cases closed in  year'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
@@ -112,11 +105,11 @@ new_table = pd.concat([table_16_17_Status, table_16_17_Duration, table_17_18_Sta
 #Tidy up
 new_table['DATAMARKER'].replace('*', 'Below-3', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-new_table['Unit'] = new_table['Unit'].map(lambda x: pathify(x))
 new_table['Guardianship'] = new_table['Guardianship'].map(lambda x: pathify(x))
 new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
 new_table['Status'] = new_table['Status'].map(lambda x: pathify(x))
 new_table = new_table.replace({'Duration of closed cases' : {' ' : 'does-not-apply',}})
+new_table['Duration of closed cases'] = new_table['Duration of closed cases'].map(lambda x: pathify(x))
 new_table = new_table.fillna('')
 new_table
 
@@ -125,7 +118,7 @@ new_table = new_table.rename(columns={'DATAMARKER':'Estimated values'})
 
 tidy = new_table[['Period','Guardianship', 'Status', 'Duration of closed cases', 
                   'ONS area code','Local authority code','Local authority name',
-                  'Region name','Value','Estimated values', 'Unit', 'Measure Type']]
+                  'Region name','Value','Estimated values']]
 tidy
 
 # +

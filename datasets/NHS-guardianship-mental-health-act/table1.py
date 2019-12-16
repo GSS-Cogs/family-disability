@@ -89,7 +89,7 @@ new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 
 new_table = new_table.replace({'Guardianship' : {
     '      Local Authority' : 'Local Authority',
-    '      Other Person' : 'Other Person'}})
+    '       Other person' : 'Other Person'}})
 new_table['Guardianship'] = new_table['Guardianship'].fillna('all').map(lambda x: pathify(x))
 
 new_table = new_table.replace({'Status' : {
@@ -104,7 +104,6 @@ new_table['Period'] = new_table['Period'].str[:-1]
 new_table['Period'] = new_table['Period'].map(lambda x: 'government-year/' + left(x,4) +'-20' + right(x,2))
 
 new_table = new_table.fillna('')
-
 # -
 
 new_table = new_table.rename(columns={'DATAMARKER':'Estimated values'})
