@@ -504,7 +504,8 @@ tbl4['Employment Type'] = tbl4['Employment Type'].str.replace('/', '-', regex=Tr
 tbl5['Source of Income'] = tbl5['Source of Income'].str.replace('/', '-', regex=True)
 tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('ps', '', regex=True) # ££££££££
 tbl6['Net Weekly Income'] = tbl6['Net Weekly Income'].str.replace('.', '-', regex=True) # replce the .99 with -99
-tbl10
+tbl7['Person cared for'] = tbl4['Person cared for'].str.replace('/', '-', regex=True)
+#tbl10
 
 # +
 #### Set up the folder path for the output files
