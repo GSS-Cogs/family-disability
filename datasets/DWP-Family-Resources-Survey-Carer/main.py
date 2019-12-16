@@ -384,7 +384,7 @@ def extract_sheet_5_9(tab, gHeading, yrRange, ageH):
         #### Rename Columns
         tbl = tbl.rename(columns={'DATAMARKER_x':'DATAMARKER','OBS_x':'Value', yrRange + '_x':yrRange,'Unit_x':'Unit', heading + '_x':heading, 'OBS_y':'Sample Size'})
         tbl = tbl[[yrRange, ageH, heading, 'Sample Size', 'Value', 'Unit','DATAMARKER']]
-        tbl[ageH][tbl[ageH] == 'All receiving care'] = 'All'
+        tbl[ageH][tbl[ageH] == 'All receiving care'] = 'all'
         
         tbl[heading] = tbl[heading].apply(pathify)
         tbl['Unit'] = 'people-receiving-care'
