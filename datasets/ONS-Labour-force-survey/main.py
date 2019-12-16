@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[17]:
+# In[30]:
 
 
 import pandas as pd
@@ -25,7 +25,7 @@ scraper = Scraper('https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork
 scraper
 
 
-# In[18]:
+# In[31]:
 
 
 dist = scraper.distributions[0]
@@ -62,15 +62,15 @@ for tab in tabs:
             
         cell = tab.excel_ref("B5")
         
-        remove = tab.filter("Total aged 16-64: Including those who did not state their health situation").expand(DOWN)
+        #remove = tab.filter("Total aged 16-64: Including those who did not state their health situation").expand(DOWN)
     
         period = cell.shift(0,3).expand(DOWN).is_not_blank().shift(LEFT)
         
-        disability = cell.expand(RIGHT).is_not_blank() - remove
+        disability = cell.expand(RIGHT).is_not_blank() #- remove
         
         econActive = cell.shift(DOWN).expand(RIGHT).is_not_blank()
         
-        observations = period.shift(RIGHT).expand(RIGHT).is_not_blank() - remove
+        observations = period.shift(RIGHT).expand(RIGHT).is_not_blank() #- remove
         #remember to devide by 1000 to match the unit of the source data
         
         dimensions = [
@@ -79,11 +79,12 @@ for tab in tabs:
                 HDim(period, 'Month', DIRECTLY, LEFT), 
                 HDim(period, 'Year', DIRECTLY, LEFT), 
                 HDim(disability, 'GSS Harmonised', CLOSEST, LEFT),
-                HDim(econActive, 'Economic Activity', DIRECTLY, ABOVE),
+                HDim(econActive, 'Economic Activity', CLOSEST, LEFT),
                 HDimConst('Measure Type','Count'),
                 HDimConst('Unit','People'),
                 HDimConst('Disability Definitions', dd),
                 HDimConst('Area', area),
+                HDimConst('Age', '16-64')
         ]
         
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -97,9 +98,11 @@ for tab in tabs:
         if 'pre-2010' in tabName:
             dd = 'DDA pre-2010'
             area = 'K02000001'
+            age = '16-69'
         elif '2010-2013' in tabName:
             dd = 'DDA 2010-2013'
             area = 'K02000001'
+            age = '16-64'
         else:
             break
         
@@ -142,6 +145,7 @@ for tab in tabs:
                 HDimConst('Unit','People'),
                 HDimConst('Disability Definitions', dd),
                 HDimConst('Area', area),
+                HDimConst('Age', age)
         ]
         
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -152,7 +156,7 @@ for tab in tabs:
         continue
 
 
-# In[19]:
+# In[32]:
 
 
 pd.set_option('display.float_format', lambda x: '%.0f' % x)
@@ -166,13 +170,16 @@ new_table['GSS Harmonised'] = new_table['GSS Harmonised'].map(lambda x: pathify(
 new_table['Economic Activity'] = new_table['Economic Activity'].map(lambda x: pathify(x))
 new_table['Disability Definitions'] = new_table['Disability Definitions'].map(lambda x: pathify(x))
 new_table['Period'] = 'gregorian-interval/' + new_table['Year'] + '-' +  new_table['Month'] + '-01T00:00:00/P3M'
+new_table.rename(columns={'GSS Harmonised':'LFS questionnaire GSS Harmonised post 2013',
+                          'Disability Definitions':'Disability Definition Used'}, inplace=True)
+new_table['Economic Activity'] = new_table.apply(lambda x: 'All' if 'total-aged-16-64' in x['LFS questionnaire GSS Harmonised post 2013'] else x['Economic Activity'], axis = 1)
 new_table
 
 
-# In[20]:
+# In[33]:
 
 
-tidy = new_table[['Period','Area','Sex','GSS Harmonised','Disability Definitions','Economic Activity','Measure Type','Value','Unit']]
+tidy = new_table[['Period','Area','Sex','Age','LFS questionnaire GSS Harmonised post 2013','Disability Definition Used','Economic Activity','Measure Type','Value','Unit']]
 tidy = tidy.replace({'Sex' : {
     'Men' : 'M',
     'People' : 'T',
@@ -180,12 +187,12 @@ tidy = tidy.replace({'Sex' : {
 
 tidy['Value'] = tidy['Value'].map(lambda x: int(x))
 
-tidy = tidy.replace({'GSS Harmonised' : {
+tidy = tidy.replace({'LFS questionnaire GSS Harmonised post 2013' : {
     'equality-act-core-disabled2' : 'equality-act-core-disabled',
     'harmonised-standard-definition-disabled1' : 'harmonised-standard-definition-disabled',
     'no-self-reported-ill-health3' : 'no-self-reported-ill-health',
-    'people-who-do-not-meet-the-equality-act-core-definition-of-disability-excluding-those-who-did-not-state-their-health-situation-3' : 'not-equality-act-core-disabled',
-    'people-who-do-not-meet-the-harmonised-standard-definition-of-disability-excluding-those-who-did-not-state-their-health-situation-2' : 'not-harmonised-standard-definition-disabled',
+    'people-who-do-not-meet-the-equality-act-core-definition-of-disability-excluding-those-who-did-not-state-their-health-situation-3' : 'not-equality-act-core-disabled-excluding-those-not-stating-health-situation',
+    'people-who-do-not-meet-the-harmonised-standard-definition-of-disability-excluding-those-who-did-not-state-their-health-situation-2' : 'not-harmonised-disabled-definition-excluding-those-not-stating-health-situation',
     'self-reported-ill-health2' : 'self-reported-ill-health',
     'work-limiting-disabled1' : 'work-limiting-disabled',
     'all-people-with-a-long-term-health-problem-or-disability3' : 'all-people-with-a-long-term-health-problem-or-disability',
@@ -203,7 +210,7 @@ for col in tidy:
         display(tidy[col].cat.categories)
 
 
-# In[21]:
+# In[34]:
 
 
 destinationFolder = Path('out')
