@@ -1,14 +1,15 @@
 Label,Notation,Parent Notation,Sort Priority
-Parent,parent,,1
-Spouse/civil partner,spouse-civil-partner,,2
-Cohabitee,cohabitee,,3
-"Son/Daughter",son-daughter,,4
-"Brother/Sister",brother-sister,,5
-Other relative,other-relative,,6
-Non-relative,non-relative,,7
-"Non-relative Friend/neighbour",non-relative-friend-neighbour,,8
-Non-relative Client of Voluntary Group,non-relative-client-of-voluntary-group,,9
-Non-relative Other,non-relative-other,,10
-Inside household,inside-household,,11
-Outside household,outside-household,,12
-Both inside and outside household,both-inside-and-outside-household,,13
+All,all,,
+Parent,parent,,
+Spouse/civil partner,spouse-civil-partner,,
+Cohabitee,cohabitee,,
+"Son/Daughter",son-daughter,,
+"Brother/Sister",brother-sister,,
+Other relative,other-relative,,
+Non-relative,non-relative,,
+"Non-relative Friend/neighbour",non-relative-friend-neighbour,,
+Non-relative Client of Voluntary Group,non-relative-client-of-voluntary-group,,
+Non-relative Other,non-relative-other,,
+Inside household,inside-household,,
+Outside household,outside-household,,
+Both inside and outside household,both-inside-and-outside-household,,
