@@ -159,7 +159,7 @@
   }, {
     "rdfs:label": "LFS questionnaire GSS Harmonised post 2013",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/lfs_questionnaire_gss_harmonised_post_2013.csv"
+    "url": "codelists/lfs-questionnaire-gss-harmonised-post-2013.csv"
   }, {
     "rdfs:label": "Economic Activity",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
