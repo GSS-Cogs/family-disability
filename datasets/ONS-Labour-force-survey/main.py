@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[30]:
+# In[37]:
 
 
 import pandas as pd
@@ -25,7 +25,7 @@ scraper = Scraper('https://www.ons.gov.uk/employmentandlabourmarket/peopleinwork
 scraper
 
 
-# In[31]:
+# In[38]:
 
 
 dist = scraper.distributions[0]
@@ -84,13 +84,13 @@ for tab in tabs:
                 HDimConst('Unit','People'),
                 HDimConst('Disability Definitions', dd),
                 HDimConst('Area', area),
-                HDimConst('Age', '16-64')
+                HDimConst('Age Range', '16-64')
         ]
         
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
         tidied_sheets.append(c1.topandas())
-        
+        break
     if 'DDA' in tab.name:
         
         tabName = str(tab.name)
@@ -145,7 +145,7 @@ for tab in tabs:
                 HDimConst('Unit','People'),
                 HDimConst('Disability Definitions', dd),
                 HDimConst('Area', area),
-                HDimConst('Age', age)
+                HDimConst('Age Range', age)
         ]
         
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -156,7 +156,7 @@ for tab in tabs:
         continue
 
 
-# In[32]:
+# In[39]:
 
 
 pd.set_option('display.float_format', lambda x: '%.0f' % x)
@@ -176,10 +176,10 @@ new_table['Economic Activity'] = new_table.apply(lambda x: 'all' if 'total-aged-
 new_table
 
 
-# In[33]:
+# In[40]:
 
 
-tidy = new_table[['Period','Area','Sex','Age','LFS questionnaire GSS Harmonised post 2013','Disability Definition Used','Economic Activity','Measure Type','Value','Unit']]
+tidy = new_table[['Period','Area','Sex','Age Range','LFS questionnaire GSS Harmonised post 2013','Disability Definition Used','Economic Activity','Measure Type','Value','Unit']]
 tidy = tidy.replace({'Sex' : {
     'Men' : 'M',
     'People' : 'T',
@@ -210,7 +210,7 @@ for col in tidy:
         display(tidy[col].cat.categories)
 
 
-# In[34]:
+# In[41]:
 
 
 destinationFolder = Path('out')
