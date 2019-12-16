@@ -90,7 +90,7 @@ for tab in tabs:
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
         tidied_sheets.append(c1.topandas())
-        break
+        
     if 'DDA' in tab.name:
         
         tabName = str(tab.name)
