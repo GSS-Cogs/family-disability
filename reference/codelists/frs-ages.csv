@@ -1,5 +1,5 @@
 Label,Notation,Parent Notation,Sort Priority
-All,all,,1
+all,all,,1
 0-15,0-15,,2
 16-24,16-24,,3
 25-34,25-34,,4
@@ -7,5 +7,5 @@ All,all,,1
 45-54,45-54,,6
 55-64,55-64,,7
 65-74,65-74,,8
-75 plus,75-plus,,9
-85 plus,85-plus,,10
+75-plus,75-plus,,9
+85-plus,85-plus,,10
