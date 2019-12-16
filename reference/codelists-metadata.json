@@ -188,5 +188,9 @@
     "rdfs:label": "FRS Ages",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/frs-ages.csv"
+  }, {
+    "rdfs:label": "Age Range",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/age-range.csv"
   }]
 }
