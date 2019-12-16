@@ -171,7 +171,7 @@ new_table['Economic Activity'] = new_table['Economic Activity'].map(lambda x: pa
 new_table['Disability Definitions'] = new_table['Disability Definitions'].map(lambda x: pathify(x))
 new_table['Period'] = 'gregorian-interval/' + new_table['Year'] + '-' +  new_table['Month'] + '-01T00:00:00/P3M'
 new_table.rename(columns={'Disability Definitions':'Disability Definition Used'}, inplace=True)
-new_table['Economic Activity'] = new_table.apply(lambda x: 'all' if 'total-aged-16-64' in x['LFS questionnaire GSS Harmonised post 2013'] else x['Economic Activity'], axis = 1)
+new_table['Economic Activity'] = new_table.apply(lambda x: 'all' if 'total-aged-16-64' in x['GSS Harmonised'] else x['Economic Activity'], axis = 1)
 new_table
 
 
