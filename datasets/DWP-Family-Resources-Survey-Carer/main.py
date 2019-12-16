@@ -90,6 +90,7 @@ def extract_sheet_5_1_and_5_2_and_5_8(tab, mainCol, whichTab, gHeading, yrRange,
             tbl[yrRange] = yrStr2
             tbl['Measure Type'] = 'People receiving care by age and gender'
             tbl['Unit'] = 'people-receiving-care'
+            tbl[ageH][tbl[ageH].str.contains('All')] = 'all' #'All people receiving care
         
         # Select the columns to return   
         if 'DATAMARKER' not in tbl.columns:
