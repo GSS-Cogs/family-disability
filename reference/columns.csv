@@ -60,7 +60,7 @@ Economic Activity,economic_activity,qb:dimension,http://gss-data.org.uk/def/dime
 LFS questionnaire GSS Harmonised post 2013,lfs_questionnaire_gss_harmonised_post_2013,qb:dimension,http://gss-data.org.uk/def/dimension/lfs-questionnaire-gss-harmonised-post-2013,http://gss-data.org.uk/def/concept/lfs-questionnaire-gss-harmonised-post-2013/{lfs_questionnaire_gss_harmonised_post_2013},string,slugize,,http://gss-data.org.uk/def/classes/disability/lfs-questionnaire-gss-harmonised-post-2013
 Percentage,percentage,qb:measure,http://gss-data.org.uk/def/measure/percentage,,number,,,
 DWP Disability,dwp_disability,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-disability,http://gss-data.org.uk/def/concept/dwp-disability/{dwp_disability},string,slugize,,http://gss-data.org.uk/def/classes/disability/dwp-disability
-Disability Definition Used,disability_definitions_used,qb:dimension,http://gss-data.org.uk/def/dimension/disability-definitions-used,http://gss-data.org.uk/def/concept/disability-definitions-used/{disability_definitions_used},string,slugize,,http://gss-data.org.uk/def/classes/disability/disability-definitions-used
+Disability Definition Used,disability_definition_used,qb:dimension,http://gss-data.org.uk/def/dimension/disability-definition-used,http://gss-data.org.uk/def/concept/disability-definition-used/{disability_definition_used},string,slugize,,http://gss-data.org.uk/def/classes/disability/disability-definition-used
 Crude rate,crude_rate,qb:measure,http://gss-data.org.uk/def/measure/crude-rate,,number,,,
 Score,score,qb:measure,http://gss-data.org.uk/def/measure/score,,number,,,
 Directly standardised rate,directly_standardised_rate,qb:measure,http://gss-data.org.uk/def/measure/directly-standardised-rate,,number,,,
