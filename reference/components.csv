@@ -41,3 +41,9 @@ PHE Group,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-group
 Adult Carer,,Dimension,http://gss-data.org.uk/def/concept-scheme/adult-carer
 ONS Age Range,,Dimension,http://gss-data.org.uk/def/concept-scheme/ons-age-range
 GSS Harmonised,,Dimension,http://gss-data.org.uk/def/concept-scheme/gss-harmonised
+Status,The number of Guardianship cases which had a Date Case Closed within the reporting period, which had not ended at the end of the reporting period ie had no Date Case Closed or  cases which had a Date Case Commenced date within within the reporting period,Dimension,http://gss-data.org.uk/def/concept-scheme/status
+Guardianship,,Dimension,http://gss-data.org.uk/def/concept-scheme/guardianship
+Section,,Dimension,http://gss-data.org.uk/def/concept-scheme/section
+Region Name,the description of the geographic region in which the CASSR is located. These are the nine former Government offices for the regions (GOR),Dimension,http://gss-data.org.uk/def/concept-scheme/region-name
+Duration of Closed Cases,Duration of cases closed within the reporting period, calculated from the difference between the Date Case Commenced and the Date Case Closed,Dimension,http://gss-data.org.uk/def/concept-scheme/duration-of-closed-cases
+
