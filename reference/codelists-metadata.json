@@ -73,11 +73,11 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-indicator.csv"
   }, {
-    "rdfs:label": "PHE Sex",
+    "rdfs:label": "Sex",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-sex.csv"
   }, {
-    "rdfs:label": "PHE Age",
+    "rdfs:label": "Age",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-age.csv"
   }, {
@@ -85,11 +85,11 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-trend.csv"
   }, {
-    "rdfs:label": "PHE Unit",
+    "rdfs:label": "Unit",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-unit.csv"
   }, {
-    "rdfs:label": "PHE Standard Population",
+    "rdfs:label": "Standard Population",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-standard-population.csv"
   }, {
