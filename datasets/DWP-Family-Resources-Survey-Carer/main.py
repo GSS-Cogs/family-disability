@@ -225,7 +225,7 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange, ageH):
             tbl[subHeading][mSt] = 'All'
 
             #### Sort out the Gender sub category
-            gsubHeading = 'Adult Carers'
+            gsubHeading = 'Adult Carer'
             tbl[gsubHeading] = 'All Adults'
             mSt = tbl.loc[tbl[gHeading].str.contains('carers', na=False, regex=True)].index    # 
             tbl[gsubHeading][mSt + 0] = 'all-adult-informal-carers'
