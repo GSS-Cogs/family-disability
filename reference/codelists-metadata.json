@@ -184,5 +184,9 @@
     "rdfs:label": "PHE Group",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-group.csv"
+  }, {
+    "rdfs:label": "FRS Ages",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/frs-ages.csv"
   }]
 }
