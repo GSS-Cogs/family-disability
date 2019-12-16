@@ -228,11 +228,11 @@ def extract_sheet_5_4_and_5_7(tab, whichTbl, gHeading, yrRange, ageH):
             gsubHeading = 'Adult Carers'
             tbl[gsubHeading] = 'All Adults'
             mSt = tbl.loc[tbl[gHeading].str.contains('carers', na=False, regex=True)].index    # 
-            tbl[gsubHeading][mSt + 0] = 'Adult Informal Carers'
-            tbl[gsubHeading][mSt + 1] = 'Adult Informal Carers'
-            tbl[gsubHeading][mSt + 2] = 'Adult Informal Carers'
-            tbl[gHeading][mSt] = 'All'
-            tbl[gHeading][tbl[gHeading].str.strip() == 'All adults'] = 'All'
+            tbl[gsubHeading][mSt + 0] = 'all-adult-informal-carers'
+            tbl[gsubHeading][mSt + 1] = 'all-adult-informal-carers'
+            tbl[gsubHeading][mSt + 2] = 'all-adult-informal-carers'
+            tbl[gHeading][mSt] = 'all'
+            tbl[gHeading][tbl[gHeading].str.strip() == 'All adults'] = 'all'
 
             tbl = tbl[tbl[heading] != 'All'] # Get rid of the 100% rows, can't see the point
             tblSS = tbl[tbl[heading].str.contains('Sample')] # Identify the Sample Size rows to join in with the data laterz
