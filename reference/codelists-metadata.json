@@ -157,9 +157,9 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/frs-units.csv"
   }, {
-    "rdfs:label": "LFS questionnaire GSS Harmonised post 2013",
+    "rdfs:label": "GSS Harmonised",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/lfs-questionnaire-gss-harmonised-post-2013.csv"
+    "url": "codelists/gss-harmonised.csv"
   }, {
     "rdfs:label": "Economic Activity",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
