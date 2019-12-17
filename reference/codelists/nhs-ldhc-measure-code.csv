@@ -1,0 +1,19 @@
+Label,Notation,Parent Notation,Priority
+LDHCMI002,ldhcmi002,,1
+LDHCMI007,ldhcmi007,,2
+LDHCMI009,ldhcmi009,,3
+LDHCMI003,ldhcmi003,,4
+LDHCMI005,ldhcmi005,,5
+LDHC001 (checks),ldhc001-checks,,6
+LDHCMI014,ldhcmi014,,7
+LDHC001 (register),ldhc001-register,,8
+LDHCMI001,ldhcmi001,,9
+LDHCCC001,ldhccc001,,10
+LDHCMI008,ldhcmi008,,11
+LDHCMI004,ldhcmi004,,12
+LDHCMI006,ldhcmi006,,13
+LDHCMI010,ldhcmi010,,14
+LDHCMI012,ldhcmi012,,15
+LDHCCC002,ldhccc002,,16
+LDHCMI013,ldhcmi013,,17
+LDHCMI011,ldhcmi011,,18
