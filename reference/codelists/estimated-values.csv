@@ -1,2 +1,0 @@
-title,name,component_attachment,property_template,value_template,datatype,value_transformation,regex,range
-Estimated values,estimated-values,qb:dimension,http://gss-data.org.uk/def/dimension/estimated-values,http://gss-data.org.uk/def/concept/estimated-values/{estimated_values},string,slugize,,http://gss-data.org.uk/def/classes/estimated-values/estimated_values
