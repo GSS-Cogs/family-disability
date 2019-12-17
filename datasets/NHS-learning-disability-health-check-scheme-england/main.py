@@ -117,7 +117,6 @@ tbl['Value'][np.isnan(tbl['Value'])] = 0
 
 #### Reformat the Date
 tbl['Period'] = pd.to_datetime(tbl['Period'])
-tbl['Period'].apply(lambda x: x.strftime('%Y-%m-%d'))
 tbl['Period'] = 'day/' + tbl['Period'].apply(lambda x: x.strftime('%Y-%m-%d'))
 
 tbl.drop_duplicates().to_csv(out / 'observations.csv', index = False)
