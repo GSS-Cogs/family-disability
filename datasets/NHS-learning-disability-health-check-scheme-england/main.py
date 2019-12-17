@@ -115,6 +115,11 @@ tbl = tbl.rename(columns={'PRACTICE_CODE':'GP Practice Code'})
 #### Check for NANs in the Value column
 tbl['Value'][np.isnan(tbl['Value'])] = 0 
 
+#### Reformat the Date
+tbl['Period'] = pd.to_datetime(tbl['Period'])
+tbl['Period'].apply(lambda x: x.strftime('%Y-%m-%d'))
+tbl['Period'] = 'day/' + tbl['Period'].apply(lambda x: x.strftime('%Y-%m-%d'))
+
 tbl.drop_duplicates().to_csv(out / 'observations.csv', index = False)
 
 # +
@@ -126,7 +131,7 @@ with open(out / 'observations.csv-metadata.trig', 'wb') as metadata:
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
 # -
-tbl
+#tbl
 
 
 
