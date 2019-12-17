@@ -121,9 +121,9 @@ tbl['Period'] = 'day/' + tbl['Period'].apply(lambda x: x.strftime('%Y-%m-%d'))
 
 #### Pathifying things
 tbl['NHS LDHC Quality Service'] = tbl['NHS LDHC Quality Service'].apply(pathify)
-tbl['ONS Geography'] = tbl['ONS Geography'].apply(pathify)
-tbl['ONS SUB Geography'] = tbl['ONS SUB Geography'].apply(pathify)
-tbl['ONS CCG Geography'] = tbl['ONS CCG Geography'].apply(pathify)
+#tbl['ONS Geography'] = tbl['ONS Geography'].apply(pathify)
+#tbl['ONS SUB Geography'] = tbl['ONS SUB Geography'].apply(pathify)
+#tbl['ONS CCG Geography'] = tbl['ONS CCG Geography'].apply(pathify)
 tbl['GP Practice Code'] = tbl['GP Practice Code'].apply(pathify)
 tbl['NHS LDHC Measure Code'] = tbl['NHS LDHC Measure Code'].apply(pathify)
 
