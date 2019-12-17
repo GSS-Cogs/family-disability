@@ -104,7 +104,7 @@ tbl = tbl.rename(columns={'REGION_ONS_CODE':'ONS Geography'})
 tbl = tbl.rename(columns={'SUB_REGION_ONS_CODE':'ONS SUB Geography'})
 tbl = tbl.rename(columns={'CCG_ONS_CODE':'ONS CCG Geography'})
 tbl = tbl.rename(columns={'PRACTICE_CODE':'GP Practice Code'})
-tbl = tbl.rename(columns={'ACH_DATE':'Date'})
+tbl = tbl.rename(columns={'ACH_DATE':'Period'})
 tbl = tbl.rename(columns={'VALUE':'Value'})
 tbl = tbl.rename(columns={'PRACTICE_CODE':'GP Practice Code'})
 
