@@ -92,12 +92,12 @@ quse = 'NHS LDHC Quality Service'
 #### Rename the column and create a codelist
 
 tbl = tbl.rename(columns={'MEASURE':meas})
-t = createCodeListforColumn(tbl[meas],meas)
-t = createDimensionColumnsCSVDefinition(meas)
+#t = createCodeListforColumn(tbl[meas],meas)
+#t = createDimensionColumnsCSVDefinition(meas)
 
 tbl = tbl.rename(columns={'QUALITY_SERVICE':quse})
-t = createCodeListforColumn(tbl[quse],quse)
-t = createDimensionColumnsCSVDefinition(quse)
+#t = createCodeListforColumn(tbl[quse],quse)
+#t = createDimensionColumnsCSVDefinition(quse)
 
 #### Do more renaming of columns
 tbl = tbl.rename(columns={'REGION_ONS_CODE':'ONS Geography'})
