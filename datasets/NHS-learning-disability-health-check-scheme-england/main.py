@@ -36,23 +36,10 @@ out = Path('out')
 out.mkdir(exist_ok=True, parents=True)
 
 
-def createCodeListforColumn(dta,colNme):
+def createDimensionColumnsCSVDefinition(colNme):
     try:
-        titles =('Label','Notation','Parent Notation','Priority')
-        cdeLst = dta.unique()
-        cdeLst = pd.DataFrame(cdeLst)
-        
         #### Create a version of the column name with lowercase and spaces replaced with underscore(_)
         colNmeP = colNme.replace(' ','-').replace('_','-').lower()
-        
-        #### Create the standard codelist and output
-        cdeLst.columns = [titles[0]]
-        cdeLst[titles[1]] = cdeLst[titles[0]].apply(pathify)
-        cdeLst[titles[2]] = ''
-        cdeLst[titles[3]] = cdeLst.reset_index().index + 1
-        cdeLst[titles[1]] = cdeLst[titles[1]].str.replace('/', '-', regex=True)
-        #### Output the file
-        cdeLst.to_csv(out / f'{colNmeP}.csv', index = False)
         
         #### Create definition for the columns.csv file based on a dimension
         colTitles = ('title','name','component_attachment','property_template','value_template','datatype','value_transformation','regex','range')
@@ -74,16 +61,43 @@ def createCodeListforColumn(dta,colNme):
         return "createCodeListforColumn: " + str(e)
 
 
-# +
-#### Rename the column and create a codelist
+def createCodeListforColumn(dta,colNme):
+    try:
+        titles =('Label','Notation','Parent Notation','Priority')
+        cdeLst = dta.unique()
+        cdeLst = pd.DataFrame(cdeLst)
+        
+        #### Create a version of the column name with lowercase and spaces replaced with underscore(_)
+        colNmeP = colNme.replace(' ','-').replace('_','-').lower()
+        
+        #### Create the standard codelist and output
+        cdeLst.columns = [titles[0]]
+        cdeLst[titles[1]] = cdeLst[titles[0]].apply(pathify)
+        cdeLst[titles[1]] = cdeLst[titles[1]].str.replace('/', '-', regex=True)
+        cdeLst[titles[2]] = ''
+        cdeLst[titles[3]] = cdeLst.reset_index().index + 1
+        #### Output the file
+        cdeLst.to_csv(out / f'{colNmeP}.csv', index = False)
+        
+        return cdeLst
+    except Exception as e:
+        return "createCodeListforColumn: " + str(e)
+
+
+#### Create new names for columns
 meas = 'NHS LDHC Measure Code'
 quse = 'NHS LDHC Quality Service'
 
+# +
+#### Rename the column and create a codelist
+
 tbl = tbl.rename(columns={'MEASURE':meas})
-#t = createCodeListforColumn(tbl[meas],meas)
+t = createCodeListforColumn(tbl[meas],meas)
+t = createDimensionColumnsCSVDefinition(meas)
 
 tbl = tbl.rename(columns={'QUALITY_SERVICE':quse})
-#t = createCodeListforColumn(tbl[quse],quse)
+t = createCodeListforColumn(tbl[quse],quse)
+t = createDimensionColumnsCSVDefinition(quse)
 
 #### Do more renaming of columns
 tbl = tbl.rename(columns={'REGION_ONS_CODE':'ONS Geography'})
@@ -96,9 +110,16 @@ tbl = tbl.rename(columns={'VALUE':'Value'})
 #### Check for NANs in the Value column
 tbl['Value'][np.isnan(tbl['Value'])] = 0 
 
-tbl.to_csv(out / 'observations.csv', index = False)
-# -
+tbl.drop_duplicates().to_csv(out / 'observations.csv', index = False)
 
-tbl
+# +
+scraper.dataset.family = 'disability'
+
+with open(out / 'observations.csv-metadata.trig', 'wb') as metadata:
+    metadata.write(scraper.generate_trig())
+
+csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
+csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
+# -
 
 
