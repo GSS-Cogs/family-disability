@@ -106,6 +106,11 @@ tbl = tbl.rename(columns={'CCG_ONS_CODE':'ONS CCG Geography'})
 tbl = tbl.rename(columns={'PRACTICE_CODE':'GP Practice Code'})
 tbl = tbl.rename(columns={'ACH_DATE':'Date'})
 tbl = tbl.rename(columns={'VALUE':'Value'})
+tbl = tbl.rename(columns={'PRACTICE_CODE':'GP Practice Code'})
+
+#### Create a codelist for GP Practices
+#t = createCodeListforColumn(tbl['GP Practice Code'],'GP Practice Code')
+#t = createDimensionColumnsCSVDefinition('GP Practice Code')
 
 #### Check for NANs in the Value column
 tbl['Value'][np.isnan(tbl['Value'])] = 0 
@@ -121,5 +126,7 @@ with open(out / 'observations.csv-metadata.trig', 'wb') as metadata:
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
 # -
+tbl
+
 
 
