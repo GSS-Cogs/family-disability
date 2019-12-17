@@ -47,7 +47,9 @@ totals = year.fill(DOWN).is_not_blank() - section.expand(RIGHT) - guardianship.e
 #by status
 dimensions = [
                HDim(year, 'Period', CLOSEST, LEFT), 
-               HDim(status, 'Status', CLOSEST, ABOVE),  
+               HDim(status, 'Status', CLOSEST, ABOVE),
+               HDimConst('Guardianship', 'all'),
+               HDimConst('Section', 'all')
         ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 status_table = c1.topandas()
@@ -56,7 +58,9 @@ status_table = c1.topandas()
 section_observations = year.fill(DOWN).is_not_blank() - totals - guardianship.expand(RIGHT)
 dimensions = [
                HDim(year, 'Period', CLOSEST, LEFT), 
-               HDim(section, 'Section', DIRECTLY, LEFT)
+               HDim(section, 'Section', DIRECTLY, LEFT),
+               HDimConst('Guardianship', 'all'),
+               HDimConst('Status', 'all')
         ]
 c2 = ConversionSegment(section_observations, dimensions, processTIMEUNIT=True)
 section_table = c2.topandas()
@@ -65,7 +69,9 @@ section_table = c2.topandas()
 guardianship_observations = year.fill(DOWN).is_not_blank() - totals - section_observations
 dimensions = [
                HDim(year, 'Period', CLOSEST, LEFT), 
-               HDim(guardianship, 'Guardianship', DIRECTLY, LEFT)
+               HDim(guardianship, 'Guardianship', DIRECTLY, LEFT),
+               HDimConst('Section', 'all'),
+               HDimConst('Status', 'all')
         ]
 c3 = ConversionSegment(guardianship_observations, dimensions, processTIMEUNIT=True)
 guardianship_table = c3.topandas()
@@ -83,32 +89,37 @@ def right(s, amount):
 
 
 # +
-new_table['DATAMARKER'].replace('*', 'Below-3', inplace=True)
+new_table['DATAMARKER'].replace('*', 'less-than-three', inplace=True)
 
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 
 new_table = new_table.replace({'Guardianship' : {
     '       Local Authority' : 'Local Authority',
     '       Other person' : 'Other Person'}})
-new_table['Guardianship'] = new_table['Guardianship'].fillna('all').map(lambda x: pathify(x))
+new_table['Guardianship'] = new_table['Guardianship'].map(lambda x: pathify(x))
 
 new_table = new_table.replace({'Status' : {
     'NEW CASES DURING THE YEAR' : 'Cases opened in year',
     'CASES CONTINUING AT THE END OF THE YEAR' : 'Cases continuing at end of year',
     'CASES CLOSED DURING THE YEAR' : 'Cases closed during year'}})
-new_table['Section'] = new_table['Section'].fillna('all').map(lambda x: pathify(x))
+new_table['Section'] = new_table['Section'].map(lambda x: pathify(x))
 
-new_table['Status'] = new_table['Status'].fillna('all').map(lambda x: pathify(x))
+new_table['Status'] = new_table['Status'].map(lambda x: pathify(x))
 
-new_table['Period'] = new_table['Period'].str[:-1]
+new_table = new_table.replace({'Period' : {
+    '2003-04*' : '2003-04', '2004-05*' : '2004-05', '2005-06*' : '2005-06', '2006-07*' : '2006-07',
+    '2007-08*' : '2007-08', '2008-09*' : '2008-09', '2009-10*' : '2009-10', '2010-11*' : '2010-11', 
+    '2011-12*' : '2011-12', '2012-13*' : '2012-13', '2013-14*' : '2013-14', '2014-15*' : '2014-15', 
+    '2015-16*' : '2015-16'
+    }})
 new_table['Period'] = new_table['Period'].map(lambda x: 'government-year/' + left(x,4) +'-20' + right(x,2))
 
 new_table = new_table.fillna('')
 # -
 
-new_table = new_table.rename(columns={'DATAMARKER':'Estimated values'})
+new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 
-tidy = new_table[['Period', 'Status', 'Guardianship','Section', 'Value', 'Estimated values']]
+tidy = new_table[['Period', 'Status', 'Guardianship','Section', 'Value', 'Marker']]
 tidy
 
 # +

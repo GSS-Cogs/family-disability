@@ -35,7 +35,7 @@ medianOfContinuingCases = tab.excel_ref('G14').expand(DOWN).is_not_blank()
 observations_08_09 = tab.excel_ref('F14').expand(DOWN).is_not_blank()
 #savepreviewhtml(observations)
 dimensions = [
-    HDimConst('Period', 'financial-year/2007-2008'),
+    HDimConst('Period', 'government-year/2007-2008'),
     HDimConst('Guardianship', 'Local Authority'),
     HDimConst('Status', 'Cases continuing at end of year'),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
@@ -57,7 +57,7 @@ medianOfContinuingCases = tab.excel_ref('N14').expand(DOWN).is_not_blank()
 observations_17_18 = tab.excel_ref('M14').expand(DOWN).is_not_blank()
 #savepreviewhtml(observations)
 dimensions = [
-    HDimConst('Period', 'financial-year/2017-2018'),
+    HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
     HDimConst('Status', 'Cases continuing at end of year'),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
@@ -73,7 +73,7 @@ table_17_18 = c2.topandas()
 new_table = pd.concat([table_07_08, table_17_18]).fillna('')
 
 #Tidy up
-new_table['DATAMARKER'].replace('*', 'Below-3', inplace=True)
+new_table['DATAMARKER'].replace('*', 'less-than-three', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Guardianship'] = new_table['Guardianship'].map(
     lambda x: pathify(x))
@@ -84,10 +84,10 @@ new_table['Status'] = new_table['Status'].map(
 #new_table
 
 
-new_table = new_table.rename(columns={'DATAMARKER':'Estimated values'})
+new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 
 tidy = new_table[['Period','Guardianship', 'Status','ONS area code','Local authority code','Local authority name'
-                  ,'Region name','Value','Estimated values', 'Median (months)']]
+                  ,'Region name','Value','Marker', 'Median (months)']]
 tidy
 
 # +

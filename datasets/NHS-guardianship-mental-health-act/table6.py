@@ -34,7 +34,7 @@ regionName = tab.excel_ref('E13').expand(DOWN).is_not_blank()
 caseStatus = tab.excel_ref('F12').expand(RIGHT).is_not_blank() - tab.excel_ref('H12').expand(RIGHT)
 case_observations_16_17 = caseStatus.fill(DOWN).is_not_blank()
 dimensions = [
-    HDimConst('Period', 'financial-year/2016-2017'),
+    HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Guardianship', 'Local Authority'), 
     HDim(caseStatus, 'Status', DIRECTLY, ABOVE),
     HDimConst('Duration of closed cases', ' '),
@@ -50,7 +50,7 @@ table_16_17_Status
 duration = tab.excel_ref('I12').expand(RIGHT).is_not_blank() - tab.excel_ref('Q12').expand(RIGHT) 
 duration_observations_16_17 = duration.fill(DOWN).is_not_blank()
 dimensions = [
-    HDimConst('Period', 'financial-year/2016-2017'),
+    HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Guardianship', 'Local Authority'),
     HDimConst('Status', 'Cases closed in  year'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
@@ -71,7 +71,7 @@ regionName = tab.excel_ref('U13').expand(DOWN).is_not_blank()
 caseStatus = tab.excel_ref('V12').expand(RIGHT).is_not_blank() - tab.excel_ref('X12').expand(RIGHT)
 case_observations_17_18 = caseStatus.fill(DOWN).is_not_blank()
 dimensions = [
-    HDimConst('Period', 'financial-year/2017-2018'),
+    HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(caseStatus, 'Status', DIRECTLY, ABOVE),
     HDimConst('Duration of closed cases', ' '),
@@ -86,7 +86,7 @@ table_17_18_Status = c3.topandas()
 duration = tab.excel_ref('Y12').expand(RIGHT).is_not_blank() 
 duration_observations_17_18 = duration.fill(DOWN).is_not_blank()
 dimensions = [
-    HDimConst('Period', 'financial-year/2017-2018'),
+    HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
     HDimConst('Status', 'Cases closed in  year'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
@@ -103,7 +103,7 @@ table_17_18_Duration = c4.topandas()
 new_table = pd.concat([table_16_17_Status, table_16_17_Duration, table_17_18_Status, table_17_18_Duration], sort=True)
 
 #Tidy up
-new_table['DATAMARKER'].replace('*', 'Below-3', inplace=True)
+new_table['DATAMARKER'].replace('*', 'less-than-three', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Guardianship'] = new_table['Guardianship'].map(lambda x: pathify(x))
 new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
@@ -114,11 +114,11 @@ new_table = new_table.fillna('')
 new_table
 
 
-new_table = new_table.rename(columns={'DATAMARKER':'Estimated values'})
+new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 
 tidy = new_table[['Period','Guardianship', 'Status', 'Duration of closed cases', 
                   'ONS area code','Local authority code','Local authority name',
-                  'Region name','Value','Estimated values']]
+                  'Region name','Value','Marker']]
 tidy
 
 # +

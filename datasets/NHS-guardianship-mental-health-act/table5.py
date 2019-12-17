@@ -35,7 +35,7 @@ observations_16_17_all = duration.fill(DOWN).is_not_blank() - tab.excel_ref('C26
 #savepreviewhtml(observations)
 dimensions = [
     HDimConst('Section', 'all'),
-    HDimConst('Period', 'financial-year/2016-2017'),
+    HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Status', 'cases-closed-during-year'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
@@ -55,7 +55,7 @@ observations_17_18_all = duration.fill(DOWN).is_not_blank() - tab.excel_ref('P26
 #savepreviewhtml(observations)
 dimensions = [
     HDimConst('Section', 'all'),
-    HDimConst('Period', 'financial-year/2017-2018'),
+    HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Status', 'cases-closed-during-year'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
@@ -76,7 +76,7 @@ observations_16_17_section7 = duration.fill(DOWN).is_not_blank() - tab.excel_ref
 #savepreviewhtml(observations)
 dimensions = [
     HDimConst('Section', 'By Application (Section 7)'),
-    HDimConst('Period', 'financial-year/2016-2017'),
+    HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Status', 'cases-closed-during-year'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
@@ -97,7 +97,7 @@ observations_17_18_section7 = duration.fill(DOWN).is_not_blank() - tab.excel_ref
 #savepreviewhtml(observations)
 dimensions = [
     HDimConst('Section', 'By Application (Section 7)'),
-    HDimConst('Period', 'financial-year/2017-2018'),
+    HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Status', 'cases-closed-during-year'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
@@ -117,7 +117,7 @@ duration = tab.excel_ref('C45').expand(RIGHT).is_not_blank() - tab.excel_ref('M4
 observations_16_17_section37 = duration.fill(DOWN).is_not_blank() - tab.excel_ref('C58').expand(RIGHT).expand(DOWN)
 #savepreviewhtml(observations)
 dimensions = [
-    HDimConst('Period', 'financial-year/2016-2017'),
+    HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Status', 'cases-closed-during-year'),
     HDimConst('Section', 'following-conviction-section-37'),
     HDimConst('Guardianship', 'Local Authority'),
@@ -138,7 +138,7 @@ duration = tab.excel_ref('P45').expand(RIGHT).is_not_blank() - tab.excel_ref('Z4
 observations_17_18_section37 = duration.fill(DOWN).is_not_blank() - tab.excel_ref('P58').expand(RIGHT).expand(DOWN)
 #savepreviewhtml(observations)
 dimensions = [
-    HDimConst('Period', 'financial-year/2016-2017'),
+    HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Status', 'cases-closed-during-year'),
     HDimConst('Section', 'following-conviction-section-37'),
     HDimConst('Guardianship', 'Local Authority'),
@@ -155,7 +155,7 @@ new_table = pd.concat([table_16_17_all, table_17_18_all, table_16_17_section7, t
                       table_16_17_section37, table_17_18_section37], sort=True)
 
 #Tidy up
-new_table['DATAMARKER'].replace('*', 'Below-3', inplace=True)
+new_table['DATAMARKER'].replace('*', 'less-than-three', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Guardianship'] = new_table['Guardianship'].map(lambda x: pathify(x))
 new_table['Duration of closed cases'] = new_table['Duration of closed cases'].map(lambda x: pathify(x))
@@ -165,10 +165,10 @@ new_table['Section'] = new_table['Section'].map(lambda x: pathify(x))
 new_table = new_table.fillna('')
 
 
-new_table = new_table.rename(columns={'DATAMARKER':'Estimated values'})
+new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 
 tidy = new_table[['Period','Guardianship', 'Status','Region name', 'Section',
-                  'Duration of closed cases','Value','Estimated values', 'Median (months)']]
+                  'Duration of closed cases','Value','Marker', 'Median (months)']]
 tidy
 
 # +
