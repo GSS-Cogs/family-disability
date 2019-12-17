@@ -200,17 +200,5 @@
     "rdfs:label": "NHS LDHC Quality Service",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/nhs-ldhc-quality-service.csv"
-  }, {
-    "url": "codelists/gp-practice-code.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "GP Practice Code"
-  }, {
-    "url": "codelists/guardianship.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Guardianship"
-  }, {
-    "url": "codelists/status.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Status"
   }]
 }

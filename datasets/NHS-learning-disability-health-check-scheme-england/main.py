@@ -127,6 +127,8 @@ tbl['NHS LDHC Quality Service'] = tbl['NHS LDHC Quality Service'].apply(pathify)
 tbl['GP Practice Code'] = tbl['GP Practice Code'].apply(pathify)
 tbl['NHS LDHC Measure Code'] = tbl['NHS LDHC Measure Code'].apply(pathify)
 
+tbl['Measure Type'] = 'Count'
+
 tbl.drop_duplicates().to_csv(out / 'observations.csv', index = False)
 
 # +
@@ -138,7 +140,7 @@ with open(out / 'observations.csv-metadata.trig', 'wb') as metadata:
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
 # -
-#tbl
+tbl
 
 
 
