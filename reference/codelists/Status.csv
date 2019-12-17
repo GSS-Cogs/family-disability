@@ -1,4 +1,5 @@
 Label,Notation,Parent Notation,Sort Priority
-
-
-- change government year to financial year in columns .csv 
+cases-opened-in-year,cases-opened-in-year,,1
+cases-continuing-at-the-end-of-the-year,cases-continuing-at-the-end-of-the-year,,2
+cases-closed-during-the-year,cases-closed-during-the-year,,3
+all,all,,4

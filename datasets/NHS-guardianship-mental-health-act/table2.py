@@ -105,7 +105,7 @@ new_table['Section'] = new_table['Section'].fillna('all').map(lambda x: pathify(
 new_table['Status'] = new_table['Status'].fillna('all').map(lambda x: pathify(x))
 new_table = new_table.replace({'Sex' : {'Male' : 'M',' Female' : 'F','Total' : 'T' }})
 
-new_table['Period'] = new_table['Period'].map(lambda x: 'financial-year/' + left(x,4) +'-20' + right(x,2))
+new_table['Period'] = new_table['Period'].map(lambda x: 'government-year/' + left(x,4) +'-20' + right(x,2))
 new_table = new_table.fillna('')
 
 # -

@@ -88,7 +88,7 @@ new_table['DATAMARKER'].replace('*', 'Below-3', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 
 new_table = new_table.replace({'Guardianship' : {
-    '      Local Authority' : 'Local Authority',
+    '       Local Authority' : 'Local Authority',
     '       Other person' : 'Other Person'}})
 new_table['Guardianship'] = new_table['Guardianship'].fillna('all').map(lambda x: pathify(x))
 

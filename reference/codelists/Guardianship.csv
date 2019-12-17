@@ -1,4 +1,5 @@
 Label,Notation,Parent Notation,Sort Priority
-Local Authority,local-authority,,1
-Other person,other-person,,2
-No. of non-responding LAs,no-of-non-responding-las,,3
+all,all,,1
+local-authority,local-authority,,2
+other-person,other-person,,3
+no-of-non-responding-las,no-of-non-responding-las,,4
