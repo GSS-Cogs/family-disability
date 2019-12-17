@@ -47,4 +47,3 @@ Guardianship,,Dimension,http://gss-data.org.uk/def/concept-scheme/guardianship
 Section,,Dimension,http://gss-data.org.uk/def/concept-scheme/section
 Region Name,the description of the geographic region in which the CASSR is located. These are the nine former Government offices for the regions (GOR),Dimension,http://gss-data.org.uk/def/concept-scheme/region-name
 Duration of Closed Cases,Duration of cases closed within the reporting period calculated from the difference between the Date Case Commenced and the Date Case Closed,Dimension,http://gss-data.org.uk/def/concept-scheme/duration-of-closed-cases
-
