@@ -50,3 +50,4 @@ Duration of Closed Cases,Duration of cases closed within the reporting period ca
 Count,Count of People,Measure,
 NHS LDHC Quality Service,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-ldhc-quality-service
 NHS LDHC Measure Code,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-ldhc-measure-code
+GP Practice,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-gp-practices
