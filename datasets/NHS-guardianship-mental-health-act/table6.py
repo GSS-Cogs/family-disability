@@ -120,8 +120,9 @@ new_table = new_table.replace({'Status' : {
     'Cases closed in  year' : 'Cases closed during the year'}})
 new_table['Status'] = new_table['Status'].map(lambda x: pathify(x))
 
-new_table = new_table.replace({'Duration of closed cases' : {' ' : 'does-not-apply',}})
-new_table['Duration of closed cases'] = new_table['Duration of closed cases'] #.str.strip()
+new_table = new_table.replace({'Duration of closed cases' : {' ' : 'does-not-apply'}})
+new_table = new_table.replace({'Duration of closed cases' : {' 9 to 12 months' : ' 9 to 12 Months'}})
+new_table['Duration of closed cases'] = new_table['Duration of closed cases'].str.strip()
 new_table['Duration of closed cases'] = new_table['Duration of closed cases'].map(lambda x: pathify(x))
 new_table['Local authority name'] = new_table['Local authority name'].str.strip()
 new_table['Local authority name'] = new_table['Local authority name'].map(
@@ -131,10 +132,10 @@ new_table = new_table.replace({'Local authority name' : {'' : '-'}})
 
 
 new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+new_table
 
-tidy = new_table[['Period','Guardianship', 'Status', 'Duration of closed cases', 
-                  'ONS area code','Local authority code','Local authority name',
-                  'Region name','Value', 'Measure Type', 'Marker']]
+tidy = new_table[['Period','Guardianship', 'Status','ONS area code','Local authority code','Duration of closed cases',
+                  'Local authority name','Region name','Value', 'Measure Type', 'Marker']]
 tidy
 
 # +
