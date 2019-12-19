@@ -121,6 +121,7 @@ new_table = new_table.replace({'Status' : {
 new_table['Status'] = new_table['Status'].map(lambda x: pathify(x))
 
 new_table = new_table.replace({'Duration of closed cases' : {' ' : 'does-not-apply',}})
+new_table['Duration of closed cases'] = new_table['Duration of closed cases'] #.str.strip()
 new_table['Duration of closed cases'] = new_table['Duration of closed cases'].map(lambda x: pathify(x))
 new_table['Local authority name'] = new_table['Local authority name'].str.strip()
 new_table['Local authority name'] = new_table['Local authority name'].map(

@@ -166,7 +166,7 @@ new_table['DATAMARKER'].replace('*', 'less-than-three', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Guardianship'] = new_table['Guardianship'].map(lambda x: pathify(x))
 
-new_table['Duration of closed cases'] = new_table['Duration of closed cases'].str.strip()
+new_table['Duration of closed cases'] = new_table['Duration of closed cases']#.str.strip()
 new_table['Duration of closed cases'] = new_table['Duration of closed cases'].map(lambda x: pathify(x))
 
 new_table['Region name'] = new_table['Region name'].str.strip()
