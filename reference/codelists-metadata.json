@@ -220,5 +220,13 @@
     "url": "codelists/duration-of-closed-cases.csv", 
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Duration of closed cases"
+  }, {
+    "url": "codelists/local-authority-name.csv", 
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Local authority name"
+  }, {
+    "url": "codelists/local-authority-code.csv", 
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Local authority code"
   }]
 }
