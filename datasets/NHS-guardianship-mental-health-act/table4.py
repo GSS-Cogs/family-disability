@@ -35,6 +35,7 @@ medianOfContinuingCases = tab.excel_ref('G14').expand(DOWN).is_not_blank()
 observations_08_09 = tab.excel_ref('F14').expand(DOWN).is_not_blank()
 #savepreviewhtml(observations)
 dimensions = [
+    HDimConst('Measure Type', 'Count'),
     HDimConst('Period', 'government-year/2007-2008'),
     HDimConst('Guardianship', 'Local Authority'),
     HDimConst('Status', 'Cases continuing at the end of the year'),
@@ -57,6 +58,7 @@ medianOfContinuingCases = tab.excel_ref('N14').expand(DOWN).is_not_blank()
 observations_17_18 = tab.excel_ref('M14').expand(DOWN).is_not_blank()
 #savepreviewhtml(observations)
 dimensions = [
+    HDimConst('Measure Type', 'Count'),
     HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
     HDimConst('Status', 'Cases continuing at the end of the year'),
@@ -102,7 +104,7 @@ new_table = new_table.replace({'Local authority name' : {'' : '-'}})
 new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 
 tidy = new_table[['Period','Guardianship', 'Status','ONS area code','Local authority code','Local authority name'
-                  ,'Region name','Value','Marker', 'Median (months)']]
+                  ,'Region name','Value', 'Measure Type', 'Marker', 'Median (months)']]
 tidy
 
 # +

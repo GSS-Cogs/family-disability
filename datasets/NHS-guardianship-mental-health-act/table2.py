@@ -44,6 +44,7 @@ observations = gender.fill(DOWN).is_not_blank() - totals
 # -
 
 dimensions = [
+    HDimConst('Measure Type', 'Count'),
     HDim(year, 'Period', CLOSEST, LEFT),
     HDim(status, 'Status', CLOSEST, ABOVE),
     HDim(gender, 'Sex', DIRECTLY, ABOVE),
@@ -109,7 +110,7 @@ new_table['Period'] = new_table['Period'].map(lambda x: 'government-year/' + lef
 new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 new_table = new_table.drop(['Temp'], axis=1)
 
-tidy = new_table[['Period', 'Sex', 'Guardianship', 'Status', 'Section', 'Value', 'Marker']]
+tidy = new_table[['Period', 'Sex', 'Guardianship', 'Status', 'Section', 'Value', 'Measure Type', 'Marker']]
 tidy
 
 # +

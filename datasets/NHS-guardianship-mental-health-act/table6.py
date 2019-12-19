@@ -36,6 +36,7 @@ case_observations_16_17 = caseStatus.fill(DOWN).is_not_blank()
 dimensions = [
     HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Guardianship', 'Local Authority'), 
+    HDimConst('Measure Type', 'Count'),
     HDim(caseStatus, 'Status', DIRECTLY, ABOVE),
     HDimConst('Duration of closed cases', ' '),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
@@ -53,6 +54,7 @@ dimensions = [
     HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Guardianship', 'Local Authority'),
     HDimConst('Status', 'Cases closed during the year'),
+    HDimConst('Measure Type', 'Count'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
@@ -75,6 +77,7 @@ dimensions = [
     HDimConst('Guardianship', 'Local Authority'),
     HDim(caseStatus, 'Status', DIRECTLY, ABOVE),
     HDimConst('Duration of closed cases', ' '),
+    HDimConst('Measure Type', 'Count'),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
     HDim(localAuthorityName, 'Local authority name', DIRECTLY, LEFT),
@@ -89,6 +92,7 @@ dimensions = [
     HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
     HDimConst('Status', 'Cases closed during the year'),
+    HDimConst('Measure Type', 'Count'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
@@ -129,7 +133,7 @@ new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 
 tidy = new_table[['Period','Guardianship', 'Status', 'Duration of closed cases', 
                   'ONS area code','Local authority code','Local authority name',
-                  'Region name','Value','Marker']]
+                  'Region name','Value', 'Measure Type', 'Marker']]
 tidy
 
 # +

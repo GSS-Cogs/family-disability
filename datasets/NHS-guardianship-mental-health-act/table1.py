@@ -42,6 +42,7 @@ observations = year.fill(DOWN).is_not_blank() - percentage - totals
 # -
 
 dimensions = [
+    HDimConst('Measure Type', 'Count'),
     HDim(year, 'Period', CLOSEST, LEFT),
     HDim(status, 'Status', CLOSEST, ABOVE),
     HDim(section_guardianship, 'Temp', DIRECTLY, LEFT)
@@ -106,7 +107,7 @@ new_table['Period'] = new_table['Period'].map(lambda x: 'government-year/' + lef
 new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 new_table = new_table.drop(['Temp'], axis=1)
 
-tidy = new_table[['Period', 'Status', 'Guardianship','Section', 'Value', 'Marker']]
+tidy = new_table[['Period', 'Status', 'Guardianship','Section', 'Value', 'Measure Type', 'Marker']]
 tidy
 
 # +

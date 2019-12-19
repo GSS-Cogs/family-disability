@@ -33,6 +33,7 @@ caseStstus = tab.excel_ref('B12').expand(RIGHT).is_not_blank() - tab.excel_ref('
 caseStstus = caseStstus - removePercentage1 - removePercentage2
 observations = caseStstus.fill(DOWN).is_not_blank()
 dimensions = [
+    HDimConst('Measure Type', 'Count'),
     HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(region, 'Region name', DIRECTLY, LEFT),
@@ -49,6 +50,7 @@ caseStstus = tab.excel_ref('W12').expand(RIGHT).is_not_blank() - tab.excel_ref('
 caseStstus = caseStstus - removePercentage1 - removePercentage2
 observations = caseStstus.fill(DOWN).is_not_blank()
 dimensions = [
+    HDimConst('Measure Type', 'Count'),
     HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(region, 'Region name', DIRECTLY, LEFT),
@@ -75,7 +77,7 @@ new_table['Status'] = new_table['Status'].map(
     lambda x: pathify(x))
 
 
-tidy = new_table[['Period', 'Guardianship', 'Region name', 'Status', 'Value']]
+tidy = new_table[['Period', 'Guardianship', 'Region name', 'Status', 'Value', 'Measure Type']]
 tidy
 
 # +
