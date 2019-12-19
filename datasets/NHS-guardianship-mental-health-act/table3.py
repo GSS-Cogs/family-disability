@@ -75,7 +75,7 @@ new_table = new_table.replace({'Status' : {
 
 new_table['Status'] = new_table['Status'].map(
     lambda x: pathify(x))
-
+new_table = new_table.fillna('')
 
 tidy = new_table[['Period', 'Guardianship', 'Region name', 'Status', 'Value', 'Measure Type']]
 tidy

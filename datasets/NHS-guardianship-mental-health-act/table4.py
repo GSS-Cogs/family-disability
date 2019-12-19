@@ -95,9 +95,7 @@ new_table['Status'] = new_table['Status'].map(
     lambda x: pathify(x))
 
 new_table = new_table.replace({'Local authority name' : {'' : '-'}})
-
-
-
+new_table = new_table.fillna('')
 # -
 
 

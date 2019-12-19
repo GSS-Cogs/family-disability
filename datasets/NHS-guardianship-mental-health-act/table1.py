@@ -102,10 +102,13 @@ new_table = new_table.replace({'Period' : {
     '2015-16*' : '2015-16'
     }})
 new_table['Period'] = new_table['Period'].map(lambda x: 'government-year/' + left(x,4) +'-20' + right(x,2))
+new_table = new_table.fillna('')
 # -
 
 new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 new_table = new_table.drop(['Temp'], axis=1)
+
+
 
 tidy = new_table[['Period', 'Status', 'Guardianship','Section', 'Value', 'Measure Type', 'Marker']]
 tidy

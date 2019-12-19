@@ -174,7 +174,7 @@ new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
 
 new_table['Status'] = new_table['Status'].map(lambda x: pathify(x))
 new_table['Section'] = new_table['Section'].map(lambda x: pathify(x))
-#new_table = new_table.fillna('')
+new_table = new_table.fillna('')
 # -
 
 
