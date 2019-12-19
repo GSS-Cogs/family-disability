@@ -27,57 +27,45 @@ tabs = {tab.name: tab for tab in scraper.distribution(latest=True, mediaType='ap
 tab = tabs['Table 1']
 
 # +
-section_type = ['By application (Section 7)', 'Following conviction (Section 37)'] 
-guardianship_type = ['Local Authority', 'Other person', 'No. of non-responding LAs']
 status_type = ['NEW CASES DURING THE YEAR', 'CASES CONTINUING AT THE END OF THE YEAR', 'CASES CLOSED DURING THE YEAR']
-
+section_guardianship_type = ['By application (Section 7)', 'Following conviction (Section 37)',
+                             'Local Authority', 'Other person', 'No. of non-responding LAs']
 
 year = tab.excel_ref('B12').expand(RIGHT).is_not_blank()
+section_guardianship = tab.excel_ref('B12').expand(DOWN).one_of(section_guardianship_type)
 status = tab.excel_ref('B12').expand(DOWN).one_of(status_type)
-section = tab.excel_ref('B12').expand(DOWN).one_of(section_type)
-guardianship = tab.excel_ref('B12').expand(DOWN).one_of(guardianship_type)
 percentage = tab.excel_ref('B42').expand(RIGHT)
+totals = year.fill(DOWN).is_not_blank() - section_guardianship.expand(RIGHT)
 
-observations = year.fill(DOWN).is_not_blank() - percentage
-totals = year.fill(DOWN).is_not_blank() - section.expand(RIGHT) - guardianship.expand(RIGHT)
-#savepreviewhtml(totals)
-
-
-# +
-#by status
-dimensions = [
-               HDim(year, 'Period', CLOSEST, LEFT), 
-               HDim(status, 'Status', CLOSEST, ABOVE),
-               HDimConst('Guardianship', 'all'),
-               HDimConst('Section', 'all')
-        ]
-c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
-status_table = c1.topandas()
-
-#by section 
-section_observations = year.fill(DOWN).is_not_blank() - totals - guardianship.expand(RIGHT)
-dimensions = [
-               HDim(year, 'Period', CLOSEST, LEFT), 
-               HDim(section, 'Section', DIRECTLY, LEFT),
-               HDimConst('Guardianship', 'all'),
-               HDimConst('Status', 'all')
-        ]
-c2 = ConversionSegment(section_observations, dimensions, processTIMEUNIT=True)
-section_table = c2.topandas()
-
-#by guardianship
-guardianship_observations = year.fill(DOWN).is_not_blank() - totals - section_observations
-dimensions = [
-               HDim(year, 'Period', CLOSEST, LEFT), 
-               HDim(guardianship, 'Guardianship', DIRECTLY, LEFT),
-               HDimConst('Section', 'all'),
-               HDimConst('Status', 'all')
-        ]
-c3 = ConversionSegment(guardianship_observations, dimensions, processTIMEUNIT=True)
-guardianship_table = c3.topandas()
+observations = year.fill(DOWN).is_not_blank() - percentage - totals
+#savepreviewhtml(observations)
 # -
 
-new_table = pd.concat([status_table, section_table, guardianship_table], sort=True)
+dimensions = [
+    HDim(year, 'Period', CLOSEST, LEFT),
+    HDim(status, 'Status', CLOSEST, ABOVE),
+    HDim(section_guardianship, 'Temp', DIRECTLY, LEFT)
+]
+#TODO, maybe extract totals and percentage the same way ? 
+c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
+#savepreviewhtml(c1, fname="Preview.html")
+new_table = c1.topandas()
+
+guardanship_values = ['Local Authority', '       Other person', 'No. of non-responding LAs']
+section_values = ['By application (Section 7)', 'Following conviction (Section 37)']
+def guardianship_or_all(cell_value):
+    if cell_value in guardanship_values:
+        return cell_value
+    else:
+        return "all"
+def section_or_all(cell_value):
+    if cell_value in section_values:
+        return cell_value
+    else:
+        return "all"
+new_table["Guardianship"] = new_table["Temp"].apply(guardianship_or_all)
+new_table["Section"] = new_table["Temp"].apply(section_or_all)
+new_table
 
 
 # +
@@ -100,8 +88,8 @@ new_table['Guardianship'] = new_table['Guardianship'].map(lambda x: pathify(x))
 
 new_table = new_table.replace({'Status' : {
     'NEW CASES DURING THE YEAR' : 'Cases opened in year',
-    'CASES CONTINUING AT THE END OF THE YEAR' : 'Cases continuing at end of year',
-    'CASES CLOSED DURING THE YEAR' : 'Cases closed during year'}})
+    'CASES CONTINUING AT THE END OF THE YEAR' : 'Cases continuing at the end of the year',
+    'CASES CLOSED DURING THE YEAR' : 'Cases closed during the year'}})
 new_table['Section'] = new_table['Section'].map(lambda x: pathify(x))
 
 new_table['Status'] = new_table['Status'].map(lambda x: pathify(x))
@@ -113,11 +101,10 @@ new_table = new_table.replace({'Period' : {
     '2015-16*' : '2015-16'
     }})
 new_table['Period'] = new_table['Period'].map(lambda x: 'government-year/' + left(x,4) +'-20' + right(x,2))
-
-new_table = new_table.fillna('')
 # -
 
 new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+new_table = new_table.drop(['Temp'], axis=1)
 
 tidy = new_table[['Period', 'Status', 'Guardianship','Section', 'Value', 'Marker']]
 tidy

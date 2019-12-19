@@ -36,7 +36,7 @@ observations_16_17_all = duration.fill(DOWN).is_not_blank() - tab.excel_ref('C26
 dimensions = [
     HDimConst('Section', 'all'),
     HDimConst('Period', 'government-year/2016-2017'),
-    HDimConst('Status', 'cases-closed-during-year'),
+    HDimConst('Status', 'cases-closed-during-the-year'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
@@ -56,7 +56,7 @@ observations_17_18_all = duration.fill(DOWN).is_not_blank() - tab.excel_ref('P26
 dimensions = [
     HDimConst('Section', 'all'),
     HDimConst('Period', 'government-year/2017-2018'),
-    HDimConst('Status', 'cases-closed-during-year'),
+    HDimConst('Status', 'cases-closed-during-the-year'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
@@ -77,7 +77,7 @@ observations_16_17_section7 = duration.fill(DOWN).is_not_blank() - tab.excel_ref
 dimensions = [
     HDimConst('Section', 'By Application (Section 7)'),
     HDimConst('Period', 'government-year/2016-2017'),
-    HDimConst('Status', 'cases-closed-during-year'),
+    HDimConst('Status', 'cases-closed-during-the-year'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
@@ -98,7 +98,7 @@ observations_17_18_section7 = duration.fill(DOWN).is_not_blank() - tab.excel_ref
 dimensions = [
     HDimConst('Section', 'By Application (Section 7)'),
     HDimConst('Period', 'government-year/2017-2018'),
-    HDimConst('Status', 'cases-closed-during-year'),
+    HDimConst('Status', 'cases-closed-during-the-year'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
@@ -118,7 +118,7 @@ observations_16_17_section37 = duration.fill(DOWN).is_not_blank() - tab.excel_re
 #savepreviewhtml(observations)
 dimensions = [
     HDimConst('Period', 'government-year/2016-2017'),
-    HDimConst('Status', 'cases-closed-during-year'),
+    HDimConst('Status', 'cases-closed-during-the-year'),
     HDimConst('Section', 'following-conviction-section-37'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
@@ -139,7 +139,7 @@ observations_17_18_section37 = duration.fill(DOWN).is_not_blank() - tab.excel_re
 #savepreviewhtml(observations)
 dimensions = [
     HDimConst('Period', 'government-year/2016-2017'),
-    HDimConst('Status', 'cases-closed-during-year'),
+    HDimConst('Status', 'cases-closed-during-the-year'),
     HDimConst('Section', 'following-conviction-section-37'),
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
@@ -154,15 +154,22 @@ table_17_18_section37 = c2.topandas()
 new_table = pd.concat([table_16_17_all, table_17_18_all, table_16_17_section7, table_17_18_section7, 
                       table_16_17_section37, table_17_18_section37], sort=True)
 
+# +
 #Tidy up
 new_table['DATAMARKER'].replace('*', 'less-than-three', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Guardianship'] = new_table['Guardianship'].map(lambda x: pathify(x))
+
+new_table['Duration of closed cases'] = new_table['Duration of closed cases'].str.strip()
 new_table['Duration of closed cases'] = new_table['Duration of closed cases'].map(lambda x: pathify(x))
+
+new_table['Region name'] = new_table['Region name'].str.strip()
 new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
+
 new_table['Status'] = new_table['Status'].map(lambda x: pathify(x))
 new_table['Section'] = new_table['Section'].map(lambda x: pathify(x))
-new_table = new_table.fillna('')
+#new_table = new_table.fillna('')
+# -
 
 
 new_table = new_table.rename(columns={'DATAMARKER':'Marker'})

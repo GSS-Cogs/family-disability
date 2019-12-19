@@ -52,7 +52,7 @@ duration_observations_16_17 = duration.fill(DOWN).is_not_blank()
 dimensions = [
     HDimConst('Period', 'government-year/2016-2017'),
     HDimConst('Guardianship', 'Local Authority'),
-    HDimConst('Status', 'Cases closed in  year'),
+    HDimConst('Status', 'Cases closed during the year'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
@@ -88,7 +88,7 @@ duration_observations_17_18 = duration.fill(DOWN).is_not_blank()
 dimensions = [
     HDimConst('Period', 'government-year/2017-2018'),
     HDimConst('Guardianship', 'Local Authority'),
-    HDimConst('Status', 'Cases closed in  year'),
+    HDimConst('Status', 'Cases closed during the year'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(areaCode, 'ONS area code', DIRECTLY, LEFT),
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
@@ -102,16 +102,27 @@ table_17_18_Duration = c4.topandas()
 
 new_table = pd.concat([table_16_17_Status, table_16_17_Duration, table_17_18_Status, table_17_18_Duration], sort=True)
 
+# +
 #Tidy up
 new_table['DATAMARKER'].replace('*', 'less-than-three', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Guardianship'] = new_table['Guardianship'].map(lambda x: pathify(x))
+new_table['Region name'] = new_table['Region name'].str.strip()
 new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
+
+new_table = new_table.replace({'Status' : {
+    'New cases in year' : 'Cases opened in year',
+    'Cases continuing at end of year' : 'Cases continuing at the end of the year',
+    'Cases closed in  year' : 'Cases closed during the year'}})
 new_table['Status'] = new_table['Status'].map(lambda x: pathify(x))
+
 new_table = new_table.replace({'Duration of closed cases' : {' ' : 'does-not-apply',}})
 new_table['Duration of closed cases'] = new_table['Duration of closed cases'].map(lambda x: pathify(x))
-new_table = new_table.fillna('')
-new_table
+new_table['Local authority name'] = new_table['Local authority name'].str.strip()
+new_table['Local authority name'] = new_table['Local authority name'].map(
+    lambda x: pathify(x))
+new_table = new_table.replace({'Local authority name' : {'' : '-'}})
+# -
 
 
 new_table = new_table.rename(columns={'DATAMARKER':'Marker'})

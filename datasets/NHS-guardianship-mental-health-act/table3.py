@@ -65,6 +65,12 @@ new_table['Guardianship'] = new_table['Guardianship'].map(
     lambda x: pathify(x))
 new_table['Region name'] = new_table['Region name'].map(
     lambda x: pathify(x))
+
+new_table = new_table.replace({'Status' : {
+    'Cases continuing at end of year' : 'Cases continuing at the end of the year',
+    'Cases closed during year' : 'Cases closed during the year'
+}})
+
 new_table['Status'] = new_table['Status'].map(
     lambda x: pathify(x))
 
