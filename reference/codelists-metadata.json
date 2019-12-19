@@ -208,5 +208,17 @@
     "url": "codelists/status.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Status"
+  }, {
+    "url": "codelists/section.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Section"
+  }, {
+    "url": "codelists/region-name.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Region name"
+  }, {
+    "url": "codelists/duration-of-closed-cases.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Duration of closed cases"
   }]
 }
