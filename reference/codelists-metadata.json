@@ -235,6 +235,10 @@
   }, {
     "url": "codelists/nhs-ascof-code.csv", 
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "NHS ASCOF Code"
+      "rdfs:label": "NHS ASCOF Code"
+  }, {
+    "url": "codelists/dfe-age-groups.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "DfE Age"
   }]
 }
