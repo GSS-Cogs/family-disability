@@ -127,7 +127,8 @@ new_table['Duration of closed cases'] = new_table['Duration of closed cases'].ma
 new_table['Local authority name'] = new_table['Local authority name'].str.strip()
 new_table['Local authority name'] = new_table['Local authority name'].map(
     lambda x: pathify(x))
-new_table = new_table.replace({'Local authority name' : {'' : '-'}})
+new_table = new_table.replace({'Local authority name' : {'' : 'entire-region'}})
+new_table = new_table.replace({'Local authority code' : {'-' : 'not-applicable'}})
 new_table = new_table.fillna('')
 # -
 

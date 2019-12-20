@@ -94,7 +94,8 @@ new_table['Local authority name'] = new_table['Local authority name'].map(
 new_table['Status'] = new_table['Status'].map(
     lambda x: pathify(x))
 
-new_table = new_table.replace({'Local authority name' : {'' : '-'}})
+new_table = new_table.replace({'Local authority name' : {'' : 'entire-region'}})
+new_table = new_table.replace({'Local authority code' : {'-' : 'not-applicable'}})
 new_table = new_table.fillna('')
 # -
 
