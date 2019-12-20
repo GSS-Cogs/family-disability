@@ -104,10 +104,11 @@ new_table['Status'] = new_table['Status'].map(lambda x: pathify(x))
 new_table = new_table.replace({'Sex' : {'Male' : 'M',' Female' : 'F','Total' : 'T' }})
 
 new_table['Period'] = new_table['Period'].map(lambda x: 'government-year/' + left(x,4) +'-20' + right(x,2))
-new_table = new_table.fillna('')
+new_table = new_table.fillna('not-applicable')
 # -
 
 new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+new_table = new_table.replace({'Marker' : {'-' : 'not-applicable'}})
 new_table = new_table.drop(['Temp'], axis=1)
 
 tidy = new_table[['Period', 'Sex', 'Guardianship', 'Status', 'Section', 'Value', 'Measure Type', 'Marker']]

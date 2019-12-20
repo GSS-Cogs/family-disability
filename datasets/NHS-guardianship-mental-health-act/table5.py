@@ -174,11 +174,12 @@ new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
 
 new_table['Status'] = new_table['Status'].map(lambda x: pathify(x))
 new_table['Section'] = new_table['Section'].map(lambda x: pathify(x))
-new_table = new_table.fillna('')
+new_table = new_table.fillna('not-applicable')
 # -
 
 
 new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+new_table = new_table.replace({'Marker' : {'-' : 'not-applicable'}})
 
 tidy = new_table[['Period','Guardianship', 'Status','Region name', 'Section',
                   'Duration of closed cases','Value', 'Measure Type', 'Marker', 'Median (months)']]

@@ -83,6 +83,7 @@ new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Guardianship'] = new_table['Guardianship'].map(
     lambda x: pathify(x))
 
+new_table = new_table.replace({'Region name' : {'England' : 'England Total'}})
 new_table['Region name'] = new_table['Region name'].str.strip()
 new_table['Region name'] = new_table['Region name'].map(
     lambda x: pathify(x))
@@ -96,11 +97,12 @@ new_table['Status'] = new_table['Status'].map(
 
 new_table = new_table.replace({'Local authority name' : {'' : 'entire-region'}})
 new_table = new_table.replace({'Local authority code' : {'-' : 'not-applicable'}})
-new_table = new_table.fillna('')
+new_table = new_table.fillna('not-applicable')
 # -
 
 
 new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+new_table = new_table.replace({'Marker' : {'-' : 'not-applicable'}})
 
 tidy = new_table[['Period','Guardianship', 'Status','ONS area code','Local authority code','Local authority name'
                   ,'Region name','Value', 'Measure Type', 'Marker', 'Median (months)']]
