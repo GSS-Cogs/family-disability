@@ -76,6 +76,10 @@ Final_table['Disaggregation Level'] = Final_table['Disaggregation Level'].map(
 Final_table = Final_table[['NHS Geography','ASCOF Measure Code','Disaggregation Level','Measure Group','Measure Type','Value']]
 
 # %%
+# Added by LPerryman as the codelist for NHS ASCOF Code already existed
+Final_table = Final_table.rename(columns={'ASCOF Measure Code':'NHS ASCOF Code'})
+
+# %%
 out = Path('out')
 out.mkdir(exist_ok=True, parents=True)
 Final_table.to_csv(out / 'observations.csv', index = False)
