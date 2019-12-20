@@ -94,3 +94,5 @@ with open(out / 'observations.csv-metadata.trig', 'wb') as metadata:
 # %%
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
+
+# %%
