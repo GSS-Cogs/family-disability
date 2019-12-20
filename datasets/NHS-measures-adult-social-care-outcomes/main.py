@@ -78,6 +78,8 @@ Final_table = Final_table[['NHS Geography','ASCOF Measure Code','Disaggregation 
 # %%
 # Added by LPerryman as the codelist for NHS ASCOF Code already existed
 Final_table = Final_table.rename(columns={'ASCOF Measure Code':'NHS ASCOF Code'})
+Final_table['NHS ASCOF Code'] = Final_table['NHS ASCOF Code'].apply(pathify)
+Final_table['Measure Group'] = Final_table['Measure Group'].apply(pathify)
 
 # %%
 out = Path('out')
