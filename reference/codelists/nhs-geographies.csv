@@ -1,168 +1,168 @@
 Label,Notation,Parent Notation,Sort Priority
-Cumbria,102,,1
-Northumberland,104,,2
-Gateshead,106,,3
-Newcastle upon Tyne,107,,4
-North Tyneside,108,,5
-South Tyneside,109,,6
-Sunderland,110,,7
-Hartlepool,111,,8
-Middlesbrough,112,,9
-Redcar and Cleveland,113,,10
-Stockton-on-Tees,114,,11
-Durham,116,,12
-Darlington,117,,13
-Barnsley,204,,14
-Doncaster,205,,15
-Rotherham,206,,16
-Sheffield,207,,17
-Bradford,209,,18
-Calderdale,210,,19
-Kirklees,211,,20
-Leeds,212,,21
-Wakefield,213,,22
-East Riding of Yorkshire,214,,23
-Kingston upon Hull,215,,24
-North East Lincolnshire,216,,25
-North Lincolnshire,217,,26
-North Yorkshire,218,,27
-York,219,,28
-Bolton,304,,29
-Bury,305,,30
-Manchester,306,,31
-Oldham,307,,32
-Rochdale,308,,33
-Salford,309,,34
-Stockport,310,,35
-Tameside,311,,36
-Trafford,312,,37
-Wigan,313,,38
-Knowsley,315,,39
-Liverpool,316,,40
-Sefton,317,,41
-St. Helens,318,,42
-Wirral,319,,43
-Halton,321,,44
-Warrington,322,,45
-Lancashire,323,,46
-Blackburn with Darwen,324,,47
-Blackpool,325,,48
-Cheshire East,326,,49
-Cheshire West and Chester,327,,50
-Warwickshire,404,,51
-Birmingham,406,,52
-Coventry,407,,53
-Dudley,408,,54
-Sandwell,409,,55
-Solihull,410,,56
-Walsall,411,,57
-Wolverhampton,412,,58
-Staffordshire,413,,59
-Stoke-on-Trent,414,,60
-Herefordshire,415,,61
-Worcestershire,416,,62
-Shropshire,417,,63
-Telford and the Wrekin,418,,64
-Lincolnshire,503,,65
-Northamptonshire,504,,66
-Derbyshire,506,,67
-Derby,507,,68
-Leicestershire,508,,69
-Leicester,509,,70
-Rutland,510,,71
-Nottinghamshire,511,,72
-Nottingham,512,,73
-Hertfordshire,606,,74
-Norfolk,607,,75
-Oxfordshire,608,,76
-Suffolk,609,,77
-Luton,611,,78
-Buckinghamshire,612,,79
-Milton Keynes,613,,80
-Bracknell Forest,614,,81
-West Berkshire,615,,82
-Reading,616,,83
-Slough,617,,84
-Windsor and Maidenhead,618,,85
-Wokingham,619,,86
-Essex,620,,87
-Southend-on-Sea,621,,88
-Thurrock,622,,89
-Cambridgeshire,623,,90
-Peterborough,624,,91
-Bedford,625,,92
-Central Bedfordshire,626,,93
-Camden,702,,94
-Greenwich,703,,95
-Hackney,704,,96
-Hammersmith and Fulham,705,,97
-Islington,706,,98
-Kensington and Chelsea,707,,99
-Lambeth,708,,100
-Lewisham,709,,101
-Southwark,710,,102
-Tower Hamlets,711,,103
-Wandsworth,712,,104
-Westminster,713,,105
-City of London,714,,106
-Barking and Dagenham,716,,107
-Barnet,717,,108
-Bexley,718,,109
-Brent,719,,110
-Bromley,720,,111
-Croydon,721,,112
-Ealing,722,,113
-Enfield,723,,114
-Haringey,724,,115
-Harrow,725,,116
-Havering,726,,117
-Hillingdon,727,,118
-Hounslow,728,,119
-Kingston upon Thames,729,,120
-Merton,730,,121
-Newham,731,,122
-Redbridge,732,,123
-Richmond upon Thames,733,,124
-Sutton,734,,125
-Waltham Forest,735,,126
-Isle of Wight,803,,127
-Surrey,805,,128
-West Sussex,807,,129
-Dorset,809,,130
-Bournemouth,810,,131
-Poole,811,,132
-Hampshire,812,,133
-Portsmouth,813,,134
-Southampton,814,,135
-East Sussex,815,,136
-Brighton and Hove,816,,137
-Wiltshire,817,,138
-Swindon,819,,139
-Kent,820,,140
-Medway Towns,821,,141
-Cornwall,902,,142
-Gloucestershire,904,,143
-Somerset,905,,144
-Isles of Scilly,906,,145
-Bath and North East Somerset,908,,146
-Bristol,909,,147
-North Somerset,910,,148
-South Gloucestershire,911,,149
-Devon,912,,150
-Plymouth,913,,151
-Torbay,914,,152
-Eastern,E,,153
-East Midlands,EM,,154
-England,England,,155
-Inner London,I,,156
-London,L,,157
-Metropolitan Districts,M,,158
-North East,NE,,159
-North West,NW,,160
-Outer London,O,,161
-Shire Counties,S,,162
-South East,SE,,163
-South West,SW,,164
-Unitary Authorities,U,,165
-West Midlands,WM,,166
-Yorkshire and the Humber,YH,,167
+Cumbria,102,,
+Northumberland,104,,
+Gateshead,106,,
+Newcastle upon Tyne,107,,
+North Tyneside,108,,
+South Tyneside,109,,
+Sunderland,110,,
+Hartlepool,111,,
+Middlesbrough,112,,
+Redcar and Cleveland,113,,
+Stockton-on-Tees,114,,
+Durham,116,,
+Darlington,117,,
+Barnsley,204,,
+Doncaster,205,,
+Rotherham,206,,
+Sheffield,207,,
+Bradford,209,,
+Calderdale,210,,
+Kirklees,211,,
+Leeds,212,,
+Wakefield,213,,
+East Riding of Yorkshire,214,,
+Kingston upon Hull,215,,
+North East Lincolnshire,216,,
+North Lincolnshire,217,,
+North Yorkshire,218,,
+York,219,,
+Bolton,304,,
+Bury,305,,
+Manchester,306,,
+Oldham,307,,
+Rochdale,308,,
+Salford,309,,
+Stockport,310,,
+Tameside,311,,
+Trafford,312,,
+Wigan,313,,
+Knowsley,315,,
+Liverpool,316,,
+Sefton,317,,
+St. Helens,318,,
+Wirral,319,,
+Halton,321,,
+Warrington,322,,
+Lancashire,323,,
+Blackburn with Darwen,324,,
+Blackpool,325,,
+Cheshire East,326,,
+Cheshire West and Chester,327,,
+Warwickshire,404,,
+Birmingham,406,,
+Coventry,407,,
+Dudley,408,,
+Sandwell,409,,
+Solihull,410,,
+Walsall,411,,
+Wolverhampton,412,,
+Staffordshire,413,,
+Stoke-on-Trent,414,,
+Herefordshire,415,,
+Worcestershire,416,,
+Shropshire,417,,
+Telford and the Wrekin,418,,
+Lincolnshire,503,,
+Northamptonshire,504,,
+Derbyshire,506,,
+Derby,507,,
+Leicestershire,508,,
+Leicester,509,,
+Rutland,510,,
+Nottinghamshire,511,,
+Nottingham,512,,
+Hertfordshire,606,,
+Norfolk,607,,
+Oxfordshire,608,,
+Suffolk,609,,
+Luton,611,,
+Buckinghamshire,612,,
+Milton Keynes,613,,
+Bracknell Forest,614,,
+West Berkshire,615,,
+Reading,616,,
+Slough,617,,
+Windsor and Maidenhead,618,,
+Wokingham,619,,
+Essex,620,,
+Southend-on-Sea,621,,
+Thurrock,622,,
+Cambridgeshire,623,,
+Peterborough,624,,
+Bedford,625,,
+Central Bedfordshire,626,,
+Camden,702,,
+Greenwich,703,,
+Hackney,704,,
+Hammersmith and Fulham,705,,
+Islington,706,,
+Kensington and Chelsea,707,,
+Lambeth,708,,
+Lewisham,709,,
+Southwark,710,,
+Tower Hamlets,711,,
+Wandsworth,712,,
+Westminster,713,,
+City of London,714,,
+Barking and Dagenham,716,,
+Barnet,717,,
+Bexley,718,,
+Brent,719,,
+Bromley,720,,
+Croydon,721,,
+Ealing,722,,
+Enfield,723,,
+Haringey,724,,
+Harrow,725,,
+Havering,726,,
+Hillingdon,727,,
+Hounslow,728,,
+Kingston upon Thames,729,,
+Merton,730,,
+Newham,731,,
+Redbridge,732,,
+Richmond upon Thames,733,,
+Sutton,734,,
+Waltham Forest,735,,
+Isle of Wight,803,,
+Surrey,805,,
+West Sussex,807,,
+Dorset,809,,
+Bournemouth,810,,
+Poole,811,,
+Hampshire,812,,
+Portsmouth,813,,
+Southampton,814,,
+East Sussex,815,,
+Brighton and Hove,816,,
+Wiltshire,817,,
+Swindon,819,,
+Kent,820,,
+Medway Towns,821,,
+Cornwall,902,,
+Gloucestershire,904,,
+Somerset,905,,
+Isles of Scilly,906,,
+Bath and North East Somerset,908,,
+Bristol,909,,
+North Somerset,910,,
+South Gloucestershire,911,,
+Devon,912,,
+Plymouth,913,,
+Torbay,914,,
+Eastern,E,,
+East Midlands,EM,,
+England,England,,
+Inner London,I,,
+London,L,,
+Metropolitan Districts,M,,
+North East,NE,,
+North West,NW,,
+Outer London,O,,
+Shire Counties,S,,
+South East,SE,,
+South West,SW,,
+Unitary Authorities,U,,
+West Midlands,WM,,
+Yorkshire and the Humber,YH,,
