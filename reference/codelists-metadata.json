@@ -228,5 +228,9 @@
     "url": "codelists/local-authority-code.csv", 
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Local authority code"
+  }, {
+    "url": "codelists/measure-group.csv", 
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Measure Group"
   }]
 }
