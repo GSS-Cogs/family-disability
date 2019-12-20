@@ -70,7 +70,7 @@ PHE Sex,phe_sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#sex
 DWP Age Group,dwp_age_group,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-age-group,http://gss-data.org.uk/def/concept/dwp-age-group/{dwp_age_group},string,slugize,,
 DWP FRS People,dwp_frs_people,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-frs-people,http://gss-data.org.uk/def/concept/dwp-frs-people/{dwp_frs_people},string,slugize,,
 Measure Group,measure_group,qb:dimension,http://gss-data.org.uk/def/dimension/measure-group,http://gss-data.org.uk/def/concept/measure-group/{measure_group},string,slugize,,
-ASCOF Measure Code,ascof_measure_code,qb:dimension,http://gss-data.org.uk/def/dimension/ascof-measure-code,http://gss-data.org.uk/def/concept/ascof-measure-code/{ascof_measure_code},string,slugize,,
+NHS ASCOF Code,nhs_ascof_code,qb:dimension,http://gss-data.org.uk/def/dimension/nhs-ascof-code,http://gss-data.org.uk/def/concept/nhs-ascof-code/{nhs_ascof_code},string,slugize,,
 Disaggregation Level,disaggregation_level,qb:dimension,http://gss-data.org.uk/def/dimension/disaggregation-level,http://gss-data.org.uk/def/concept/disaggregation-level/{disaggregation_level},string,slugize,,
 Outcome,outcome,qb:measure,http://gss-data.org.uk/def/measure/outcome,,string,,,
 Status,status,qb:dimension,http://gss-data.org.uk/def/dimension/status,http://gss-data.org.uk/def/concept/status/{status},string,slugize,,http://gss-data.org.uk/def/classes/status/status
