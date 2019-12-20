@@ -46,8 +46,8 @@ Status,The number of Guardianship cases which had a Date Case Closed within the 
 Guardianship,,Dimension,http://gss-data.org.uk/def/concept-scheme/guardianship
 Section,,Dimension,http://gss-data.org.uk/def/concept-scheme/section
 Region Name,the description of the geographic region in which the CASSR is located. These are the nine former Government offices for the regions (GOR),Dimension,http://gss-data.org.uk/def/concept-scheme/region-name
-Local authority code,,Dimension,http://gss-data.org.uk/def/concept-scheme/Local authority code
-Local authority name,,Dimension,http://gss-data.org.uk/def/concept-scheme/Local authority name
+Local authority code,,Dimension,http://gss-data.org.uk/def/concept-scheme/local-authority-code
+Local authority name,,Dimension,http://gss-data.org.uk/def/concept-scheme/local authority-name
 Duration of closed cases,Duration of cases closed within the reporting period calculated from the difference between the Date Case Commenced and the Date Case Closed,Dimension,http://gss-data.org.uk/def/concept-scheme/duration-of-closed-cases
 Count,Count of People,Measure,
 NHS LDHC Quality Service,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-ldhc-quality-service
