@@ -24,8 +24,11 @@ scraper.select_dataset(latest=True)
 
 tabs = {tab.name: tab for tab in scraper.distribution(latest=True, mediaType='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet').as_databaker()}
 
-#Table 5a: Duration of closed cases of Guardianship under the Mental Health Act 1983 by local authority region, 2016-17
 tab = tabs['Table 5']
+
+# +
+#Table 5a: Duration of closed cases of Guardianship under the Mental Health Act 1983 by local authority region, 2016-17
+# -
 
 #Number of cases by region - all cases - 2016-17
 regionName = tab.excel_ref('B14').expand(DOWN).is_not_blank() - tab.excel_ref('B26').expand(DOWN) 
@@ -71,7 +74,6 @@ table_17_18_all = c2.topandas()
 #Number of cases by region - Section 7 cases - 2016-17
 tab = tabs['Table 5']
 regionName = tab.excel_ref('B30').expand(DOWN).is_not_blank() - tab.excel_ref('B42').expand(DOWN)
-#totalCases = tab.excel_ref('C29').expand(DOWN).is_not_blank() - tab.excel_ref('C42').expand(DOWN) 
 median = tab.excel_ref('M29').expand(DOWN).is_not_blank() - tab.excel_ref('M42').expand(DOWN) 
 duration = tab.excel_ref('C29').expand(RIGHT).is_not_blank() - tab.excel_ref('M29').expand(RIGHT) 
 observations_16_17_section7 = duration.fill(DOWN).is_not_blank() - tab.excel_ref('C42').expand(RIGHT).expand(DOWN)
@@ -84,7 +86,6 @@ dimensions = [
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
-    #HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
     HDim(median, 'Median (months)', DIRECTLY, RIGHT),
 ]
 c1 = ConversionSegment(observations_16_17_section7, dimensions, processTIMEUNIT=True)
@@ -93,7 +94,6 @@ table_16_17_section7 = c1.topandas()
 
 #Number of cases by region - Section 7 cases - 2017-18
 regionName = tab.excel_ref('O30').expand(DOWN).is_not_blank() - tab.excel_ref('O42').expand(DOWN)
-#totalCases = tab.excel_ref('P29').expand(DOWN).is_not_blank() - tab.excel_ref('P42').expand(DOWN) 
 median = tab.excel_ref('Z29').expand(DOWN).is_not_blank() - tab.excel_ref('Z42').expand(DOWN) 
 duration = tab.excel_ref('P29').expand(RIGHT).is_not_blank() - tab.excel_ref('Z29').expand(RIGHT) 
 observations_17_18_section7 = duration.fill(DOWN).is_not_blank() - tab.excel_ref('P42').expand(RIGHT).expand(DOWN)
@@ -106,7 +106,6 @@ dimensions = [
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
-    #HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
     HDim(median, 'Median (months)', DIRECTLY, RIGHT),
 ]
 c2 = ConversionSegment(observations_17_18_section7, dimensions, processTIMEUNIT=True)
@@ -115,7 +114,6 @@ table_17_18_section7 = c2.topandas()
 
 #Number of cases by region - Section 37 cases - 2016-17
 regionName = tab.excel_ref('B46').expand(DOWN).is_not_blank() - tab.excel_ref('B58').expand(DOWN)
-#totalCases = tab.excel_ref('C45').expand(DOWN).is_not_blank() - tab.excel_ref('C58').expand(DOWN) 
 median = tab.excel_ref('M45').expand(DOWN).is_not_blank() - tab.excel_ref('M58').expand(DOWN) 
 duration = tab.excel_ref('C45').expand(RIGHT).is_not_blank() - tab.excel_ref('M45').expand(RIGHT) 
 observations_16_17_section37 = duration.fill(DOWN).is_not_blank() - tab.excel_ref('C58').expand(RIGHT).expand(DOWN)
@@ -128,7 +126,6 @@ dimensions = [
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
-    #HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
     HDim(median, 'Median (months)', DIRECTLY, RIGHT),
 ]
 c1 = ConversionSegment(observations_16_17_section37, dimensions, processTIMEUNIT=True)
@@ -137,7 +134,6 @@ table_16_17_section37 = c1.topandas()
 
 #Number of cases by region - Section 37 cases - 2016-17
 regionName = tab.excel_ref('O46').expand(DOWN).is_not_blank() - tab.excel_ref('O58').expand(DOWN)
-#totalCases = tab.excel_ref('P45').expand(DOWN).is_not_blank() - tab.excel_ref('P58').expand(DOWN) 
 median = tab.excel_ref('Z45').expand(DOWN).is_not_blank() - tab.excel_ref('Z58').expand(DOWN) 
 duration = tab.excel_ref('P45').expand(RIGHT).is_not_blank() - tab.excel_ref('Z45').expand(RIGHT) 
 observations_17_18_section37 = duration.fill(DOWN).is_not_blank() - tab.excel_ref('P58').expand(RIGHT).expand(DOWN)
@@ -150,7 +146,6 @@ dimensions = [
     HDimConst('Guardianship', 'Local Authority'),
     HDim(duration, 'Duration of closed cases', DIRECTLY, ABOVE),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
-   # HDim(totalCases, 'Total Cases', DIRECTLY, LEFT),
     HDim(median, 'Median (months)', DIRECTLY, RIGHT),
 ]
 c2 = ConversionSegment(observations_17_18_section37, dimensions, processTIMEUNIT=True)
@@ -180,6 +175,7 @@ new_table = new_table.fillna('not-applicable')
 
 new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 new_table = new_table.replace({'Marker' : {'-' : 'not-applicable'}})
+#new_table['Median'] = new_table['Median'].astype(str) + '_months'
 
 tidy = new_table[['Period','Guardianship', 'Status','Region name', 'Section',
                   'Duration of closed cases','Value', 'Measure Type', 'Marker', 'Median (months)']]
