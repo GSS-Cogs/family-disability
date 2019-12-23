@@ -135,6 +135,11 @@ next_table['Special Education Support Type'] = next_table['Special Education Sup
                 'pupils-on-sen-supporteligible-and-claiming-free-school-meals' : 'pupils-on-sen-support-eligible-and-claiming-free-school-meals',       
         }.get(x, x))
 
+#### Change of columns to match definitions
+next_table = next_table.rename(columns={'Special Education Support Type':'DfE Special Education Support Type'})
+next_table = next_table.rename(columns={'Special Education Provider':'DfE Special Education Provider'})
+next_table = next_table.rename(columns={'Special Education Need Type':'DfE Special Education Need Type'})
+
 from pathlib import Path
 out = Path('out')
 out.mkdir(exist_ok=True)
