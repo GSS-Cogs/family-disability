@@ -92,3 +92,5 @@ NHS LDHC Quality Service,nhs_ldhc_quality_service,qb:dimension,http://gss-data.o
 ONS SUB Geography,ons_sub_geography,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refArea,http://statistics.data.gov.uk/id/statistical-geography/{ons_sub_geography},string,,[A-Z][0-9]{8},
 ONS CCG Geography,ons_ccg_geography,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refArea,http://statistics.data.gov.uk/id/statistical-geography/{ons_ccg_geography},string,,[A-Z][0-9]{8},
 GP Practice Code,gp_practice_code,qb:dimension,http://gss-data.org.uk/def/dimension/gp-practice,http://gss-data.org.uk/def/concept/nhs-gp-practices/{gp_practice_code},string,,[A-Z][0-9]{5},
+DfE Age Groups,dfe_age_groups,qb:dimension,http://gss-data.org.uk/def/dimension/dfe-age-groups,http://gss-data.org.uk/def/concept/dfe-age-groups/{dfe_age_groups},string,slugize,,http://gss-data.org.uk/def/classes/dfe-age-groups/dfe_age_groups
+DfE Sex Groups,dfe_sex_groups,qb:dimension,http://gss-data.org.uk/def/dimension/dfe-sex-groups,http://gss-data.org.uk/def/concept/dfe-sex-groups/{dfe_sex_groups},string,slugize,,http://gss-data.org.uk/def/classes/dfe-sex-groups/dfe_sex_groups
