@@ -239,11 +239,11 @@
   }, {
     "url": "codelists/dfe-age-groups.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "DfE-Age"
+    "rdfs:label": "DfE Age Groups"
   }, {
     "url": "codelists/dfe-sex-groups.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Dfe-Sex"
+    "rdfs:label": "DfE Sex Groups"
   }, {
     "url": "codelists/disaggregation-level.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
