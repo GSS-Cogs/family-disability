@@ -81,9 +81,11 @@ next_table = pd.concat([next_table, new_table])
 next_table = pd.concat([next_table, new_table])
 # -
 
+dfeS = 'DfE Age Groups'
+dfeA = 'DfE Sex Groups'
 next_table.rename(columns={'Geography': 'ONS Geography',
-                             'Age' : 'DfE Age Groups',
-                             'Sex' : 'DfE Sex Groups',
+                             'Age' : dfeA,
+                             'Sex' : dfeS,
                              'Special support type' : 'Special Education Support Type',
                              'Special need type' : 'Special Education Need Type',
                              'Education provider' : 'Special Education Provider'
@@ -95,16 +97,16 @@ new_table['Period'] = pd.to_numeric(new_table['Period'], errors='coerce').fillna
 new_table['Period'] = new_table['Period'].astype('Int64')
 next_table['Period'] = 'year/'+ next_table['Period'].astype(str)
 
-next_table['Dfe-Age'] = next_table['Dfe-Age'].str.replace('\.0', '')
-next_table['Dfe-Age'] = ('year/') + next_table['Dfe-Age']
-next_table['Dfe-Age'] = next_table['Dfe-Age'].map(
+next_table[dfeA] = next_table[dfeA].str.replace('\.0', '')
+next_table[dfeA] = ('year/') + next_table[dfeA]
+next_table[dfeA] = next_table[dfeA].map(
     lambda x: {
         'year/All' : 'all', 'year/2 and under' : 'under-2', 
        'year/12 and above': '12-plus', 'year/Total All Ages' :'all', 'year/4 and under' :'under-4',
        'year/19+' : '19-plus', 'year/all' : 'all'
         }.get(x, x))
 
-next_table['Dfe-Sex'] = next_table['Dfe-Sex'].map(
+next_table[dfeS] = next_table[dfeS].map(
     lambda x: { 'All' : 'all', 'Boys' :'B', 'Girls' :'G', 'Total' : 'T', 'Total(5)' :'T'        
         }.get(x, x))
 
