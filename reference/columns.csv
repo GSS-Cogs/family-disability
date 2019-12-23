@@ -70,7 +70,7 @@ DWP Age Group,dwp_age_group,qb:dimension,http://gss-data.org.uk/def/dimension/dw
 DWP FRS People,dwp_frs_people,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-frs-people,http://gss-data.org.uk/def/concept/dwp-frs-people/{dwp_frs_people},string,slugize,,
 Measure Group,measure_group,qb:dimension,http://gss-data.org.uk/def/dimension/measure-group,http://gss-data.org.uk/def/concept/measure-group/{measure_group},string,slugize,,
 NHS ASCOF Code,nhs_ascof_code,qb:dimension,http://gss-data.org.uk/def/dimension/nhs-ascof-code,http://gss-data.org.uk/def/concept/nhs-ascof-code/{nhs_ascof_code},string,slugize,,
-Disaggregation Level,disaggregation_level,qb:dimension,http://gss-data.org.uk/def/dimension/disaggregation-level,http://gss-data.org.uk/def/concept/disaggregation-level/{disaggregation_level},string,slugize,,
+Disaggregation Level,disaggregation_level,qb:dimension,http://gss-data.org.uk/def/dimension/disaggregation-level,http://gss-data.org.uk/def/concept/disaggregation-level/{disaggregation_level},string,,,
 Outcome,outcome,qb:measure,http://gss-data.org.uk/def/measure/outcome,,string,,,
 Status,status,qb:dimension,http://gss-data.org.uk/def/dimension/status,http://gss-data.org.uk/def/concept/status/{status},string,slugize,,http://gss-data.org.uk/def/classes/status/status
 Guardianship,guardianship,qb:dimension,http://gss-data.org.uk/def/dimension/guardianship,http://gss-data.org.uk/def/concept/guardianship/{guardianship},string,slugize,,http://gss-data.org.uk/def/classes/guardianship/guardianship
