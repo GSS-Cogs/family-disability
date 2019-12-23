@@ -1,23 +1,23 @@
 Label,Notation,Parent Notation,Sort Priority
-All ages,all,,1
-Single Year of Age,year,all,2
-Under 2,under-2,year,3
-Under 4,under-4,year,4
-12 and above,12-plus,year,5
-19 and above,19-plus,year,6
-3,year/3,year,7
-4,year/4,year,8
-5,year/5,year,9
-6,year/6,year,10
-7,year/7,year,11
-8,year/8,year,12
-9,year/9,year,13
-10,year/10,year,14
-11,year/11,year,15
-12,year/12,year,16
-13,year/13,year,17
-14,year/14,year,18
-15,year/15,year,19
-16,year/16,year,20
-17,year/17,year,21
-18,year/18,year,22
+All ages,all,,
+Single Year of Age,year,,
+Under 2,under-2,,
+Under 4,under-4,,
+12 and above,12-plus,,
+19 and above,19-plus,,
+3,year-3,,
+4,year-4,,
+5,year-5,,
+6,year-6,,
+7,year-7,,
+8,year-8,,
+9,year-9,,
+10,year-10,,
+11,year-11,,
+12,year-12,,
+13,year-13,,
+14,year-14,,
+15,year-15,,
+16,year-16,,
+17,year-17,,
+18,year-18,,
