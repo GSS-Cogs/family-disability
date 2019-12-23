@@ -69,7 +69,7 @@ Final_table = Final_table[Final_table['Value'] != 'c' ]
 # %%
 Final_table['Disaggregation Level'] = Final_table['Disaggregation Level'].map(
                         lambda x: {
-                            'Female' : 'f', 'Total' : 't', '65 and over': '65-plus', 'Male' :'m', 
+                            'Female' : 'F', 'Total' : 'T', '65 and over': '65-plus', 'Male' :'M', 
                             '64 and under':'under-64', '85 and over' : '85-plus'}.get(x, x))
 
 # %%
