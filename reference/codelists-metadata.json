@@ -37,7 +37,7 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Net Weekly Income"
   }, {
-    "url": "codelists/nhs-geographies.csv",
+    "url": "codelists/nhs-geography.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "NHS Geography"
   }, {
