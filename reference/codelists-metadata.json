@@ -53,9 +53,13 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Reasons for failing to maintain accommodation"
   }, {
-    "url": "codelists/SEN-educational-institutions.csv",
+    "url": "codelists/dfe-Special-Education-Support-Type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Special Educational Needs Institutions"
+  }, {
+    "url": "codelists/SEN-educational-institutions.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Special Educational Support Type"
   }, {
     "url": "codelists/source-of-income.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
