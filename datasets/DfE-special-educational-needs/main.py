@@ -81,8 +81,8 @@ next_table = pd.concat([next_table, new_table])
 next_table = pd.concat([next_table, new_table])
 # -
 
-dfeS = 'DfE Age Groups'
-dfeA = 'DfE Sex Groups'
+dfeS = 'DfE Sex Groups'
+dfeA = 'DfE Age Groups'
 next_table.rename(columns={'Geography': 'ONS Geography',
                              'Age' : dfeA,
                              'Sex' : dfeS,
