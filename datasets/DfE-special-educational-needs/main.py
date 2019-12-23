@@ -106,7 +106,7 @@ next_table[dfeA] = next_table[dfeA].map(
        'year/19+' : '19-plus', 'year/all' : 'all'
         }.get(x, x))
 #### Replace all the forward slashes with a hyphen
-next_table[dfeA] = next_table[dfeA].str.replace('\', '-')
+next_table[dfeA] = next_table[dfeA].str.replace('/', '-', regex=True)
 
 next_table[dfeS] = next_table[dfeS].map(
     lambda x: { 'All' : 'all', 'Boys' :'B', 'Girls' :'G', 'Total' : 'T', 'Total(5)' :'T'        
