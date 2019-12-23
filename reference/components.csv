@@ -60,6 +60,6 @@ NHS Geography,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-geography
 Outcome,outcome,Measure,
 DfE Age Groups,,Dimension,http://gss-data.org.uk/def/concept-scheme/dfe-age-groups
 DfE Sex Groups,,Dimension,http://gss-data.org.uk/def/concept-scheme/dfe-sex-groups
-Special Education Provider,,Dimension,http://gss-data.org.uk/def/concept-scheme/dfe-special-education-provider
-Special Education Support Type,,Dimension,http://gss-data.org.uk/def/concept-scheme/dfe-special-education-support-type
-Special Education Need Type,,Dimension,http://gss-data.org.uk/def/concept-scheme/dfe-special-education-need-type
+DfE Special Education Provider,,Dimension,http://gss-data.org.uk/def/concept-scheme/dfe-special-education-provider
+DfE Special Education Support Type,,Dimension,http://gss-data.org.uk/def/concept-scheme/dfe-special-education-support-type
+DfE Special Education Need Type,,Dimension,http://gss-data.org.uk/def/concept-scheme/dfe-special-education-need-type
