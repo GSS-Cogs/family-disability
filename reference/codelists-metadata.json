@@ -243,6 +243,6 @@
   }, {
     "url": "codelists/disaggregation-level.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "disaggregation-level"
+    "rdfs:label": "Disaggregation Level"
   }]
 }
