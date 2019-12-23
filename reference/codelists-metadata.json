@@ -59,15 +59,15 @@
    }, {
     "url": "codelists/dfe-special-education-provider.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Special Education Provider"
+    "rdfs:label": "DfE Special Education Provider"
     }, {
     "url": "codelists/dfe-special-education-need-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Special Education Need Type"
+    "rdfs:label": "DfE Special Education Need Type"
   }, {
     "url": "codelists/dfe-special-education-support-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Special Education Support Type"
+    "rdfs:label": "DfE Special Education Support Type"
   }, {
     "url": "codelists/source-of-income.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
