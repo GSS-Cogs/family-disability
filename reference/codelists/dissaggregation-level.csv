@@ -1,0 +1,12 @@
+Label,Notation,Parent Notation,Sort Priority
+All,all,,1
+Female,f,,2
+Male,m,,3
+Total,t,,4
+65-plus,65-plus,,5
+18-64,18-64,,6
+65-84,65-84,,7
+Under-64,under-64,,8
+85-plus,85-plus,,9
+65-74,65-74,,10
+75-84,75-84,,11
