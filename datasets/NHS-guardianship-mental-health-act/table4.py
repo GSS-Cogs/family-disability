@@ -31,7 +31,7 @@ areaCode = tab.excel_ref('B14').expand(DOWN).is_not_blank() - tab.excel_ref('B18
 localAuthorityCode = tab.excel_ref('C14').expand(DOWN).is_not_blank()
 localAuthorityName = tab.excel_ref('D14').expand(DOWN).is_not_blank()
 regionName = tab.excel_ref('E14').expand(DOWN).is_not_blank()
-#medianOfContinuingCases = tab.excel_ref('G14').expand(DOWN).is_not_blank()
+medianOfContinuingCases = tab.excel_ref('G14').expand(DOWN).is_not_blank()
 observations_08_09 = tab.excel_ref('F14').expand(DOWN).is_not_blank()
 #savepreviewhtml(observations)
 dimensions = [
@@ -43,7 +43,7 @@ dimensions = [
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
     HDim(localAuthorityName, 'Local authority name', DIRECTLY, LEFT),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
-    #HDim(medianOfContinuingCases, 'Median (months)', DIRECTLY, RIGHT)
+    HDim(medianOfContinuingCases, 'Median months', DIRECTLY, RIGHT)
 ]
 c1 = ConversionSegment(observations_08_09, dimensions, processTIMEUNIT=True)
 #savepreviewhtml(c1, fname="Preview.html")
@@ -54,7 +54,7 @@ areaCode = tab.excel_ref('I14').expand(DOWN).is_not_blank() - tab.excel_ref('I18
 localAuthorityCode = tab.excel_ref('J14').expand(DOWN).is_not_blank()
 localAuthorityName = tab.excel_ref('K14').expand(DOWN).is_not_blank()
 regionName = tab.excel_ref('L14').expand(DOWN).is_not_blank()
-#medianOfContinuingCases = tab.excel_ref('N14').expand(DOWN).is_not_blank()
+medianOfContinuingCases = tab.excel_ref('N14').expand(DOWN).is_not_blank()
 observations_17_18 = tab.excel_ref('M14').expand(DOWN).is_not_blank()
 #savepreviewhtml(observations)
 dimensions = [
@@ -66,7 +66,7 @@ dimensions = [
     HDim(localAuthorityCode, 'Local authority code', DIRECTLY, LEFT),
     HDim(localAuthorityName, 'Local authority name', DIRECTLY, LEFT),
     HDim(regionName, 'Region name', DIRECTLY, LEFT),
-    #HDim(medianOfContinuingCases, 'Median (months)', DIRECTLY, RIGHT)
+    HDim(medianOfContinuingCases, 'Median months', DIRECTLY, RIGHT)
 ]
 c2 = ConversionSegment(observations_17_18, dimensions, processTIMEUNIT=True)
 #savepreviewhtml(c2, fname="Preview.html")
@@ -105,7 +105,7 @@ new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 new_table = new_table.replace({'Marker' : {'-' : 'not-applicable'}})
 
 tidy = new_table[['Period','Guardianship', 'Status','ONS area code','Local authority code','Local authority name'
-                  ,'Region name','Value', 'Measure Type', 'Marker' ]]#,'Median (months)']]
+                  ,'Region name','Value', 'Measure Type', 'Marker','Median months']]
 tidy
 
 # +
