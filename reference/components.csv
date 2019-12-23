@@ -58,3 +58,4 @@ NHS LDHC Quality Service,,Dimension,http://gss-data.org.uk/def/concept-scheme/nh
 NHS LDHC Measure Code,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-ldhc-measure-code
 GP Practice,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-gp-practices
 NHS Geography,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-geographies
+Disaggregation Level,,Dimension,http://gss-data.org.uk/def/concept-scheme/disaggregation-level
