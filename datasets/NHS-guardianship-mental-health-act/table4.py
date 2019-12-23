@@ -98,6 +98,8 @@ new_table['Status'] = new_table['Status'].map(
 new_table = new_table.replace({'Local authority name' : {'' : 'entire-region'}})
 new_table = new_table.replace({'Local authority code' : {'-' : 'not-applicable'}})
 new_table = new_table.fillna('not-applicable')
+
+new_table['Median months'] = new_table['Median months'].astype(float)
 # -
 
 
