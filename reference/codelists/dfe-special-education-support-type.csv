@@ -1,206 +1,206 @@
 Label,Notation,Parent Notation,Sort Priority
- All  ,all,,1
- Provision  ,provision,all,2
-  Academy  ,academy,all,3
-  Age and Gender   ,age-and-gender,all,4
- Nursery Years 1 and 2  ,nursery-years-1-and-2,all,5
- Reception  ,reception,all,6
-1,1,all,7
-2,2,all,8
-3,3,all,9
-4,4,all,10
-5,5,all,11
-6,6,all,12
- 7 and Above  ,7-and-above,all,13
- Nc Not Followed  ,nc-not-followed,all,14
-  Total  ,total,all,15
-  Nursery Reception and 1 To 4   ,nursery-reception-and-1-to-4,all,16
-7,7,all,17
-8,8,all,18
-9,9,all,19
-10,10,all,20
-11,11,all,21
- 12 and Above   ,12-and-above,all,22
- Total Pupils  ,total-pupils,all,23
- Number Known To Be Eligible For and Claiming Free School Meals  ,number-known-to-be-eligible-for-and-claiming-free-school-meals,all,24
- White   ,white,all,25
- White British   ,white-british,all,26
- Irish   ,irish,all,27
- Traveller Of Irish Heritage  ,traveller-of-irish-heritage,all,28
- Gypsy Or Roma  ,gypsy-or-roma,all,29
-  Any Other White Background  ,any-other-white-background,all,30
-  Mixed  ,mixed,all,31
- White and Black Caribbean  ,white-and-black-caribbean,all,32
-  White and Black African  ,white-and-black-african,all,33
- White and Asian  ,white-and-asian,all,34
-  Any Other Mixed Background  ,any-other-mixed-background,all,35
-  Asian  ,asian,all,36
-  Indian  ,indian,all,37
- Pakistani   ,pakistani,all,38
- Bangladeshi  ,bangladeshi,all,39
-  Any Other Asian Background   ,any-other-asian-background,all,40
- Black  ,black,all,41
- Black Caribbean   ,black-caribbean,all,42
- Black African   ,black-african,all,43
- Any Other Black Background  ,any-other-black-background,all,44
- Chinese  ,chinese,all,45
-  Any Other Ethnic Group  ,any-other-ethnic-group,all,46
-  Classified  ,classified,all,47
-  Unclassified  ,unclassified,all,48
- Minority Ethnic Pupils  ,minority-ethnic-pupils,all,49
-  All Pupils  ,all-pupils,all,50
- First Language Is Known To Be Or Believed To Be Other Than English  ,first-language-is-known-to-be-or-believed-to-be-other-than-english,all,51
- First Language Is Known To Be Or Believed To Be English  ,first-language-is-known-to-be-or-believed-to-be-english,all,52
- Specific Learning Difficulty    Moderate Learning Difficulty  ,specific-learning-difficulty    moderate-learning-difficulty,all,53
- Severe Learning Difficulty  ,severe-learning-difficulty,all,54
- Profound Multiple Learning Difficulty  ,profound-multiple-learning-difficulty,all,55
- Social Emotional and Mental Health  ,social-emotional-and-mental-health,all,56
- Speech Language and Communications Needs   ,speech-language-and-communications-needs,all,57
- Hearing Impairment  ,hearing-impairment,all,58
- Visual Impairment   ,visual-impairment,all,59
- Multi SENsory Impairment  ,multi-sensory-impairment,all,60
- Physical Disability   ,physical-disability,all,61
- Autistic Spectrum Disorder  ,autistic-spectrum-disorder,all,62
- Other Difficulty Or Disability  ,other-difficulty-or-disability,all,63
- SEN Support But No Specialist Assessment Of Type Of Need  ,sen-support-but-no-specialist-assessment-of-type-of-need,all,64
- School Provision   ,school-provision,all,65
- School Size  ,school-size,all,66
-  Resources  ,resources,all,67
- Statement Or EHC Plan   ,statement-or-ehc-plan,all,68
- SEN Support   ,sen-support,all,69
- Local Area  ,local-area,all,70
- School Area  ,school-area,all,71
-  Primary Need   ,primary-need,all,72
- Pupils On SEN Support  ,pupils-on-sen-support,all,73
- Pupils With SEN With Statements Or EHC Plans  ,pupils-with-sen-with-statements-or-ehc-plans,all,74
- Pupils With SEN With Statements Or EHC Plan  ,pupils-with-sen-with-statements-or-ehc-plan,all,75
- SEN Support By Ethnic Group White  ,sen-support-by-ethnic-group-white,all,76
- SEN Support By Ethnic Group White British  ,sen-support-by-ethnic-group-white-british,all,77
- SEN Support By Ethnic Group Irish  ,sen-support-by-ethnic-group-irish,all,78
- SEN Support By Ethnic Group Traveller Of Irish Heritage  ,sen-support-by-ethnic-group-traveller-of-irish-heritage,all,79
- SEN Support By Ethnic Group Gypsy Or Roma  ,sen-support-by-ethnic-group-gypsy-or-roma,all,80
- SEN Support By Ethnic Group Any Other White Background  ,sen-support-by-ethnic-group-any-other-white-background,all,81
- SEN Support By Ethnic Group Mixed  ,sen-support-by-ethnic-group-mixed,all,82
- SEN Support By Ethnic Group White and Black Caribbean  ,sen-support-by-ethnic-group-white-and-black-caribbean,all,83
- SEN Support By Ethnic Group White and Black African  ,sen-support-by-ethnic-group-white-and-black-african,all,84
- SEN Support By Ethnic Group White and Asian  ,sen-support-by-ethnic-group-white-and-asian,all,85
- SEN Support By Ethnic Group Any Other Mixed Background  ,sen-support-by-ethnic-group-any-other-mixed-background,all,86
- SEN Support By Ethnic Group Asian  ,sen-support-by-ethnic-group-asian,all,87
- SEN Support By Ethnic Group Indian  ,sen-support-by-ethnic-group-indian,all,88
- SEN Support By Ethnic Group Pakistani  ,sen-support-by-ethnic-group-pakistani,all,89
- SEN Support By Ethnic Group Bangladeshi  ,sen-support-by-ethnic-group-bangladeshi,all,90
- SEN Support By Ethnic Group Any Other Asian Background  ,sen-support-by-ethnic-group-any-other-asian-background,all,91
- SEN Support By Ethnic Group Black  ,sen-support-by-ethnic-group-black,all,92
- SEN Support By Ethnic Group Black Caribbean  ,sen-support-by-ethnic-group-black-caribbean,all,93
- SEN Support By Ethnic Group Black African  ,sen-support-by-ethnic-group-black-african,all,94
- SEN Support By Ethnic Group Any Other Black Background  ,sen-support-by-ethnic-group-any-other-black-background,all,95
- SEN Support By Ethnic Group Chinese  ,sen-support-by-ethnic-group-chinese,all,96
- SEN Support By Ethnic Group Any Other Ethnic Group  ,sen-support-by-ethnic-group-any-other-ethnic-group,all,97
- SEN Support By Ethnic Group Classified  ,sen-support-by-ethnic-group-classified,all,98
- SEN Support By Ethnic Group Unclassified  ,sen-support-by-ethnic-group-unclassified,all,99
- SEN Support By Ethnic Group Minority Ethnic Pupils  ,sen-support-by-ethnic-group-minority-ethnic-pupils,all,100
- SEN Support By Ethnic Group All Pupils  ,sen-support-by-ethnic-group-all-pupils,all,101
- Statements Or EHC Plans Support By Ethnic Group White  ,statements-or-ehc-plans-support-by-ethnic-group-white,all,102
- Statements Or EHC Plans Support By Ethnic Group White British  ,statements-or-ehc-plans-support-by-ethnic-group-white-british,all,103
- Statements Or EHC Plans Support By Ethnic Group Irish  ,statements-or-ehc-plans-support-by-ethnic-group-irish,all,104
- Statements Or EHC Plans Support By Ethnic Group Traveller Of Irish Heritage  ,statements-or-ehc-plans-support-by-ethnic-group-traveller-of-irish-heritage,all,105
- Statements Or EHC Plans Support By Ethnic Group Gypsy Or Roma  ,statements-or-ehc-plans-support-by-ethnic-group-gypsy-or-roma,all,106
- Statements Or EHC Plans Support By Ethnic Group Any Other White Background  ,statements-or-ehc-plans-support-by-ethnic-group-any-other-white-background,all,107
- Statements Or EHC Plans Support By Ethnic Group Mixed  ,statements-or-ehc-plans-support-by-ethnic-group-mixed,all,108
- Statements Or EHC Plans Support By Ethnic Group White and Black Caribbean  ,statements-or-ehc-plans-support-by-ethnic-group-white-and-black-caribbean,all,109
- Statements Or EHC Plans Support By Ethnic Group White and Black African  ,statements-or-ehc-plans-support-by-ethnic-group-white-and-black-african,all,110
- Statements Or EHC Plans Support By Ethnic Group White and Asian  ,statements-or-ehc-plans-support-by-ethnic-group-white-and-asian,all,111
- Statements Or EHC Plans Support By Ethnic Group Any Other Mixed Background  ,statements-or-ehc-plans-support-by-ethnic-group-any-other-mixed-background,all,112
- Statements Or EHC Plans Support By Ethnic Group Asian  ,statements-or-ehc-plans-support-by-ethnic-group-asian,all,113
- Statements Or EHC Plans Support By Ethnic Group Indian  ,statements-or-ehc-plans-support-by-ethnic-group-indian,all,114
- Statements Or EHC Plans Support By Ethnic Group Pakistani  ,statements-or-ehc-plans-support-by-ethnic-group-pakistani,all,115
- Statements Or EHC Plans Support By Ethnic Group Bangladeshi  ,statements-or-ehc-plans-support-by-ethnic-group-bangladeshi,all,116
- Statements Or EHC Plans Support By Ethnic Group Any Other Asian Background  ,statements-or-ehc-plans-support-by-ethnic-group-any-other-asian-background,all,117
- Statements Or EHC Plans Support By Ethnic Group Black  ,statements-or-ehc-plans-support-by-ethnic-group-black,all,118
- Statements Or EHC Plans Support By Ethnic Group Black Caribbean  ,statements-or-ehc-plans-support-by-ethnic-group-black-caribbean,all,119
- Statements Or EHC Plans Support By Ethnic Group Black African  ,statements-or-ehc-plans-support-by-ethnic-group-black-african,all,120
- Statements Or EHC Plans Support By Ethnic Group Any Other Black Background  ,statements-or-ehc-plans-support-by-ethnic-group-any-other-black-background,all,121
- Statements Or EHC Plans Support By Ethnic Group Chinese  ,statements-or-ehc-plans-support-by-ethnic-group-chinese,all,122
- Statements Or EHC Plans Support By Ethnic Group Any Other Ethnic Group  ,statements-or-ehc-plans-support-by-ethnic-group-any-other-ethnic-group,all,123
- Statements Or EHC Plans Support By Ethnic Group Classified  ,statements-or-ehc-plans-support-by-ethnic-group-classified,all,124
- Statements Or EHC Plans Support By Ethnic Group Unclassified  ,statements-or-ehc-plans-support-by-ethnic-group-unclassified,all,125
- Statements Or EHC Plans Support By Ethnic Group Minority Ethnic Pupils  ,statements-or-ehc-plans-support-by-ethnic-group-minority-ethnic-pupils,all,126
- Statements Or EHC Plans Support By Ethnic Group All Pupils  ,statements-or-ehc-plans-support-by-ethnic-group-all-pupils,all,127
- Pupils On SEN Support Eligible and Claiming Free School Meals  ,pupils-on-sen-support-eligible-and-claiming-free-school-meals,all,128
- Pupils With SEN With Statements Or EHC Planeligible and Claiming Free School Meals  ,pupils-with-sen-with-statements-or-ehc-planeligible-and-claiming-free-school-meals,all,129
- SEN Support Nursery Years 1 and 2  ,sen-support-nursery-years-1-and-2,all,130
-  SEN Support Reception  ,sen-support-reception,all,131
- SEN Support 1   ,sen-support-1,all,132
- SEN Support 2   ,sen-support-2,all,133
- SEN Support 3  ,sen-support-3,all,134
-  SEN Support 4  ,sen-support-4,all,135
- SEN Support 5   ,sen-support-5,all,136
- SEN Support 6  ,sen-support-6,all,137
-  SEN Support 7   ,sen-support-7,all,138
- SEN Support 8  ,sen-support-8,all,139
- SEN Support 9   ,sen-support-9,all,140
- SEN Support 10   ,sen-support-10,all,141
- SEN Support 11  ,sen-support-11,all,142
- SEN Support 12 and Above  ,sen-support-12-and-above,all,143
-  SEN Support Nc Not Followed  ,sen-support-nc-not-followed,all,144
- SEN Support Total SEN Support  ,sen-support-total-sen-support,all,145
- Statements Or EHC Plans Nursery Years 1 and 2  ,statements-or-ehc-plans-nursery-years-1-and-2,all,146
- Statements Or EHC Plans Reception  ,statements-or-ehc-plans-reception,all,147
-  Statements Or EHC Plans 1  ,statements-or-ehc-plans-1,all,148
- Statements Or EHC Plans 2   ,statements-or-ehc-plans-2,all,149
- Statements Or EHC Plans 3  ,statements-or-ehc-plans-3,all,150
- Statements Or EHC Plans 4  ,statements-or-ehc-plans-4,all,151
-  Statements Or EHC Plans 5  ,statements-or-ehc-plans-5,all,152
- Statements Or EHC Plans 6   ,statements-or-ehc-plans-6,all,153
- Statements Or EHC Plans 7  ,statements-or-ehc-plans-7,all,154
- Statements Or EHC Plans 8   ,statements-or-ehc-plans-8,all,155
- Statements Or EHC Plans 9  ,statements-or-ehc-plans-9,all,156
- Statements Or EHC Plans 10  ,statements-or-ehc-plans-10,all,157
- Statements Or EHC Plans 11  ,statements-or-ehc-plans-11,all,158
- Statements Or EHC Plans 12 and Above  ,statements-or-ehc-plans-12-and-above,all,159
- Statements Or EHC Plans Nc Not Followed  ,statements-or-ehc-plans-nc-not-followed,all,160
- Statements Or EHC Plans Total Statements Or EHC Plans  ,statements-or-ehc-plans-total-statements-or-ehc-plans,all,161
- No Of Pupils Whose First Language Is Known Or Believed To Be Other Than English Pupils With SEN Support  ,no-of-pupils-whose-first-language-is-known-or-believed-to-be-other-than-english-pupils-with-sen-support,all,162
- No Of Pupils Whose First Language Is Known Or Believed To Be English Pupils With SEN Support  ,no-of-pupils-whose-first-language-is-known-or-believed-to-be-english-pupils-with-sen-support,all,163
- No Of Pupils Whose First Language Is Unclassified Pupils With SEN Support  ,no-of-pupils-whose-first-language-is-unclassified-pupils-with-sen-support,all,164
- No Of Pupils Whose First Language Is Known Or Believed To Be Other Than English Pupils With Statements Or EHC Plans  ,no-of-pupils-whose-first-language-is-known-or-believed-to-be-other-than-english-pupils-with-statements-or-ehc-plans,all,165
- No Of Pupils Whose First Language Is Known Or Believed To Be English Pupils With Statements Or EHC Plans  ,no-of-pupils-whose-first-language-is-known-or-believed-to-be-english-pupils-with-statements-or-ehc-plans,all,166
- No Of Pupils Whose First Language Is Unclassified Pupils With Statements Or EHC Plans  ,no-of-pupils-whose-first-language-is-unclassified-pupils-with-statements-or-ehc-plans,all,167
- Pupils On SEN Support Secondary Specific Learning Difficulty  ,pupils-on-sen-support-secondary-specific-learning-difficulty,all,168
- Pupils On SEN Support Secondary Moderate Learning Difficulty  ,pupils-on-sen-support-secondary-moderate-learning-difficulty,all,169
- Pupils On SEN Support Secondary Severe Learning Difficulty  ,pupils-on-sen-support-secondary-severe-learning-difficulty,all,170
- Pupils On SEN Support Secondary Profound Multiple Learning Difficulty  ,pupils-on-sen-support-secondary-profound-multiple-learning-difficulty,all,171
- Pupils On SEN Support Secondary Social Emotional and Mental Health  ,pupils-on-sen-support-secondary-social-emotional-and-mental-health,all,172
- Pupils On SEN Support Secondary Speech Language and Communications Needs  ,pupils-on-sen-support-secondary-speech-language-and-communications-needs,all,173
- Pupils On SEN Support Secondary Hearing Impairment  ,pupils-on-sen-support-secondary-hearing-impairment,all,174
- Pupils On SEN Support Secondary Visual Impairment  ,pupils-on-sen-support-secondary-visual-impairment,all,175
- Pupils On SEN Support Secondary Multi SENsory Impairment  ,pupils-on-sen-support-secondary-multi-sensory-impairment,all,176
- Pupils On SEN Support Secondary Physical Disability  ,pupils-on-sen-support-secondary-physical-disability,all,177
- Pupils On SEN Support Secondary Autistic Spectrum Disorder  ,pupils-on-sen-support-secondary-autistic-spectrum-disorder,all,178
- Pupils On SEN Support Secondary Other Difficulty Or Disability  ,pupils-on-sen-support-secondary-other-difficulty-or-disability,all,179
- Pupils On SEN Support Secondary SEN Support But No Specialist Assessment Of Type Of Need  ,pupils-on-sen-support-secondary-sen-support-but-no-specialist-assessment-of-type-of-need,all,180
- Pupils On SEN Support Secondary No Secondary SEN Identified  ,pupils-on-sen-support-secondary-no-secondary-sen-identified,all,181
- Pupils On SEN Support Secondary Total  ,pupils-on-sen-support-secondary-total,all,182
- Pupils With Statements Or EHC Plans Secondary Specific Learning Difficulty  ,pupils-with-statements-or-ehc-plans-secondary-specific-learning-difficulty,all,183
- Pupils With Statements Or EHC Plans Secondary Moderate Learning Difficulty  ,pupils-with-statements-or-ehc-plans-secondary-moderate-learning-difficulty,all,184
- Pupils With Statements Or EHC Plans Secondary Severe Learning Difficulty  ,pupils-with-statements-or-ehc-plans-secondary-severe-learning-difficulty,all,185
- Pupils With Statements Or EHC Plans Secondary Profound Multiple Learning Difficulty  ,pupils-with-statements-or-ehc-plans-secondary-profound-multiple-learning-difficulty,all,186
- Pupils With Statements Or EHC Plans Secondary Social Emotional and Mental Health  ,pupils-with-statements-or-ehc-plans-secondary-social-emotional-and-mental-health,all,187
- Pupils With Statements Or EHC Plans Secondary Speech Language and Communications Needs  ,pupils-with-statements-or-ehc-plans-secondary-speech-language-and-communications-needs,all,188
- Pupils With Statements Or EHC Plans Secondary Hearing Impairment  ,pupils-with-statements-or-ehc-plans-secondary-hearing-impairment,all,189
- Pupils With Statements Or EHC Plans Secondary Visual Impairment  ,pupils-with-statements-or-ehc-plans-secondary-visual-impairment,all,190
- Pupils With Statements Or EHC Plans Secondary Multi SENsory Impairment  ,pupils-with-statements-or-ehc-plans-secondary-multi-sensory-impairment,all,191
- Pupils With Statements Or EHC Plans Secondary Physical Disability  ,pupils-with-statements-or-ehc-plans-secondary-physical-disability,all,192
- Pupils With Statements Or EHC Plans Secondary Autistic Spectrum Disorder  ,pupils-with-statements-or-ehc-plans-secondary-autistic-spectrum-disorder,all,193
- Pupils With Statements Or EHC Plans Secondary Other Difficulty Or Disability  ,pupils-with-statements-or-ehc-plans-secondary-other-difficulty-or-disability,all,194
- Pupils With Statements Or EHC Plans Secondary No Secondary SEN Identified  ,pupils-with-statements-or-ehc-plans-secondary-no-secondary-sen-identified,all,195
- Pupils With Statements Or EHC Plans Secondary Total,pupils-with-statements-or-ehc-plans-secondary-total,all,196
-First language unclassifed,first-language-unclassifed,all,197
-First language Total,first-language-total,all,198
-Classified ethnic group,classified-ethnic-group,all,199
-Unclassified ethnic group,unclassified-ethnic-group,all,200
-Mixed ethnic group,mixed-ethnic-group,all,201
-All pupils on sen support,all-pupils-on-sen-support,all,202
-Number of pupils known to be eligible for and claiming free school meals on sen support,number-of-pupils-known-to-be-eligible-for-and-claiming-free-school-meals-on-sen-support,all,203
-All pupils with sen with statements or ehc plan,all-pupils-with-sen-with-statements-or-ehc-plan,all,204
-Number of pupils known to be eligible for and claiming free school meals with sen with statements or ehc plan,number-of-pupils-known-to-be-eligible-for-and-claiming-free-school-meals-with-sen-with-statements-or-ehc-plan,all,205
+All,all,,
+Provision,provision,,
+Academy,academy,,
+Age and Gender,age-and-gender,,
+Nursery Years 1 and 2,nursery-years-1-and-2,,
+Reception,reception,,
+1,1,,
+2,2,,
+3,3,,
+4,4,,
+5,5,,
+6,6,,
+7 and Above,7-and-above,,
+Nc Not Followed,nc-not-followed,,
+Total,total,,
+Nursery Reception and 1 To 4,nursery-reception-and-1-to-4,,
+7,7,,
+8,8,,
+9,9,,
+10,10,,
+11,11,,
+12 and Above,12-and-above,,
+Total Pupils,total-pupils,,
+Number Known To Be Eligible For and Claiming Free School Meals,number-known-to-be-eligible-for-and-claiming-free-school-meals,,
+White,white,,
+White British,white-british,,
+Irish,irish,,
+Traveller Of Irish Heritage,traveller-of-irish-heritage,,
+Gypsy Or Roma,gypsy-or-roma,,
+Any Other White Background,any-other-white-background,,
+Mixed,mixed,,
+White and Black Caribbean,white-and-black-caribbean,,
+White and Black African,white-and-black-african,,
+White and Asian,white-and-asian,,
+Any Other Mixed Background  ,any-other-mixed-background,,
+Asian,asian,,
+Indian,indian,,
+Pakistani,pakistani,,
+Bangladeshi,bangladeshi,,
+Any Other Asian Background,any-other-asian-background,,
+Black,black,,
+Black Caribbean,black-caribbean,,
+Black African,black-african,,
+Any Other Black Background,any-other-black-background,,
+Chinese,chinese,,
+Any Other Ethnic Group,any-other-ethnic-group,,
+Classified,classified,,
+Unclassified,unclassified,,
+Minority Ethnic Pupils,minority-ethnic-pupils,,
+All Pupils,all-pupils,,
+First Language Is Known To Be Or Believed To Be Other Than English,first-language-is-known-to-be-or-believed-to-be-other-than-english,all,51
+First Language Is Known To Be Or Believed To Be English,first-language-is-known-to-be-or-believed-to-be-english,,
+Specific Learning Difficulty Moderate Learning Difficulty,specific-learning-difficulty-moderate-learning-difficulty,,
+Severe Learning Difficulty,severe-learning-difficulty,,
+Profound Multiple Learning Difficulty,profound-multiple-learning-difficulty,,
+Social Emotional and Mental Health,social-emotional-and-mental-health,,
+Speech Language and Communications Needs,speech-language-and-communications-needs,,
+Hearing Impairment,hearing-impairment,
+Visual Impairment,visual-impairment,,
+Multi SENsory Impairment,multi-sensory-impairment,,
+Physical Disability,physical-disability,,
+Autistic Spectrum Disorder,autistic-spectrum-disorder,,
+Other Difficulty Or Disability,other-difficulty-or-disability,,
+SEN Support But No Specialist Assessment Of Type Of Need,sen-support-but-no-specialist-assessment-of-type-of-need,,
+School Provision,school-provision,,
+School Size,school-size,,
+Resources,resources,,
+Statement Or EHC Plan,statement-or-ehc-plan,,
+SEN Support,sen-support,,
+Local Area,local-area,,
+School Area,school-area,,
+Primary Need ,primary-need,,
+Pupils On SEN Support,pupils-on-sen-support,,
+Pupils With SEN With Statements Or EHC Plans,pupils-with-sen-with-statements-or-ehc-plans,,
+Pupils With SEN With Statements Or EHC Plan,pupils-with-sen-with-statements-or-ehc-plan,,
+SEN Support By Ethnic Group White,sen-support-by-ethnic-group-white,,
+SEN Support By Ethnic Group White British,sen-support-by-ethnic-group-white-british,,
+SEN Support By Ethnic Group Irish,sen-support-by-ethnic-group-irish,,
+SEN Support By Ethnic Group Traveller Of Irish Heritage,sen-support-by-ethnic-group-traveller-of-irish-heritage,,
+SEN Support By Ethnic Group Gypsy Or Roma,sen-support-by-ethnic-group-gypsy-or-roma,,
+SEN Support By Ethnic Group Any Other White Background,sen-support-by-ethnic-group-any-other-white-background,,
+SEN Support By Ethnic Group Mixed,sen-support-by-ethnic-group-mixed,,
+SEN Support By Ethnic Group White and Black Caribbean,sen-support-by-ethnic-group-white-and-black-caribbean,,
+SEN Support By Ethnic Group White and Black African,sen-support-by-ethnic-group-white-and-black-african,,
+SEN Support By Ethnic Group White and Asian,sen-support-by-ethnic-group-white-and-asian,,
+SEN Support By Ethnic Group Any Other Mixed Background,sen-support-by-ethnic-group-any-other-mixed-background,,
+SEN Support By Ethnic Group Asian,sen-support-by-ethnic-group-asian,,
+SEN Support By Ethnic Group Indian,sen-support-by-ethnic-group-indian,,
+SEN Support By Ethnic Group Pakistani,sen-support-by-ethnic-group-pakistani,,
+SEN Support By Ethnic Group Bangladeshi,sen-support-by-ethnic-group-bangladeshi,,
+SEN Support By Ethnic Group Any Other Asian Background,sen-support-by-ethnic-group-any-other-asian-background,,
+SEN Support By Ethnic Group Black,sen-support-by-ethnic-group-black,,
+SEN Support By Ethnic Group Black Caribbean,sen-support-by-ethnic-group-black-caribbean,,
+SEN Support By Ethnic Group Black African,sen-support-by-ethnic-group-black-african,,
+SEN Support By Ethnic Group Any Other Black Background,sen-support-by-ethnic-group-any-other-black-background,,
+SEN Support By Ethnic Group Chinese,sen-support-by-ethnic-group-chinese,,
+SEN Support By Ethnic Group Any Other Ethnic Group,sen-support-by-ethnic-group-any-other-ethnic-group,,
+SEN Support By Ethnic Group Classified,sen-support-by-ethnic-group-classified,,
+SEN Support By Ethnic Group Unclassified,sen-support-by-ethnic-group-unclassified,,
+SEN Support By Ethnic Group Minority Ethnic Pupils,sen-support-by-ethnic-group-minority-ethnic-pupils,,
+SEN Support By Ethnic Group All Pupils,sen-support-by-ethnic-group-all-pupils,,
+Statements Or EHC Plans Support By Ethnic Group White,statements-or-ehc-plans-support-by-ethnic-group-white,,
+Statements Or EHC Plans Support By Ethnic Group White British,statements-or-ehc-plans-support-by-ethnic-group-white-british,,
+Statements Or EHC Plans Support By Ethnic Group Irish,statements-or-ehc-plans-support-by-ethnic-group-irish,,
+Statements Or EHC Plans Support By Ethnic Group Traveller Of Irish Heritage,statements-or-ehc-plans-support-by-ethnic-group-traveller-of-irish-heritage,,
+Statements Or EHC Plans Support By Ethnic Group Gypsy Or Roma,statements-or-ehc-plans-support-by-ethnic-group-gypsy-or-roma,,
+Statements Or EHC Plans Support By Ethnic Group Any Other White Background,statements-or-ehc-plans-support-by-ethnic-group-any-other-white-background,,
+Statements Or EHC Plans Support By Ethnic Group Mixed,statements-or-ehc-plans-support-by-ethnic-group-mixed,,
+Statements Or EHC Plans Support By Ethnic Group White and Black Caribbean,statements-or-ehc-plans-support-by-ethnic-group-white-and-black-caribbean,,
+Statements Or EHC Plans Support By Ethnic Group White and Black African,statements-or-ehc-plans-support-by-ethnic-group-white-and-black-african,,
+Statements Or EHC Plans Support By Ethnic Group White and Asian,statements-or-ehc-plans-support-by-ethnic-group-white-and-asian,,
+Statements Or EHC Plans Support By Ethnic Group Any Other Mixed Background  ,statements-or-ehc-plans-support-by-ethnic-group-any-other-mixed-background,,
+Statements Or EHC Plans Support By Ethnic Group Asian,statements-or-ehc-plans-support-by-ethnic-group-asian,,
+Statements Or EHC Plans Support By Ethnic Group Indian,statements-or-ehc-plans-support-by-ethnic-group-indian,,
+Statements Or EHC Plans Support By Ethnic Group Pakistani,statements-or-ehc-plans-support-by-ethnic-group-pakistani,,
+Statements Or EHC Plans Support By Ethnic Group Bangladeshi,statements-or-ehc-plans-support-by-ethnic-group-bangladeshi,,
+Statements Or EHC Plans Support By Ethnic Group Any Other Asian Background,statements-or-ehc-plans-support-by-ethnic-group-any-other-asian-background,,
+Statements Or EHC Plans Support By Ethnic Group Black,statements-or-ehc-plans-support-by-ethnic-group-black,,
+Statements Or EHC Plans Support By Ethnic Group Black Caribbean,statements-or-ehc-plans-support-by-ethnic-group-black-caribbean,,
+Statements Or EHC Plans Support By Ethnic Group Black African,statements-or-ehc-plans-support-by-ethnic-group-black-african,,
+Statements Or EHC Plans Support By Ethnic Group Any Other Black Background,statements-or-ehc-plans-support-by-ethnic-group-any-other-black-background,,
+Statements Or EHC Plans Support By Ethnic Group Chinese,statements-or-ehc-plans-support-by-ethnic-group-chinese,,
+Statements Or EHC Plans Support By Ethnic Group Any Other Ethnic Group,statements-or-ehc-plans-support-by-ethnic-group-any-other-ethnic-group,,
+Statements Or EHC Plans Support By Ethnic Group Classified,statements-or-ehc-plans-support-by-ethnic-group-classified,,
+Statements Or EHC Plans Support By Ethnic Group Unclassified,statements-or-ehc-plans-support-by-ethnic-group-unclassified,,
+Statements Or EHC Plans Support By Ethnic Group Minority Ethnic Pupils,statements-or-ehc-plans-support-by-ethnic-group-minority-ethnic-pupils,,
+Statements Or EHC Plans Support By Ethnic Group All Pupils,statements-or-ehc-plans-support-by-ethnic-group-all-pupils,,
+Pupils On SEN Support Eligible and Claiming Free School Meals,pupils-on-sen-support-eligible-and-claiming-free-school-meals,,
+Pupils With SEN With Statements Or EHC Planeligible and Claiming Free School Meals,pupils-with-sen-with-statements-or-ehc-planeligible-and-claiming-free-school-meals,,
+SEN Support Nursery Years 1 and 2,sen-support-nursery-years-1-and-2,,
+SEN Support Reception,sen-support-reception,,
+SEN Support 1,sen-support-1,,
+SEN Support 2,sen-support-2,,
+SEN Support 3,sen-support-3,,
+SEN Support 4,sen-support-4,,
+SEN Support 5,sen-support-5,,
+SEN Support 6,sen-support-6,,
+SEN Support 7,sen-support-7,,
+SEN Support 8,sen-support-8,,
+SEN Support 9,sen-support-9,,
+SEN Support 10,sen-support-10,,
+SEN Support 11,sen-support-11,,
+SEN Support 12 and Above,sen-support-12-and-above,,
+SEN Support Nc Not Followed,sen-support-nc-not-followed,,
+SEN Support Total SEN Support,sen-support-total-sen-support,,
+Statements Or EHC Plans Nursery Years 1 and 2,statements-or-ehc-plans-nursery-years-1-and-2,,
+Statements Or EHC Plans Reception,statements-or-ehc-plans-reception,,
+Statements Or EHC Plans 1,statements-or-ehc-plans-1,,
+Statements Or EHC Plans 2,statements-or-ehc-plans-2,,
+Statements Or EHC Plans 3,statements-or-ehc-plans-3,,
+Statements Or EHC Plans 4,statements-or-ehc-plans-4,,
+Statements Or EHC Plans 5,statements-or-ehc-plans-5,,
+Statements Or EHC Plans 6,statements-or-ehc-plans-6,,
+Statements Or EHC Plans 7,statements-or-ehc-plans-7,,
+Statements Or EHC Plans 8,statements-or-ehc-plans-8,,
+Statements Or EHC Plans 9,statements-or-ehc-plans-9,,
+Statements Or EHC Plans 10,statements-or-ehc-plans-10,,
+Statements Or EHC Plans 11,statements-or-ehc-plans-11,,
+Statements Or EHC Plans 12 and Above,statements-or-ehc-plans-12-and-above,,
+Statements Or EHC Plans Nc Not Followed,statements-or-ehc-plans-nc-not-followed,,
+Statements Or EHC Plans Total Statements Or EHC Plans,statements-or-ehc-plans-total-statements-or-ehc-plans,,
+No Of Pupils Whose First Language Is Known Or Believed To Be Other Than English Pupils With SEN Support,no-of-pupils-whose-first-language-is-known-or-believed-to-be-other-than-english-pupils-with-sen-support,,
+No Of Pupils Whose First Language Is Known Or Believed To Be English Pupils With SEN Support,no-of-pupils-whose-first-language-is-known-or-believed-to-be-english-pupils-with-sen-support,,
+No Of Pupils Whose First Language Is Unclassified Pupils With SEN Support,no-of-pupils-whose-first-language-is-unclassified-pupils-with-sen-support,,
+No Of Pupils Whose First Language Is Known Or Believed To Be Other Than English Pupils With Statements Or EHC Plans,no-of-pupils-whose-first-language-is-known-or-believed-to-be-other-than-english-pupils-with-statements-or-ehc-plans,,
+No Of Pupils Whose First Language Is Known Or Believed To Be English Pupils With Statements Or EHC Plans,no-of-pupils-whose-first-language-is-known-or-believed-to-be-english-pupils-with-statements-or-ehc-plans,,
+No Of Pupils Whose First Language Is Unclassified Pupils With Statements Or EHC Plans,no-of-pupils-whose-first-language-is-unclassified-pupils-with-statements-or-ehc-plans,,
+Pupils On SEN Support Secondary Specific Learning Difficulty,pupils-on-sen-support-secondary-specific-learning-difficulty,,
+Pupils On SEN Support Secondary Moderate Learning Difficulty,pupils-on-sen-support-secondary-moderate-learning-difficulty,,
+Pupils On SEN Support Secondary Severe Learning Difficulty,pupils-on-sen-support-secondary-severe-learning-difficulty,,
+Pupils On SEN Support Secondary Profound Multiple Learning Difficulty,pupils-on-sen-support-secondary-profound-multiple-learning-difficulty,,
+Pupils On SEN Support Secondary Social Emotional and Mental Health,pupils-on-sen-support-secondary-social-emotional-and-mental-health,,
+Pupils On SEN Support Secondary Speech Language and Communications Needs,pupils-on-sen-support-secondary-speech-language-and-communications-needs,,
+Pupils On SEN Support Secondary Hearing Impairment,pupils-on-sen-support-secondary-hearing-impairment,,
+Pupils On SEN Support Secondary Visual Impairment,pupils-on-sen-support-secondary-visual-impairment,,
+Pupils On SEN Support Secondary Multi SENsory Impairment,pupils-on-sen-support-secondary-multi-sensory-impairment,,
+Pupils On SEN Support Secondary Physical Disability,pupils-on-sen-support-secondary-physical-disability,,
+Pupils On SEN Support Secondary Autistic Spectrum Disorder,pupils-on-sen-support-secondary-autistic-spectrum-disorder,,
+Pupils On SEN Support Secondary Other Difficulty Or Disability,pupils-on-sen-support-secondary-other-difficulty-or-disability,,
+Pupils On SEN Support Secondary SEN Support But No Specialist Assessment Of Type Of Need,pupils-on-sen-support-secondary-sen-support-but-no-specialist-assessment-of-type-of-need,,
+Pupils On SEN Support Secondary No Secondary SEN Identified,pupils-on-sen-support-secondary-no-secondary-sen-identified,,
+Pupils On SEN Support Secondary Total,pupils-on-sen-support-secondary-total,,
+Pupils With Statements Or EHC Plans Secondary Specific Learning Difficulty,pupils-with-statements-or-ehc-plans-secondary-specific-learning-difficulty,,
+Pupils With Statements Or EHC Plans Secondary Moderate Learning Difficulty,pupils-with-statements-or-ehc-plans-secondary-moderate-learning-difficulty,,
+Pupils With Statements Or EHC Plans Secondary Severe Learning Difficulty,pupils-with-statements-or-ehc-plans-secondary-severe-learning-difficulty,,
+Pupils With Statements Or EHC Plans Secondary Profound Multiple Learning Difficulty,pupils-with-statements-or-ehc-plans-secondary-profound-multiple-learning-difficulty,,
+Pupils With Statements Or EHC Plans Secondary Social Emotional and Mental Health,pupils-with-statements-or-ehc-plans-secondary-social-emotional-and-mental-health,,
+Pupils With Statements Or EHC Plans Secondary Speech Language and Communications Needs,pupils-with-statements-or-ehc-plans-secondary-speech-language-and-communications-needs,,
+Pupils With Statements Or EHC Plans Secondary Hearing Impairment,pupils-with-statements-or-ehc-plans-secondary-hearing-impairment,,
+Pupils With Statements Or EHC Plans Secondary Visual Impairment,pupils-with-statements-or-ehc-plans-secondary-visual-impairment,,
+Pupils With Statements Or EHC Plans Secondary Multi SENsory Impairment,pupils-with-statements-or-ehc-plans-secondary-multi-sensory-impairment,,
+Pupils With Statements Or EHC Plans Secondary Physical Disability,pupils-with-statements-or-ehc-plans-secondary-physical-disability,,
+Pupils With Statements Or EHC Plans Secondary Autistic Spectrum Disorder,pupils-with-statements-or-ehc-plans-secondary-autistic-spectrum-disorder,,
+Pupils With Statements Or EHC Plans Secondary Other Difficulty Or Disability,pupils-with-statements-or-ehc-plans-secondary-other-difficulty-or-disability,,
+Pupils With Statements Or EHC Plans Secondary No Secondary SEN Identified,pupils-with-statements-or-ehc-plans-secondary-no-secondary-sen-identified,,
+Pupils With Statements Or EHC Plans Secondary Total,pupils-with-statements-or-ehc-plans-secondary-total,,
+First language unclassifed,first-language-unclassifed,,
+First language Total,first-language-total,,
+Classified ethnic group,classified-ethnic-group,,
+Unclassified ethnic group,unclassified-ethnic-group,,
+Mixed ethnic group,mixed-ethnic-group,,
+All pupils on sen support,all-pupils-on-sen-support,,
+Number of pupils known to be eligible for and claiming free school meals on sen support,number-of-pupils-known-to-be-eligible-for-and-claiming-free-school-meals-on-sen-support,,
+All pupils with sen with statements or ehc plan,all-pupils-with-sen-with-statements-or-ehc-plan,,
+Number of pupils known to be eligible for and claiming free school meals with sen with statements or ehc plan,number-of-pupils-known-to-be-eligible-for-and-claiming-free-school-meals-with-sen-with-statements-or-ehc-plan,,
