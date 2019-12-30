@@ -51,6 +51,20 @@ next_table = pd.concat([next_table, new_table])
 next_table = pd.concat([next_table, new_table])
 # %run "T13.py"
 next_table = pd.concat([next_table, new_table])
+# %run "T14.py"
+next_table = pd.concat([next_table, new_table])
+# %run "T15.py"
+next_table = pd.concat([next_table, new_table])
+# %run "T16.py"
+next_table = pd.concat([next_table, new_table])
+# %run "T17.py"
+next_table = pd.concat([next_table, new_table])
+# %run "T18.py"
+next_table = pd.concat([next_table, new_table])
+# %run "T19.py"
+next_table = pd.concat([next_table, new_table])
+# %run "T20.py"
+next_table = pd.concat([next_table, new_table])
 # -
 
 from pathlib import Path
