@@ -229,23 +229,23 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Region name"
   }, {
-    "url": "codelists/duration-of-closed-cases.csv", 
+    "url": "codelists/duration-of-closed-cases.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Duration of closed cases"
   }, {
-    "url": "codelists/local-authority-name.csv", 
+    "url": "codelists/local-authority-name.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Local authority name"
   }, {
-    "url": "codelists/local-authority-code.csv", 
+    "url": "codelists/local-authority-code.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Local authority code"
   }, {
-    "url": "codelists/measure-group.csv", 
+    "url": "codelists/measure-group.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Measure Group"
   }, {
-    "url": "codelists/nhs-ascof-code.csv", 
+    "url": "codelists/nhs-ascof-code.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
       "rdfs:label": "NHS ASCOF Code"
   }, {
@@ -260,5 +260,17 @@
     "url": "codelists/disaggregation-level.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Disaggregation Level"
+  }, {
+    "url": "codelists/breakdown.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Breakdown"
+  }, {
+    "url": "codelists/ccg-indicator.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "CCG Indicator"
+  },{
+    "url": "codelists/nhs-level.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "NHS Level"
   }]
 }
