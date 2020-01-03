@@ -136,6 +136,17 @@ for file_name in myzipfile.namelist():
         HDimConst("Indicator", indicator)
     ]
     
+    # Add sex/gender where needed
+    gender = header_row.filter("Gender")
+    if len(gender) > 0:
+        dimensions.append(
+            HDim(gender.assert_one().fill(DOWN), "Sex", DIRECTLY, LEFT)
+        )
+    else:
+        dimensions.append(
+            HDimConst("Sex", "Person")
+        )
+    
     cs = ConversionSegment(tab, dimensions, observations) # < --- processing
     
     p = cs.topandas()
@@ -221,6 +232,15 @@ tidy_data = tidy_data.rename(columns={
     "Level": "NHS Level"
 })
 
+# Rename Sex Entries
+# Note: we WANT a key error if the lookup fails
+lookup = {
+    "Male": "M",
+    "Person": "T",
+    "Female": "F"
+}
+tidy_data["Sex"] = tidy_data["Sex"].map(lambda x: lookup[x])
+
 # Clear out the nans
 tidy_data["Value"].fillna("", inplace=True)
 tidy_data["Markers"].fillna("", inplace=True)
@@ -233,7 +253,7 @@ for column in ["Reporting Period", "Breakdown", "NHS Level", "CCG Indicator"]:
 # Correct formatting for time
 tidy_data["Reporting Period"] = tidy_data["Reporting Period"].apply(timeify)
 
-tidy_data["Markers"].unique()
+tidy_data["Sex"].unique()
 # + {}
 
 # Output observations file
