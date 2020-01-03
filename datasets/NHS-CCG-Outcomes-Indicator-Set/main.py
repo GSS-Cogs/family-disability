@@ -125,7 +125,7 @@ for file_name in myzipfile.namelist():
     if len(mhsc_header) > 0:
         mhsc = header_row.filter("Mental health care super cluster").fill(DOWN).filter("N/A")
         mhsc = mhsc | header_row.filter("Mental health care super cluster").fill(DOWN).filter("Total")
-        observations = observations = mhsc.shift(RIGHT)
+        observations = observations - mhsc.shift(RIGHT)
     
     # Make dimensions
     dimensions = [
