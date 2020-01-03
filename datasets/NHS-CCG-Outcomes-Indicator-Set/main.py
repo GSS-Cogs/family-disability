@@ -87,10 +87,6 @@ for file_name in myzipfile.namelist():
     # All good, use the data tab from here
     tab = wanted_tabs[0]
 
-    with open("temp.txt", "w") as f:
-        for cell in tab:
-            f.write(str(cell) + "\n")
-        
     # Find the header row
     # both cases to counteract inconsistency....
     header_row = tab.excel_ref("A").filter("Reporting Period") | tab.excel_ref("A").filter("Reporting period")
@@ -158,11 +154,9 @@ if make_reference:
         df["Notation"] = df["Label"].apply(pathify)
         df["Parent Notation"] = ""
         df["Sort Priority"] = ""
-        
         df = df.drop_duplicates()
-    
         df.to_csv("nhs-" + pathify(col), index=False)
-    
+
 # -
 
 # # Post processing
@@ -244,7 +238,4 @@ with open(destinationFolder / f'observations.csv-metadata.trig', 'wb') as metada
     
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(destinationFolder / 'observations.csv', destinationFolder / 'observations.csv-schema.json')
-# -
-
-
 
