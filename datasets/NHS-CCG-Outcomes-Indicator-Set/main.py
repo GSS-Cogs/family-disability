@@ -118,6 +118,15 @@ for file_name in myzipfile.namelist():
     observations = header_row.filter("Indicator value") | header_row.filter("Indicator Value")
     observations = observations.assert_one().fill(DOWN)
     
+    # Where there are sub-levels for "Mental health care super cluster" (eg CCG_3.17_I01986_D)
+    # only take the N/A and Total observations
+    # TODO - this is brittle, add some assertions etc
+    mhsc_header = header_row.filter("Mental health care super cluster")
+    if len(mhsc_header) > 0:
+        mhsc = header_row.filter("Mental health care super cluster").fill(DOWN).filter("N/A")
+        mhsc = mhsc | header_row.filter("Mental health care super cluster").fill(DOWN).filter("Total")
+        observations = observations = mhsc.shift(RIGHT)
+    
     # Make dimensions
     dimensions = [
         HDim(reporting_period, "Reporting Period", DIRECTLY, LEFT),
