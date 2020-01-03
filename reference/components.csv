@@ -63,3 +63,6 @@ DfE Sex Groups,,Dimension,http://gss-data.org.uk/def/concept-scheme/dfe-sex-grou
 DfE Special Education Provider,,Dimension,http://gss-data.org.uk/def/concept-scheme/dfe-special-education-provider
 DfE Special Education Support Type,,Dimension,http://gss-data.org.uk/def/concept-scheme/dfe-special-education-support-type
 DfE Special Education Need Type,,Dimension,http://gss-data.org.uk/def/concept-scheme/dfe-special-education-need-type
+Breakdown,,Dimension,http://gss-data.org.uk/def/concept-scheme/breakdown
+CCG Indicator,,Dimension,http://gss-data.org.uk/def/concept-scheme/ccg-indicator
+NHS Level,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-level
