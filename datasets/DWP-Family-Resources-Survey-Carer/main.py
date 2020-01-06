@@ -8,10 +8,10 @@ import datetime as d
 import numpy as np
 
 #### Construct a string based on the year you need to look at.
-oneYrAgo = int(d.datetime.now().year) - 1        #### Get the year 1 year ago
-twoYrAgo = oneYrAgo - 1                          #### Get the year 2 years ago
-yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, 201718
-yrStr2 = str(twoYrAgo) + '/' + str(oneYrAgo)[2:4] #### This is for adding to columns later
+#oneYrAgo = int(d.datetime.now().year) - 1        #### Get the year 1 year ago
+#twoYrAgo = oneYrAgo - 1                          #### Get the year 2 years ago
+#yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, 201718
+#yrStr2 = str(twoYrAgo) + '/' + str(oneYrAgo)[2:4] #### This is for adding to columns later
 try:
     #### EXAMPLE: https://www.gov.uk/government/statistics/family-resources-survey-#### Construct a string based on the year you need to look at.
     oneYrAgo = int(d.datetime.now().year) - 1        #### Get the year 1 year ago
@@ -21,7 +21,13 @@ try:
 
     scraper = Scraper(urlStr)
 except Exception as e:
-    print(e.message, e.args)
+    #print(e.message, e.args)
+    oneYrAgo = int(d.datetime.now().year) - 2        #### Get the year 1 year ago
+    twoYrAgo = oneYrAgo - 1                          #### Get the year 2 years ago
+    yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, 201718financial-year-201718
+    urlStr = "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-" + yrStr
+
+    scraper = Scraper(urlStr)
     
 scraper
 
