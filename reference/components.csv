@@ -66,4 +66,4 @@ DfE Special Education Need Type,,Dimension,http://gss-data.org.uk/def/concept-sc
 Breakdown,,Dimension,http://gss-data.org.uk/def/concept-scheme/breakdown
 CCG Indicator,,Dimension,http://gss-data.org.uk/def/concept-scheme/ccg-indicator
 NHS Level,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-level
-Markers,,Dimension,http://gss-data.org.uk/def/concept-scheme/markers
+Markers,,Attribute,http://gss-data.org.uk/def/concept-scheme/markers

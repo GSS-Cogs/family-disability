@@ -98,4 +98,4 @@ Reporting Period,period,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimen
 Breakdown,breakdown,qb:dimension,http://gss-data.org.uk/def/dimension/breakdown,http://gss-data.org.uk/def/concept/breakdown/{breakdown},string,slugize,,http://gss-data.org.uk/def/classes/breakdown/breakdown
 CCG Indicator,ccg_indicator,qb:dimension,http://gss-data.org.uk/def/dimension/ccg-indicator,http://gss-data.org.uk/def/concept/ccg-indicator/{ccg_indicator},string,slugize,,http://gss-data.org.uk/def/classes/ccg-indicator/ccg_indicator
 NHS Level,nhs_level,qb:dimension,http://gss-data.org.uk/def/dimension/nhs-level,http://gss-data.org.uk/def/concept/nhs-level/{nhs_level},string,slugize,,http://gss-data.org.uk/def/classes/nhs-level/nhs_level
-Markers,markers,qb:dimension,http://gss-data.org.uk/def/dimension/markers,http://gss-data.org.uk/def/concept/markers/{markers},string,slugize,,http://gss-data.org.uk/def/classes/markers/markers
+Markers,markers,qb:attribute,http://gss-data.org.uk/def/dimension/markers,http://gss-data.org.uk/def/concept/markers/{markers},string,slugize,,http://gss-data.org.uk/def/classes/markers/markers
