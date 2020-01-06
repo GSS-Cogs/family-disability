@@ -212,8 +212,14 @@ def timeify(cell):
     # Single month of a single year
     # example: june-2019
     elif len(cell.split("-")) == 2:
-        splitted = cell.split("-")
-        return "month/{}-{}".format(splitted[1], splitted[0])
+        month_abreviated = cell.split("-")[0][:3].title() # first three characters of start month
+        month_number = str(list(calendar.month_abbr).index(month_abreviated))
+
+        # bulk our single digit months with a prefixed 0
+        month_number = "0" + month_number if len(month_number) < 2 else month_number
+
+        year = cell.split("-")[1]
+        return "month/{}-{}".format(year, month_number)
     
     # Scenario 3:
     # Financial year
