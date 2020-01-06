@@ -28,8 +28,8 @@ except Exception as e:
     urlStr = "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-" + yrStr
 
     scraper = Scraper(urlStr)
-    
 scraper
+urlStr
 
 
 # +
@@ -593,7 +593,33 @@ for t in tblSet:
     i = i + 1
 
 
-# +
-#scraper.dataset
-# -
+headSet = [
+    'People providing informal care by gender',
+    'People providing informal care by age & gender',
+    'Adult informal carers providing care by gender, age and number of hours per week',
+    'Adult informal carers by employment status and gender',
+    'Adult informal carers by main source of total weekly household income hours caring and gender',
+    'Adult informal care by gender, age and net individual weekly income',
+    'Who informal carers care for by gender',
+    'People receiving care by age and gender',
+    'People receiving care at least once a week by age and frequency of care',
+    'People receiving care by main source of total weekly household income and gender'
+]
+headMain = 'Family Resources Survey: financial year 2017/18'
+
+i = 1
+for t in headSet:
+    fleNme = f'out/observations_5_{i}.csv-metadata.trig'
+    f = open(fleNme,'r')
+    currDat = f.read()
+    f.close()
+    newDat = currDat.replace(headMain, headMain + ' - ' + t)
+    f = open(fleNme,'w')
+    f.write(newDat)
+    f.close()
+    fleNme = ''
+    currDat = ''
+    newDat = ''
+    i = i + 1
+
 
