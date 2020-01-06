@@ -272,5 +272,9 @@
     "url": "codelists/nhs-level.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "NHS Level"
+  },{
+    "url": "codelists/markers.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Markers"
   }]
 }
