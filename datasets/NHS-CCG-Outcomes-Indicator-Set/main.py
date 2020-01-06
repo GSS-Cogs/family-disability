@@ -244,7 +244,7 @@ tidy_data["Sex"] = tidy_data["Sex"].map(lambda x: lookup[x])
 # Clear out the nans
 tidy_data["Value"].fillna("", inplace=True)
 tidy_data["Markers"].fillna("", inplace=True)
-tidy_data["Markers"] = tidy_data["Markers"].map(lambda x: x.replace("*", "suppressed"))
+tidy_data["Markers"] = tidy_data["Markers"].map(lambda x: "suppressed" if x == "*" else "no-marker")
 
 # Pathify all the things
 for column in ["Reporting Period", "Breakdown", "NHS Level", "CCG Indicator"]:
