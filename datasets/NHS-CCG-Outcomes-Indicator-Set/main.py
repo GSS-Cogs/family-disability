@@ -30,6 +30,22 @@ scraper = Scraper('https://digital.nhs.uk/data-and-information/publications/clin
 scraper
 # -
 
+# # Reference
+#
+# We need to hard code a few things here, namely a mapping between sheet number/id and measure type.
+
+type_map = {
+    "2.6": "Standardised admission rate", 
+    "2.7": "Standardised admission rate",
+    "3.1": "Standardised admission rate",
+    "3.4": "Standardised admission rate",
+    "3.14": "Standardised admission rate",
+    "3.15": "Standardised ratio",
+    "3.17": "Percentage",
+    "1.8": "Directly standardised rate",
+    "1.22": "Standardised emergency admission rate"
+}
+
 # # Extraction
 #
 # There's some differences in formatting of headers between sheets (i.e "My header" vs "My Header"), to get around this I've used an add both them assert one pattern a lot. Example:
@@ -109,10 +125,14 @@ for file_name in myzipfile.namelist():
     level = header_row.filter("Level").assert_one().fill(DOWN)
     
     # Dimensions from spreadsheet meta headings
-    indicator = tab.excel_ref("A").filter(contains_string("CCG OIS Indicator")).value
-    if not indicator.startswith("CCG OIS Indicator"):
+    indicator_cell = tab.excel_ref("A").filter(contains_string("CCG OIS Indicator")).value
+    if not indicator_cell.startswith("CCG OIS Indicator"):
         raise ValueError("Indicator does not appear to be in cell A11 for spreadsheet: " + file_name)
-    indicator = indicator.split("-")[1].strip()
+    indicator = indicator_cell.split("-")[1].strip()
+    
+    # Get the indicator id, we use this to identify the measure type
+    indicator_id = indicator_cell.split("-")[0].strip()
+    indicator_id = indicator_id.split(" ")[-1]
     
     # Get the obs
     observations = header_row.filter("Indicator value") | header_row.filter("Indicator Value")
@@ -132,8 +152,9 @@ for file_name in myzipfile.namelist():
         HDim(reporting_period, "Reporting Period", DIRECTLY, LEFT),
         HDim(breakdown, "Breakdown", DIRECTLY, LEFT),
         HDim(area, "Area", DIRECTLY, LEFT),
-        HDim(level, "Level", DIRECTLY, LEFT),
-        HDimConst("Indicator", indicator)
+        HDim(level, "NHS Level", DIRECTLY, LEFT),
+        HDimConst("CCG Indicator", indicator),
+        HDimConst("Measure Type", type_map[indicator_id])
     ]
     
     # Add sex/gender where needed
@@ -156,28 +177,9 @@ for file_name in myzipfile.namelist():
 # -
 # We'll join them up here and print a quick preview of what we're looking at.
 
-tidy_data = pd.concat(df_list)
+tidy_data = pd.concat(df_list, sort=False)
 tidy_data[:5] # 5 line preview
 
-
-# +
-
-# Switch to True to remake reference data files in this directory
-make_reference = False
-
-if make_reference:
-    
-    for col in ["Breakdown", "Indicator", "Level"]:
-        
-        df = pd.DataFrame()
-        df["Label"] = tidy_data[col]
-        df["Notation"] = df["Label"].apply(pathify)
-        df["Parent Notation"] = ""
-        df["Sort Priority"] = ""
-        df = df.drop_duplicates()
-        df.to_csv("nhs-" + pathify(col), index=False)
-
-# -
 
 # # Post processing
 #
