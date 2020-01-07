@@ -586,7 +586,7 @@ for t in tblSet:
     
     scraper.dataset.family = 'disability'
     
-    with open(out / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
+    with open(out / ('pre' + fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
 
     csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
     csvw.create(out / fleNme, out / (fleNme + '-schema.json'))
@@ -607,19 +607,36 @@ headSet = [
 ]
 headMain = 'Family Resources Survey: financial year 2017/18'
 
+import os
 i = 1
+k = 1
+lineWanted = False
 for t in headSet:
-    fleNme = f'out/observations_5_{i}.csv-metadata.trig'
-    f = open(fleNme,'r')
-    currDat = f.read()
-    f.close()
-    newDat = currDat.replace(headMain, headMain + ' - ' + t)
-    f = open(fleNme,'w')
-    f.write(newDat)
-    f.close()
-    fleNme = ''
-    currDat = ''
     newDat = ''
+    curNme = f'out/preobservations_5_{i}.csv-metadata.trig'
+    newNme = f'out/observations_5_{i}.csv-metadata.trig'
+    with open(curNme, "r") as input:
+        with open(newNme, "w") as output: 
+            for line in input:
+                if headMain in line.strip("\n"):
+                    newLine = line
+                    newLine = line.replace(headMain, headMain + ' - ' + t)
+                    output.write(newLine)
+                else:
+                    lineWanted = True
+                    if '@prefix ns2:' not in line.strip("\n"):
+                        if '@prefix ns' in line.strip("\n"):
+                            if f'@prefix ns{k}:' not in line.strip("\n"):
+                                lineWanted = False
+                    if lineWanted:
+                        output.write(line)
+    input.close
+    output.close
+    os.remove(curNme)
     i = i + 1
+    if i == 2:
+        k = k + 2
+    else:
+        k = k + 1
 
 
