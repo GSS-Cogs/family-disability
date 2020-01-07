@@ -66,6 +66,9 @@ Score,score,qb:measure,http://gss-data.org.uk/def/measure/score,,number,,,
 Directly standardised rate,directly_standardised_rate,qb:measure,http://gss-data.org.uk/def/measure/directly-standardised-rate,,number,,,
 Indirectly standardised rate,indirectly_standardised_rate,qb:measure,http://gss-data.org.uk/def/measure/indirectly-standardised-rate,,number,,,
 Indirectly standardised ratio,indirectly_standardised_ratio,qb:measure,http://gss-data.org.uk/def/measure/indirectly-standardised-ratio,,number,,,
+Standardised admission rate,standardised-admission-rate,qb:measure,http://gss-data.org.uk/def/measure/standardised-admission-rate,,number,,,
+Standardised ratio,standardised-ratio,qb:measure,http://gss-data.org.uk/def/measure/standardised-ratio,,number,,,
+Standardised emergency admission rate,standardised-emergency-admission-rate,qb:measure,http://gss-data.org.uk/def/measure/standardised-emergency-admission-rate,,number,,,
 PHE Sex,phe_sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#sex,http://gss-data.org.uk/def/concept/phe-sex/{phe_sex},string,slugize,,http://gss-data.org.uk/def/classes/phe-sex/phe_sex
 DWP Age Group,dwp_age_group,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-age-group,http://gss-data.org.uk/def/concept/dwp-age-group/{dwp_age_group},string,slugize,,
 DWP FRS People,dwp_frs_people,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-frs-people,http://gss-data.org.uk/def/concept/dwp-frs-people/{dwp_frs_people},string,slugize,,
@@ -98,4 +101,4 @@ Reporting Period,period,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimen
 Breakdown,breakdown,qb:dimension,http://gss-data.org.uk/def/dimension/breakdown,http://gss-data.org.uk/def/concept/breakdown/{breakdown},string,slugize,,http://gss-data.org.uk/def/classes/breakdown/breakdown
 CCG Indicator,ccg_indicator,qb:dimension,http://gss-data.org.uk/def/dimension/ccg-indicator,http://gss-data.org.uk/def/concept/ccg-indicator/{ccg_indicator},string,slugize,,http://gss-data.org.uk/def/classes/ccg-indicator/ccg_indicator
 NHS Level,nhs_level,qb:dimension,http://gss-data.org.uk/def/dimension/nhs-level,http://gss-data.org.uk/def/concept/nhs-level/{nhs_level},string,slugize,,http://gss-data.org.uk/def/classes/nhs-level/nhs_level
-Markers,markers,qb:attribute,http://gss-data.org.uk/def/dimension/markers,http://gss-data.org.uk/def/concept/markers/{markers},string,slugize,,http://gss-data.org.uk/def/classes/markers/markers
+Markers,markers,qb:attribute,http://purl.org/linked-data/sdmx/2009/attribute#obsStatus,http://gss-data.org.uk/def/concept/markers/{markers},string,slugize,,
