@@ -616,10 +616,8 @@ lineWanted = False
 #### Loop around each element in the main 
 for t in headSet:
     newDat = ''
-    #hed = t.replace(' ','-').lower()
     curNme = f'out/preobservations-5-{i}.csv-metadata.trig'
     newNme = f'out/observations-5-{i}.csv-metadata.trig'
-    #newNme = f'out/{hed}.csv-metadata.trig'
     with open(curNme, "r") as input:
         with open(newNme, "w") as output: 
             for line in input:
@@ -633,19 +631,22 @@ for t in headSet:
                         if '@prefix ns' in line.strip("\n"):
                             if f'@prefix ns{k}:' not in line.strip("\n"):
                                 lineWanted = False
-                    if lineWanted:
-                        #if f'observations_5_{i}/' in line.strip("\n"):
-                            #line = line.replace(f'observations_5_{i}/', hed)
-                            
+                    
+                    if lineWanted: 
+                        if 'a pmd:Dataset' in line.strip("\n"):
+                            line = line.replace(f'observations-5-{i}/', f'observations-5-{i}')
+                    
+                        if 'pmd:graph' in line.strip("\n"):
+                            line = line.replace(f'observations-5-{i}/', f'observations-5-{i}')
+                                             
                         output.write(line)
+                        
     #### Close both files
     input.close
     output.close
     #### Old trig file no longer needed so remove/delete
     os.remove(curNme)
-    #### Rename the other output files to match the trig file
-    #os.rename(f'out/observations_5_{i}.csv', f'out/{hed}.csv')
-    #os.rename(f'out/observations_5_{i}.csv-schema.json', f'out/{hed}.csv-schema.json')
+
     #### ns2 is used for something else so you have got to jump up 1 at this point
     i = i + 1
     if i == 2:
