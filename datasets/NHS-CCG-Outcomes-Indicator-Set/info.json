@@ -1,5 +1,5 @@
 {
-  "title": "CCG Outcomes Indicator Set - September 2019",
+  "title": "CCG Outcomes Indicator Set - December 2019",
   "publisher": "NHS Digital ",
   "description": "The indicators aim to provide clear, comparative information for Clinical Commissioning Groups (CCGs) and Health and Wellbeing Boards (HWBs) about the quality of health services commissioned by CCGs and, as far as possible, the associated health outcomes.",
   "landingPage": "https://digital.nhs.uk/data-and-information/publications/clinical-indicators/ccg-outcomes-indicator-set",
@@ -11,7 +11,7 @@
     "tel": "0300 303 5678",
     "email": "enquiries@nhsdigital.nhs.uk"
   }],
-  "published": "September 2019",
+  "published": "December 2019",
   "families": ["Health", "Disability"],
   "stability": "Good",
   "future": "Good",

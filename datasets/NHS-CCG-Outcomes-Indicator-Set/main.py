@@ -10,10 +10,14 @@
 from gssutils import *
 from gssutils.metadata import *
 import calendar
+import json
 
 # TODO - this may well work but is being rejected for wrong path, investigate
 #scrape = Scraper("https://digital.nhs.uk/data-and-information/publications/clinical-indicators/ccg-outcomes-indicator-set/current#related-links")
 #scrape
+
+with open("info.json", "r") as f:
+    info_data = json.load(f)
 
 def temp_scrape(scraper, tree):
     scraper.dataset.title = 'CCG Outcomes Indicator Set: December 2019'
@@ -22,7 +26,9 @@ def temp_scrape(scraper, tree):
     dist.downloadURL = "https://files.digital.nhs.uk/A2/563648/CCG_OIS_DEC_2019_Excel_Files.zip"
     dist.mediaType = ZIP
     scraper.distributions.append(dist)
-    scraper.dataset.family = 'disability'
+    scraper.dataset.family = "disability"
+    scraper.dataset.issued = "December 2019"
+    scraper.dataset.description = info_data["description"]
     scraper.dataset.publisher = 'https://www.gov.uk/government/organisations/nhs-digital'
     return
 
