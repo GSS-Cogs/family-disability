@@ -1,3 +1,5 @@
+def FAILED_STAGE
+
 pipeline {
     agent {
         label 'master'
@@ -8,7 +10,10 @@ pipeline {
     stages {
         stage('Clean') {
             steps {
-                sh "rm -rf ${DATASET_DIR}/out"
+                script {
+                    FAILED_STAGE=env.STAGE_NAME
+                    sh "rm -rf ${DATASET_DIR}/out"
+                }
             }
         }
         stage('Transform') {
@@ -21,6 +26,7 @@ pipeline {
             }
             steps {
                 script {
+                    FAILED_STAGE=env.STAGE_NAME
                     ansiColor('xterm') {
                         if (fileExists("${DATASET_DIR}/main.py")) {
                             sh "jupytext --to notebook ${DATASET_DIR}/*.py"
@@ -40,6 +46,7 @@ pipeline {
             }
             steps {
                 script {
+                    FAILED_STAGE=env.STAGE_NAME
                     ansiColor('xterm') {
                         if (fileExists("${DATASET_DIR}/schema.json")) {
                             sh "csvlint --no-verbose -s ${DATASET_DIR}/schema.json"
@@ -59,6 +66,7 @@ pipeline {
         stage('Upload Tidy Data') {
             steps {
                 script {
+                    FAILED_STAGE=env.STAGE_NAME
                     jobDraft.replace()
                     def datasets = []
                     String dspath = util.slugise(env.JOB_NAME)
@@ -95,6 +103,7 @@ pipeline {
             }
             steps {
                 script {
+                    FAILED_STAGE=env.STAGE_NAME
                     pmd = pmdConfig("pmd")
                     String draftId = pmd.drafter.findDraftset(env.JOB_NAME).id
                     String endpoint = pmd.drafter.getDraftsetEndpoint(draftId)
@@ -119,6 +128,7 @@ pipeline {
         stage('Publish') {
             steps {
                 script {
+                    FAILED_STAGE=env.STAGE_NAME
                     jobDraft.publish()
                 }
             }
@@ -127,6 +137,7 @@ pipeline {
     post {
         always {
             script {
+                String main_issue
                 if (fileExists("${DATASET_DIR}/info.json")) {
                     def info = readJSON(text: readFile(file: "${DATASET_DIR}/info.json"))
                     if (info.containsKey('transform') && info['transform'].containsKey('asana')) {
@@ -144,11 +155,24 @@ pipeline {
                             }
                         }
                     }
+                    if (info.containsKey('transform') && info['transform'].containsKey('main_issue')) {
+                        main_issue = info['transform']['main_issue']
+                    }
+                }
+                String body = """Jenkins job result: ${currentBuild.result}
+Stage: ${FAILED_STAGE}
+[View full output]($BUILD_URL)
+"""
+                if (main_issue) {
+                  body = body + """
+Blocks #${main_issue}
+"""
                 }
                 step([$class: 'GitHubIssueNotifier',
                       issueAppend: true,
-                      issueLabel: '',
-                      issueTitle: '$JOB_NAME $BUILD_DISPLAY_NAME failed'])
+                      issueLabel: 'Jenkins Issue',
+                      issueTitle: '$JOB_BASE_NAME failed',
+                      issueBody: body])
                 archiveArtifacts artifacts: "${DATASET_DIR}/out/*", excludes: "${DATASET_DIR}/out/*.html"
                 junit allowEmptyResults: true, testResults: 'reports/**/*.xml'
                 publishHTML([
