@@ -617,7 +617,7 @@ lineWanted = False
 for t in headSet:
     newDat = ''
     curNme = f'out/preobservations_5_{i}.csv-metadata.trig'
-    newNme = f'out/{t}.csv-metadata.trig'
+    newNme = f'out/{t.replace(' ','-').lower()}.csv-metadata.trig'
     with open(curNme, "r") as input:
         with open(newNme, "w") as output: 
             for line in input:
@@ -642,8 +642,8 @@ for t in headSet:
     #### Old trig file no longer needed so remove/delete
     os.remove(curNme)
     #### Rename the other output files to match the trig file
-    os.rename(f'out/observations_5_{i}.csv', f'out/{t}.csv')
-    os.rename(f'out/observations_5_{i}.csv-schema.json', f'out/{t}.csv-schema.json')
+    os.rename(f'out/observations_5_{i}.csv', f'out/{t.replace(' ','-').lower()}.csv')
+    os.rename(f'out/observations_5_{i}.csv-schema.json', f'out/{t.replace(' ','-').lower()}.csv-schema.json')
     
     i = i + 1
     if i == 2:
