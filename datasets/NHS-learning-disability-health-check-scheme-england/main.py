@@ -91,6 +91,9 @@ quse = 'NHS LDHC Quality Service'
 # +
 #### Rename the column and create a codelist
 
+#### Remove rows that only consist of Unallocated as values
+tbl = tbl[tbl['REGION_ONS_CODE'] != 'Unallocated']
+
 tbl = tbl.rename(columns={'MEASURE':meas})
 #t = createCodeListforColumn(tbl[meas],meas)
 #t = createDimensionColumnsCSVDefinition(meas)
