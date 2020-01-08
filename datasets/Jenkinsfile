@@ -170,7 +170,7 @@ Blocks #${main_issue}
                 }
                 step([$class: 'GitHubIssueNotifier',
                       issueAppend: true,
-                      issueLabel: 'Jenkins Issue',
+                      issueLabel: 'Jenkins',
                       issueTitle: '$JOB_BASE_NAME failed',
                       issueBody: body])
                 archiveArtifacts artifacts: "${DATASET_DIR}/out/*", excludes: "${DATASET_DIR}/out/*.html"
