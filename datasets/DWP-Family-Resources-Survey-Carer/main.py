@@ -577,11 +577,11 @@ for t in tblSet:
     #t = t.drop(columns=['Unit'])
     t['Marker'] = t['Marker'].str.replace(' ', '-')
     
-    fleNme = 'observations_5_' + str(i) + '.csv'
+    fleNme = 'observations-5-' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
     
     #scraper.set_dataset_id(f'disability/dwp-family-resources-survey-carer/observations_5_{i}')
-    scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer/observations_5_{i}/')
+    scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer/observations-5-{i}/')
     #scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer')
     
     scraper.dataset.family = 'disability'
@@ -616,9 +616,10 @@ lineWanted = False
 #### Loop around each element in the main 
 for t in headSet:
     newDat = ''
-    hed = t.replace(' ','-').lower()
-    curNme = f'out/preobservations_5_{i}.csv-metadata.trig'
-    newNme = f'out/{hed}.csv-metadata.trig'
+    #hed = t.replace(' ','-').lower()
+    curNme = f'out/preobservations-5-{i}.csv-metadata.trig'
+    newNme = f'out/observations-5-{i}.csv-metadata.trig'
+    #newNme = f'out/{hed}.csv-metadata.trig'
     with open(curNme, "r") as input:
         with open(newNme, "w") as output: 
             for line in input:
@@ -633,8 +634,8 @@ for t in headSet:
                             if f'@prefix ns{k}:' not in line.strip("\n"):
                                 lineWanted = False
                     if lineWanted:
-                        if f'observations_5_{i}/' in line.strip("\n"):
-                            line = line.replace(f'observations_5_{i}/', hed)
+                        #if f'observations_5_{i}/' in line.strip("\n"):
+                            #line = line.replace(f'observations_5_{i}/', hed)
                             
                         output.write(line)
     #### Close both files
@@ -643,9 +644,9 @@ for t in headSet:
     #### Old trig file no longer needed so remove/delete
     os.remove(curNme)
     #### Rename the other output files to match the trig file
-    os.rename(f'out/observations_5_{i}.csv', f'out/{hed}.csv')
-    os.rename(f'out/observations_5_{i}.csv-schema.json', f'out/{hed}.csv-schema.json')
-    
+    #os.rename(f'out/observations_5_{i}.csv', f'out/{hed}.csv')
+    #os.rename(f'out/observations_5_{i}.csv-schema.json', f'out/{hed}.csv-schema.json')
+    #### ns2 is used for something else so you have got to jump up 1 at this point
     i = i + 1
     if i == 2:
         k = k + 2
