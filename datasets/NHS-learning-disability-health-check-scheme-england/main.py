@@ -84,6 +84,14 @@ def createCodeListforColumn(dta,colNme):
         return "createCodeListforColumn: " + str(e)
 
 
+def createASetOfCodelistsForDataFrame(dat,param):
+    try:
+        
+        return 'Codelists Created'
+    except Exception as e:
+        return "createASetOfCodelistsForDataFrame: " + str(e)
+
+
 #### Create new names for columns
 meas = 'NHS LDHC Measure Code'
 quse = 'NHS LDHC Quality Service'
@@ -137,13 +145,44 @@ tbl.drop_duplicates().to_csv(out / 'observations.csv', index = False)
 # +
 scraper.dataset.family = 'disability'
 
-with open(out / 'observations.csv-metadata.trig', 'wb') as metadata:
+with open(out / 'preobservations.csv-metadata.trig', 'wb') as metadata:
     metadata.write(scraper.generate_trig())
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
 # -
+
+
 tbl
 
+
+# +
+#### As each trig file is created multiple @prefix ns lines are added. This code gets rid of them
+import os
+
+hed = '[MI] Learning Disabilities Health Check Scheme, England, Quarter 2, 2019-20"@en'
+curNme = f'out/preobservations.csv-metadata.trig'    #### Current file name
+newNme = f'out/observations.csv-metadata.trig'       #### New file name
+#### Open the file and loop around each line adding or deleting as you go
+with open(curNme, "r") as input:
+    #### Also open the new file to add to as you go
+     with open(newNme, "w") as output: 
+        #### Loop around the input file
+        for line in input:
+            if '[MI]' in line.strip("\n"):
+                line = line.replace('[', '')
+                line = line.replace(']', '')
+                line = line.replace(',', '')
+        
+            output.write(line)
+                        
+#### Close both files
+input.close
+output.close
+#### Old trig file no longer needed so remove/delete
+os.remove(curNme)
+
+  
+# -
 
 
