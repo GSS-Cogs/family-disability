@@ -7,6 +7,7 @@
       <th>Publisher</th>
       <th>Dataset</th>
       <th>Tracking</th>
+      <th>Status</th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,9 @@
         {{#if info.transform.main_issue}}
         <a href="{{../github}}/issues/{{info.transform.main_issue}}"><i style="color: black;" class="fab fa-github-alt"></i></a>
         {{/if}}
+      </td>
+      <td>
+        <a href='https://ci.floop.org.uk/job/GSS_data/job/Disability/job/{{directory}}/'><img src='https://ci.floop.org.uk/buildStatus/icon?job=GSS_data%2FDisability%2F{{directory}}'></a>
       </td>
     </tr>
     {{/each}}
