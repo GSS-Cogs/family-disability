@@ -607,38 +607,45 @@ headSet = [
 ]
 headMain = 'Family Resources Survey: financial year 2017/18'
 
-#### As each trig file is created multiple @prefix ns lines are added. This code gets rid of them and also renames the main heading lines
-#### It also renames all the output files
+# +
+#### As each trig file is created multiple @prefix ns lines are added. This code gets rid of them
+
 import os
-i = 1
-k = 1
+i = 1 #### Main looping index
+k = 1 #### Secondary index to skip over lines with ns2
 lineWanted = False
-#### Loop around each element in the main 
+#### Loop around each element in the main heading list
 for t in headSet:
     newDat = ''
-    curNme = f'out/preobservations-5-{i}.csv-metadata.trig'
-    newNme = f'out/observations-5-{i}.csv-metadata.trig'
+    curNme = f'out/preobservations-5-{i}.csv-metadata.trig'    #### Current file name
+    newNme = f'out/observations-5-{i}.csv-metadata.trig'       #### New file name
+    #### Open the file and loop around each line adding or deleting as you go
     with open(curNme, "r") as input:
+        #### Also open the new file to add to as you go
         with open(newNme, "w") as output: 
+            #### Loop around the input file
             for line in input:
+                #### Change the lines to the value in the variabl headMain
                 if headMain in line.strip("\n"):
                     newLine = line
                     newLine = line.replace(headMain, headMain + ' - ' + t)
                     output.write(newLine)
                 else: 
                     lineWanted = True
+                    #### Ignore lines with ns2 but loop for other ns# lines, deleteing any extra ones that do not match the value of k
                     if '@prefix ns2:' not in line.strip("\n"):
                         if '@prefix ns' in line.strip("\n"):
                             if f'@prefix ns{k}:' not in line.strip("\n"):
+                                #### You do not want this line so ignore
                                 lineWanted = False
-                    
+                    #### If the line is needed check if it is a line that needs changing then write to new file 
                     if lineWanted: 
                         if 'a pmd:Dataset' in line.strip("\n"):
                             line = line.replace(f'observations-5-{i}/', f'observations-5-{i}')
                     
                         if 'pmd:graph' in line.strip("\n"):
                             line = line.replace(f'observations-5-{i}/', f'observations-5-{i}')
-                                             
+                        #### Output the line to the new file                    
                         output.write(line)
                         
     #### Close both files
@@ -647,11 +654,12 @@ for t in headSet:
     #### Old trig file no longer needed so remove/delete
     os.remove(curNme)
 
-    #### ns2 is used for something else so you have got to jump up 1 at this point
+    #### Increment i, ns2 is used for something else so you have got to jump k up by 1 at this point
     i = i + 1
     if i == 2:
         k = k + 2
     else:
         k = k + 1
+# -
 
 
