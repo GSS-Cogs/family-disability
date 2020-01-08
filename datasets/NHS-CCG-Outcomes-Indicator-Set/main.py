@@ -23,6 +23,7 @@ def temp_scrape(scraper, tree):
     dist.mediaType = ZIP
     scraper.distributions.append(dist)
     scraper.dataset.family = 'disability'
+    scraper.dataset.publisher = 'NHS Digital'
     return
 
 scrapers.scraper_list = [('https://digital.nhs.uk/data-and-information/publications/', temp_scrape)]
