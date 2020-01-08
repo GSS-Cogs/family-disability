@@ -595,11 +595,11 @@ for t in tblSet:
 
 headSet = [
     'People providing informal care by gender',
-    'People providing informal care by age & gender',
-    'Adult informal carers providing care by gender, age and number of hours per week',
+    'People providing informal care by age and gender',
+    'Adult informal carers providing care by gender age and number of hours per week',
     'Adult informal carers by employment status and gender',
     'Adult informal carers by main source of total weekly household income hours caring and gender',
-    'Adult informal care by gender, age and net individual weekly income',
+    'Adult informal care by gender age and net individual weekly income',
     'Who informal carers care for by gender',
     'People receiving care by age and gender',
     'People receiving care at least once a week by age and frequency of care',
@@ -607,14 +607,17 @@ headSet = [
 ]
 headMain = 'Family Resources Survey: financial year 2017/18'
 
+#### As each trig file is created multiple @prefix ns lines are added. This code gets rid of them and also renames the main heading lines
+#### It also renames all the output files
 import os
 i = 1
 k = 1
 lineWanted = False
+#### Loop around each element in the main 
 for t in headSet:
     newDat = ''
     curNme = f'out/preobservations_5_{i}.csv-metadata.trig'
-    newNme = f'out/observations_5_{i}.csv-metadata.trig'
+    newNme = f'out/{t}.csv-metadata.trig'
     with open(curNme, "r") as input:
         with open(newNme, "w") as output: 
             for line in input:
@@ -622,17 +625,26 @@ for t in headSet:
                     newLine = line
                     newLine = line.replace(headMain, headMain + ' - ' + t)
                     output.write(newLine)
-                else:
+                else: 
                     lineWanted = True
                     if '@prefix ns2:' not in line.strip("\n"):
                         if '@prefix ns' in line.strip("\n"):
                             if f'@prefix ns{k}:' not in line.strip("\n"):
                                 lineWanted = False
                     if lineWanted:
+                        if f'observations_5_{i}/' in line.strip("\n"):
+                            line = line.replace(f'observations_5_{i}/', t.replace(' ','-').lower())
+                            
                         output.write(line)
+    #### Close both files
     input.close
     output.close
+    #### Old trig file no longer needed so remove/delete
     os.remove(curNme)
+    #### Rename the other output files to match the trig file
+    os.rename(f'out/observations_5_{i}.csv', f'out/{t}.csv')
+    os.rename(f'out/observations_5_{i}.csv-schema.json', f'out/{t}.csv-schema.json')
+    
     i = i + 1
     if i == 2:
         k = k + 2
