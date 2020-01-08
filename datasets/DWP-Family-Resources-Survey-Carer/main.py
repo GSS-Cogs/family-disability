@@ -577,11 +577,11 @@ for t in tblSet:
     #t = t.drop(columns=['Unit'])
     t['Marker'] = t['Marker'].str.replace(' ', '-')
     
-    fleNme = 'observations_5_' + str(i) + '.csv'
+    fleNme = 'observations-5-' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
     
     #scraper.set_dataset_id(f'disability/dwp-family-resources-survey-carer/observations_5_{i}')
-    scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer/observations_5_{i}/')
+    scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer/observations-5-{i}/')
     #scraper.set_dataset_id(f'gss_data/disability/dwp-family-resources-survey-carer')
     
     scraper.dataset.family = 'disability'
@@ -595,11 +595,11 @@ for t in tblSet:
 
 headSet = [
     'People providing informal care by gender',
-    'People providing informal care by age & gender',
-    'Adult informal carers providing care by gender, age and number of hours per week',
+    'People providing informal care by age and gender',
+    'Adult informal carers providing care by gender age and number of hours per week',
     'Adult informal carers by employment status and gender',
     'Adult informal carers by main source of total weekly household income hours caring and gender',
-    'Adult informal care by gender, age and net individual weekly income',
+    'Adult informal care by gender age and net individual weekly income',
     'Who informal carers care for by gender',
     'People receiving care by age and gender',
     'People receiving care at least once a week by age and frequency of care',
@@ -607,36 +607,59 @@ headSet = [
 ]
 headMain = 'Family Resources Survey: financial year 2017/18'
 
+# +
+#### As each trig file is created multiple @prefix ns lines are added. This code gets rid of them
+
 import os
-i = 1
-k = 1
+i = 1 #### Main looping index
+k = 1 #### Secondary index to skip over lines with ns2
 lineWanted = False
+#### Loop around each element in the main heading list
 for t in headSet:
     newDat = ''
-    curNme = f'out/preobservations_5_{i}.csv-metadata.trig'
-    newNme = f'out/observations_5_{i}.csv-metadata.trig'
+    curNme = f'out/preobservations-5-{i}.csv-metadata.trig'    #### Current file name
+    newNme = f'out/observations-5-{i}.csv-metadata.trig'       #### New file name
+    #### Open the file and loop around each line adding or deleting as you go
     with open(curNme, "r") as input:
+        #### Also open the new file to add to as you go
         with open(newNme, "w") as output: 
+            #### Loop around the input file
             for line in input:
+                #### Change the lines to the value in the variabl headMain
                 if headMain in line.strip("\n"):
                     newLine = line
                     newLine = line.replace(headMain, headMain + ' - ' + t)
                     output.write(newLine)
-                else:
+                else: 
                     lineWanted = True
+                    #### Ignore lines with ns2 but loop for other ns# lines, deleteing any extra ones that do not match the value of k
                     if '@prefix ns2:' not in line.strip("\n"):
                         if '@prefix ns' in line.strip("\n"):
                             if f'@prefix ns{k}:' not in line.strip("\n"):
+                                #### You do not want this line so ignore
                                 lineWanted = False
-                    if lineWanted:
+                    #### If the line is needed check if it is a line that needs changing then write to new file 
+                    if lineWanted: 
+                        if 'a pmd:Dataset' in line.strip("\n"):
+                            line = line.replace(f'observations-5-{i}/', f'observations-5-{i}')
+                    
+                        if 'pmd:graph' in line.strip("\n"):
+                            line = line.replace(f'observations-5-{i}/', f'observations-5-{i}')
+                        #### Output the line to the new file                    
                         output.write(line)
+                        
+    #### Close both files
     input.close
     output.close
+    #### Old trig file no longer needed so remove/delete
     os.remove(curNme)
+
+    #### Increment i, ns2 is used for something else so you have got to jump k up by 1 at this point
     i = i + 1
     if i == 2:
         k = k + 2
     else:
         k = k + 1
+# -
 
 
