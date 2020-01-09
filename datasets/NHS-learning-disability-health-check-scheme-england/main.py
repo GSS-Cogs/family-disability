@@ -103,9 +103,13 @@ tbl = tbl.rename(columns={'QUALITY_SERVICE':quse})
 #t = createCodeListforColumn(tbl[quse],quse)
 #t = createDimensionColumnsCSVDefinition(quse)
 
+#### Due to PMD not currently being able to cope with multiple refArea columns i am removing
+#### the 2 higher geography codes and keeping the lowest one, ONS CCG Geography, This is the NHS Trust
+tbl = tbl.drop(columns=['REGION_ONS_CODE','SUB_REGION_ONS_CODE'])
+
 #### Do more renaming of columns
-tbl = tbl.rename(columns={'REGION_ONS_CODE':'ONS Geography'})
-tbl = tbl.rename(columns={'SUB_REGION_ONS_CODE':'ONS Sub Geography'})
+#tbl = tbl.rename(columns={'REGION_ONS_CODE':'ONS Geography'})
+#tbl = tbl.rename(columns={'SUB_REGION_ONS_CODE':'ONS Sub Geography'})
 tbl = tbl.rename(columns={'CCG_ONS_CODE':'ONS CCG Geography'})
 tbl = tbl.rename(columns={'PRACTICE_CODE':'GP Practice Code'})
 tbl = tbl.rename(columns={'ACH_DATE':'Period'})
@@ -129,9 +133,6 @@ tbl['NHS LDHC Measure Code'] = tbl['NHS LDHC Measure Code'].apply(pathify)
 
 tbl['Measure Type'] = 'Count'
 
-#### Due to PMD not currently being able to cope with multiple refArea columns i am removing
-#### the 2 higher geography codes and keeping the lowest one, ONS CCG Geography, This is the NHS Trust
-tbl.drop(columns=['ONS Geography','ONS Sub Geography'])
 
 # +
 #tbl
@@ -178,5 +179,7 @@ os.remove(curNme)
 
 
 # -
+
+
 
 
