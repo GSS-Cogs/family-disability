@@ -109,7 +109,7 @@ next_table[dfeA] = next_table[dfeA].map(
 next_table[dfeA] = next_table[dfeA].str.replace('/', '-', regex=True)
 
 next_table[dfeS] = next_table[dfeS].map(
-    lambda x: { 'All' : 'all', 'Boys' :'B', 'Girls' :'G', 'Total' : 'T', 'Total(5)' :'T'        
+    lambda x: { 'All' : 'T', 'Boys' :'M', 'Girls' :'F', 'Total' : 'T', 'Total(5)' :'T'        
         }.get(x, x))
 
 next_table['Special Education Provider'] = next_table['Special Education Provider'].apply(pathify)
