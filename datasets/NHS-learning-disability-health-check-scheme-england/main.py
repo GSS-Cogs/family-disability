@@ -84,17 +84,10 @@ def createCodeListforColumn(dta,colNme):
         return "createCodeListforColumn: " + str(e)
 
 
-def createASetOfCodelistsForDataFrame(dat,param):
-    try:
-        
-        return 'Codelists Created'
-    except Exception as e:
-        return "createASetOfCodelistsForDataFrame: " + str(e)
-
-
 #### Create new names for columns
 meas = 'NHS LDHC Measure Code'
 quse = 'NHS LDHC Quality Service'
+
 
 # +
 #### Rename the column and create a codelist
@@ -112,7 +105,7 @@ tbl = tbl.rename(columns={'QUALITY_SERVICE':quse})
 
 #### Do more renaming of columns
 tbl = tbl.rename(columns={'REGION_ONS_CODE':'ONS Geography'})
-tbl = tbl.rename(columns={'SUB_REGION_ONS_CODE':'ONS SUB Geography'})
+tbl = tbl.rename(columns={'SUB_REGION_ONS_CODE':'ONS Sub Geography'})
 tbl = tbl.rename(columns={'CCG_ONS_CODE':'ONS CCG Geography'})
 tbl = tbl.rename(columns={'PRACTICE_CODE':'GP Practice Code'})
 tbl = tbl.rename(columns={'ACH_DATE':'Period'})
@@ -132,17 +125,20 @@ tbl['Period'] = 'day/' + tbl['Period'].apply(lambda x: x.strftime('%Y-%m-%d'))
 
 #### Pathifying things
 tbl['NHS LDHC Quality Service'] = tbl['NHS LDHC Quality Service'].apply(pathify)
-#tbl['ONS Geography'] = tbl['ONS Geography'].apply(pathify)
-#tbl['ONS SUB Geography'] = tbl['ONS SUB Geography'].apply(pathify)
-#tbl['ONS CCG Geography'] = tbl['ONS CCG Geography'].apply(pathify)
-#tbl['GP Practice Code'] = tbl['GP Practice Code'].apply(pathify)
 tbl['NHS LDHC Measure Code'] = tbl['NHS LDHC Measure Code'].apply(pathify)
 
 tbl['Measure Type'] = 'Count'
 
-tbl.drop_duplicates().to_csv(out / 'observations.csv', index = False)
+#### Due to PMD not currently being able to cope with multiple refArea columns i am removing
+#### the 2 higher geography codes and keeping the lowest one, ONS CCG Geography, This is the NHS Trust
+tbl.drop(columns=['ONS Geography','ONS Sub Geography'])
 
 # +
+#tbl
+
+# +
+tbl.drop_duplicates().to_csv(out / 'observations.csv', index = False)
+
 scraper.dataset.family = 'disability'
 
 with open(out / 'preobservations.csv-metadata.trig', 'wb') as metadata:
@@ -151,8 +147,6 @@ with open(out / 'preobservations.csv-metadata.trig', 'wb') as metadata:
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
 # -
-
-
 tbl
 
 
@@ -182,7 +176,7 @@ output.close
 #### Old trig file no longer needed so remove/delete
 os.remove(curNme)
 
-  
+
 # -
 
 
