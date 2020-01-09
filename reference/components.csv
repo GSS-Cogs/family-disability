@@ -67,6 +67,6 @@ Breakdown,,Dimension,http://gss-data.org.uk/def/concept-scheme/breakdown
 CCG Indicator,,Dimension,http://gss-data.org.uk/def/concept-scheme/ccg-indicator
 NHS Level,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-level
 Markers,,Attribute,http://gss-data.org.uk/def/concept-scheme/markers
-Standardised admission rate,,Measure
-Standardised ratio,,Measure
-Standardised emergency admission rate,,Measure
+Standardised admission rate,,Measure,
+Standardised ratio,,Measure,
+Standardised emergency admission rate,,Measure,
