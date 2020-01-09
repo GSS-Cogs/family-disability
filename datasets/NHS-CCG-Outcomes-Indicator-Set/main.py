@@ -12,6 +12,8 @@ from gssutils.metadata import *
 import calendar
 import json
 
+from dateutil.parser import parse
+
 # TODO - this may well work but is being rejected for wrong path, investigate
 #scrape = Scraper("https://digital.nhs.uk/data-and-information/publications/clinical-indicators/ccg-outcomes-indicator-set/current#related-links")
 #scrape
@@ -27,14 +29,15 @@ def temp_scrape(scraper, tree):
     dist.mediaType = ZIP
     scraper.distributions.append(dist)
     scraper.dataset.family = "disability"
-    scraper.dataset.issued = "December 2019"
+    scraper.dataset.issued = parse(info_data["published"])
     scraper.dataset.description = info_data["description"]
     scraper.dataset.publisher = 'https://www.gov.uk/government/organisations/nhs-digital'
     return
 
 scrapers.scraper_list = [('https://digital.nhs.uk/data-and-information/publications/', temp_scrape)]
 scraper = Scraper('https://digital.nhs.uk/data-and-information/publications/clinical-indicators/ccg-outcomes-indicator-set')
-scraper
+
+scraper #.distribution(latest=True)
 # -
 
 # # Reference
@@ -282,4 +285,9 @@ with open(destinationFolder / f'observations.csv-metadata.trig', 'wb') as metada
     
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(destinationFolder / 'observations.csv', destinationFolder / 'observations.csv-schema.json')
+
+# -
+
+
+
 
