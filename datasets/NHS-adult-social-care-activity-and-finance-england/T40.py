@@ -21,8 +21,8 @@ Dimensions = [
             HDimConst('Period', 'gregorian-interval/2018-04-01T00:00:00/P1Y'),
             HDim(age,'group',CLOSEST, LEFT),
             HDimConst('Adult Social Care activity','Number of clients accessing long term support at the year end'),
-            HDimConst('Unit','GBP'),  
-            HDimConst('Measure Type','thousands'),
+            HDimConst('Unit','clients'),  
+            HDimConst('Measure Type','Count'),
             HDim(activity,'Adult Social Care group',DIRECTLY,ABOVE)
 ]  
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)

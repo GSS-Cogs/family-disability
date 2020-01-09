@@ -20,14 +20,14 @@ Dimensions = [
             HDimConst('Period', 'gregorian-interval/2018-04-01T00:00:00/P1Y'),
             HDim(age,'group',DIRECTLY,ABOVE),
             HDimConst('Adult Social Care activity','Number of clients accessing long term support'),
-            HDimConst('Unit','GBP'),  
-            HDimConst('Measure Type','number'),
+            HDimConst('Unit','clients'),  
+            HDimConst('Measure Type','Count'),
             HDim(activity,'Adult Social Care group', CLOSEST, LEFT)
 ]  
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
 import numpy as np
-new_table.rename(columns={'OBS': 'Value'}, inplace=True)
+new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'NHS Marker'}, inplace=True)
 def user_perc(x):
     
     if ((str(x) == '18 to 64')) | ((str(x) == '65 and over')): 
@@ -41,5 +41,4 @@ new_table['group'] = new_table['group'].map(
         '18 to 64' : 'age 18 to 64 ', 
         '65 and over' : 'age 65 and over'}.get(x, x))
 new_table['Adult Social Care group'] = new_table['Adult Social Care group'] + ' - ' + new_table['group']
-# new_table['NHS Marker'] = ''
 new_table = new_table [['NHS Geography','Period','Adult Social Care group','Adult Social Care activity','Unit','Value','Measure Type','NHS Marker']]

@@ -20,8 +20,8 @@ Dimensions = [
             HDim(code, 'NHS Geography', DIRECTLY, LEFT),
             HDim(year,'Period',DIRECTLY, ABOVE ),
             HDim(age,'Adult Social Care group',CLOSEST, LEFT),
-            HDimConst('Unit','GBP'),  
-            HDimConst('Measure Type','Thousands'),
+            HDimConst('Unit','clients'),  
+            HDimConst('Measure Type','Count'),
             HDim(activity, 'Adult Social Care activity', CLOSEST, LEFT)
 ]  
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)

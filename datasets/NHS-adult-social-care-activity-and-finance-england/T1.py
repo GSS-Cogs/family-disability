@@ -24,14 +24,14 @@ Dimensions = [
             HDim(code, 'NHS Geography', DIRECTLY, LEFT),
             HDimConst('Period', 'gregorian-interval/2018-04-01T00:00:00/P1Y'),
             HDim(age,'Adult Social Care group',DIRECTLY, ABOVE),
-            HDimConst('Unit','GBP'),  
-            HDimConst('Measure Type','Thousands'),
+            HDimConst('Unit','gbp-thousands'),  
+            HDimConst('Measure Type','GBP Total'),
             HDim(activity, 'Adult Social Care activity', CLOSEST, LEFT)
 ]  
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
 import numpy as np
-new_table.rename(columns={'OBS': 'Value'}, inplace=True)
+new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'NHS Marker'}, inplace=True)
 def user_perc(x):
     
     if ((str(x) == '18 to 64')) | ((str(x) == '65 and over')): 
@@ -44,4 +44,22 @@ new_table['Adult Social Care group'] = new_table['Adult Social Care group'].map(
     lambda x: {
         '18 to 64' : 'age 18 to 64 ', 
         '65 and over' : 'age 65 and over'}.get(x, x))
+def user_perc2(x,y):
+    
+    if ((str(x) ==  'Net Total Expenditure') | (str(x) ==  'Gross Total Expenditure') | (str(x) ==  'Net Total Expenditure')) : 
+        
+        return y
+    else:
+        return 'clients'
+    
+new_table['Unit'] = new_table.apply(lambda row: user_perc2(row['Adult Social Care activity'], row['Unit']), axis = 1)
+def user_perc3(x,y):
+    
+    if ((str(x) ==  'Net Total Expenditure') | (str(x) ==  'Gross Total Expenditure') | (str(x) ==  'Net Total Expenditure')): 
+        
+        return y
+    else:
+        return 'Count'
+    
+new_table['Measure Type'] = new_table.apply(lambda row: user_perc3(row['Adult Social Care activity'], row['Measure Type']), axis = 1)
 new_table = new_table [['NHS Geography','Period','Adult Social Care group','Adult Social Care activity','Unit','Value','Measure Type']]

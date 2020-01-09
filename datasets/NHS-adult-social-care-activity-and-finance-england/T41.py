@@ -19,8 +19,8 @@ Dimensions = [
             HDim(code,'NHS Geography', DIRECTLY,LEFT),
             HDimConst('Period', 'gregorian-interval/2018-04-01T00:00:00/P1Y'),
             HDimConst('Adult Social Care activity','Gross Current Expenditure on long term care for clients aged 18 to 64 by support setting'),
-            HDimConst('Unit','GBP'),  
-            HDimConst('Measure Type','thousands'),
+            HDimConst('Unit','gbp-thousands'),  
+            HDimConst('Measure Type','GBP Total'),
             HDim(activity,'Adult Social Care group',DIRECTLY,ABOVE)
 ]  
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)

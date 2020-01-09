@@ -19,7 +19,7 @@ Dimensions = [
             HDim(code, 'NHS Geography', DIRECTLY, LEFT),
             HDimConst('Period', 'gregorian-interval/2018-04-01T00:00:00/P1Y'),
             HDim(age,'Adult Social Care group',CLOSEST, LEFT),
-            HDimConst('Unit','GBP'),  
+            HDimConst('Unit','clients'),  
             HDimConst('Measure Type','Count'),
             HDim(activity, 'Adult Social Care activity',CLOSEST,LEFT)
 ]  

@@ -19,8 +19,8 @@ observations = code.shift(3,0).fill(RIGHT).is_not_blank().is_not_whitespace()
 Dimensions = [
             HDim(code, 'NHS Geography', DIRECTLY, LEFT),
             HDim(Type,'Adult Social Care group',CLOSEST, LEFT),
-            HDimConst('Unit','GBP'),  
-            HDimConst('Measure Type','Thousands'),
+            HDimConst('Unit','gbp-thousands'),  
+            HDimConst('Measure Type','GBP Total'),
             HDim(activity, 'Adult Social Care activity', CLOSEST, LEFT)
 ]  
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)

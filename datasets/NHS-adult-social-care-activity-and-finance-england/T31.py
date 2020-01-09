@@ -20,8 +20,8 @@ Dimensions = [
             HDim(code, 'NHS Geography', DIRECTLY, LEFT),
             HDimConst('Period', 'gregorian-interval/2018-04-01T00:00:00/P1Y'),
             HDimConst('Adult Social Care activity','Gross Current Expenditure on short term care for clients aged 65 and over'),
-            HDimConst('Unit','GBP'),  
-            HDimConst('Measure Type','thousands'),
+            HDimConst('Unit','gbp-thousands'),  
+            HDimConst('Measure Type','GBP Total'),
             HDim(group,'group',CLOSEST,LEFT ),
             HDim(activity, 'Adult Social Care group',CLOSEST,LEFT)
 ]  
