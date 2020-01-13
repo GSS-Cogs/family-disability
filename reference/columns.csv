@@ -71,6 +71,8 @@ Standardised ratio,standardised_ratio,qb:measure,http://gss-data.org.uk/def/meas
 Standardised emergency admission rate,standardised_emergency_admission_rate,qb:measure,http://gss-data.org.uk/def/measure/standardised-emergency-admission-rate,,number,,,
 PHE Sex,phe_sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#sex,http://gss-data.org.uk/def/concept/phe-sex/{phe_sex},string,slugize,,http://gss-data.org.uk/def/classes/phe-sex/phe_sex
 DWP Age Group,dwp_age_group,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-age-group,http://gss-data.org.uk/def/concept/dwp-age-group/{dwp_age_group},string,slugize,,
+DWP Referral Group,dwp_referral_group,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-referral-group,http://gss-data.org.uk/def/concept/dwp-referral-group/{dwp_referral_group},string,slugize,,
+DWP Referral Group,dwp_referral_type,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-referral-type,http://gss-data.org.uk/def/concept/dwp-referral-type/{dwp_referral_type},string,slugize,,
 DWP FRS People,dwp_frs_people,qb:dimension,http://gss-data.org.uk/def/dimension/dwp-frs-people,http://gss-data.org.uk/def/concept/dwp-frs-people/{dwp_frs_people},string,slugize,,
 Measure Group,measure_group,qb:dimension,http://gss-data.org.uk/def/dimension/measure-group,http://gss-data.org.uk/def/concept/measure-group/{measure_group},string,slugize,,
 NHS ASCOF Code,nhs_ascof_code,qb:dimension,http://gss-data.org.uk/def/dimension/nhs-ascof-code,http://gss-data.org.uk/def/concept/nhs-ascof-code/{nhs_ascof_code},string,slugize,,
