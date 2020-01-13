@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[116]:
+# In[159]:
 
 
 from gssutils import *
@@ -23,7 +23,7 @@ scraper = Scraper('https://www.gov.uk/government/statistics/work-and-health-prog
 scraper
 
 
-# In[117]:
+# In[160]:
 
 
 dist = scraper.distribution(title=lambda t: 'Tables' in t)
@@ -272,11 +272,13 @@ for tab in tabs:
         
         remove = period.filter('Total').expand(RIGHT)
         
+        remove2 = cell.shift(4,0).fill(DOWN)
+        
         obsType = cell.shift(4,-1).expand(RIGHT).is_not_blank()
         
-        gender = cell.shift(RIGHT).expand(RIGHT).is_not_blank()
+        gender = cell.shift(RIGHT).expand(RIGHT).is_not_blank() - remove2
 
-        observations = cell.shift(1,2).expand(DOWN).expand(RIGHT).is_not_blank() - remove
+        observations = cell.shift(1,2).expand(DOWN).expand(RIGHT).is_not_blank() - remove - remove2
 
         dimensions = [
                 HDim(period, 'Period', DIRECTLY, LEFT), 
@@ -297,7 +299,7 @@ for tab in tabs:
         continue
 
 
-# In[118]:
+# In[161]:
 
 
 new_table = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -313,7 +315,7 @@ new_table['Region'] = new_table['Region'].map(lambda x: left(x, len(x) -1) if x.
 new_table['Region'] = new_table['Region'].map(lambda x: left(x, len(x) -1) if x.endswith('3') else x) 
 
 
-# In[119]:
+# In[162]:
 
 
 tidy = new_table[['Period','Region','Age Group','Gender','Referral Group','Observation Type','Measure Type','Value','DATAMARKER','Unit']]
@@ -349,8 +351,16 @@ tidy['Sex'] = tidy['Sex'].map(lambda x: pathify(x))
 tidy['DWP Age Group'] = tidy['DWP Age Group'].map(lambda x: pathify(x))
 #tidy = tidy.replace({'Area' : {'england-and-wales' : 'K04000001'}})
 
+tidy = tidy.replace({'Sex' : {
+    'all' : 'T', 
+    'female' : 'F', 
+    'females' : 'F', 
+    'male' : 'M', 
+    'males' : 'M', 
+    'unknown' : 'T'}})
 
-# In[120]:
+
+# In[163]:
 
 
 from IPython.core.display import HTML
@@ -361,7 +371,7 @@ for col in tidy:
         display(tidy[col].cat.categories)    
 
 
-# In[121]:
+# In[164]:
 
 
 destinationFolder = Path('out')
@@ -373,7 +383,7 @@ tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = Fal
 tidy    
 
 
-# In[122]:
+# In[165]:
 
 
 scraper.dataset.family = 'disability'
