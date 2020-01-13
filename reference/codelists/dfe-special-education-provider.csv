@@ -2,12 +2,12 @@ Label,Notation,Parent Notation,Sort Priority
 All,all,,1
 All Schools ,all-schools,all,2
 Maintained Nursery ,maintained-nursery,all,3
-State Funded Primary,state-funded-primary,all,4
-State Funded Secondary ,state-funded-secondary,all,5
-State Funded Special,state-funded-special,all,6
+State Funded Primary School,state-funded-primary,all,4
+State Funded Secondary School,state-funded-secondary,all,5
+State Funded Special School,state-funded-special,all,6
 Pupil Referral Units  ,pupil-referral-units,all,7
 Independent ,independent,all,8
-Non Maintained Special,non-maintained-special,all,9
+Non Maintained Special Schools ,non-maintained-special,all,9
 Primary Converter Academy ,primary-converter-academy,all,10
 Sponsor Led Primary Academy,sponsor-led-primary-academy,all,11
 Primary Free School ,primary-free-school,all,12
