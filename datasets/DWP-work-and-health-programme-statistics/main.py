@@ -347,7 +347,7 @@ tidy = tidy.replace({'Age Group' : {
     'Total' : 'all'}})
 
 tidy.rename(columns={'DATAMARKER' : 'Marker',
-                     'Region' : 'Area',
+                     'Region' : 'DWP Area',
                      'Gender' : 'Sex',
                      'Age Group' : 'DWP Age Group',
                      'Observation Type' : 'DWP Referral Type',
