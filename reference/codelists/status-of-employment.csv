@@ -1,0 +1,6 @@
+Label,Notation,Parent Notation,Sort Priority
+permanent,permanent,,1
+temporary,temporary,,2
+total,total,,3
+not-applicable,not-applicable,,4
+all-employees,all-employees,,5

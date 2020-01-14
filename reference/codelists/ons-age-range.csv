@@ -1,3 +1,13 @@
 Label,Notation,Parent Notation,Sort Priority
 16-64,16-64,,1
 16-69,16-69,,2
+all,all,,3
+16-19,16-19,,4
+20-29,20-29,,5
+30-39,30-39,,6
+40-49,40-49,,7
+50-59,50-59,,8
+60-64,60-64,,6
+65 & Over,65-over,,9
+Not reported,not-reported,,10
+Median Age,median-age,,11

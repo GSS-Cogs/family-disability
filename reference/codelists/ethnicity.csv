@@ -1,0 +1,13 @@
+Label,Notation,Parent Notation,Sort Priority
+all,all,,1
+white,white,,2
+asian,asian,,3
+black,black,,4
+chinese,chinese,,5
+mixed,mixed,,6
+other-ethnicity,other-ethnicity,,7
+not-declared4,not-declared4,,8
+not-reported5,not-reported5,,9
+all-employees,all-employees,,10
+all-employees-with-known-ethnicity,all-employees-with-known-ethnicity,,11
+ethnic-minority-as-percentage-of-known-ethnicity,ethnic-minority-as-percentage-of-known-ethnicity,,12
