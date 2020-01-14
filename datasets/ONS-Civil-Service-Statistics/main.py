@@ -164,6 +164,39 @@ next_table = next_table [['Year', 'Disability Status', 'Responsibility Level', '
 next_table
 
 # +
+#///////////////////////////////////
+# -
+
+# out = Path('output')
+# out.mkdir(exist_ok=True, parents=True)
+
+# def createCodeListforColumn(dta,colNme):
+#     try:
+#         titles =('Label','Notation','Parent Notation','Sort Priority')
+#         cdeLst = dta.unique()
+#         cdeLst = pd.DataFrame(cdeLst)
+#         #### Create a version of the column name with lowercase and spaces replaced with underscore(_)
+#         colNmeP = colNme.replace(' ','-').replace('_','-').lower()
+#         #### Create the standard codelist and output
+#         cdeLst.columns = [titles[0]]
+#         cdeLst[titles[1]] = cdeLst[titles[0]].apply(pathify)
+#         cdeLst[titles[1]] = cdeLst[titles[1]].str.replace('/', '-', regex=True)
+#         cdeLst[titles[2]] = ''
+#         cdeLst[titles[3]] = cdeLst.reset_index().index + 1
+#         #### Output the file
+#         cdeLst.to_csv(out / f'{colNmeP}.csv', index = False)
+#         return cdeLst
+#     except Exception as e:
+#         return "createCodeListforColumn: " + str(e)
+
+# createCodeListforColumn(tidy['Estimated Values'],'Estimated Values')
+
+
+
+# +
+#//////////////////////////////////
+
+# +
 destinationFolder = Path('out')
 destinationFolder.mkdir(exist_ok=True, parents=True)
 

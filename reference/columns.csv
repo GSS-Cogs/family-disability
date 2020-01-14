@@ -34,7 +34,7 @@ DfE Special Education Provider,dfe_special_education_provider,qb:dimension,http:
 DfE Special Education Support Type,dfe_special_education_support_type,qb:dimension,http://gss-data.org.uk/def/dimension/dfe-special-education-support-type,http://gss-data.org.uk/def/concept/dfe-special-education-support-type/{dfe_special_education_support_type},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/dfe_special_education_support_type
 DfE Special Education Need Type,dfe_special_education_need_type,qb:dimension,http://gss-data.org.uk/def/dimension/dfe-special-education-need-type,http://gss-data.org.uk/def/concept/dfe-special-education-need-type/{dfe_special_education_need_type},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/dfe_special_education_need_type
 Dfe-Age,dfe_age,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#age,http://gss-data.org.uk/def/concept/dfe_age/{dfe_age},string,slugize,,
-Dfe-Sex,dfe_sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#age,http://gss-data.org.uk/def/concept/dfe_sex/{dfe_sex},string,slugize,,
+Dfe-Sex,dfe_sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#sex,http://gss-data.org.uk/def/concept/dfe_sex/{dfe_sex},string,slugize,,
 Year,year,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refPeriod,http://reference.data.gov.uk/id/year/{year},string,,,
 Indicator,indicator,qb:dimension,http://gss-data.org.uk/def/dimension/indicator,http://gss-data.org.uk/def/concept/indicator/{indicator},string,slugize,,http://gss-data.org.uk/def/classes/indicator/indicator
 Trend,trend,qb:dimension,http://gss-data.org.uk/def/dimension/trend,http://gss-data.org.uk/def/concept/trend/{trend},string,slugize,,http://gss-data.org.uk/def/classes/trend/trend
