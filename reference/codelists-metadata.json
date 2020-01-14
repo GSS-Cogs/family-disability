@@ -196,6 +196,10 @@
     "rdfs:label": "DWP Referral Type",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/dwp-referral-type.csv"
+  }, {
+    "rdfs:label": "DWP Area",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/dwp-area.csv"
   },{
     "rdfs:label": "DWP FRS People",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
