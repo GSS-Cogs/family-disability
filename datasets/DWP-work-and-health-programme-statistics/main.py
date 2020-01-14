@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[159]:
+# In[79]:
 
 
 from gssutils import *
@@ -23,7 +23,7 @@ scraper = Scraper('https://www.gov.uk/government/statistics/work-and-health-prog
 scraper
 
 
-# In[160]:
+# In[80]:
 
 
 dist = scraper.distribution(title=lambda t: 'Tables' in t)
@@ -42,9 +42,11 @@ for tab in tabs:
 
         referralGroup = cell.shift(1,-1).expand(RIGHT).is_not_blank()
         
+        remove2 = referralGroup.filter('Total').expand(RIGHT).expand(DOWN)
+        
         obsType = cell.fill(RIGHT)
 
-        observations = period.shift(RIGHT).expand(RIGHT).is_not_blank()
+        observations = period.shift(RIGHT).expand(RIGHT).is_not_blank() - remove2
 
         dimensions = [
                 HDim(period, 'Period', DIRECTLY, LEFT), 
@@ -61,6 +63,7 @@ for tab in tabs:
         savepreviewhtml(c1, fname="Preview.html")
         tidied_sheets.append(c1.topandas())
         
+        
     elif tab.name in ['1_2']:
         
         cell = tab.filter("In month")
@@ -69,11 +72,13 @@ for tab in tabs:
         
         period = cell.shift(2,0).fill(DOWN).is_not_blank().shift(-2,0) - remove
 
-        referralGroup = cell.fill(RIGHT).is_not_blank()
+        referralGroup = cell.shift(5,0).fill(RIGHT).is_not_blank()
+        
+        remove2 = referralGroup.filter('Total').expand(DOWN)
         
         obsType = cell.shift(1,-1).fill(RIGHT).is_not_blank()
 
-        observations = period.fill(RIGHT).is_not_blank() - remove
+        observations = period.shift(5,0).fill(RIGHT).is_not_blank() - remove - remove2
 
         dimensions = [
                 HDim(period, 'Period', DIRECTLY, LEFT), 
@@ -89,7 +94,8 @@ for tab in tabs:
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
         tidied_sheets.append(c1.topandas())
-    
+        
+        
     elif tab.name in ['1_3']:
         
         cell = tab.filter("In month")
@@ -98,11 +104,11 @@ for tab in tabs:
         
         period = cell.shift(2,0).fill(DOWN).is_not_blank().shift(-2,0) - remove 
 
-        referralGroup = cell.fill(RIGHT).is_not_blank()
+        referralGroup = cell.shift(5,0).fill(RIGHT).is_not_blank()
         
         obsType = cell.shift(1,-1).fill(RIGHT).is_not_blank()
 
-        observations = period.fill(RIGHT).is_not_blank() - remove
+        observations = period.shift(5,0).fill(RIGHT).is_not_blank() - remove
 
         dimensions = [
                 HDim(period, 'Period', DIRECTLY, LEFT), 
@@ -113,11 +119,13 @@ for tab in tabs:
                 HDimConst('Measure Type','Count'),
                 HDimConst('Unit','People'),
                 HDimConst('Region', 'England and Wales')
+            
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
         tidied_sheets.append(c1.topandas())
+        
         
     elif tab.name in ['1_4']:
         
@@ -288,7 +296,8 @@ for tab in tabs:
                 HDimConst('Age Group', 'all'),
                 HDimConst('Measure Type','Count'),
                 HDimConst('Unit','People'),
-                HDimConst('Region', 'England and Wales')
+                HDimConst('Region', 'England and Wales'),
+                HDimConst('Tab', '3_3')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -299,7 +308,7 @@ for tab in tabs:
         continue
 
 
-# In[161]:
+# In[81]:
 
 
 new_table = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -315,7 +324,7 @@ new_table['Region'] = new_table['Region'].map(lambda x: left(x, len(x) -1) if x.
 new_table['Region'] = new_table['Region'].map(lambda x: left(x, len(x) -1) if x.endswith('3') else x) 
 
 
-# In[162]:
+# In[82]:
 
 
 tidy = new_table[['Period','Region','Age Group','Gender','Referral Group','Observation Type','Measure Type','Value','DATAMARKER','Unit']]
@@ -360,7 +369,7 @@ tidy = tidy.replace({'Sex' : {
     'unknown' : 'T'}})
 
 
-# In[163]:
+# In[83]:
 
 
 from IPython.core.display import HTML
@@ -371,7 +380,7 @@ for col in tidy:
         display(tidy[col].cat.categories)    
 
 
-# In[164]:
+# In[84]:
 
 
 destinationFolder = Path('out')
@@ -383,7 +392,7 @@ tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = Fal
 tidy    
 
 
-# In[165]:
+# In[85]:
 
 
 scraper.dataset.family = 'disability'
