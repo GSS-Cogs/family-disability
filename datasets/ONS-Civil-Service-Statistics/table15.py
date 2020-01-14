@@ -26,15 +26,31 @@ scraper
 # -
 
 
-gender_type = ['Male', 'Female', 'Total']
-tabs = {tab.name: tab for tab in scraper.distribution(latest=True).as_databaker()}
-tab = tabs['Table 9'] #Entrants and leavers to the Civil Service by sex and responsibility level 
+# Table 15 :Civil Service employment; regional (NUTS3) distribution1 2
 
-entrants_leavers = tab.excel_ref('B5').expand(RIGHT).is_not_blank()
-gender = tab.excel_ref('C6').expand(RIGHT).one_of(gender_type)
-responsibility_level = tab.excel_ref('B9').fill(DOWN).is_not_blank() - tab.excel_ref('B9') - tab.excel_ref('B21').expand(DOWN)
-observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B21').expand(RIGHT).expand(DOWN)
-#savepreviewhtml(profession_of_post)
+tabs = {tab.name: tab for tab in scraper.distribution(latest=True).as_databaker()}
+tab = tabs['Table 15']
+
+# +
+cells_to_remove = ['B17', 'B22', 'B26', 'B32', 'B39', 'B43', 'B49', 'B50', 'B54', 'B57', 'B60', 'B66', 'B67', 'B74',
+                   'B79', 'B82', 'B83', 'B87','B92', 'B101', 'B102', 'B109', 'B114', 'B122', 'B123', 'B128', 'B134',
+                   'B139', 'B143', 'B150', 'B151', 'B156', 'B163', 'B170', 'B177', 'B178', 'B184', 'B188', 'B190', 
+                   'B195', 'B196', 'B205', 'B211', 'B212', 'B221', 'B230', 'B232', 'B240']
+
+region = tab.excel_ref('B12').expand(DOWN).is_not_blank() - tab.excel_ref('B252').expand(DOWN)
+
+for cell in cells_to_remove:
+    region = region - tab.excel_ref(cell)
+# -
+
+#gender_type = ['Male', 'Female', 'Total']
+gender = tab.excel_ref('B6').expand(RIGHT).is_not_blank()
+employment_status = tab.excel_ref('B5').expand(RIGHT).is_not_blank()
+employment_type = tab.excel_ref('B7').expand(RIGHT).is_not_blank()
+NUTS3_code = tab.excel_ref('A12').expand(DOWN) - tab.excel_ref('A252').expand(DOWN)
+observations = employment_type.fill(DOWN).is_not_blank() - tab.excel_ref('B252').expand(DOWN).expand(RIGHT)
+#savepreviewhtml(observations)
+
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
     HDimConst('Year', '2018'),
@@ -43,19 +59,20 @@ dimensions = [
     HDimConst('ONS Age Range', 'all'),
     HDimConst('Nationality', 'all'),
     HDimConst('Responsibility Level', 'all'),
-    HDimConst('Region name', 'all'),
-    HDimConst('NUTS Area Code', 'not-applicable'),
-    HDimConst('ONS area code', 'not-applicable'),
-    HDimConst('Status of Employment', 'not-applicable'),
-    HDimConst('Type of Employment', 'all-employees'),
     HDimConst('Salary Band', 'all'),
-    HDimConst('Department', 'all'),
-    HDimConst('Profession of Post', 'all'),
-    HDim(gender, 'Sex', DIRECTLY, ABOVE),
-    HDim(entrants_leavers, 'Entrants or Leavers', CLOSEST, LEFT),
+    HDimConst('Profession of Post', 'not-applicable'),
+    HDimConst('Entrants or Leavers', 'not-applicable'),
+    HDimConst('Department', 'not-applicable'),
+    HDimConst('ONS area code', 'not-applicable'),
+    HDim(employment_type, 'Employment Type', DIRECTLY, ABOVE),
+    HDim(gender, 'Sex', CLOSEST, LEFT),
+    HDim(employment_status, 'Employment Status', CLOSEST, LEFT),
+    HDim(region, 'Region name', DIRECTLY, LEFT),
+    HDim(NUTS3_code, 'NUTS Area Code', DIRECTLY, LEFT),  
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
+
 
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in new_table.columns:
@@ -68,10 +85,4 @@ else:
     print('marker not found in colmns making it')
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
-new_table
-
-new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
-new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
-new_table['Entrants or Leavers'] = new_table['Entrants or Leavers'].map(lambda x: pathify(x))
-new_table = new_table.fillna('not-applicable')
 new_table

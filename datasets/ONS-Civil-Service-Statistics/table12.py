@@ -26,33 +26,33 @@ scraper
 # -
 
 
-gender_type = ['Male', 'Female', 'Total']
-tabs = {tab.name: tab for tab in scraper.distribution(latest=True).as_databaker()}
-tab = tabs['Table 6']
+# Table 12 : Civil Service employment; regional distribution by government department
 
-salary_band = tab.excel_ref('B9').fill(DOWN).is_not_blank() - tab.excel_ref('B9') - tab.excel_ref('B28').expand(DOWN)
-gender = tab.excel_ref('C6').expand(RIGHT).one_of(gender_type)
-employment_type = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
-observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B29').expand(RIGHT).expand(DOWN)
+tabs = {tab.name: tab for tab in scraper.distribution(latest=True).as_databaker()}
+tab = tabs['Table 12']
+
+region = tab.excel_ref('C6').expand(RIGHT).is_not_blank() 
+department = tab.excel_ref('B10').fill(DOWN).is_not_blank() - tab.excel_ref('B17') - tab.excel_ref('B26') - tab.excel_ref('B29') - tab.excel_ref('B33') - tab.excel_ref('B37') - tab.excel_ref('B40') - tab.excel_ref('B45') - tab.excel_ref('B48') - tab.excel_ref('B51') - tab.excel_ref('B58') - tab.excel_ref('B61') - tab.excel_ref('B64') - tab.excel_ref('B70') - tab.excel_ref('B77') - tab.excel_ref('B80') - tab.excel_ref('B83') - tab.excel_ref('B88') - tab.excel_ref('B93') - tab.excel_ref('B96') - tab.excel_ref('B100') - tab.excel_ref('B107') - tab.excel_ref('B110') - tab.excel_ref('B113') - tab.excel_ref('B121') - tab.excel_ref('B124') - tab.excel_ref('B127') - tab.excel_ref('B130') - tab.excel_ref('B133') - tab.excel_ref('B136') - tab.excel_ref('B139') - tab.excel_ref('B142') - tab.excel_ref('B145') - tab.excel_ref('B148') - tab.excel_ref('B167')- tab.excel_ref('B174') - tab.excel_ref('B77') - tab.excel_ref('B180') - tab.excel_ref('B183') - tab.excel_ref('B186') - tab.excel_ref('B189') - tab.excel_ref('B195').expand(DOWN)
+observations = region.fill(DOWN).is_not_blank() - tab.excel_ref('B195').expand(RIGHT).expand(DOWN)
+#savepreviewhtml(department)
 dimensions = [
-    
     HDimConst('Measure Type', 'headcount'),
     HDimConst('Year', '2018'),
+    HDimConst('Sex', 'all'),
     HDimConst('Ethnicity', 'all'),
     HDimConst('Disability Status', 'not-applicable'),
     HDimConst('ONS Age Range', 'all'),
-    HDimConst('Nationality', 'all'),
+    HDimConst('Nationality', 'All'),
     HDimConst('Responsibility Level', 'all'),
-    HDimConst('Department', 'all'),
-    HDimConst('Profession of Post', 'all'),
-    HDimConst('Entrants or Leavers', 'not-applicable'),
-    HDimConst('Region name', 'all'),
+    HDimConst('Type of Employment', 'all-employees'),
     HDimConst('Status of Employment', 'not-applicable'),
+    HDimConst('Profession of Post', 'not-applicable'),
+    HDimConst('Salary Band', 'All'),
+    HDimConst('Entrants or Leavers', 'not-applicable'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDimConst('ONS area code', 'not-applicable'),
-    HDim(employment_type, 'Type of Employment', CLOSEST, LEFT),
-    HDim(salary_band, 'Salary Band', DIRECTLY, LEFT),
-    HDim(gender, 'Sex', DIRECTLY, ABOVE)   
+    HDim(department, 'Department', DIRECTLY, LEFT),
+    HDim(region, 'Region name', DIRECTLY, ABOVE),
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
@@ -69,18 +69,7 @@ else:
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 
-new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
-new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
-new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
-new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
-new_table['Disability Status'] = new_table['Disability Status'].map(lambda x: pathify(x))
-new_table['Type of Employment'] = new_table['Type of Employment'].map(lambda x: pathify(x))
-new_table['Status of Employment'] = new_table['Status of Employment'].map(lambda x: pathify(x))
-new_table['Profession of Post'] = new_table['Profession of Post'].map(lambda x: pathify(x))
-new_table['Nationality'] = new_table['Nationality'].map(lambda x: pathify(x))
-new_table['Ethnicity'] = new_table['Ethnicity'].map(lambda x: pathify(x))
-new_table['Entrants or Leavers'] = new_table['Entrants or Leavers'].map(lambda x: pathify(x))
 new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
-new_table['Measure Type'] = new_table['Measure Type'].map(lambda x: pathify(x))
+new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
 new_table = new_table.fillna('not-applicable')
 new_table
