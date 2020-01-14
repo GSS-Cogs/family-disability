@@ -72,3 +72,14 @@ Markers,,Attribute,http://gss-data.org.uk/def/concept-scheme/markers
 Standardised admission rate,,Measure,
 Standardised ratio,,Measure,
 Standardised emergency admission rate,,Measure,
+Ethnicity,,Dimension,http://gss-data.org.uk/def/concept-scheme/ethnicity
+Disability Status,,Dimension,http://gss-data.org.uk/def/concept-scheme/disability-status
+Nationality,,Dimension,http://gss-data.org.uk/def/concept-scheme/nationality
+Salary Band,,Dimension,http://gss-data.org.uk/def/concept-scheme/salary-band
+Department,,Dimension,http://gss-data.org.uk/def/concept-scheme/Department
+Profession of Post,,Dimension,http://gss-data.org.uk/def/concept-scheme/profession-of-post
+Profession of Post,,Dimension,http://gss-data.org.uk/def/concept-scheme/profession-of-post
+Type of Employment,,Dimension,http://gss-data.org.uk/def/concept-scheme/type-of-employment
+Status of Employment,,Dimension,http://gss-data.org.uk/def/concept-scheme/status-of-employment
+Entrants or Leavers,,Dimension,http://gss-data.org.uk/def/concept-scheme/entrants-or-leavers
+Responsibility Level,,Dimension,http://gss-data.org.uk/def/concept-scheme/responsibility-level
