@@ -189,6 +189,14 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/dwp-age-group.csv"
   }, {
+    "rdfs:label": "DWP Referral Group",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/dwp-referral-group.csv"
+  }, {
+    "rdfs:label": "DWP Referral Type",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "url": "codelists/dwp-referral-type.csv"
+  },{
     "rdfs:label": "DWP FRS People",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/dwp-frs-people.csv"
