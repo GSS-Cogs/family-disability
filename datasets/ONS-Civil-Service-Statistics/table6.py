@@ -35,35 +35,37 @@ gender = tab.excel_ref('C6').expand(RIGHT).one_of(gender_type)
 employment_type = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B29').expand(RIGHT).expand(DOWN)
 dimensions = [
-    HDimConst('Measure Type', 'Count'),
-    HDimConst('Period', '31/03/2018'),
-    HDimConst('Ethnicity', 'All'),
+    
+    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Year', '2018'),
+    HDimConst('Ethnicity', 'all'),
     HDimConst('Disability Status', 'not-applicable'),
-    HDimConst('Age Group', 'All'),
-    HDimConst('Nationality', 'All'),
-    HDimConst('Responsibility Level', 'All'),
-    HDimConst('Department', 'All'),
-    HDimConst('Profession of Post', 'All'),
+    HDimConst('ONS Age Range', 'all'),
+    HDimConst('Nationality', 'all'),
+    HDimConst('Responsibility Level', 'all'),
+    HDimConst('Department', 'all'),
+    HDimConst('Profession of Post', 'all'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
+    HDimConst('Region name', 'all'),
+    HDimConst('Employment Status', 'not-applicable'),
+    HDimConst('NUTS Area Code', 'not-applicable'),
+    HDimConst('ONS area code', 'not-applicable'),
     HDim(employment_type, 'Employment Type', CLOSEST, LEFT),
     HDim(salary_band, 'Salary Band', DIRECTLY, LEFT),
-    HDim(gender, 'Sex', DIRECTLY, ABOVE)
+    HDim(gender, 'Sex', DIRECTLY, ABOVE)   
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
 
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-
-# +
-new_table = new_table [['Value', 'DATAMARKER', 'Period','Disability Status', 'Ethnicity', 'Measure Type','Age Group','Nationality','Responsibility Level', 'Department', 'Profession of Post', 'Entrants or Leavers', 'Employment Type', 'Salary Band', 'Sex']]
+if 'DATAMARKER' in new_table.columns:
+    print('marker found in columns')
+    new_table['DATAMARKER'].replace('..', 'between-one-and-five', inplace=True)
+    new_table['DATAMARKER'].replace('-', 'not-applicable', inplace=True)
+    new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+    new_table = new_table.fillna('not-applicable') 
+else:
+    print('marker not found in colmns making it')
+    new_table['DATAMARKER'] = 'not-applicable'
+    new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 new_table
-
-
-# -
-
-
-
-
-
-
-

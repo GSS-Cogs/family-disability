@@ -36,20 +36,36 @@ responsibility_level = tab.excel_ref('B9').fill(DOWN).is_not_blank() - tab.excel
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B21').expand(RIGHT).expand(DOWN)
 #savepreviewhtml(profession_of_post)
 dimensions = [
-    HDimConst('Measure Type', 'Count'),
-    HDimConst('Period', '31/03/2018'),
-    HDimConst('Ethnicity', 'All'),
+    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Year', '2018'),
+    HDimConst('Ethnicity', 'all'),
     HDimConst('Disability Status', 'not-applicable'),
-    HDimConst('Age Group', 'All'),
-    HDimConst('Nationality', 'All'),
-    HDimConst('Responsibility Level', 'All'),
-    HDimConst('Employment Type', 'All'),
-    HDimConst('Salary Band', 'All'),
-    HDimConst('Department', 'All'),
-    HDimConst('Profession of Post', 'All'),
+    HDimConst('ONS Age Range', 'all'),
+    HDimConst('Nationality', 'all'),
+    HDimConst('Responsibility Level', 'all'),
+    HDimConst('Region name', 'all'),
+    HDimConst('NUTS Area Code', 'not-applicable'),
+    HDimConst('ONS area code', 'not-applicable'),
+    HDimConst('Employment Status', 'not-applicable'),
+    HDimConst('Employment Type', 'all-employees'),
+    HDimConst('Salary Band', 'all'),
+    HDimConst('Department', 'all'),
+    HDimConst('Profession of Post', 'all'),
     HDim(gender, 'Sex', DIRECTLY, ABOVE),
     HDim(entrants_leavers, 'Entrants or Leavers', CLOSEST, LEFT),
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
+
+new_table.rename(columns={'OBS': 'Value'}, inplace=True)
+if 'DATAMARKER' in new_table.columns:
+    print('marker found in columns')
+    new_table['DATAMARKER'].replace('..', 'between-one-and-five', inplace=True)
+    new_table['DATAMARKER'].replace('-', 'not-applicable', inplace=True)
+    new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+    new_table = new_table.fillna('not-applicable') 
+else:
+    print('marker not found in colmns making it')
+    new_table['DATAMARKER'] = 'not-applicable'
+    new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 new_table
