@@ -276,13 +276,45 @@
     "url": "codelists/ccg-indicator.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "CCG Indicator"
-  },{
+  }, {
     "url": "codelists/nhs-level.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "NHS Level"
-  },{
+  }, {
     "url": "codelists/markers.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Markers"
+  }, {
+    "url": "codelists/ethnicity.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Ethnicity"
+  }, {
+    "url": "codelists/disability-status.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Disability Status"
+  }, {
+    "url": "codelists/nationality.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Nationality"
+  }, {
+    "url": "codelists/salary-band.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Salary Band"
+  }, {
+    "url": "codelists/department.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Department"
+  },{
+    "url": "codelists/profession-of-post.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Profession of Post"
+  },{
+    "url": "codelists/entrants-or-leavers.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Entrants or Leavers"
+  },{
+    "url": "codelists/responsibility-level.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Responsibility Level"
   }]
 }
