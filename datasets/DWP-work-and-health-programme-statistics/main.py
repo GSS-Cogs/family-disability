@@ -355,7 +355,7 @@ tidy.rename(columns={'DATAMARKER' : 'Marker',
 
 tidy['DWP Referral Group'] = tidy['DWP Referral Group'].map(lambda x: pathify(x))
 tidy['DWP Referral Type'] = tidy['DWP Referral Type'].map(lambda x: pathify(x))
-tidy['Area'] = tidy['Area'].map(lambda x: pathify(x))
+tidy['DWP Area'] = tidy['DWP Area'].map(lambda x: pathify(x))
 tidy['Sex'] = tidy['Sex'].map(lambda x: pathify(x))
 tidy['DWP Age Group'] = tidy['DWP Age Group'].map(lambda x: pathify(x))
 #tidy = tidy.replace({'Area' : {'england-and-wales' : 'K04000001'}})
