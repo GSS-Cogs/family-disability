@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[77]:
+# In[84]:
 
 
 from gssutils import *
@@ -23,7 +23,7 @@ scraper = Scraper('https://www.gov.uk/government/statistics/work-and-health-prog
 scraper
 
 
-# In[81]:
+# In[86]:
 
 
 dist = scraper.distribution(title=lambda t: 'Tables' in t)
@@ -341,9 +341,9 @@ for tab in tabs:
         
         gender = cell.shift(RIGHT).expand(RIGHT).is_not_blank()
         
-        remove2 = gender.filter('Unknown').fill(DOWN)
+        #remove2 = gender.filter('Unknown').fill(DOWN)
 
-        observations = cell.shift(1,2).expand(DOWN).expand(RIGHT).is_not_blank() - remove - remove2
+        observations = cell.shift(1,2).expand(DOWN).expand(RIGHT).is_not_blank() - remove# - remove2
 
         dimensions = [
                 HDim(period, 'Period', DIRECTLY, LEFT), 
@@ -371,7 +371,7 @@ for tab in tabs:
         continue
 
 
-# In[82]:
+# In[87]:
 
 
 for i in tidy_tabs:
@@ -427,7 +427,7 @@ for i in tidy_tabs:
         'females' : 'F', 
         'male' : 'M', 
         'males' : 'M', 
-        'unknown' : 'T',
+        'unknown' : 'U',
         'total' : 'T'}})
     
     destinationFolder = Path('out')
