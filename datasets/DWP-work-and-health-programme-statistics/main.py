@@ -23,7 +23,7 @@ scraper = Scraper('https://www.gov.uk/government/statistics/work-and-health-prog
 scraper
 
 
-# In[73]:
+# In[75]:
 
 
 dist = scraper.distribution(title=lambda t: 'Tables' in t)
@@ -340,8 +340,10 @@ for tab in tabs:
         obsType = cell.shift(4,-1).expand(RIGHT).is_not_blank()
         
         gender = cell.shift(RIGHT).expand(RIGHT).is_not_blank()
+        
+        remove2 = gender.filter('Total').fill(DOWN)
 
-        observations = cell.shift(1,2).expand(DOWN).expand(RIGHT).is_not_blank() - remove
+        observations = cell.shift(1,2).expand(DOWN).expand(RIGHT).is_not_blank() - remove - remove2
 
         dimensions = [
                 HDim(period, 'Period', DIRECTLY, LEFT), 
