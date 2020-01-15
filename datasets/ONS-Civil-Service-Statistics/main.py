@@ -53,42 +53,44 @@ next_table = pd.concat([next_table, new_table])
 next_table = pd.concat([next_table, new_table])
 # %run "table13.py"
 next_table = pd.concat([next_table, new_table])
-
-#TO DO TOMORRROW - REVIEW TABS BELOW AND INSURE REFERENCE DATA MADE REFLECTS
-
-
-# #%run "table14.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table15.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table16.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table17.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table18.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table19.py"
-#next_table = pd.concat([next_table, new_table])
+# %run "table14.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table15.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table16.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table17.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table18.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table19.py"
+next_table = pd.concat([next_table, new_table])
 
 #Responsibility Level
 
-# #%run "table20.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table21.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table22.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table23.py"
-#next_table = pd.concat([next_table, new_table])
+# %run "table20.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table21.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table22.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table23.py"
+next_table = pd.concat([next_table, new_table])
 
 #Earnings
+                #TO DO LOOK AT TABLE 24
+# #%run "table24.py"
+#next_table = pd.concat([next_table, new_table])
+# %run "table25.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table26.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table27.py"
+next_table = pd.concat([next_table, new_table])
 
-# #%run "table25.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table26.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table27.py"
-#next_table = pd.concat([next_table, new_table])
+
+        #TO DO TOMORRROW - REVIEW TABS BELOW AND INSURE REFERENCE DATA MADE REFLECTS
+
 # #%run "table28.py"
 #next_table = pd.concat([next_table, new_table])
 # #%run "table29.py"
@@ -123,19 +125,43 @@ next_table = pd.concat([next_table, new_table])
 
 
 
-# -
-
-#
 
 # +
 
 next_table = next_table [['Year', 'Disability Status', 'Responsibility Level', 'Department', 'ONS Age Range', 
                           'Sex', 'Type of Employment', 'Status of Employment', 'Salary Band', 'Profession of Post', 
-                          'Nationality', 'Ethnicity', 'Entrants or Leavers', 'Region name', 'ONS area code', 'NUTS Area Code', 'Value', 'Marker', 'Measure Type']]
+                          'Nationality', 'Ethnicity', 'Entrants or Leavers', 'Region name', 'ONS area code',
+                          'NUTS Region name','NUTS Area Code', 'Value', 'Marker', 'Measure Type']]
+next_table = next_table.replace({'Sex' : {'not-reported' : 'U' }})
+next_table = next_table.replace({'Measure Type' : {'headount' : 'headcount' }})
+next_table = next_table.fillna('not-applicable')
 next_table
 
 # +
 #///////////////////////////////////
+out = Path('output')
+out.mkdir(exist_ok=True, parents=True)
+
+def createCodeListforColumn(dta,colNme):
+    try:
+        titles =('Label','Notation','Parent Notation','Sort Priority')
+        cdeLst = dta.unique()
+        cdeLst = pd.DataFrame(cdeLst)
+        #### Create a version of the column name with lowercase and spaces replaced with underscore(_)
+        colNmeP = colNme.replace(' ','-').replace('_','-').lower()
+        #### Create the standard codelist and output
+        cdeLst.columns = [titles[0]]
+        cdeLst[titles[1]] = cdeLst[titles[0]].apply(pathify)
+        cdeLst[titles[1]] = cdeLst[titles[1]].str.replace('/', '-', regex=True)
+        cdeLst[titles[2]] = ''
+        cdeLst[titles[3]] = cdeLst.reset_index().index + 1
+        #### Output the file
+        cdeLst.to_csv(out / f'{colNmeP}.csv', index = False)
+        return cdeLst
+    except Exception as e:
+        return "createCodeListforColumn: " + str(e)
+
+createCodeListforColumn(next_table['Measure Type'],'Measure Type')
 
 # +
 destinationFolder = Path('out')

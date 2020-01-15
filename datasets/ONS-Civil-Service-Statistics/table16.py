@@ -31,11 +31,10 @@ scraper
 tabs = {tab.name: tab for tab in scraper.distribution(latest=True).as_databaker()}
 tab = tabs['Table 16']
 
-#gender_type = ['Male', 'Female', 'Total']
 area_code = tab.excel_ref('A9').expand(DOWN).is_not_blank() - tab.excel_ref('A130').expand(DOWN)
 region = tab.excel_ref('B9').expand(DOWN).is_not_blank() - tab.excel_ref('B130').expand(DOWN)
 responsibility_level = tab.excel_ref('C9').fill(DOWN).is_not_blank() - tab.excel_ref('c130').expand(DOWN)
-gender = tab.excel_ref('D5').expand(RIGHT).is_not_blank()
+gender = tab.excel_ref('D5').expand(RIGHT).is_not_blank() - tab.excel_ref('G5').expand(RIGHT)
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('C130').expand(DOWN).expand(RIGHT)
 #savepreviewhtml(area_code)
 
@@ -50,8 +49,8 @@ dimensions = [
     HDimConst('Profession of Post', 'not-applicable'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
     HDimConst('Department', 'not-applicable'),
-    HDimConst('Employment Type', 'not-applicable'),
-    HDimConst('Employment Status', 'not-applicable'),
+    HDimConst('Type of Employment', 'all-employees'),
+    HDimConst('Status of Employment', 'not-applicable'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDim(area_code, 'ONS area code', CLOSEST, ABOVE), 
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
@@ -60,8 +59,6 @@ dimensions = [
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
-savepreviewhtml(c1)
-new_table 
 
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in new_table.columns:
@@ -74,4 +71,9 @@ else:
     print('marker not found in colmns making it')
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+
+new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
+new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
+new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
+new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
 new_table

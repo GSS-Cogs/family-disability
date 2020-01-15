@@ -47,8 +47,8 @@ dimensions = [
     HDimConst('Salary Band', 'all'),
     HDimConst('Profession of Post', 'not-applicable'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
-    HDimConst('Employment Type', 'full-time-employees'),
-    HDimConst('Employment Status', 'not-applicable'),
+    HDimConst('Type of Employment', 'all-employees'),
+    HDimConst('Status of Employment', 'not-applicable'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDimConst('ONS area code', 'not-applicable'),
     HDimConst('Region name', 'not-applicable'), 
@@ -59,8 +59,6 @@ dimensions = [
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
-savepreviewhtml(c1)
-new_table 
 
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in new_table.columns:
@@ -73,4 +71,9 @@ else:
     print('marker not found in colmns making it')
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+
+new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
+new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
+new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
+new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
 new_table

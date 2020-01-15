@@ -49,8 +49,8 @@ dimensions = [
     HDimConst('Profession of Post', 'not-applicable'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
     HDimConst('Department', 'not-applicable'),
-    HDimConst('Employment Type', 'not-applicable'),
-    HDimConst('Employment Status', 'not-applicable'),
+    HDimConst('Type of Employment', 'all-employees'),
+    HDimConst('Status of Employment', 'not-applicable'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDim(area_code, 'ONS area code', CLOSEST, ABOVE), 
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
@@ -59,8 +59,6 @@ dimensions = [
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
-savepreviewhtml(c1)
-new_table 
 
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in new_table.columns:
@@ -73,4 +71,11 @@ else:
     print('marker not found in colmns making it')
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+new_table = new_table.replace({'Ethnicity' : 
+                               {'Not Declared6' : 'Not Declared',
+                                'Not Reported7' : 'Not Reported',}})
+
+new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
+new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
+new_table['Ethnicity'] = new_table['Ethnicity'].map(lambda x: pathify(x))
 new_table

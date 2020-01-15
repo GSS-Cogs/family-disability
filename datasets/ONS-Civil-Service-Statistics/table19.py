@@ -31,10 +31,10 @@ scraper
 tabs = {tab.name: tab for tab in scraper.distribution(latest=True).as_databaker()}
 tab = tabs['Table 19']
 
-area_code = tab.excel_ref('A8').expand(DOWN).is_not_blank() - tab.excel_ref('A128').expand(DOWN)
-region = tab.excel_ref('B8').expand(DOWN).is_not_blank() - tab.excel_ref('B128').expand(DOWN)
+area_code = tab.excel_ref('A8').expand(DOWN).is_not_blank() - tab.excel_ref('A28').expand(DOWN)
+region = tab.excel_ref('B8').expand(DOWN).is_not_blank() - tab.excel_ref('B28').expand(DOWN)
 age_group = tab.excel_ref('D5').expand(RIGHT).is_not_blank() - tab.excel_ref('L5').expand(RIGHT)
-observations = age_group.fill(DOWN).is_not_blank()
+observations = age_group.fill(DOWN).is_not_blank() - tab.excel_ref('B28').expand(RIGHT).expand(DOWN)
 #savepreviewhtml(area_code)
 
 dimensions = [
@@ -47,10 +47,10 @@ dimensions = [
     HDimConst('Profession of Post', 'not-applicable'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
     HDimConst('Department', 'not-applicable'),
-    HDimConst('Employment Type', 'all-employees'),
-    HDimConst('Employment Status', 'not-applicable'),
+    HDimConst('Type of Employment', 'all-employees'),
+    HDimConst('Status of Employment', 'not-applicable'),
     HDimConst('NUTS Area Code', 'not-applicable'),
-    HDimConst('Responsibility Level', 'All'),
+    HDimConst('Responsibility Level', 'all'),
     HDimConst('Disability Status', 'not-applicable'),
     HDim(age_group, 'ONS Age Range', DIRECTLY, ABOVE),
     HDim(area_code, 'ONS area code', CLOSEST, ABOVE), 
@@ -59,7 +59,6 @@ dimensions = [
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
 savepreviewhtml(c1)
-new_table 
 
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in new_table.columns:
@@ -72,4 +71,7 @@ else:
     print('marker not found in colmns making it')
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+
+new_table['ONS Age Range'] = new_table['ONS Age Range'].map(lambda x: pathify(x))
+new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
 new_table
