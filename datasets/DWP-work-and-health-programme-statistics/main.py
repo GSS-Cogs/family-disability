@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[50]:
+# In[72]:
 
 
 from gssutils import *
@@ -23,12 +23,11 @@ scraper = Scraper('https://www.gov.uk/government/statistics/work-and-health-prog
 scraper
 
 
-# In[51]:
+# In[73]:
 
 
 dist = scraper.distribution(title=lambda t: 'Tables' in t)
 tabs = (t for t in dist.as_databaker())
-tidied_sheets = []
 tidy_tabs = {}
 
 for tab in tabs:
@@ -64,6 +63,7 @@ for tab in tabs:
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
+        tidied_sheets = []
         tidied_sheets.append(c1.topandas())
         
         new_table_1_1 = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -99,6 +99,7 @@ for tab in tabs:
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
+        tidied_sheets = []
         tidied_sheets.append(c1.topandas())
         
         new_table_1_2 = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -135,6 +136,7 @@ for tab in tabs:
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
+        tidied_sheets = []
         tidied_sheets.append(c1.topandas())
         
         new_table_1_3 = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -165,11 +167,13 @@ for tab in tabs:
                 HDimConst('Age Group', 'all'),
                 HDimConst('Measure Type','Count'),
                 HDimConst('Unit','People'),
-                HDimConst('Region', 'England and Wales')
+                HDimConst('Region', 'England and Wales'),
+                HDimConst('DATAMARKER', '')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
+        tidied_sheets = []
         tidied_sheets.append(c1.topandas())
         
         new_table_1_4 = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -200,11 +204,13 @@ for tab in tabs:
                 HDimConst('Age Group', 'all'),
                 HDimConst('Measure Type','Count'),
                 HDimConst('Unit','People'),
-                HDim(area, 'Region', DIRECTLY, LEFT)
+                HDim(area, 'Region', DIRECTLY, LEFT),
+                HDimConst('DATAMARKER', '')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
+        tidied_sheets = []
         tidied_sheets.append(c1.topandas())
         
         new_table_2_1 = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -242,6 +248,7 @@ for tab in tabs:
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
+        tidied_sheets = []
         tidied_sheets.append(c1.topandas())
         
         new_table_2_2 = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -270,11 +277,13 @@ for tab in tabs:
                 HDim(age, 'Age Group', DIRECTLY, LEFT),
                 HDimConst('Measure Type','Count'),
                 HDimConst('Unit','People'),
-                HDimConst('Region', 'England and Wales')
+                HDimConst('Region', 'England and Wales'),
+                HDimConst('DATAMARKER', '')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
+        tidied_sheets = []
         tidied_sheets.append(c1.topandas())
         
         new_table_3_1 = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -305,11 +314,13 @@ for tab in tabs:
                 HDim(age, 'Age Group', DIRECTLY, ABOVE),
                 HDimConst('Measure Type','Count'),
                 HDimConst('Unit','People'),
-                HDim(area, 'Region', DIRECTLY, LEFT)
+                HDim(area, 'Region', DIRECTLY, LEFT),
+                HDimConst('DATAMARKER', '')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
+        tidied_sheets = []
         tidied_sheets.append(c1.topandas())
         
         new_table_3_2 = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
@@ -346,8 +357,8 @@ for tab in tabs:
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
         savepreviewhtml(c1, fname="Preview.html")
+        tidied_sheets = []
         tidied_sheets.append(c1.topandas())
-        break
         
         new_table_3_3 = pd.concat(tidied_sheets, ignore_index = True, sort = True).fillna('')
         
@@ -357,7 +368,7 @@ for tab in tabs:
         continue
 
 
-# In[53]:
+# In[74]:
 
 
 for i in tidy_tabs:
@@ -374,6 +385,7 @@ for i in tidy_tabs:
     new_table['Region'] = new_table['Region'].map(lambda x: left(x, len(x) -1) if x.endswith('3') else x) 
     
     tidy = new_table[['Period','Region','Age Group','Gender','Referral Group','Observation Type','Measure Type','Value','DATAMARKER','Unit']]
+        
     tidy = tidy.replace({'Referral Group' : {
         'Disability1' : 'Disability', 
         'Early Access1' : 'Early Access', 
