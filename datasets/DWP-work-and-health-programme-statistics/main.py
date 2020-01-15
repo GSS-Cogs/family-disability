@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[72]:
+# In[77]:
 
 
 from gssutils import *
@@ -23,7 +23,7 @@ scraper = Scraper('https://www.gov.uk/government/statistics/work-and-health-prog
 scraper
 
 
-# In[75]:
+# In[81]:
 
 
 dist = scraper.distribution(title=lambda t: 'Tables' in t)
@@ -341,7 +341,7 @@ for tab in tabs:
         
         gender = cell.shift(RIGHT).expand(RIGHT).is_not_blank()
         
-        remove2 = gender.filter('Total').fill(DOWN)
+        remove2 = gender.filter('Unknown').fill(DOWN)
 
         observations = cell.shift(1,2).expand(DOWN).expand(RIGHT).is_not_blank() - remove - remove2
 
@@ -354,7 +354,8 @@ for tab in tabs:
                 HDimConst('Measure Type','Count'),
                 HDimConst('Unit','People'),
                 HDimConst('Region', 'England and Wales'),
-                HDimConst('Tab', '3_3')
+                HDimConst('Tab', '3_3'),
+                HDimConst('DATAMARKER', '')
         ]
     
         c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
@@ -370,7 +371,7 @@ for tab in tabs:
         continue
 
 
-# In[74]:
+# In[82]:
 
 
 for i in tidy_tabs:
@@ -426,7 +427,8 @@ for i in tidy_tabs:
         'females' : 'F', 
         'male' : 'M', 
         'males' : 'M', 
-        'unknown' : 'T'}})
+        'unknown' : 'T',
+        'total' : 'T'}})
     
     destinationFolder = Path('out')
     destinationFolder.mkdir(exist_ok=True, parents=True)
