@@ -83,3 +83,5 @@ Type of Employment,,Dimension,http://gss-data.org.uk/def/concept-scheme/type-of-
 Status of Employment,,Dimension,http://gss-data.org.uk/def/concept-scheme/status-of-employment
 Entrants or Leavers,,Dimension,http://gss-data.org.uk/def/concept-scheme/entrants-or-leavers
 Responsibility Level,,Dimension,http://gss-data.org.uk/def/concept-scheme/responsibility-level
+NUTS Region name,,Dimension,http://gss-data.org.uk/def/concept-scheme/nuts-region-name
+NUTS Area Code,,Dimension,http://gss-data.org.uk/def/concept-scheme/nuts-area-code

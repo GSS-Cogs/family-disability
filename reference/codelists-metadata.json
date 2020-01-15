@@ -320,5 +320,13 @@
     "url": "codelists/responsibility-level.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Responsibility Level"
+  },{
+    "url": "codelists/nuts-area-code.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "NUTS Area Code"
+  },{
+    "url": "codelists/nuts-region-name.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "NUTS Region name"
   }]
 }

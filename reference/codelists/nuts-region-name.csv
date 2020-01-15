@@ -1,0 +1,44 @@
+Label,Notation,Parent Notation,Sort Priority
+Tees Valley and Durham,tees-valley-and-durham,,1
+Northumberland and Tyne and Wear,northumberland-and-tyne-and-wear,,2
+Cumbria,cumbria,,3
+Greater Manchester,greater-manchester,,4
+Lancashire,lancashire,,5
+Cheshire,cheshire,,6
+Merseyside,merseyside,,7
+East Yorkshire and Northern Lincolnshire,east-yorkshire-and-northern-lincolnshire,,8
+North Yorkshire,north-yorkshire,,9
+South Yorkshire,south-yorkshire,,10
+West Yorkshire,west-yorkshire,,11
+Derbyshire and Nottinghamshire,derbyshire-and-nottinghamshire,,12
+"Leicestershire, Rutland and Northamptonshire",leicestershire-rutland-and-northamptonshire,,13
+Lincolnshire,lincolnshire,,14
+"Herefordshire, Worcestershire and Warwickshire",herefordshire-worcestershire-and-warwickshire,,15
+Shropshire and Staffordshire,shropshire-and-staffordshire,,16
+West Midlands,west-midlands,,17
+East Anglia,east-anglia,,18
+Bedfordshire and Hertfordshire,bedfordshire-and-hertfordshire,,19
+Essex,essex,,20
+Inner London - West,inner-london-west,,21
+Inner London - East,inner-london-east,,22
+Outer London - East and North East,outer-london-east-and-north-east,,23
+Outer London - South,outer-london-south,,24
+Outer London - West and North West,outer-london-west-and-north-west,,25
+"Berkshire, Buckinghamshire and Oxfordshire",berkshire-buckinghamshire-and-oxfordshire,,26
+"Surrey, East and West Sussex",surrey-east-and-west-sussex,,27
+Hampshire and Isle of Wight,hampshire-and-isle-of-wight,,28
+Kent,kent,,29
+"Gloucestershire, Wiltshire and Bristol/Bath area",gloucestershire-wiltshire-and-bristol-bath-area,,30
+Dorset and Somerset,dorset-and-somerset,,31
+Cornwall and Isles of Scilly,cornwall-and-isles-of-scilly,,32
+Devon,devon,,33
+West Wales,west-wales,,34
+East Wales,east-wales,,35
+North Eastern Scotland,north-eastern-scotland,,36
+Eastern Scotland,eastern-scotland,,37
+South Western Scotland,south-western-scotland,,38
+Highlands and Islands,highlands-and-islands,,39
+Northern Ireland,northern-ireland,,40
+Overseas,overseas,,41
+Not reported,not-reported,,42
+All employees,all-employees,,43
