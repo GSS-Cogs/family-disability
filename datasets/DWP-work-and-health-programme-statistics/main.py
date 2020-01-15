@@ -417,7 +417,7 @@ for i in tidy_tabs:
     destinationFolder = Path('out')
     destinationFolder.mkdir(exist_ok=True, parents=True)
 
-    TAB_NAME = i
+    TAB_NAME = pathify(i)
     
     tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
     
