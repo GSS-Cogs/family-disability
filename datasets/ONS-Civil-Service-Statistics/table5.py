@@ -39,7 +39,7 @@ dimensions = [
     HDimConst('Measure Type', 'headcount'),
     HDimConst('Year', '2018'),
     HDimConst('Type of Employment', 'all-employees'),
-    HDimConst('Sex', 'all'),
+    HDimConst('Sex', 'U'),
     HDimConst('Ethnicity', 'all'),
     HDimConst('Salary Band', 'all'),
     HDimConst('Department', 'all'),
@@ -71,17 +71,6 @@ else:
 
 
 new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
-new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
-new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
-new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
-new_table['Disability Status'] = new_table['Disability Status'].map(lambda x: pathify(x))
-new_table['Type of Employment'] = new_table['Type of Employment'].map(lambda x: pathify(x))
-new_table['Status of Employment'] = new_table['Status of Employment'].map(lambda x: pathify(x))
-new_table['Profession of Post'] = new_table['Profession of Post'].map(lambda x: pathify(x))
 new_table['Nationality'] = new_table['Nationality'].map(lambda x: pathify(x))
-new_table['Ethnicity'] = new_table['Ethnicity'].map(lambda x: pathify(x))
-new_table['Entrants or Leavers'] = new_table['Entrants or Leavers'].map(lambda x: pathify(x))
-new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
-new_table['Measure Type'] = new_table['Measure Type'].map(lambda x: pathify(x))
 new_table = new_table.fillna('not-applicable')
 new_table

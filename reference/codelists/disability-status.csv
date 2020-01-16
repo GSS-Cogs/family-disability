@@ -1,10 +1,11 @@
 Label,Notation,Parent Notation,Sort Priority
 Disabled,disabled,,1
 Not Declared,not-declared,,2
-not-declared4,not-declared4,,3
+not-declared,not-declared,,3
 Not Reported,not-reported,,4
 all-employees,all-employees,,5
 All employees with known disability status,all-employees-with-known-disability-status,,6
 disabled-employees-as-percentage-of-known-disability-status,disabled-employees-as-percentage-of-known-disability-status,,7
 not-applicable,not-applicable,,8
 Total,total,,9
+non-disabled,non-disabled,,10

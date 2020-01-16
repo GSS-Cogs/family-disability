@@ -42,16 +42,16 @@ observations = employment_status.fill(DOWN).is_not_blank() - tab.excel_ref('A30'
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
     HDimConst('Year', '2018'),
-    HDimConst('Sex', 'all'),
+    HDimConst('Sex', 'U'),
     HDimConst('ONS Age Range', 'all'),
     HDimConst('Ethnicity', 'all'),
     HDimConst('Nationality', 'all'),
     HDimConst('Salary Band', 'all'),
-    HDimConst('Profession of Post', 'not-applicable'),
+    HDimConst('Profession of Post', 'all'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDimConst('Disability Status', 'not-applicable'),
-    HDimConst('Responsibility Level', 'all'),
+    HDimConst('Responsibility Level', 'all-employees'),
     HDimConst('Department', 'all'),
     HDim(area_code, 'ONS area code', DIRECTLY, LEFT),
     HDim(region, 'Region name', DIRECTLY, LEFT), 
@@ -75,18 +75,8 @@ else:
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 
-new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
-new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
-new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
-new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
-new_table['Disability Status'] = new_table['Disability Status'].map(lambda x: pathify(x))
-new_table['Type of Employment'] = new_table['Type of Employment'].map(lambda x: pathify(x))
-new_table['Status of Employment'] = new_table['Status of Employment'].map(lambda x: pathify(x))
-new_table['Profession of Post'] = new_table['Profession of Post'].map(lambda x: pathify(x))
-new_table['Nationality'] = new_table['Nationality'].map(lambda x: pathify(x))
-new_table['Ethnicity'] = new_table['Ethnicity'].map(lambda x: pathify(x))
-new_table['Entrants or Leavers'] = new_table['Entrants or Leavers'].map(lambda x: pathify(x))
 new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
-new_table['Measure Type'] = new_table['Measure Type'].map(lambda x: pathify(x))
+new_table['Status of Employment'] = new_table['Status of Employment'].map(lambda x: pathify(x))
+new_table['Type of Employment'] = new_table['Type of Employment'].map(lambda x: pathify(x))
 new_table = new_table.fillna('not-applicable')
 new_table

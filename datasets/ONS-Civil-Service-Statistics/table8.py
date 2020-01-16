@@ -26,7 +26,6 @@ scraper
 # -
 
 
-gender_type = ['Male', 'Female', 'Total']
 tabs = {tab.name: tab for tab in scraper.distribution(latest=True).as_databaker()}
 tab = tabs['Table 8'] #Civil Service employment; profession by government department
 
@@ -40,12 +39,12 @@ dimensions = [
     HDimConst('Disability Status', 'not-applicable'),
     HDimConst('ONS Age Range', 'all'),
     HDimConst('Nationality', 'all'),
-    HDimConst('Responsibility Level', 'all'),
+    HDimConst('Responsibility Level', 'all-employees'),
     HDimConst('Region name', 'all'),
     HDimConst('Status of Employment', 'not-applicable'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDimConst('ONS area code', 'not-applicable'),
-    HDimConst('Sex', 'all'),
+    HDimConst('Sex', 'U'),
     HDimConst('Salary Band', 'all'),
     HDimConst('Type of Employment', 'all-employees'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
@@ -66,20 +65,8 @@ else:
     print('marker not found in colmns making it')
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
-new_table
 
-new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
 new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
-new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
-new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
-new_table['Disability Status'] = new_table['Disability Status'].map(lambda x: pathify(x))
-new_table['Type of Employment'] = new_table['Type of Employment'].map(lambda x: pathify(x))
-new_table['Status of Employment'] = new_table['Status of Employment'].map(lambda x: pathify(x))
 new_table['Profession of Post'] = new_table['Profession of Post'].map(lambda x: pathify(x))
-new_table['Nationality'] = new_table['Nationality'].map(lambda x: pathify(x))
-new_table['Ethnicity'] = new_table['Ethnicity'].map(lambda x: pathify(x))
-new_table['Entrants or Leavers'] = new_table['Entrants or Leavers'].map(lambda x: pathify(x))
-new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
-new_table['Measure Type'] = new_table['Measure Type'].map(lambda x: pathify(x))
 new_table = new_table.fillna('not-applicable')
 new_table

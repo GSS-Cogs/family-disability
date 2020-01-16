@@ -328,5 +328,9 @@
     "url": "codelists/nuts-region-name.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "NUTS Region name"
+  },{
+    "url": "codelists/salary-band.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Salary Band"
   }]
 }

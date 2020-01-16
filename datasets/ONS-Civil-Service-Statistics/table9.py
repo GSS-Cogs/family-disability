@@ -31,10 +31,13 @@ tabs = {tab.name: tab for tab in scraper.distribution(latest=True).as_databaker(
 tab = tabs['Table 9'] #Entrants and leavers to the Civil Service by sex and responsibility level 
 
 entrants_leavers = tab.excel_ref('B5').expand(RIGHT).is_not_blank()
-gender = tab.excel_ref('C6').expand(RIGHT).one_of(gender_type)
+gender = tab.excel_ref('C6').expand(RIGHT).is_not_blank()
 responsibility_level = tab.excel_ref('B9').fill(DOWN).is_not_blank() - tab.excel_ref('B9') - tab.excel_ref('B21').expand(DOWN)
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B21').expand(RIGHT).expand(DOWN)
-#savepreviewhtml(profession_of_post)
+savepreviewhtml(entrants_leavers)
+
+# +
+
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
     HDimConst('Year', '2018'),
@@ -42,7 +45,6 @@ dimensions = [
     HDimConst('Disability Status', 'not-applicable'),
     HDimConst('ONS Age Range', 'all'),
     HDimConst('Nationality', 'all'),
-    HDimConst('Responsibility Level', 'all'),
     HDimConst('Region name', 'all'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDimConst('ONS area code', 'not-applicable'),
@@ -52,10 +54,13 @@ dimensions = [
     HDimConst('Department', 'all'),
     HDimConst('Profession of Post', 'all'),
     HDim(gender, 'Sex', DIRECTLY, ABOVE),
+    HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(entrants_leavers, 'Entrants or Leavers', CLOSEST, LEFT),
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
+savepreviewhtml(c1)
 new_table = c1.topandas()
+# -
 
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in new_table.columns:
@@ -68,10 +73,10 @@ else:
     print('marker not found in colmns making it')
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
-new_table
 
 new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
 new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
 new_table['Entrants or Leavers'] = new_table['Entrants or Leavers'].map(lambda x: pathify(x))
+new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
 new_table = new_table.fillna('not-applicable')
 new_table
