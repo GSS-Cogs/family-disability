@@ -48,8 +48,8 @@ dimensions = [
     HDimConst('Sex', 'all'),
     HDimConst('Profession of Post', 'not-applicable'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
-    HDimConst('Employment Type', 'Full Time'),
-    HDimConst('Employment Status', 'not-applicable'),
+    HDimConst('Type of Employment', 'full-time-employees'),
+    HDimConst('status of Employment', 'not-applicable'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDimConst('ONS area code', 'not-applicable'),
     HDimConst('Department', 'all'),
@@ -61,8 +61,22 @@ new_table = c1.topandas()
 
 
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-new_table['DATAMARKER'] = 'not-applicable'
-new_table['DATAMARKER'].replace('..', 'between-one-and-five', inplace=True)
-new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
-new_table = new_table.fillna('not-applicable')
+if 'DATAMARKER' in new_table.columns:
+    print('marker found in columns')
+    new_table['DATAMARKER'].replace('..', 'between-one-and-five', inplace=True)
+    new_table['DATAMARKER'].replace('-', 'not-applicable', inplace=True)
+    new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+    new_table = new_table.fillna('not-applicable') 
+else:
+    print('marker not found in colmns making it')
+    new_table['DATAMARKER'] = 'not-applicable'
+    new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+new_table = new_table.replace({'Disability Status' : 
+                               {'Not Declared5' : 'Not Declared',
+                                'Not Reported6' : 'Not Reported',}})
+
+new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
+new_table['Disability Status'] = new_table['Disability Status'].map(lambda x: pathify(x))
 new_table
+
+

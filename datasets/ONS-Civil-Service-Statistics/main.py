@@ -91,37 +91,37 @@ next_table = pd.concat([next_table, new_table])
 
         #TO DO TOMORRROW - REVIEW TABS BELOW AND INSURE REFERENCE DATA MADE REFLECTS
 
-# #%run "table28.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table29.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table30.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table32.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table32.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table33.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table34.py"
-#next_table = pd.concat([next_table, new_table])
+# %run "table28.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table29.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table30.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table31.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table32.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table33.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table34.py"
+next_table = pd.concat([next_table, new_table])
 
 #Government Department
 
-# #%run "table36.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table37.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table38.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table39.py"
-#next_table = pd.concat([next_table, new_table])
+# %run "table36.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table37.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table38.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table39.py"
+next_table = pd.concat([next_table, new_table])
 
 #Entrants and Leavers
-# #%run "table40.py"
-#next_table = pd.concat([next_table, new_table])
-# #%run "table41.py"
-#next_table = pd.concat([next_table, new_table])
+# %run "table40.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table41.py"
+next_table = pd.concat([next_table, new_table])
 
 
 
@@ -138,32 +138,6 @@ next_table = next_table.fillna('not-applicable')
 next_table
 
 # +
-#///////////////////////////////////
-out = Path('output')
-out.mkdir(exist_ok=True, parents=True)
-
-def createCodeListforColumn(dta,colNme):
-    try:
-        titles =('Label','Notation','Parent Notation','Sort Priority')
-        cdeLst = dta.unique()
-        cdeLst = pd.DataFrame(cdeLst)
-        #### Create a version of the column name with lowercase and spaces replaced with underscore(_)
-        colNmeP = colNme.replace(' ','-').replace('_','-').lower()
-        #### Create the standard codelist and output
-        cdeLst.columns = [titles[0]]
-        cdeLst[titles[1]] = cdeLst[titles[0]].apply(pathify)
-        cdeLst[titles[1]] = cdeLst[titles[1]].str.replace('/', '-', regex=True)
-        cdeLst[titles[2]] = ''
-        cdeLst[titles[3]] = cdeLst.reset_index().index + 1
-        #### Output the file
-        cdeLst.to_csv(out / f'{colNmeP}.csv', index = False)
-        return cdeLst
-    except Exception as e:
-        return "createCodeListforColumn: " + str(e)
-
-createCodeListforColumn(next_table['Measure Type'],'Measure Type')
-
-# +
 destinationFolder = Path('out')
 destinationFolder.mkdir(exist_ok=True, parents=True)
 
@@ -172,16 +146,16 @@ OBS_ID = pathify(TITLE)
 GROUP_ID = 'ONS-Civil-Service-Statistics'
 
 next_table.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = False)
-# -
 
-# from gssutils.metadata import THEME
-# scraper.set_base_uri('http://gss-data.org.uk')
-# scraper.set_dataset_id(f'gss_data/disability/{GROUP_ID}/{OBS_ID}')
-# scraper.dataset.title = f'{TITLE}'
-# scraper.dataset.family = 'disability'
-#
-# with open(destinationFolder / f'{OBS_ID}.csv-metadata.trig', 'wb') as metadata:
-#     metadata.write(scraper.generate_trig())
-#
-# schema = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-# schema.create(destinationFolder / f'{OBS_ID}.csv', destinationFolder / f'{OBS_ID}.csv-schema.json')
+# +
+#from gssutils.metadata import THEME
+#scraper.set_base_uri('http://gss-data.org.uk')
+#scraper.set_dataset_id(f'gss_data/disability/{GROUP_ID}/{OBS_ID}')
+#scraper.dataset.title = f'{TITLE}'
+#scraper.dataset.family = 'disability'
+
+#with open(destinationFolder / f'{OBS_ID}.csv-metadata.trig', 'wb') as metadata:
+ #   metadata.write(scraper.generate_trig())
+
+#schema = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
+schema.create(destinationFolder / f'{OBS_ID}.csv', destinationFolder / f'{OBS_ID}.csv-schema.json')

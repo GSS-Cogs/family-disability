@@ -39,7 +39,7 @@ observations = age_group.fill(DOWN).is_not_blank() - tab.excel_ref('B193').expan
 
 dimensions = [
     HDimConst('Year', '2018'),
-    HDimConst('Measure Type', 'Headcount'),
+    HDimConst('Measure Type', 'heacount'),
     HDimConst('Region name', 'all'),
     HDimConst('Nationality', 'all'),
     HDimConst('Salary Band', 'all'),
@@ -48,11 +48,11 @@ dimensions = [
     HDimConst('Profession of Post', 'not-applicable'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
     HDimConst('Disability Status', 'not-applicable'),
-    HDimConst('Employment Status', 'not-applicable'),
-    HDimConst('Employment Type', 'all-employees'),
+    HDimConst('Status of Employment', 'not-applicable'),
+    HDimConst('Type of Employment', 'all-employees'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDimConst('ONS area code', 'not-applicable'),
-    HDimConst('Responsibility Level', 'All'),
+    HDimConst('Responsibility Level', 'all'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(age_group, 'ONS Age Range', DIRECTLY, ABOVE), 
 ]
@@ -70,4 +70,8 @@ else:
     print('marker not found in colmns making it')
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+
+new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
 new_table
+
+

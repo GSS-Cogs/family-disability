@@ -53,25 +53,36 @@ dimensions = [
     HDimConst('Disability Status', 'not-applicable'),
     HDimConst('Profession of Post', 'not-applicable'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
-    HDimConst('Employment Status', 'not-applicable'),
+    HDimConst('Status of Employment', 'not-applicable'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDimConst('ONS area code', 'not-applicable'),
     HDimConst('Department', 'all'),
     HDim(year, 'Year', DIRECTLY, ABOVE),
     HDim(responsibility_level, 'Responsibility Level', CLOSEST, ABOVE), 
-    HDim(employee_type, 'Employment Type', DIRECTLY, LEFT), 
+    HDim(employee_type, 'Type of Employment', DIRECTLY, LEFT), 
 
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
-savepreviewhtml(c1)
-new_table 
 # -
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
-new_table['DATAMARKER'] = 'not-applicable'
-new_table['DATAMARKER'].replace('..', 'between-one-and-five', inplace=True)
-new_table['DATAMARKER'].replace('-', 'not-applicable', inplace=True)
-new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
-new_table = new_table.fillna('not-applicable')
+if 'DATAMARKER' in new_table.columns:
+    print('marker found in columns')
+    new_table['DATAMARKER'].replace('..', 'between-one-and-five', inplace=True)
+    new_table['DATAMARKER'].replace('-', 'not-applicable', inplace=True)
+    new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+    new_table = new_table.fillna('not-applicable') 
+else:
+    print('marker not found in colmns making it')
+    new_table['DATAMARKER'] = 'not-applicable'
+    new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+
+
+new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
+#new_table['Type of Employment'] = new_table['Type of Employment'].map(lambda x: pathify(x))
+new_table = new_table.replace({'Type of Employment' : {'  Full-time4' : 'full-time-employees',
+                                                       '  Part-time5' : 'part-time-employees',
+                                                       '  All5' : 'all-employees' }})
 new_table
+
 

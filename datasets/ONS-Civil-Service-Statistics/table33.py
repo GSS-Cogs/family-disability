@@ -43,7 +43,7 @@ observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B194').expand(D
 #savepreviewhtml(observations)
 
 dimensions = [
-    HDimConst('Measure Type', 'Mean Earnings'),
+    HDimConst('Measure Type', 'mean-earnings'),
     HDimConst('Year', '2018'),
     HDimConst('ONS Age Range', 'all'),
     HDimConst('Region name', 'all'),
@@ -53,8 +53,8 @@ dimensions = [
     HDimConst('Disability Status', 'not-applicable'),
     HDimConst('Profession of Post', 'not-applicable'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
-    HDimConst('Employment Type', 'all-employees'),
-    HDimConst('Employment Status', 'not-applicable'),
+    HDimConst('Type of Employment', 'all-employees'),
+    HDimConst('Status of Employment', 'not-applicable'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDimConst('ONS area code', 'not-applicable'),
     HDim(gender, 'Sex', DIRECTLY, ABOVE),
@@ -75,4 +75,36 @@ else:
     print('marker not found in colmns making it')
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+
+# +
+#///////////////////////////////////
+out = Path('output')
+out.mkdir(exist_ok=True, parents=True)
+
+def createCodeListforColumn(dta,colNme):
+    try:
+        titles =('Label','Notation','Parent Notation','Sort Priority')
+        cdeLst = dta.unique()
+        cdeLst = pd.DataFrame(cdeLst)
+        #### Create a version of the column name with lowercase and spaces replaced with underscore(_)
+        colNmeP = colNme.replace(' ','-').replace('_','-').lower()
+        #### Create the standard codelist and output
+        cdeLst.columns = [titles[0]]
+        cdeLst[titles[1]] = cdeLst[titles[0]].apply(pathify)
+        cdeLst[titles[1]] = cdeLst[titles[1]].str.replace('/', '-', regex=True)
+        cdeLst[titles[2]] = ''
+        cdeLst[titles[3]] = cdeLst.reset_index().index + 1
+        #### Output the file
+        cdeLst.to_csv(out / f'{colNmeP}.csv', index = False)
+        return cdeLst
+    except Exception as e:
+        return "createCodeListforColumn: " + str(e)
+
+createCodeListforColumn(new_table['Department'],'Department33')
+# -
+
+new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
+new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
+new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
+new_table = new_table.replace({'Sex' : {'male19' : 'M','female19' : 'F','total' : 'T' }})
 new_table

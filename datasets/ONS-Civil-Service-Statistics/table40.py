@@ -48,8 +48,8 @@ dimensions = [
     HDimConst('Ethnicity', 'all'),
     HDimConst('Profession of Post', 'not-applicable'),
     HDimConst('Disability Status', 'not-applicable'),
-    HDimConst('Employment Status', 'not-applicable'),
-    HDimConst('Employment Type', 'all-employees'),
+    HDimConst('Staus of Employment', 'not-applicable'),
+    HDimConst('Type of Employment', 'all-employees'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDimConst('ONS area code', 'not-applicable'),
     HDimConst('Responsibility Level', 'all'),
@@ -71,4 +71,11 @@ else:
     print('marker not found in colmns making it')
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
+
+new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
+new_table['Entrants or Leavers'] = new_table['Entrants or Leavers'].map(lambda x: pathify(x))
+new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
+new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
 new_table
+
+
