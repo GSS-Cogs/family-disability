@@ -1,7 +1,6 @@
 Label,Notation,Parent Notation,Sort Priority
 Disabled,disabled,,1
 Not Declared,not-declared,,2
-not-declared,not-declared,,3
 Not Reported,not-reported,,4
 all-employees,all-employees,,5
 All employees with known disability status,all-employees-with-known-disability-status,,6
