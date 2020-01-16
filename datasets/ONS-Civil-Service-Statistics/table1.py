@@ -50,6 +50,7 @@ dimensions = [
         HDimConst('Profession of Post', 'all'),
         HDimConst('Status of Employment', 'not-applicable'),
         HDimConst('NUTS Area Code', 'not-applicable'),
+        HDimConst('NUTS Region name', 'not-applicable'),
         HDimConst('ONS area code', 'not-applicable'),
         HDimConst('Entrants or Leavers', 'not-applicable'),
         HDim(employment_type, 'Type of Employment', CLOSEST, LEFT),
@@ -60,8 +61,8 @@ dimensions = [
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 #savepreviewhtml(c1)
 new_table = c1.topandas()
+# -
 
-# +
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in new_table.columns:
     print('marker found in columns')
@@ -74,21 +75,9 @@ else:
     new_table['DATAMARKER'] = 'not-applicable'
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 
-new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
-new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
+new_table['Type of Employment'] = new_table['Type of Employment'].map(lambda x: pathify(x))
 new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
 new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
-new_table['Disability Status'] = new_table['Disability Status'].map(lambda x: pathify(x))
-new_table['Type of Employment'] = new_table['Type of Employment'].map(lambda x: pathify(x))
-new_table['Status of Employment'] = new_table['Status of Employment'].map(lambda x: pathify(x))
-new_table['Profession of Post'] = new_table['Profession of Post'].map(lambda x: pathify(x))
-new_table['Nationality'] = new_table['Nationality'].map(lambda x: pathify(x))
-new_table['Ethnicity'] = new_table['Ethnicity'].map(lambda x: pathify(x))
-new_table['Entrants or Leavers'] = new_table['Entrants or Leavers'].map(lambda x: pathify(x))
-new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
-new_table['Measure Type'] = new_table['Measure Type'].map(lambda x: pathify(x))
-new_table = new_table.fillna('not-applicable')
+new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
+#new_table = new_table.fillna('not-applicable')
 new_table
-# -
-
-
