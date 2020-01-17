@@ -43,16 +43,16 @@ dimensions = [
     HDimConst('Region name', 'all'),
     HDimConst('Nationality', 'all'),
     HDimConst('Salary Band', 'all'),
-    HDimConst('Sex', 'all'),
+    HDimConst('Sex', 'U'),
     HDimConst('Ethnicity', 'all'),
-    HDimConst('Profession of Post', 'not-applicable'),
+    HDimConst('Profession of Post', 'all'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
     HDimConst('Disability Status', 'not-applicable'),
     HDimConst('Status of Employment', 'not-applicable'),
     HDimConst('Type of Employment', 'all-employees'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDimConst('ONS area code', 'not-applicable'),
-    HDimConst('Responsibility Level', 'all'),
+    HDimConst('Responsibility Level', 'all-employees'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(age_group, 'ONS Age Range', DIRECTLY, ABOVE), 
 ]
@@ -72,6 +72,7 @@ else:
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 
 new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
+new_table['ONS Age Range'] = new_table['ONS Age Range'].map(lambda x: pathify(x))
 new_table
 
 

@@ -41,12 +41,12 @@ observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B21').expand(DO
 #savepreviewhtml(observations)
 
 dimensions = [
-    HDimConst('Measure Type', 'headount'),
+    HDimConst('Measure Type', 'heacount'),
     HDimConst('Year', '2018'),
     HDimConst('Ethnicity', 'all'),
     HDimConst('Nationality', 'all'),
     HDimConst('Salary Band', 'all'),
-    HDimConst('Profession of Post', 'not-applicable'),
+    HDimConst('Profession of Post', 'all'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
     HDimConst('Type of Employment', 'full-time-employees'),
     HDimConst('Department', 'all'),

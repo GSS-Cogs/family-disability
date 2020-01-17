@@ -51,7 +51,7 @@ dimensions = [
     HDimConst('Salary Band', 'all'),
     HDimConst('Ethnicity', 'all'),
     HDimConst('Disability Status', 'not-applicable'),
-    HDimConst('Profession of Post', 'not-applicable'),
+    HDimConst('Profession of Post', 'all'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
     HDimConst('Type of Employment', 'all-employees'),
     HDimConst('Status of Employment', 'not-applicable'),
@@ -79,5 +79,5 @@ else:
 new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
 new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
 new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
-new_table = new_table.replace({'Sex' : {'male19' : 'M','female19' : 'F','total' : 'T' }})
+new_table = new_table.replace({'Sex' : {'male23' : 'M','female23' : 'F','total' : 'T' }})
 new_table
