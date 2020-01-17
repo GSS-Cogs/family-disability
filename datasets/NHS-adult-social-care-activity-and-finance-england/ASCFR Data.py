@@ -44,9 +44,12 @@ list(csvfiles[0])
 
 ascfrdata = csvfiles[0]
 
+ascfrdata['Period'] = 'gregorian-interval/' + (ascfrdata['FY_ENDING']-1).astype(str) + '-04-01T00:00:00/P1Y'
+
 ascfrdata.drop(['GEOGRAPHY_LEVEL',
  'DATA_LEVEL',
-'FY_ENDING',
+ 'FY_ENDING',
+ 'UUID',
  'GEOGRAPHY_CODE',
  'DH_GEOGRAPHY_NAME',
  'REGION_GO_CODE',
@@ -55,9 +58,15 @@ ascfrdata.drop(['GEOGRAPHY_LEVEL',
  'ComparativeTotals_Key',
  'DataSource_Key',
  'ValueType_Key',
-  'CarerSupportType_Key' ], axis = 1, inplace = True)
+ ], axis = 1, inplace = True)
 
-ascfrdata['Period'] = 'gregorian-interval/2018-04-01T00:00:00/P1Y'
+ascfrdata[ascfrdata.columns.difference(['ITEMVALUE'])] = ascfrdata[ascfrdata.columns.difference(['ITEMVALUE'])].fillna('all')
+
+ascfrdata[ascfrdata.columns.difference(['ITEMVALUE'])] = ascfrdata[ascfrdata.columns.difference(['ITEMVALUE'])]\
+                                                            .replace('99','Total')        
+
+ascfrdata[ascfrdata.columns.difference(['ITEMVALUE'])] = ascfrdata[ascfrdata.columns.difference(['ITEMVALUE'])]\
+                                                            .replace(99.0,'Total')        
 
 
 # +
@@ -74,7 +83,6 @@ ascfrdata['ITEMVALUE'] = pd.to_numeric(ascfrdata['ITEMVALUE'], errors = 'coerce'
 # -
 
 ascfrdata.rename(columns= {'CASSR':'NHS Geography',
-                           'UUID' : 'ASC-FR UUID',
                            'DimensionGroup' : 'ASC-FR Group',
                            'CareType_Key' : 'Care Type',
                            'FinanceType_Key' : 'Finance Type',
@@ -84,7 +92,8 @@ ascfrdata.rename(columns= {'CASSR':'NHS Geography',
                            'SupportSetting_Key' : 'Support Setting',
                            'Purpose_Key' : 'Purpose',
                            'ActivityProvision_Key': 'Activity Provision',
-                           'ITEMVALUE':'Value'
+                           'ITEMVALUE':'Value',
+                           'CarerSupportType_Key' : 'Carer Support Type'
                           }, inplace = True)
 
 # +

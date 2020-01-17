@@ -44,48 +44,33 @@ saltdata = csvfiles[1]
 
 list(saltdata)
 
+saltdata['Period'] = 'gregorian-interval/' + (saltdata['FY_Ending']-1).astype(str) + '-04-01T00:00:00/P1Y'
+
 saltdata.drop(
 ['GEOGRAPHY_LEVEL',
- 'FY_Ending',
- 'SHEET',
- 'TABLE',
- 'ADDITIONAL_CELLS',
- 'DATA_LEVEL',
- 'GEOGRAPHY_CODE',
- 'DH_GEOGRAPHY_NAME',
- 'REGION_GO_CODE',
- 'GEOGRAPHY_NAME',
- 'RouteOfAccess_Key',
- 'SequelToSTMax_Key',
- 'NoServicesProvided_Key',
- 'PrimarySupportReason_Key',
- 'ShortTermPeriod_Key',
- 'Gender_Key',
- 'DischargeStatus_Key',
- 'LongTermPeriod_Key',
- 'CommunitySupport_Key',
- 'EthnicityGrouping_Key',
-  'RouteOfTransitionDesc_Key',
- 'CarerType_Key',
-  'SupportToCarerType_Key',
-  'SupportToCarerDesc_Key',
-  'AgeAtAssessment_Key',
- 'AgeAtTransition_Key',
- 'ReportedHealthCondGroup_Key',
- 'ReportedHealthCondDesc_Key',
- 'ReviewType_Key',
-  'SignificantEvent_Key',
-  'MethodOfAssessment_Key',
-  'SignificantEvent_Key',
- 'ClientCount_Key',
- 'CarerAgeBand_Key',
- 'StatusOfCaredForPerson_Key',
-  'EmploymentStatusDesc_Key',
- 'LivingStatusType_Key',
- 'LivingStatusDesc_Key'
+'SHEET',
+'TABLE',
+'ADDITIONAL_CELLS',
+'DATA_LEVEL',
+'FY_Ending',
+'UUID',
+'GEOGRAPHY_CODE',
+'DH_GEOGRAPHY_NAME',
+'REGION_GO_CODE',
+'GEOGRAPHY_NAME',
+'AgeAtAssessment_Key',
+'AgeAtTransition_Key',
+'DataType_Key',
+'DischargeStatus_Key'
 ], axis = 1, inplace = True)
 
-saltdata['Period'] = 'gregorian-interval/2018-04-01T00:00:00/P1Y'
+saltdata[saltdata.columns.difference(['ITEMVALUE'])] = saltdata[saltdata.columns.difference(['ITEMVALUE'])].fillna('all')
+
+saltdata[saltdata.columns.difference(['ITEMVALUE'])] = saltdata[saltdata.columns.difference(['ITEMVALUE'])]\
+                                                            .replace('99','Total')        
+
+saltdata[saltdata.columns.difference(['ITEMVALUE'])] = saltdata[saltdata.columns.difference(['ITEMVALUE'])]\
+                                                            .replace(99.0,'Total')        
 
 
 # +
@@ -102,24 +87,48 @@ saltdata['NHS Marker'] = saltdata.apply(lambda row: f(row['ITEMVALUE']), axis = 
 
 saltdata['ITEMVALUE'] = pd.to_numeric(saltdata['ITEMVALUE'], errors = 'coerce')
 
-saltdata.rename(columns= {'UUID':'SALT UUID',
- 'CASSR_CODE': 'NHS Geography',
- 'ITEMVALUE': 'Value',
- 'DataType_Key': 'Data Type',
- 'ClientType_Key': 'Client Type',
- 'TableType_Key': 'Table Type',
- 'AgeBand_Key': 'Age',
- 'SequelToSupportRequest_Key': 'Sequel To Support Request',
- 'LongTermSupportSetting_Key': 'Long Term Support Setting',
- 'ShortTermPurpose_Key': 'Short Term Purpose',
- 'RouteOfTransitionType_Key': 'Route Of Transition Type',
- 'PrimarySupportReasonDesc_Key': 'Primary Support Reason',
- 'CarerSupport_Key': 'Carer Support',
- 'PrisonSupport_Key': 'Prison Support',
- 'EthnicityDesc_Key': 'Ethnicity',
- 'SequelToReviewType_Key': 'Sequel To ReviewType',
- 'ChangeInSetting_Key': 'Change In Setting',
- 'EmploymentStatusType_Key': 'Employment Status Type'}, inplace = True)
+saltdata.rename(columns= {
+'CASSR_CODE':'NHS Geography',
+'ItemValue':'Value',
+'AgeBand_Key':'Age',
+'CarerAgeBand_Key':'Carer Age Band',
+'CarerSupport_Key':'Carer Support',
+'CarerType_Key':'Carer Type',
+'ChangeInSetting_Key':'Change In Setting',
+'ClientCount_Key':'Client Count',
+'ClientType_Key':'Client Type',
+'CommunitySupport_Key':'Community Support',
+'EmploymentStatusDesc_Key':'Employment Status',
+'EmploymentStatusType_Key':'Employment Status Type',
+'EthnicityDesc_Key':'Ethnicity',
+'EthnicityGrouping_Key':'Ethnicity Group',
+'Gender_Key':'Sex',
+'LivingStatusDesc_Key':'Living Status',
+'LivingStatusType_Key':'Living Status',
+'LongTermPeriod_Key':'Long Term Period',
+'LongTermSupportSetting_Key':'Long Term Support Setting',
+'MethodOfAssessment_Key':'Method Of Assessment',
+'NoChangeInSetting_Key':'No Change In Setting',
+'NoServicesProvided_Key':'No Services Provided',
+'PrimarySupportReason_Key':'Primary Support Reason',
+'PrimarySupportReasonDesc_Key':'Primary Support Reason',
+'PrisonSupport_Key':'Prison Support',
+'ReportedHealthCondDesc_Key':'Reported Health Condition',
+'ReportedHealthCondGroup_Key':'Reported Health Conditon Group',
+'ReviewType_Key':'Review Type',
+'RouteOfAccess_Key':'Route Of Access',
+'RouteOfTransitionDesc_Key':'Route Of Transition',
+'RouteOfTransitionType_Key': 'Route Of Transition Type',
+'SequelToReviewType_Key': 'Sequel To Review Type',
+'SequelToSTMax_Key':'Sequel To STMax',
+'SequelToSupportRequest_Key': 'Sequel To Support Request',
+'ShortTermPeriod_Key':'Short Term Period',
+'ShortTermPurpose_Key':'Short Term Purpose',
+'SignificantEvent_Key':'Significant Event',
+'StatusOfCaredForPerson_Key':'Status Of Cared For Person',
+'SupportToCarerDesc_Key':'Support To Carer',
+'SupportToCarerType_Key':'Support To Carer Type',
+'TableType_Key':'Table Type'}, inplace = True)
 
 # +
 # from pathlib import Path
@@ -135,3 +144,6 @@ saltdata.rename(columns= {'UUID':'SALT UUID',
 # +
 # csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 # csvw.create(out / 'salt-observations.csv', out / 'salt-observations.csv-schema.json')
+# -
+
+
