@@ -105,6 +105,7 @@ new_table['Type of Employment'] = new_table['Type of Employment'].map(lambda x: 
 new_table['Status of Employment'] = new_table['Status of Employment'].map(lambda x: pathify(x))
 new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
 new_table['NUTS Region name'] = new_table['NUTS Region name'].map(lambda x: pathify(x))
+new_table['NUTS Area Code'] = new_table['NUTS Area Code'].map(lambda x: pathify(x))
 new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
 new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
 new_table = new_table.replace({'NUTS Area Code' : {'' : 'not-applicable' }})

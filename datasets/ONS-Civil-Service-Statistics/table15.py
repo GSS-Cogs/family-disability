@@ -63,11 +63,11 @@ dimensions = [
     HDimConst('Disability Status', 'not-applicable'),
     HDimConst('ONS Age Range', 'all'),
     HDimConst('Nationality', 'all'),
-    HDimConst('Responsibility Level', 'all'),
+    HDimConst('Responsibility Level', 'all-employees'),
     HDimConst('Salary Band', 'all'),
-    HDimConst('Profession of Post', 'not-applicable'),
+    HDimConst('Profession of Post', 'all'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
-    HDimConst('Department', 'not-applicable'),
+    HDimConst('Department', 'all'),
     HDimConst('ONS area code', 'not-applicable'),
     HDim(employment_type, 'Type of Employment', DIRECTLY, ABOVE),
     HDim(gender, 'Sex', CLOSEST, LEFT),
@@ -78,7 +78,6 @@ dimensions = [
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
-savepreviewhtml(c1)
 
 
 # +
@@ -106,8 +105,12 @@ new_table['Type of Employment'] = new_table['Type of Employment'].map(lambda x: 
 new_table['Status of Employment'] = new_table['Status of Employment'].map(lambda x: pathify(x))
 new_table['Region name'] = new_table['Region name'].map(lambda x: pathify(x))
 new_table['NUTS Region name'] = new_table['NUTS Region name'].map(lambda x: pathify(x))
+new_table['NUTS Area Code'] = new_table['NUTS Area Code'].map(lambda x: pathify(x))
 new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
 new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
 new_table = new_table.replace({'NUTS Area Code' : {'' : 'not-applicable' }})
+new_table = new_table.replace({'Type of Employment' : 
+                               {'full-time' : 'full-time-employees',
+                                'part-time' : 'part-time-employees',}})
 new_table = new_table.fillna('not-applicable')
 new_table

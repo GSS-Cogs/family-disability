@@ -69,6 +69,7 @@ else:
     new_table = new_table.rename(columns={'DATAMARKER':'Marker'})
 
 new_table['Type of Employment'] = new_table['Type of Employment'].map(lambda x: pathify(x))
+new_table['Salary Band'] = new_table['Salary Band'].map(lambda x: pathify(x))
 new_table['Sex'] = new_table['Sex'].map(lambda x: pathify(x))
 new_table = new_table.replace({'Sex' : {'male' : 'M','female' : 'F','total' : 'T' }})
 new_table = new_table.fillna('not-applicable')

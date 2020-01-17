@@ -25,13 +25,13 @@ next_table = pd.DataFrame()
 next_table = pd.concat([next_table, new_table])
 # %run "table2.py"
 next_table = pd.concat([next_table, new_table])
-# %run "table3.py" #done 'non-disabled added to codelist'
+# %run "table3.py"
 next_table = pd.concat([next_table, new_table])
 # %run "table4.py"
 next_table = pd.concat([next_table, new_table])
 # %run "table5.py"
 next_table = pd.concat([next_table, new_table])
-# %run "table6.py" #done codelist updated
+# %run "table6.py"
 next_table = pd.concat([next_table, new_table])
 # %run "table8.py"
 next_table = pd.concat([next_table, new_table])
@@ -43,7 +43,9 @@ next_table = pd.concat([next_table, new_table])
 next_table = pd.concat([next_table, new_table])
 # %run "table13.py"
 next_table = pd.concat([next_table, new_table])
-# %run "table14.py"
+# %run "table14.py"   UPDATED  CODELIST 
+next_table = pd.concat([next_table, new_table])
+# %run "table15.py"
 next_table = pd.concat([next_table, new_table])
 
 # # %%capture
