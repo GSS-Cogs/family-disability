@@ -45,7 +45,7 @@ dimensions = [
     HDimConst('Ethnicity', 'all'),
     HDimConst('Nationality', 'all'),
     HDimConst('Salary Band', 'all'),
-    HDimConst('Profession of Post', 'not-applicable'),
+    HDimConst('Profession of Post', 'all'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
     HDimConst('Type of Employment', 'all-employees'),
     HDimConst('Status of Employment', 'not-applicable'),

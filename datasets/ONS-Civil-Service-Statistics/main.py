@@ -25,13 +25,13 @@ next_table = pd.DataFrame()
 next_table = pd.concat([next_table, new_table])
 # %run "table2.py"
 next_table = pd.concat([next_table, new_table])
-# %run "table3.py" #done 'non-disabled added to codelist'
+# %run "table3.py"
 next_table = pd.concat([next_table, new_table])
 # %run "table4.py"
 next_table = pd.concat([next_table, new_table])
 # %run "table5.py"
 next_table = pd.concat([next_table, new_table])
-# %run "table6.py" #done codelist updated
+# %run "table6.py"
 next_table = pd.concat([next_table, new_table])
 # %run "table8.py"
 next_table = pd.concat([next_table, new_table])
@@ -39,120 +39,66 @@ next_table = pd.concat([next_table, new_table])
 next_table = pd.concat([next_table, new_table])
 # %run "table10.py"
 next_table = pd.concat([next_table, new_table])
+#Regional
 # %run "table12.py"
 next_table = pd.concat([next_table, new_table])
 # %run "table13.py"
 next_table = pd.concat([next_table, new_table])
 # %run "table14.py"
 next_table = pd.concat([next_table, new_table])
-
-# # %%capture
-# #Statistical Bulletin Tables
-# # %run "table1.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table2.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table3.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table4.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table5.py"
-# next_table = pd.concat([next_table, new_table])
-# # #%run "table6.py"  TO DO - LOOK SALARY BAND CODE LIST
-# #next_table = pd.concat([next_table, new_table])
-#
-# # #%run "table7.py" TO DO - LOOK AT AGAIN 
-# #next_table = pd.concat([next_table, new_table])
-#
-# # %run "table8.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table9.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table10.py"
-# next_table = pd.concat([next_table, new_table])
-# # #%run "table11.py" TO DO - CHECK ERROR 
-# #next_table = pd.concat([next_table, new_table])
-#
-#
-# #Regional
-# # %run "table12.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table13.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table14.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table15.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table16.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table17.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table18.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table19.py"
-# next_table = pd.concat([next_table, new_table])
-#
-# #Responsibility Level
-#
-# # %run "table20.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table21.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table22.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table23.py"
-# next_table = pd.concat([next_table, new_table])
-#
-# #Earnings
-#                 #TO DO LOOK AT TABLE 24
-# # #%run "table24.py"
-# #next_table = pd.concat([next_table, new_table])
-# # %run "table25.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table26.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table27.py"
-# next_table = pd.concat([next_table, new_table])
-#
-#
-#         #TO DO TOMORRROW - REVIEW TABS BELOW AND INSURE REFERENCE DATA MADE REFLECTS
-#
-# # %run "table28.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table29.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table30.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table31.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table32.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table33.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table34.py"
-# next_table = pd.concat([next_table, new_table])
-#
-# #Government Department
-#
-# # %run "table36.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table37.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table38.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table39.py"
-# next_table = pd.concat([next_table, new_table])
-#
-# #Entrants and Leavers
-# # %run "table40.py"
-# next_table = pd.concat([next_table, new_table])
-# # %run "table41.py"
-# next_table = pd.concat([next_table, new_table])
-#
-#
-
-
-# +
+# %run "table15.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table16.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table17.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table18.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table19.py"
+next_table = pd.concat([next_table, new_table])
+#Responsibility Level
+# %run "table20.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table21.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table22.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table23.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table25.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table26.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table27.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table28.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table29.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table30.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table31.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table32.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table33.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table34.py"
+next_table = pd.concat([next_table, new_table])
+#Government Department
+# %run "table36.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table37.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table38.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table39.py"
+next_table = pd.concat([next_table, new_table])
+#Entrants and Leavers
+# %run "table40.py"
+next_table = pd.concat([next_table, new_table])
+# %run "table41.py"
+next_table = pd.concat([next_table, new_table])
 
 next_table = next_table [['Year', 'Disability Status', 'Responsibility Level', 'Department', 'ONS Age Range', 
                           'Sex', 'Type of Employment', 'Status of Employment', 'Salary Band', 'Profession of Post', 

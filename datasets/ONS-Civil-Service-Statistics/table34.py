@@ -44,14 +44,14 @@ observations = year.fill(DOWN).is_not_blank() - tab.excel_ref('A40').expand(DOWN
 # +
 dimensions = [
     HDimConst('Measure Type', 'Median Gender Pay Gap in %'),
-    HDimConst('Sex', 'all'),
+    HDimConst('Sex', 'U'),
     HDimConst('ONS Age Range', 'all'),
     HDimConst('Region name', 'all'),
     HDimConst('Nationality', 'all'),
     HDimConst('Salary Band', 'all'),
     HDimConst('Ethnicity', 'all'),
     HDimConst('Disability Status', 'not-applicable'),
-    HDimConst('Profession of Post', 'not-applicable'),
+    HDimConst('Profession of Post', 'all'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
     HDimConst('Status of Employment', 'not-applicable'),
     HDimConst('NUTS Area Code', 'not-applicable'),
@@ -79,7 +79,7 @@ else:
 
 
 new_table['Responsibility Level'] = new_table['Responsibility Level'].map(lambda x: pathify(x))
-#new_table['Type of Employment'] = new_table['Type of Employment'].map(lambda x: pathify(x))
+new_table['Measure Type'] = new_table['Measure Type'].map(lambda x: pathify(x))
 new_table = new_table.replace({'Type of Employment' : {'  Full-time4' : 'full-time-employees',
                                                        '  Part-time5' : 'part-time-employees',
                                                        '  All5' : 'all-employees' }})

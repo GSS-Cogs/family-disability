@@ -44,15 +44,15 @@ dimensions = [
     HDimConst('Region name', 'all'),
     HDimConst('Nationality', 'all'),
     HDimConst('Salary Band', 'all'),
-    HDimConst('Sex', 'all'),
+    HDimConst('Sex', 'U'),
     HDimConst('Disability Status', 'not-applicable'),
-    HDimConst('Profession of Post', 'not-applicable'),
+    HDimConst('Profession of Post', 'all'),
     HDimConst('Entrants or Leavers', 'not-applicable'),
     HDimConst('Status of Employment', 'not-applicable'),
     HDimConst('Type of Employment', 'all-employees'),
     HDimConst('NUTS Area Code', 'not-applicable'),
     HDimConst('ONS area code', 'not-applicable'),
-    HDimConst('Responsibility Level', 'all'),
+    HDimConst('Responsibility Level', 'all-employees'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(ethnicity, 'Ethnicity', DIRECTLY, ABOVE), 
 ]
@@ -74,8 +74,6 @@ new_table = new_table.replace({'Ethnicity' :
                                {'Not Declared3' : 'Not Declared',
                                 'Not Reported4' : 'Not Reported',}})
 
-# +
 new_table['Ethnicity'] = new_table['Ethnicity'].map(lambda x: pathify(x))
 new_table['Department'] = new_table['Department'].map(lambda x: pathify(x))
-
 new_table

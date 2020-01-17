@@ -437,6 +437,7 @@ for i in tidy_tabs:
     
     tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
     
+    scraper.dataset.title = i
     scraper.dataset.family = 'disability'
     #scraper.dataset.theme = THEME['health-social-care']
     with open(destinationFolder / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:
