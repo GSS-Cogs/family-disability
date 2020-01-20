@@ -7,6 +7,8 @@ Household Disability Status,household_disability_status,qb:dimension,http://gss-
 Workless Household Type,workless_household_type,qb:dimension,http://gss-data.org.uk/def/dimension/workless-household-type,http://gss-data.org.uk/def/concept/workless-household-type/{workless_household_type},string,slugize,,http://gss-data.org.uk/def/classes/workless-household-type/workless-household-type
 Unit,unit,qb:attribute,http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure,http://gss-data.org.uk/def/concept/measurement-units/{unit},string,unitize,,
 Sample Size,sample_size,qb:attribute,http://gss-data.org.uk/def/attribute/sample-size,,number,,,
+Lower CI,lower_ci,qb:attribute,http://gss-data.org.uk/def/attribute/lower-ci,,number,,,
+Upper CI,upper_ci,qb:attribute,http://gss-data.org.uk/def/attribute/upper-ci,,number,,,
 Value,value,,http://gss-data.org.uk/def/measure/{measure_type},,number,,,
 Severity,severity,qb:dimension,http://gss-data.org.uk/def/dimension/severity,http://gss-data.org.uk/def/concept/severity/{severity},string,slugize,,
 Hours per Week,hours_per_week,qb:dimension,http://gss-data.org.uk/def/dimension/hours-per-week,http://gss-data.org.uk/def/concept/hours-per-week/{hours_per_week},string,slugize,,http://gss-data.org.uk/def/classes/gp-practice/hours-per-week
@@ -117,3 +119,4 @@ Type of Employment,type_of_employment,qb:dimension,http://gss-data.org.uk/def/di
 Status of Employment,status_of_employment,qb:dimension,http://gss-data.org.uk/def/dimension/status-of-employment,http://gss-data.org.uk/def/concept/status-of-employment/{status_of_employment},string,slugize,,http://gss-data.org.uk/def/classes/status-of-employment/status_of_employment
 NUTS Region name,nuts_region_name,qb:dimension,http://gss-data.org.uk/def/dimension/nuts-region-name,http://gss-data.org.uk/def/concept/nuts-region-name/{nuts_region_name},string,slugize,,http://gss-data.org.uk/def/classes/nuts-region-name/nuts_region_name
 NUTS Area Code,nuts_area_code,qb:dimension,http://gss-data.org.uk/def/dimension/nuts-area-code,http://gss-data.org.uk/def/concept/nuts-area-code/{nuts_area_code},string,slugize,,http://gss-data.org.uk/def/classes/nuts-area-code/nuts_area_code
+Life Expectancy Estimate Type,life_expectancy_estimate_type,qb:dimension,http://gss-data.org.uk/def/dimension/life-expectancy-estimate-type,http://gss-data.org.uk/def/concept/life-expectancy-estimate-type/{life_expectancy_estimate_type},string,slugize,,http://gss-data.org.uk/def/classes/life-expectancy-estimate-type/life_expectancy_estimate_type
