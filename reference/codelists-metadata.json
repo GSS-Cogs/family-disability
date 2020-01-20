@@ -333,7 +333,7 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Salary Band"
   },{
-    "url": "codelists/life-life_expectancy_estimate_type.csv",
+    "url": "codelists/life-expectancy-estimate-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Life Expectancy Estimate Type"
   }]
