@@ -327,26 +327,4 @@ regional_tables = regional_tables [['Year', 'Disability Status', 'Responsibility
                         'Sex', 'Type of Employment', 'Status of Employment','Ethnicity',
                         'Region name', 'NUTS Region name', 'Value', 'Marker', 'Measure Type']] # 'ONS area code',
 regional_tables
-# -
 
-
-# destinationFolder = Path('out')
-# destinationFolder.mkdir(exist_ok=True, parents=True)
-#
-# TITLE = 'Civil Service Statistics (unvalidated) Regional'
-# OBS_ID = pathify(TITLE)
-# GROUP_ID = 'ONS-Civil-Service-Statistics'
-#
-# regional_tables.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = False)
-
-# from gssutils.metadata import THEME
-# scraper.set_base_uri('http://gss-data.org.uk')
-# scraper.set_dataset_id(f'gss_data/disability/{GROUP_ID}/{OBS_ID}')
-# scraper.dataset.title = f'{TITLE}'
-# scraper.dataset.family = 'disability'
-#
-# with open(destinationFolder / f'{OBS_ID}.csv-metadata.trig', 'wb') as metadata:
-#     metadata.write(scraper.generate_trig())
-#
-# schema = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
-# schema.create(destinationFolder / f'{OBS_ID}.csv', destinationFolder / f'{OBS_ID}.csv-schema.json')

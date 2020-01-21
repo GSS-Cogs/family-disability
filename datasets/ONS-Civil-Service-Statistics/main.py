@@ -73,19 +73,16 @@ destinationFolder.mkdir(exist_ok=True, parents=True)
 #civil-service-statistics-regional
 #res_tables.drop_duplicates().to_csv(destinationFolder / 'civil-service-statistics-regional.csv', index = False)    
 
+# +
 import numpy as np
 from gssutils.metadata import THEME
-GROUP_ID = 'ONS-Civil-Service-Statistics'
-TITLE = 'Civil Service Statistics (unvalidated)'
+
 tblSet = [next_table,regional_tables]
 i = 1
 for t in tblSet:
     fleNme = 'observations-' + str(i) + '.csv'
     t.drop_duplicates().to_csv(destinationFolder / (fleNme), index = False)
-    
-    scraper.set_base_uri('http://gss-data.org.uk')
-    scraper.set_dataset_id(f'gss_data/disability/{GROUP_ID}/observations-{i}')
-    scraper.dataset.title = f'{TITLE}'
+    scraper.set_dataset_id(f'gss_data/disability/ONS-Civil-Service-Statistics/observations-{i}/')
     scraper.dataset.family = 'disability'
     
     with open(destinationFolder / ('pre' + fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
@@ -93,6 +90,7 @@ for t in tblSet:
     csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
     csvw.create(destinationFolder / fleNme, destinationFolder / (fleNme + '-schema.json'))
     i = i + 1
+# -
 
 headSet = [
     'civil-service-statistics',
@@ -133,10 +131,10 @@ for t in headSet:
                     #### If the line is needed check if it is a line that needs changing then write to new file 
                     if lineWanted: 
                         if 'a pmd:Dataset' in line.strip("\n"):
-                            line = line.replace(f'observations-{i}/', f'observations-5-{i}')
+                            line = line.replace(f'observations-{i}/', f'observations-{i}')
                     
                         if 'pmd:graph' in line.strip("\n"):
-                            line = line.replace(f'observations-{i}/', f'observations-5-{i}')
+                            line = line.replace(f'observations-{i}/', f'observations-{i}')
                         #### Output the line to the new file                    
                         output.write(line)
                         
