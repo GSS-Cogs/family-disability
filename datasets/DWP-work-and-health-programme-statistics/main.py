@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[84]:
-
-
+# %%
 from gssutils import *
 from databaker.framework import *
 import pandas as pd
@@ -19,11 +16,14 @@ def right(s, amount):
 def mid(s, offset, amount):
     return s[offset:offset+amount]
 
-scraper = Scraper('https://www.gov.uk/government/statistics/work-and-health-programme-statistics-to-august-2019')
+scraper = Scraper('https://www.gov.uk/government/collections/work-and-health-programme-statistics')
 scraper
 
+# %%
+scraper.select_dataset(latest=True)
+scraper
 
-# In[86]:
+# %%
 
 
 dist = scraper.distribution(title=lambda t: 'Tables' in t)
@@ -371,8 +371,13 @@ for tab in tabs:
         continue
 
 
-# In[87]:
+# %%
+GROUP_ID = 'dwp-work-and-health-programme-statistics'
 
+from gssutils.metadata import THEME
+scraper.set_base_uri('http://gss-data.org.uk')
+scraper.dataset.family = 'disability'
+scraper.dataset.theme = THEME['health-social-care']
 
 for i in tidy_tabs:
     new_table = tidy_tabs.get(i)
@@ -438,8 +443,8 @@ for i in tidy_tabs:
     tidy.drop_duplicates().to_csv(destinationFolder / f'{TAB_NAME}.csv', index = False)
     
     scraper.dataset.title = i
-    scraper.dataset.family = 'disability'
-    #scraper.dataset.theme = THEME['health-social-care']
+    scraper.set_dataset_id(f'gss_data/disability/{GROUP_ID}/{TAB_NAME}')
+
     with open(destinationFolder / f'{TAB_NAME}.csv-metadata.trig', 'wb') as metadata:
         metadata.write(scraper.generate_trig())
 
@@ -447,7 +452,7 @@ for i in tidy_tabs:
     csvw.create(destinationFolder / f'{TAB_NAME}.csv', destinationFolder / f'{TAB_NAME}.csv-schema.json')
 
 
-# In[ ]:
+# %%
 
 
 
