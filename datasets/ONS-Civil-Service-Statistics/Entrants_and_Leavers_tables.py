@@ -62,7 +62,7 @@ dimensions = [
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 table_41 = c1.topandas()
-entry_leave_tables = pd.concat([table_41, entry_leave_tables])
+entry_leave_tables = pd.concat([table_41, entry_leave_tables], sort=True)
 
 
 

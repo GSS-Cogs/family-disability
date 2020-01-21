@@ -232,15 +232,6 @@ stats_tables['ONS Age Range'] = stats_tables['ONS Age Range'].fillna(value='all'
 stats_tables['Salary Band'] = stats_tables['Salary Band'].fillna(value='unknown').map(lambda x: pathify(x))
 stats_tables['Entrants or Leavers'] = stats_tables['Entrants or Leavers'].fillna(value='all').map(lambda x: pathify(x))
 stats_tables
-# + {}
-destinationFolder = Path('out')
-destinationFolder.mkdir(exist_ok=True, parents=True)
-
-TITLE = 'Civil Service Statistics (unvalidated)'
-OBS_ID = pathify(TITLE)
-GROUP_ID = 'ONS-Civil-Service-Statistics'
-
-stats_tables.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = False)
 # -
 
 
