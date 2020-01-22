@@ -41,7 +41,7 @@ department = tab.excel_ref('B8').expand(DOWN).is_not_blank() - tab.excel_ref('B1
 responsibility_level = tab.excel_ref('B5').expand(RIGHT).is_not_blank()
 observations = responsibility_level.fill(DOWN).is_not_blank() - tab.excel_ref('B194').expand(DOWN).expand(RIGHT)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, ABOVE), 
@@ -55,7 +55,7 @@ department = tab.excel_ref('B9').fill(DOWN).is_not_blank() - tab.excel_ref('B193
 responsibility_level = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
 observations = responsibility_level.fill(DOWN).is_not_blank() - tab.excel_ref('B194').expand(DOWN).expand(RIGHT)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDimConst('Type of Employment', 'full-time-equivalent'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
@@ -71,7 +71,7 @@ gender = tab.excel_ref('C6').expand(RIGHT).is_not_blank()
 department = tab.excel_ref('B9').fill(DOWN).is_not_blank() - tab.excel_ref('B194').expand(DOWN)
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B194').expand(DOWN).expand(RIGHT)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(gender, 'Sex', DIRECTLY, ABOVE), 
@@ -87,7 +87,7 @@ gender = tab.excel_ref('C6').expand(RIGHT)#.is_not_blank() - tab.excel_ref('W5')
 age_group = tab.excel_ref('C5').expand(RIGHT).is_not_blank() #- tab.excel_ref('W5').expand(RIGHT)
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B21').expand(DOWN).expand(RIGHT)
 dimensions = [
-    HDimConst('Measure Type', 'heacount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(gender, 'Sex', DIRECTLY, ABOVE), 
     HDimConst('Type of Employment', 'full-time-employees'),

@@ -81,7 +81,7 @@ age_group = tab.excel_ref('B5').expand(RIGHT).is_not_blank()
 observations = age_group.fill(DOWN).is_not_blank() - tab.excel_ref('B193').expand(DOWN).expand(RIGHT) 
 dimensions = [
     HDimConst('Period', '2018'),
-    HDimConst('Measure Type', 'heacount'),
+    HDimConst('Measure Type', 'headcount'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(age_group, 'ONS Age Range', DIRECTLY, ABOVE), 
 ]

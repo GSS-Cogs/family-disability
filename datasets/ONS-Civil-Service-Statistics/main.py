@@ -59,7 +59,7 @@ next_table['Status of Employment'] = next_table['Status of Employment'].fillna(v
 next_table['Region name'] = next_table['Region name'].fillna(value='All regions').map(lambda x: pathify(x))
 next_table['Responsibility Level'] = next_table['Responsibility Level'].fillna(value='all').map(lambda x: pathify(x))
 next_table['Type of Employment'] = next_table['Type of Employment'].fillna(value='all-employees').map(lambda x: pathify(x))
-next_table['Measure Type'] = next_table['Measure Type'].map(lambda x: pathify(x))
+#next_table['Measure Type'] = next_table['Measure Type'].map(lambda x: pathify(x))
 next_table = next_table.replace({'Sex' : {'Male' : 'M','Female' : 'F','Total' : 'T','' : 'U' }})
 next_table = next_table.replace({'Sex' : {'Male ' : 'M','Female' : 'F','Total' : 'T' }})
 next_table['Sex'] = next_table['Sex'].fillna(value='U')
