@@ -233,6 +233,3 @@ stats_tables['Salary Band'] = stats_tables['Salary Band'].fillna(value='unknown'
 stats_tables['Entrants or Leavers'] = stats_tables['Entrants or Leavers'].fillna(value='all').map(lambda x: pathify(x))
 stats_tables['Period'] = 'year/' + stats_tables['Period']
 stats_tables
-# -
-
-
