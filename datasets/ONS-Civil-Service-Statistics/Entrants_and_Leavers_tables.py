@@ -38,7 +38,7 @@ entrants_or_leavers = tab.excel_ref('B5').expand(RIGHT).is_not_blank()
 gender = tab.excel_ref('B6').expand(RIGHT).is_not_blank()
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B193').expand(DOWN).expand(RIGHT) 
 dimensions = [
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDimConst('Measure Type', 'Headcount'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(gender, 'Sex', DIRECTLY, ABOVE), 
@@ -54,7 +54,7 @@ ethnicity = tab.excel_ref('B5').expand(RIGHT).is_not_blank() - tab.excel_ref('Z5
 entrants_or_leavers = tab.excel_ref('B6').expand(RIGHT).is_not_blank() - tab.excel_ref('Z6').expand(RIGHT).is_not_blank()
 observations = entrants_or_leavers.fill(DOWN).is_not_blank() - tab.excel_ref('B194').expand(DOWN).expand(RIGHT) 
 dimensions = [
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDimConst('Measure Type', 'headcount'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(ethnicity, 'Ethnicity', CLOSEST, LEFT), 
@@ -88,6 +88,7 @@ entry_leave_tables = entry_leave_tables.replace({'Ethnicity' :
                               {'Not Declared5' : 'Not Declared',
                                'Not Reported6' : 'Not Reported',}})
 entry_leave_tables['Ethnicity'] = entry_leave_tables['Ethnicity'].fillna(value='all').map(lambda x: pathify(x))
+entry_leave_tables['Period'] = 'year/' + entry_leave_tables['Period']
 entry_leave_tables
 # -
 

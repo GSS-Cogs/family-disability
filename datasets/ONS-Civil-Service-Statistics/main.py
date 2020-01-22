@@ -45,7 +45,7 @@ next_table = pd.concat([next_table, entry_leave_tables])
 #res_tables
 # -
 
-next_table = next_table [['Year', 'Disability Status', 'Responsibility Level', 'Department', 'ONS Age Range', 
+next_table = next_table [['Period', 'Disability Status', 'Responsibility Level', 'Department', 'ONS Age Range', 
                           'Sex', 'Type of Employment', 'Status of Employment', 'Salary Band', 'Profession of Post', 
                           'Nationality', 'Ethnicity', 'Entrants or Leavers', 'Region name', 
                           'Value', 'Marker', 'Measure Type']] #,'ONS area code','NUTS Area Code','NUTS Region name'
@@ -64,6 +64,7 @@ next_table = next_table.replace({'Sex' : {'Male ' : 'M','Female' : 'F','Total' :
 next_table['Sex'] = next_table['Sex'].fillna(value='U')
 next_table = next_table.replace({'Sex' : {'not-reported' : 'U' }})
 next_table = next_table.replace({'Measure Type' : {'headount' : 'headcount' }})
+next_table
 
 destinationFolder = Path('out')
 destinationFolder.mkdir(exist_ok=True, parents=True)

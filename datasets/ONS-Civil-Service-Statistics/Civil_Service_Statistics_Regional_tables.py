@@ -45,7 +45,7 @@ observations = tab.excel_ref('C10').expand(RIGHT).expand(DOWN).is_not_blank() - 
 #savepreviewhtml(department)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(department, 'Department', DIRECTLY, LEFT),
     HDim(region, 'Region name', DIRECTLY, ABOVE),
 ]
@@ -67,7 +67,7 @@ observations = employment_type.fill(DOWN).is_not_blank() - tab.excel_ref('A25').
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
     HDimConst('Department', 'all'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(employment_type, 'Type of Employment', DIRECTLY, ABOVE),
     HDim(gender, 'Sex', CLOSEST, LEFT),
     HDim(employment_status, 'Status of Employment', CLOSEST, LEFT),
@@ -101,7 +101,7 @@ observations = employment_type.fill(DOWN).is_not_blank() - tab.excel_ref('B74').
 #savepreviewhtml(region)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(employment_type, 'Type of Employment', DIRECTLY, ABOVE),
     HDim(gender, 'Sex', CLOSEST, LEFT),
     HDim(employment_status, 'Status of Employment', CLOSEST, LEFT),
@@ -140,7 +140,7 @@ observations = employment_type.fill(DOWN).is_not_blank() - tab.excel_ref('B246')
 #savepreviewhtml(observations)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(employment_type, 'Type of Employment', DIRECTLY, ABOVE),
     HDim(gender, 'Sex', CLOSEST, LEFT),
     HDim(employment_status, 'Status of Employment', CLOSEST, LEFT),
@@ -162,7 +162,7 @@ observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('C105').expand(D
 #savepreviewhtml(area_code)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(area_code, 'ONS area code', CLOSEST, ABOVE), 
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(region, 'Region name', CLOSEST, ABOVE),
@@ -181,7 +181,7 @@ observations = ethnicity.fill(DOWN).is_not_blank() - tab.excel_ref('C104').expan
 #savepreviewhtml(area_code)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(area_code, 'ONS area code', CLOSEST, ABOVE), 
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(region, 'Region name', CLOSEST, ABOVE),
@@ -200,7 +200,7 @@ observations = disability_status.fill(DOWN).is_not_blank() - tab.excel_ref('C104
 #savepreviewhtml(area_code)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(area_code, 'ONS area code', CLOSEST, ABOVE), 
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(region, 'Region name', CLOSEST, ABOVE),
@@ -218,7 +218,7 @@ observations = age_group.fill(DOWN).is_not_blank() - tab.excel_ref('B23').expand
 #savepreviewhtml(area_code)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(age_group, 'ONS Age Range', DIRECTLY, ABOVE),
     HDim(area_code, 'ONS area code', CLOSEST, ABOVE), 
     HDim(region, 'Region name', CLOSEST, ABOVE),
@@ -320,10 +320,11 @@ regional_tables = regional_tables.replace({'Disability Status' :
                                 'Not Reported7' : 'Not Reported',}})
 regional_tables['Disability Status'] = regional_tables['Disability Status'].fillna(value='unknown').map(lambda x: pathify(x))
 regional_tables['ONS Age Range'] = regional_tables['ONS Age Range'].fillna(value='all').map(lambda x: pathify(x))
+regional_tables['Period'] = 'year/' + regional_tables['Period']
 #regional_tables['NUTS Area Code'] = regional_tables['NUTS Area Code'].map(lambda x: pathify(x))
 
 #Drop nuts area code for now 
-regional_tables = regional_tables [['Year', 'Disability Status', 'Responsibility Level', 'Department', 'ONS Age Range', 
+regional_tables = regional_tables [['Period', 'Disability Status', 'Responsibility Level', 'Department', 'ONS Age Range', 
                         'Sex', 'Type of Employment', 'Status of Employment','Ethnicity',
                         'Region name', 'NUTS Region name', 'Value', 'Marker', 'Measure Type']] # 'ONS area code',
 regional_tables

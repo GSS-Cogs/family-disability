@@ -44,7 +44,7 @@ observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B22').expand(RI
 #savepreviewhtml(observations)
 dimensions = [
         HDimConst('Measure Type', 'headcount'),
-        HDimConst('Year', '2018'),
+        HDimConst('Period', '2018'),
         HDim(employment_type, 'Type of Employment', CLOSEST, LEFT),
         HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
         HDim(gender, 'Sex', DIRECTLY, ABOVE),
@@ -61,7 +61,7 @@ ethnicity = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
 observations = ethnicity.fill(DOWN).is_not_blank() - tab.excel_ref('B21').expand(RIGHT).expand(DOWN)
 dimensions = [    
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(ethnicity, 'Ethnicity', DIRECTLY, ABOVE)  
 ]
@@ -77,7 +77,7 @@ disability_status = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
 observations = disability_status.fill(DOWN).is_not_blank() - tab.excel_ref('B21').expand(RIGHT).expand(DOWN)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(disability_status, 'Disability Status', DIRECTLY, ABOVE)
 ]
@@ -95,7 +95,7 @@ observations = age_group.fill(DOWN).is_not_blank() - tab.excel_ref('B20').expand
 
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(age_group, 'ONS Age Range', DIRECTLY, ABOVE)   
 ]
@@ -110,7 +110,7 @@ nationality = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
 observations = nationality.fill(DOWN).is_not_blank() - tab.excel_ref('B20').expand(RIGHT).expand(DOWN)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(nationality, 'Nationality', DIRECTLY, ABOVE)
 ]
@@ -125,7 +125,7 @@ employment_type = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B29').expand(RIGHT).expand(DOWN)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(employment_type, 'Type of Employment', CLOSEST, LEFT),
     HDim(salary_band, 'Salary Band', DIRECTLY, LEFT),
     HDim(gender, 'Sex', DIRECTLY, ABOVE)   
@@ -141,7 +141,7 @@ department = tab.excel_ref('B9').fill(DOWN).is_not_blank() - tab.excel_ref('B16'
 observations = profession_of_post.fill(DOWN).is_not_blank() - tab.excel_ref('B193').expand(RIGHT).expand(DOWN)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(department, 'Department', DIRECTLY, LEFT),
     HDim(profession_of_post, 'Profession of Post', DIRECTLY, ABOVE), 
 ]
@@ -156,7 +156,7 @@ responsibility_level = tab.excel_ref('B9').fill(DOWN).is_not_blank() - tab.excel
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B21').expand(RIGHT).expand(DOWN)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     HDim(gender, 'Sex', DIRECTLY, ABOVE),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(entrants_leavers, 'Entrants or Leavers', CLOSEST, LEFT),
@@ -173,7 +173,7 @@ employment_type = tab.excel_ref('C6').expand(RIGHT).is_not_blank()
 observations = employment_status.fill(DOWN).is_not_blank() - tab.excel_ref('A30').expand(DOWN).expand(RIGHT)
 dimensions = [
     HDimConst('Measure Type', 'headcount'),
-    HDimConst('Year', '2018'),
+    HDimConst('Period', '2018'),
     #HDim(area_code, 'ONS area code', DIRECTLY, LEFT), #dropped for now
     HDim(region, 'Region name', DIRECTLY, LEFT), 
     HDim(employment_status, 'Status of Employment', DIRECTLY, ABOVE), 
@@ -231,6 +231,7 @@ stats_tables['Disability Status'] = stats_tables['Disability Status'].fillna(val
 stats_tables['ONS Age Range'] = stats_tables['ONS Age Range'].fillna(value='all').map(lambda x: pathify(x))
 stats_tables['Salary Band'] = stats_tables['Salary Band'].fillna(value='unknown').map(lambda x: pathify(x))
 stats_tables['Entrants or Leavers'] = stats_tables['Entrants or Leavers'].fillna(value='all').map(lambda x: pathify(x))
+stats_tables['Period'] = 'year/' + stats_tables['Period']
 stats_tables
 # -
 
