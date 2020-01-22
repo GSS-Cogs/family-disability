@@ -379,18 +379,16 @@ scraper.set_base_uri('http://gss-data.org.uk')
 scraper.dataset.family = 'disability'
 scraper.dataset.theme = THEME['health-social-care']
 scraper.dataset.description = """The Work and Health Programme (WHP) predominantly helps disabled people, as well as the long-term unemployed and certain other priority groups (known as early access groups) to enter into and stay in work.
-
-These statistics provide information on:
-
-referrals to WHP
-
-starts to WHP
-
-job outcomes
-
+\n
+These statistics provide information on:\n
+\n
+referrals to WHP\n
+starts to WHP\n
+job outcomes\n
+\n
 Read the [background information and methodology note](https://www.gov.uk/government/publications/work-and-health-programme-statistics-background-information-and-methodology) for more information about the WHP statistics.
-
-*[WHP]: Work and Health Programme"""
+\n
+\n*[WHP]: Work and Health Programme"""
 
 for i in tidy_tabs:
     new_table = tidy_tabs.get(i)
