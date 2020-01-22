@@ -87,3 +87,4 @@ NUTS Region name,,Dimension,http://gss-data.org.uk/def/concept-scheme/nuts-regio
 NUTS Area Code,,Dimension,http://gss-data.org.uk/def/concept-scheme/nuts-area-code
 Life Expectancy Estimate Type,,Dimension,http://gss-data.org.uk/def/concept-scheme/life-expectancy-estimate-type
 headcount,,Measure,
+All Employees,,Measure,
