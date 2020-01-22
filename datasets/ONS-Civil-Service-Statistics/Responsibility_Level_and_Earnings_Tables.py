@@ -331,11 +331,9 @@ res_tables['ONS Age Range'] = res_tables['ONS Age Range'].fillna(value='all').ma
 res_tables['Measure Type'] = res_tables['Measure Type'].map(lambda x: pathify(x))
 res_tables = res_tables.replace({'Period' : {
     '2007.0' : '2007', '2008.0' : '2008', '2009.0' : '2009', '2010.0' : '2010',
-    '2011.0' : '2011', '2012.0' : '2012', '2013.0' : '2014.0', '2015.0' : '2015', 
-    '2016.0' : '2016', '2017.0' : '2017', '2018.0' : '2018'}})
+    '2011.0' : '2011', '2012.0' : '2012', '2013.0' : '2013', '2014.0' : '2014', 
+    '2015.0' : '2015', '2016.0' : '2016', '2017.0' : '2017', '2018.0' : '2018'}})
 res_tables['Period'] = 'year/' + res_tables['Period']
 res_tables
 # -
-
-
 
