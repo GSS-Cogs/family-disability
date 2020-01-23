@@ -44,7 +44,7 @@ department = tab.excel_ref('B10').fill(DOWN).is_not_blank() - tab.excel_ref('B17
 observations = tab.excel_ref('C10').expand(RIGHT).expand(DOWN).is_not_blank() - tab.excel_ref('O10').expand(RIGHT).expand(DOWN) - tab.excel_ref('B195').expand(RIGHT).expand(DOWN)
 #savepreviewhtml(department)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(department, 'Department', DIRECTLY, LEFT),
     HDim(region, 'Region name', DIRECTLY, ABOVE),
@@ -65,7 +65,7 @@ observations = employment_type.fill(DOWN).is_not_blank() - tab.excel_ref('A25').
 #savepreviewhtml(area_code)
 
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Department', 'all'),
     HDimConst('Period', '2018'),
     HDim(employment_type, 'Type of Employment', DIRECTLY, ABOVE),
@@ -100,7 +100,7 @@ NUTS_code = tab.excel_ref('A12').expand(DOWN) - tab.excel_ref('A80').expand(DOWN
 observations = employment_type.fill(DOWN).is_not_blank() - tab.excel_ref('B74').expand(DOWN).expand(RIGHT)
 #savepreviewhtml(region)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(employment_type, 'Type of Employment', DIRECTLY, ABOVE),
     HDim(gender, 'Sex', CLOSEST, LEFT),
@@ -139,7 +139,7 @@ NUTS_code = tab.excel_ref('A12').expand(DOWN) - tab.excel_ref('A252').expand(DOW
 observations = employment_type.fill(DOWN).is_not_blank() - tab.excel_ref('B246').expand(DOWN).expand(RIGHT)
 #savepreviewhtml(observations)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(employment_type, 'Type of Employment', DIRECTLY, ABOVE),
     HDim(gender, 'Sex', CLOSEST, LEFT),
@@ -161,7 +161,7 @@ gender = tab.excel_ref('D5').expand(RIGHT).is_not_blank() - tab.excel_ref('G5').
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('C105').expand(DOWN).expand(RIGHT)
 #savepreviewhtml(area_code)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(area_code, 'ONS area code', CLOSEST, ABOVE), 
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
@@ -180,7 +180,7 @@ ethnicity = tab.excel_ref('D5').expand(RIGHT).is_not_blank() - tab.excel_ref('L5
 observations = ethnicity.fill(DOWN).is_not_blank() - tab.excel_ref('C104').expand(DOWN).expand(RIGHT)
 #savepreviewhtml(area_code)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(area_code, 'ONS area code', CLOSEST, ABOVE), 
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
@@ -199,7 +199,7 @@ disability_status = tab.excel_ref('D5').expand(RIGHT).is_not_blank() - tab.excel
 observations = disability_status.fill(DOWN).is_not_blank() - tab.excel_ref('C104').expand(DOWN).expand(RIGHT)
 #savepreviewhtml(area_code)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(area_code, 'ONS area code', CLOSEST, ABOVE), 
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
@@ -217,7 +217,7 @@ age_group = tab.excel_ref('D5').expand(RIGHT).is_not_blank() - tab.excel_ref('L5
 observations = age_group.fill(DOWN).is_not_blank() - tab.excel_ref('B23').expand(RIGHT).expand(DOWN)
 #savepreviewhtml(area_code)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(age_group, 'ONS Age Range', DIRECTLY, ABOVE),
     HDim(area_code, 'ONS area code', CLOSEST, ABOVE), 

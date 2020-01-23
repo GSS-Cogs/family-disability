@@ -53,7 +53,7 @@ ethnicity = tab.excel_ref('B5').expand(RIGHT).is_not_blank() - tab.excel_ref('K5
 observations = ethnicity.fill(DOWN).is_not_blank() - tab.excel_ref('B193').expand(DOWN).expand(RIGHT) 
 dimensions = [
     HDimConst('Period', '2018'),
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(ethnicity, 'Ethnicity', DIRECTLY, ABOVE), 
 ]
@@ -67,7 +67,7 @@ disability_status = tab.excel_ref('B5').expand(RIGHT).is_not_blank() - tab.excel
 observations = disability_status.fill(DOWN).is_not_blank() - tab.excel_ref('B193').expand(DOWN).expand(RIGHT) 
 dimensions = [
     HDimConst('Period', '2018'),
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(disability_status, 'Disability Status', DIRECTLY, ABOVE), 
 ]
@@ -81,7 +81,7 @@ age_group = tab.excel_ref('B5').expand(RIGHT).is_not_blank()
 observations = age_group.fill(DOWN).is_not_blank() - tab.excel_ref('B193').expand(DOWN).expand(RIGHT) 
 dimensions = [
     HDimConst('Period', '2018'),
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(age_group, 'ONS Age Range', DIRECTLY, ABOVE), 
 ]
@@ -119,7 +119,7 @@ gov_tables = gov_tables.replace({'Disability Status' :
                                 'Not Reported4' : 'Not Reported',}})
 gov_tables['Disability Status'] = gov_tables['Disability Status'].fillna(value='unknown').map(lambda x: pathify(x))
 gov_tables['ONS Age Range'] = gov_tables['ONS Age Range'].fillna(value='all').map(lambda x: pathify(x))
-gov_tables['Measure Type'] = gov_tables['Measure Type'].map(lambda x: pathify(x))
+#gov_tables['Measure Type'] = gov_tables['Measure Type'].map(lambda x: pathify(x))
 gov_tables['Period'] = 'year/' + gov_tables['Period']
 gov_tables
 

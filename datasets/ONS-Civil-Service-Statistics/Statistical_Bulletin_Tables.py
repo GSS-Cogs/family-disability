@@ -43,7 +43,7 @@ employment_type = tab.excel_ref('B6').expand(RIGHT).is_not_blank()
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B22').expand(RIGHT).expand(DOWN)
 #savepreviewhtml(observations)
 dimensions = [
-        HDimConst('Measure Type', 'headcount'),
+        HDimConst('Measure Type', 'Headcount'),
         HDimConst('Period', '2018'),
         HDim(employment_type, 'Type of Employment', CLOSEST, LEFT),
         HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
@@ -60,7 +60,7 @@ responsibility_level = tab.excel_ref('B8').fill(DOWN).is_not_blank() - tab.excel
 ethnicity = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
 observations = ethnicity.fill(DOWN).is_not_blank() - tab.excel_ref('B21').expand(RIGHT).expand(DOWN)
 dimensions = [    
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(ethnicity, 'Ethnicity', DIRECTLY, ABOVE)  
@@ -76,7 +76,7 @@ responsibility_level = tab.excel_ref('B8').fill(DOWN).is_not_blank() - tab.excel
 disability_status = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
 observations = disability_status.fill(DOWN).is_not_blank() - tab.excel_ref('B21').expand(RIGHT).expand(DOWN)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(disability_status, 'Disability Status', DIRECTLY, ABOVE)
@@ -94,7 +94,7 @@ age_group = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
 observations = age_group.fill(DOWN).is_not_blank() - tab.excel_ref('B20').expand(RIGHT).expand(DOWN)
 
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(age_group, 'ONS Age Range', DIRECTLY, ABOVE)   
@@ -109,7 +109,7 @@ responsibility_level = tab.excel_ref('B8').fill(DOWN).is_not_blank() - tab.excel
 nationality = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
 observations = nationality.fill(DOWN).is_not_blank() - tab.excel_ref('B20').expand(RIGHT).expand(DOWN)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
     HDim(nationality, 'Nationality', DIRECTLY, ABOVE)
@@ -124,7 +124,7 @@ gender = tab.excel_ref('C6').expand(RIGHT).is_not_blank()
 employment_type = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B29').expand(RIGHT).expand(DOWN)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(employment_type, 'Type of Employment', CLOSEST, LEFT),
     HDim(salary_band, 'Salary Band', DIRECTLY, LEFT),
@@ -140,7 +140,7 @@ profession_of_post = tab.excel_ref('C5').expand(RIGHT).is_not_blank()
 department = tab.excel_ref('B9').fill(DOWN).is_not_blank() - tab.excel_ref('B16') - tab.excel_ref('B25') - tab.excel_ref('B28') - tab.excel_ref('B32') - tab.excel_ref('B36') - tab.excel_ref('B39') - tab.excel_ref('B44') - tab.excel_ref('B47') - tab.excel_ref('B50') - tab.excel_ref('B57') - tab.excel_ref('B60') - tab.excel_ref('B63') - tab.excel_ref('B69') - tab.excel_ref('B76') - tab.excel_ref('B79') - tab.excel_ref('B82') - tab.excel_ref('B87') - tab.excel_ref('B92') - tab.excel_ref('B95') - tab.excel_ref('B99') - tab.excel_ref('B106') - tab.excel_ref('B109') - tab.excel_ref('B112') - tab.excel_ref('B120') - tab.excel_ref('B123') - tab.excel_ref('B126') - tab.excel_ref('B129') - tab.excel_ref('B132') - tab.excel_ref('B135') - tab.excel_ref('B138') - tab.excel_ref('B141') - tab.excel_ref('B144') - tab.excel_ref('B147') - tab.excel_ref('B166')- tab.excel_ref('B173') - tab.excel_ref('B76') - tab.excel_ref('B179') - tab.excel_ref('B182') - tab.excel_ref('B185') - tab.excel_ref('B188') - tab.excel_ref('B194').expand(DOWN)
 observations = profession_of_post.fill(DOWN).is_not_blank() - tab.excel_ref('B193').expand(RIGHT).expand(DOWN)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(department, 'Department', DIRECTLY, LEFT),
     HDim(profession_of_post, 'Profession of Post', DIRECTLY, ABOVE), 
@@ -155,7 +155,7 @@ gender = tab.excel_ref('C6').expand(RIGHT).is_not_blank()
 responsibility_level = tab.excel_ref('B9').fill(DOWN).is_not_blank() - tab.excel_ref('B9') - tab.excel_ref('B21').expand(DOWN)
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B21').expand(RIGHT).expand(DOWN)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(gender, 'Sex', DIRECTLY, ABOVE),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT),
@@ -195,9 +195,7 @@ else:
     print('marker not found in colmns making it')
     stats_tables['DATAMARKER'] = 'not-applicable'
     stats_tables = stats_tables.rename(columns={'DATAMARKER':'Marker'})
-    #Female
-    #
-    #
+
 stats_tables = stats_tables.replace({'Sex' : {'Male' : 'M','Female' : 'F','Total' : 'T', ' ' : 'U' }})
 stats_tables['Sex'] = stats_tables['Sex'].fillna(value='U')
 

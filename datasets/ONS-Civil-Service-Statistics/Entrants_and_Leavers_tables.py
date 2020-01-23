@@ -39,7 +39,7 @@ gender = tab.excel_ref('B6').expand(RIGHT).is_not_blank()
 observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B193').expand(DOWN).expand(RIGHT) 
 dimensions = [
     HDimConst('Period', '2018'),
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(gender, 'Sex', DIRECTLY, ABOVE), 
     HDim(entrants_or_leavers, 'Entrants or Leavers', CLOSEST, LEFT), 
@@ -55,7 +55,7 @@ entrants_or_leavers = tab.excel_ref('B6').expand(RIGHT).is_not_blank() - tab.exc
 observations = entrants_or_leavers.fill(DOWN).is_not_blank() - tab.excel_ref('B194').expand(DOWN).expand(RIGHT) 
 dimensions = [
     HDimConst('Period', '2018'),
-    HDimConst('Measure Type', 'headcount'),
+    HDimConst('Measure Type', 'Headcount'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(ethnicity, 'Ethnicity', CLOSEST, LEFT), 
     HDim(entrants_or_leavers, 'Entrants or Leavers', DIRECTLY, ABOVE), 
@@ -63,9 +63,6 @@ dimensions = [
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 table_41 = c1.topandas()
 entry_leave_tables = pd.concat([table_41, entry_leave_tables], sort=True)
-
-
-
 
 # +
 entry_leave_tables.rename(columns={'OBS': 'Value'}, inplace=True)
