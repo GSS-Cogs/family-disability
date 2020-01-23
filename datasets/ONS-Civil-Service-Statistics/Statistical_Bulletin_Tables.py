@@ -172,7 +172,7 @@ employment_status = tab.excel_ref('B7').expand(RIGHT).is_not_blank() #- tab.exce
 employment_type = tab.excel_ref('C6').expand(RIGHT).is_not_blank()
 observations = employment_status.fill(DOWN).is_not_blank() - tab.excel_ref('A30').expand(DOWN).expand(RIGHT)
 dimensions = [
-    HDimConst('Measure Type', 'headcount'),#All Employees
+    HDimConst('Measure Type', 'All Employees'),#
     HDimConst('Period', '2018'),
     #HDim(area_code, 'ONS area code', DIRECTLY, LEFT), #dropped for now
     HDim(region, 'Region name', DIRECTLY, LEFT), 

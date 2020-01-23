@@ -86,5 +86,8 @@ Responsibility Level,,Dimension,http://gss-data.org.uk/def/concept-scheme/respon
 NUTS Region name,,Dimension,http://gss-data.org.uk/def/concept-scheme/nuts-region-name
 NUTS Area Code,,Dimension,http://gss-data.org.uk/def/concept-scheme/nuts-area-code
 Life Expectancy Estimate Type,,Dimension,http://gss-data.org.uk/def/concept-scheme/life-expectancy-estimate-type
-headcount,headcount,Measure,
-All Employees,,Measure,
+Headcount,headcount,Measure,
+All employees,,Measure,
+Median gender pay gap in percent,,Measure,
+Mean earnings,,Measure,
+Median earnings,,Measure,
