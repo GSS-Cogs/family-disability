@@ -121,3 +121,8 @@ NUTS Region name,nuts_region_name,qb:dimension,http://gss-data.org.uk/def/dimens
 NUTS Area Code,nuts_area_code,qb:dimension,http://gss-data.org.uk/def/dimension/nuts-area-code,http://gss-data.org.uk/def/concept/nuts-area-code/{nuts_area_code},string,slugize,,http://gss-data.org.uk/def/classes/nuts-area-code/nuts_area_code
 Life Expectancy Estimate Type,life_expectancy_estimate_type,qb:dimension,http://gss-data.org.uk/def/dimension/life-expectancy-estimate-type,http://gss-data.org.uk/def/concept/life-expectancy-estimate-type/{life_expectancy_estimate_type},string,slugize,,http://gss-data.org.uk/def/classes/life-expectancy-estimate-type/life_expectancy_estimate_type
 Headcount,headcount,qb:measure,http://gss-data.org.uk/def/measure/headcount,,number,,,
+All Employees,all_employees,qb:measure,http://gss-data.org.uk/def/measure/all-employees,,number,,,
+Median gender pay gap in percent,median_gender_pay_gap_in_percent,qb:measure,http://gss-data.org.uk/def/measure/median-gender-pay-gap-in-percent,,number,,,
+Mean Earnings,mean_earnings,qb:measure,http://gss-data.org.uk/def/measure/mean-earnings,,number,,,
+Median Earnings,median_earnings,qb:measure,http://gss-data.org.uk/def/measure/median-earnings,,number,,,
+Percentage of each Gender by department,percentage_of_each_gender_by_department,qb:measure,http://gss-data.org.uk/def/measure/percentage-of-each-gender-by-department,,number,,,
