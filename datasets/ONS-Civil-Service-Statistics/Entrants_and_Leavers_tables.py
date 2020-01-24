@@ -79,7 +79,7 @@ else:
 
 entry_leave_tables = entry_leave_tables.replace({'Sex' : {'Male' : 'M','Female' : 'F','Total' : 'T', ' ' : 'U' }})
 entry_leave_tables['Sex'] = entry_leave_tables['Sex'].fillna(value='U')
-entry_leave_tables['Department'] = entry_leave_tables['Department'].fillna(value='all').map(lambda x: pathify(x))
+entry_leave_tables['Department'] = entry_leave_tables['Department'].fillna(value='all')
 entry_leave_tables['Entrants or Leavers'] = entry_leave_tables['Entrants or Leavers'].fillna(value='all').map(lambda x: pathify(x))
 entry_leave_tables = entry_leave_tables.replace({'Ethnicity' : 
                               {'Not Declared5' : 'Not Declared',

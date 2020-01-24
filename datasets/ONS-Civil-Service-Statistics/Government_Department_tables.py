@@ -92,6 +92,7 @@ gov_tables = pd.concat([table_39, gov_tables], sort=True)
 
 
 
+# +
 gov_tables.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in gov_tables.columns:
     print('marker found in columns')
@@ -105,11 +106,15 @@ else:
     gov_tables = gov_tables.rename(columns={'DATAMARKER':'Marker'})
 gov_tables = gov_tables.replace({'Sex' : {'Male' : 'M','Female' : 'F','Total' : 'T', ' ' : 'U' }})
 gov_tables['Sex'] = gov_tables['Sex'].fillna(value='U')
-gov_tables['Department'] = gov_tables['Department'].fillna(value='all').map(lambda x: pathify(x))
+
+out = Path('output')
+out.mkdir(exist_ok=True, parents=True)
+
+gov_tables['Department'] = gov_tables['Department'].fillna(value='all')
 gov_tables = gov_tables.replace({'Type of Employment' : 
-                               {'  Full-time4' : 'full-time-employees',
-                                '  Part-time5' : 'part-time-employees',
-                                '  All5' : 'all-employees',}})
+                               {'  Full-time4' : 'Full-time employees',
+                                '  Part-time5' : 'Part-time employees',
+                                '  All5' : 'All employees',}})
 gov_tables = gov_tables.replace({'Ethnicity' : 
                               {'Not Declared3' : 'Not Declared',
                                'Not Reported4' : 'Not Reported',}})
@@ -122,6 +127,7 @@ gov_tables['ONS Age Range'] = gov_tables['ONS Age Range'].fillna(value='all').ma
 #gov_tables['Measure Type'] = gov_tables['Measure Type'].map(lambda x: pathify(x))
 gov_tables['Period'] = 'year/' + gov_tables['Period']
 gov_tables
+# -
 
 
 

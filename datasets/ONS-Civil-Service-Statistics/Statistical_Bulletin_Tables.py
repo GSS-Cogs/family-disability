@@ -167,10 +167,10 @@ stats_tables = pd.concat([table_9, stats_tables], sort=True)
 
 tab = tabs['Table 10']
 area_code = tab.excel_ref('A11').expand(DOWN) - tab.excel_ref('A30').expand(DOWN)
-region = tab.excel_ref('B11').expand(DOWN).is_not_blank() - tab.excel_ref('B30').expand(DOWN)
+region = tab.excel_ref('B11').expand(DOWN).is_not_blank() - tab.excel_ref('B26').expand(DOWN)
 employment_status = tab.excel_ref('B7').expand(RIGHT).is_not_blank() #- tab.excel_ref('F7').expand(RIGHT).is_not_blank()
 employment_type = tab.excel_ref('C6').expand(RIGHT).is_not_blank()
-observations = employment_status.fill(DOWN).is_not_blank() - tab.excel_ref('A30').expand(DOWN).expand(RIGHT)
+observations = employment_status.fill(DOWN).is_not_blank() - tab.excel_ref('A26').expand(DOWN).expand(RIGHT)
 dimensions = [
     HDimConst('Measure Type', 'All Employees'),#
     HDimConst('Period', '2018'),
@@ -181,6 +181,7 @@ dimensions = [
 ]
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 table_10 = c1.topandas()
+#savepreviewhtml(c1)
 stats_tables = pd.concat([table_10, stats_tables], sort=True)
 
 # +
@@ -195,18 +196,22 @@ else:
     print('marker not found in colmns making it')
     stats_tables['DATAMARKER'] = 'not-applicable'
     stats_tables = stats_tables.rename(columns={'DATAMARKER':'Marker'})
+    
 
 stats_tables = stats_tables.replace({'Sex' : {'Male' : 'M','Female' : 'F','Total' : 'T', ' ' : 'U' }})
 stats_tables['Sex'] = stats_tables['Sex'].fillna(value='U')
 
-stats_tables['Department'] = stats_tables['Department'].fillna(value='all').map(lambda x: pathify(x))
+stats_tables['Department'] = stats_tables['Department'].fillna(value='all')
 stats_tables['Profession of Post'] = stats_tables['Profession of Post'].fillna(value='all').map(lambda x: pathify(x))
 stats_tables['Status of Employment'] = stats_tables['Status of Employment'].fillna(value='all').map(lambda x: pathify(x))
 stats_tables = stats_tables.replace({'Type of Employment' : {'Full Time' : 'Full Time Employees','Part Time' : 'Part Time Employees','Total' : 'All Employees' }})
-stats_tables['Type of Employment'] = stats_tables['Type of Employment'].fillna(value='All Employees').map(lambda x: pathify(x))
+stats_tables['Type of Employment'] = stats_tables['Type of Employment'].fillna(value='All employees')#.map(lambda x: pathify(x))
 stats_tables = stats_tables.replace({'Type of Employment' : 
                                {'full-time' : 'full-time-employees',
-                                'part-time' : 'part-time-employees',}})
+                                'part-time' : 'part-time-employees',
+                                'Full-time employees2' : 'Full-time employees',
+                               'Part-time employees3' : 'Part-time employees',
+                               'All employees3' : 'All employees'}})
 #stats_tables['Region name'] = stats_tables['Region name'].map(lambda x: pathify(x))
 #stats_tables['NUTS Region name'] = stats_tables['NUTS Region name'].map(lambda x: pathify(x))
 stats_tables['Responsibility Level'] = stats_tables['Responsibility Level'].fillna(value='all').map(lambda x: pathify(x))
@@ -218,7 +223,7 @@ stats_tables = stats_tables.replace({'Nationality' :
                                {'Not Declared5' : 'Not Declared',
                                 'Not Reported6' : 'Not Reported',}})
 stats_tables['Nationality'] = stats_tables['Nationality'].fillna(value='all').map(lambda x: pathify(x))
-stats_tables['Region name'] = stats_tables['Region name'].fillna(value='all').map(lambda x: pathify(x))
+stats_tables['Region name'] = stats_tables['Region name'].fillna(value='All regions')
 stats_tables = stats_tables.replace({'Disability Status' : 
                                {'Not Declared6' : 'Not Declared',
                                 'Not Declared4' : 'Not Declared',

@@ -57,7 +57,7 @@ observations = responsibility_level.fill(DOWN).is_not_blank() - tab.excel_ref('B
 dimensions = [
     HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
-    HDimConst('Type of Employment', 'full-time-equivalent'),
+    HDimConst('Type of Employment', 'Full Time Equivalent'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, ABOVE), 
 ]
@@ -90,7 +90,7 @@ dimensions = [
     HDimConst('Measure Type', 'Headcount'),
     HDimConst('Period', '2018'),
     HDim(gender, 'Sex', DIRECTLY, ABOVE), 
-    HDimConst('Type of Employment', 'full-time-employees'),
+    HDimConst('Type of Employment', 'Full-time employees'),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT), 
     HDim(age_group, 'ONS Age Range', CLOSEST, LEFT), 
 ]
@@ -105,7 +105,7 @@ observations = responsibility_level.fill(DOWN).is_not_blank() - tab.excel_ref('B
 dimensions = [
     HDimConst('Measure Type', 'Median Earnings'),
     HDimConst('Period', '2018'),
-    HDimConst('Type of Employment', 'full-time-employees'),
+    HDimConst('Type of Employment', 'Full-time employees'),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, ABOVE), 
 ]
@@ -122,7 +122,7 @@ observations = responsibility_level.fill(DOWN).is_not_blank() - tab.excel_ref('B
 dimensions = [
     HDimConst('Measure Type', 'Median Earnings'),
     HDimConst('Period', '2018'),
-    HDimConst('Type of Employment', 'full-time-employees'),
+    HDimConst('Type of Employment', 'Full-time employees'),
     #HDim(area_code, 'ONS area code', DIRECTLY, LEFT), 
     HDim(region, 'Region name', DIRECTLY, LEFT),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, ABOVE), 
@@ -140,7 +140,7 @@ observations = ethnicity.fill(DOWN).is_not_blank() - tab.excel_ref('B20').expand
 dimensions = [
     HDimConst('Measure Type', 'Median Earnings'),
     HDimConst('Period', '2018'),
-    HDimConst('Type of Employment', 'full-time-employees'),
+    HDimConst('Type of Employment', 'Full-time employees'),
     HDim(ethnicity, 'Ethnicity', DIRECTLY, ABOVE),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT), 
 ]
@@ -157,7 +157,7 @@ dimensions = [
     HDimConst('Measure Type', 'Median Earnings'),
     HDimConst('Period', '2018'),
     HDimConst('Department', 'all'),
-    HDimConst('Type of Employment', 'full-time-employees'),
+    HDimConst('Type of Employment', 'Full-time employees'),
     HDim(disability_status, 'Disability Status', DIRECTLY, ABOVE),
     HDim(responsibility_level, 'Responsibility Level', DIRECTLY, LEFT), 
 ]
@@ -175,7 +175,7 @@ observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B194').expand(D
 dimensions = [
     HDimConst('Period', '2018'),
     HDimConst('ONS Age Range', 'all'),
-    HDimConst('Type of Employment', 'full-time-employees'),
+    HDimConst('Type of Employment', 'Full-time employees'),
     HDim(gender, 'Sex', DIRECTLY, ABOVE),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(measure_type, 'Measure Type', CLOSEST, LEFT),
@@ -194,7 +194,7 @@ observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B194').expand(D
 dimensions = [
     HDimConst('Period', '2018'),
     HDimConst('ONS Age Range', 'all'),
-    HDimConst('Type of Employment', 'part-time-employees'),
+    HDimConst('Type of Employment', 'Part-time employees'),
     HDim(gender, 'Sex', DIRECTLY, ABOVE),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(measure_type, 'Measure Type', CLOSEST, LEFT),
@@ -213,7 +213,7 @@ observations = gender.fill(DOWN).is_not_blank() - tab.excel_ref('B194').expand(D
 dimensions = [
     HDimConst('Period', '2018'),
     HDimConst('ONS Age Range', 'all'),
-    HDimConst('Type of Employment', 'full-time-equivalent'),
+    HDimConst('Type of Employment', 'Full Time Equivalent'),
     HDim(gender, 'Sex', DIRECTLY, ABOVE),
     HDim(department, 'Department', DIRECTLY, LEFT), 
     HDim(measure_type, 'Measure Type', CLOSEST, LEFT),
@@ -285,7 +285,7 @@ dimensions = [
 c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 table_34 = c1.topandas()
 res_tables = pd.concat([table_34, res_tables], sort=True)
-# + {}
+# -
 res_tables.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in res_tables.columns:
     print('marker found in columns')
@@ -297,18 +297,17 @@ else:
     print('marker not found in colmns making it')
     res_tables['DATAMARKER'] = 'not-applicable'
     res_tables = res_tables.rename(columns={'DATAMARKER':'Marker'})
-    
-#res_tables['Sex'] = res_tables['Sex'].map(lambda x: pathify(x))
 res_tables = res_tables.replace({'Sex' : {'Male' : 'M','Female' : 'F','Total' : 'T',' ' : 'U' }})
 res_tables = res_tables.replace({'Sex' : {'Male23' : 'M','Female23' : 'F','total' : 'T' }})
 res_tables = res_tables.replace({'Sex' : {'Male19' : 'M','Female19' : 'F','total' : 'T' }})
 res_tables['Sex'] = res_tables['Sex'].fillna(value='U')
-res_tables['Department'] = res_tables['Department'].fillna(value='all').map(lambda x: pathify(x))
+res_tables['Department'] = res_tables['Department'].fillna(value='all')
 res_tables = res_tables.replace({'Type of Employment' : 
-                               {'  Full-time4' : 'full-time-employees',
-                                '  Part-time5' : 'part-time-employees',
-                                '  All5' : 'all-employees',}})
-res_tables['Type of Employment'] = res_tables['Type of Employment'].fillna(value='all-employees').map(lambda x: pathify(x))
+                               {'  Full-time4' : 'Full-time employees',
+                                '  Part-time5' : 'Part-time employees',
+                                '  All5' : 'All employees',
+                               }})
+res_tables['Type of Employment'] = res_tables['Type of Employment'].fillna(value='All employees')#.map(lambda x: pathify(x))
 res_tables['Region name'] = res_tables['Region name'].fillna(value='All regions').map(lambda x: pathify(x))
 res_tables['Responsibility Level'] = res_tables['Responsibility Level'].fillna(value='all').map(lambda x: pathify(x))
 res_tables = res_tables.replace({'Ethnicity' : 
@@ -330,5 +329,3 @@ res_tables = res_tables.replace({'Period' : {
     '2015.0' : '2015', '2016.0' : '2016', '2017.0' : '2017', '2018.0' : '2018'}})
 res_tables['Period'] = 'year/' + res_tables['Period']
 res_tables
-# -
-
