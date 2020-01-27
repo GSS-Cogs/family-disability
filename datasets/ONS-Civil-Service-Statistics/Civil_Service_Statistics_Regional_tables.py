@@ -41,7 +41,7 @@ regional_tables = pd.DataFrame()
 tab = tabs['Table 12']
 region = tab.excel_ref('C6').expand(RIGHT).is_not_blank() 
 department = tab.excel_ref('B10').fill(DOWN).is_not_blank() - tab.excel_ref('B17') - tab.excel_ref('B26') - tab.excel_ref('B29') - tab.excel_ref('B33') - tab.excel_ref('B37') - tab.excel_ref('B40') - tab.excel_ref('B45') - tab.excel_ref('B48') - tab.excel_ref('B51') - tab.excel_ref('B58') - tab.excel_ref('B61') - tab.excel_ref('B64') - tab.excel_ref('B70') - tab.excel_ref('B77') - tab.excel_ref('B80') - tab.excel_ref('B83') - tab.excel_ref('B88') - tab.excel_ref('B93') - tab.excel_ref('B96') - tab.excel_ref('B100') - tab.excel_ref('B107') - tab.excel_ref('B110') - tab.excel_ref('B113') - tab.excel_ref('B121') - tab.excel_ref('B124') - tab.excel_ref('B127') - tab.excel_ref('B130') - tab.excel_ref('B133') - tab.excel_ref('B136') - tab.excel_ref('B139') - tab.excel_ref('B142') - tab.excel_ref('B145') - tab.excel_ref('B148') - tab.excel_ref('B167')- tab.excel_ref('B174') - tab.excel_ref('B77') - tab.excel_ref('B180') - tab.excel_ref('B183') - tab.excel_ref('B186') - tab.excel_ref('B189') - tab.excel_ref('B192').expand(DOWN)
-observations = tab.excel_ref('C10').expand(RIGHT).expand(DOWN).is_not_blank() - tab.excel_ref('O10').expand(RIGHT).expand(DOWN) - tab.excel_ref('B195').expand(RIGHT).expand(DOWN)
+observations = tab.excel_ref('C10').expand(RIGHT).expand(DOWN).is_not_blank() - tab.excel_ref('O10').expand(RIGHT).expand(DOWN) - tab.excel_ref('B192').expand(RIGHT).expand(DOWN)
 #savepreviewhtml(department)
 dimensions = [
     HDimConst('Measure Type', 'Headcount'),
@@ -377,7 +377,10 @@ regional_tables = regional_tables.replace({'Sex' : {'Male' : 'M','Female' : 'F',
 regional_tables = regional_tables.replace({'Sex' : {'Male ' : 'M','Female ' : 'F','Total ' : 'T', '' : 'U' }})
 regional_tables['Sex'] = regional_tables['Sex'].fillna(value='U')
 regional_tables['Department'] = regional_tables['Department'].fillna(value='all').map(lambda x: pathify(x))
+regional_tables = regional_tables.replace({'Status of Employment' : {'All employees' : 'All'}})
 regional_tables['Status of Employment'] = regional_tables['Status of Employment'].fillna(value='All').map(lambda x: pathify(x))
+
+
 regional_tables = regional_tables.replace({'Type of Employment' : {'Full Time' : 'Full Time Employees','Part Time' : 'Part Time Employees','Total' : 'All Employees' }})
 regional_tables = regional_tables.replace({'Type of Employment' : 
                                {'full-time' : 'Full-time employees',
