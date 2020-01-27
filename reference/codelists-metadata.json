@@ -332,5 +332,13 @@
     "url": "codelists/life-expectancy-estimate-type.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Life Expectancy Estimate Type"
+  },{
+    "url": "codelists/status-of-employment.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Status of Employment"
+  },{
+    "url": "codelists/type-of-employment.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "Type of Employment"
   }]
 }
