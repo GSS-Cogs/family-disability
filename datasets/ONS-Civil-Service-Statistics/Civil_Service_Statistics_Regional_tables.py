@@ -398,38 +398,14 @@ regional_tables['Disability Status'] = regional_tables['Disability Status'].fill
 regional_tables['ONS Age Range'] = regional_tables['ONS Age Range'].fillna(value='all').map(lambda x: pathify(x))
 regional_tables['Period'] = 'year/' + regional_tables['Period']
 #regional_tables['NUTS Area Code'] = regional_tables['NUTS Area Code'].map(lambda x: pathify(x))
-
+regional_tables['Marker'] = regional_tables['Marker'].map(lambda x: pathify(x))
 #Drop nuts area code for now 
 regional_tables = regional_tables [['Period', 'Disability Status', 'Responsibility Level', 'Department', 'ONS Age Range', 
                         'Sex', 'Type of Employment', 'Status of Employment','Ethnicity',
                         'Region name', 'NUTS Region name', 'Value', 'Marker', 'Measure Type']] # 'ONS area code',
 regional_tables
-
-
-# +
-out = Path('output')
-out.mkdir(exist_ok=True, parents=True)
-
-def createCodeListforColumn(dta,colNme):
-    try:
-        titles =('Label','Notation','Parent Notation','Sort Priority')
-        cdeLst = dta.unique()
-        cdeLst = pd.DataFrame(cdeLst)
-        #### Create a version of the column name with lowercase and spaces replaced with underscore(_)
-        colNmeP = colNme.replace(' ','-').replace('_','-').lower()
-        #### Create the standard codelist and output
-        cdeLst.columns = [titles[0]]
-        cdeLst[titles[1]] = cdeLst[titles[0]].apply(pathify)
-        cdeLst[titles[1]] = cdeLst[titles[1]].str.replace('/', '-', regex=True)
-        cdeLst[titles[2]] = ''
-        cdeLst[titles[3]] = cdeLst.reset_index().index + 1
-        #### Output the file
-        cdeLst.to_csv(out / f'{colNmeP}.csv', index = False)
-        return cdeLst
-    except Exception as e:
-        return "createCodeListforColumn: " + str(e)
-
-createCodeListforColumn(regional_tables['Type of Employment'],'Type of Employment')
 # -
+
+
 
 
