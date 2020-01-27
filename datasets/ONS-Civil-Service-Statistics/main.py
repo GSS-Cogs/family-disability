@@ -57,6 +57,7 @@ next_table = next_table.replace({'Department' :
                                   'Ministry of Housing, Communities and Local Government (excl. agencies)4' : 'Ministry of Housing, Communities and Local Government (excl. agencies)',
                                   'Ministry of Housing, Communities and Local Government (excl. agencies)5' : 'Ministry of Housing, Communities and Local Government (excl. agencies)',
                                   'Ministry of Housing, Communities and Local Government (excl. agencies)6' : 'Ministry of Housing, Communities and Local Government (excl. agencies)',
+                                  'Ministry of Housing, Communities and Local Government (excl. agencies)7' : 'Ministry of Housing, Communities and Local Government (excl. agencies)',
                                   'Ministry of Defence4' : 'Ministry of Defence',
                                   'Ministry of Defence6' : 'Ministry of Defence',
                                   'Ministry of Defence5' : 'Ministry of Defence',
@@ -75,9 +76,9 @@ next_table = next_table.replace({'Department' :
                                   'Department for Exiting the European Union8' : 'Department for Exiting the European Union',
                                   'Department for Exiting the European Union9' : 'Department for Exiting the European Union',
                                   'Department for Exiting the European Union10' : 'Department for Exiting the European Union',
-                                  'Education and Skills Funding Agency6' : 'Education and Skills Funding Agency',
+                                  #'Education and Skills Funding Agency6' : 'Education and Skills Funding Agency',
                                   'Education and Skills Funding Agency7' : 'Education and Skills Funding Agency',
-                                  'Education and Skills Funding Agency8' : 'Education and Skills Funding Agency',
+                                  #'Education and Skills Funding Agency8' : 'Education and Skills Funding Agency',
                                   'Education and Skills Funding Agency9' : 'Education and Skills Funding Agency',
                                   'Education and Skills Funding Agency10' : 'Education and Skills Funding Agency',
                                   'Education and Skills Funding Agency11' : 'Education and Skills Funding Agency',
@@ -85,15 +86,14 @@ next_table = next_table.replace({'Department' :
                                   'Charity Commission ' : 'Charity Commission',
                                   'ESTYN ' : 'ESTYN',
                                   "Department for Business, Energy and Industrial Strategy (excl. agencies')" : "Department for Business, Energy and Industrial Strategy (excl. agencies)",
-                                  'Department of Health and Social Care (excl. agencies)10 ' : 'Department of Health and Social Care (excl. agencies)',
-                                  'Department of Health and Social Care (excl. agencies)10' : 'Department of Health and Social Care (excl. agencies)',
+                                  'Department of Health and Social Care (excl. agencies)10 ' : 'Department of Health and Social Care (excl. agencies)',        
                                   'Department of Health and Social Care (excl. agencies)9' : 'Department of Health and Social Care (excl. agencies)',
                                   'Department of Health and Social Care (excl. agencies)9 ' : 'Department of Health and Social Care (excl. agencies)',
                                   'Department of Health and Social Care (excl. agencies)11 ' : 'Department of Health and Social Care (excl. agencies)',
                                   'Department of Health and Social Care (excl. agencies)11' : 'Department of Health and Social Care (excl. agencies)',
                                   'Department of Health and Social Care (excl. agencies)12 ' : 'Department of Health and Social Care (excl. agencies)',
                                   'Department of Health and Social Care (excl. agencies)13 ' : 'Department of Health and Social Care (excl. agencies)',
-                                  'Department of Health and Social Care (excl. agencies)8 ' : 'Department of Health and Social Care (excl. agencies)',
+                                  'Department of Health and Social Care (excl. agencies)8 ' : 'Department of Health and Social Care (excl. agencies)',                                  
                                   'Public Health England9 10' : 'Public Health England',
                                   'Public Health England10 11' : 'Public Health England',
                                   'Public Health England11 12' : 'Public Health England',
@@ -126,6 +126,7 @@ next_table = next_table.replace({'Department' :
                                  }})
 
 
+
 # +
 
 next_table['Disability Status'] = next_table['Disability Status'].fillna(value='unknown').map(lambda x: pathify(x))
@@ -134,11 +135,11 @@ next_table['Entrants or Leavers'] = next_table['Entrants or Leavers'].fillna(val
 next_table['Nationality'] = next_table['Nationality'].fillna(value='all').map(lambda x: pathify(x))
 next_table['Profession of Post'] = next_table['Profession of Post'].fillna(value='all').map(lambda x: pathify(x))
 next_table['Salary Band'] = next_table['Salary Band'].fillna(value='unknown').map(lambda x: pathify(x))
-next_table['Status of Employment'] = next_table['Status of Employment'].fillna(value='all').map(lambda x: pathify(x))
+next_table['Status of Employment'] = next_table['Status of Employment'].fillna(value='All')#.map(lambda x: pathify(x))
 next_table['Region name'] = next_table['Region name'].fillna(value='All regions').map(lambda x: pathify(x))
 next_table['Department'] = next_table['Department'].map(lambda x: pathify(x))
 next_table['Responsibility Level'] = next_table['Responsibility Level'].fillna(value='all').map(lambda x: pathify(x))
-next_table['Type of Employment'] = next_table['Type of Employment'].fillna(value='all-employees').map(lambda x: pathify(x))
+next_table['Type of Employment'] = next_table['Type of Employment'].fillna(value='All employees')#.map(lambda x: pathify(x))
 next_table = next_table.replace({'Sex' : {'Male' : 'M','Female' : 'F','Total' : 'T','' : 'U' }})
 next_table = next_table.replace({'Sex' : {'Male ' : 'M','Female' : 'F','Total' : 'T' }})
 next_table['Sex'] = next_table['Sex'].fillna(value='U')

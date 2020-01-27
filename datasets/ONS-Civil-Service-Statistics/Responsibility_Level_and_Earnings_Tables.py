@@ -289,7 +289,7 @@ res_tables = pd.concat([table_34, res_tables], sort=True)
 res_tables.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in res_tables.columns:
     print('marker found in columns')
-    res_tables['DATAMARKER'].replace('..', 'between-one-and-five', inplace=True)
+    res_tables['DATAMARKER'].replace('..', 'Between one and five', inplace=True)
     res_tables['DATAMARKER'].replace('-', 'not-applicable', inplace=True)
     res_tables = res_tables.rename(columns={'DATAMARKER':'Marker'})
     res_tables['Marker'] = res_tables['Marker'].fillna(value='not-applicable')

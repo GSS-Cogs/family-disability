@@ -188,7 +188,7 @@ stats_tables = pd.concat([table_10, stats_tables], sort=True)
 stats_tables.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in stats_tables.columns:
     print('marker found in columns')
-    stats_tables['DATAMARKER'].replace('..', 'between-one-and-five', inplace=True)
+    stats_tables['DATAMARKER'].replace('..', 'Between one and five', inplace=True)
     stats_tables['DATAMARKER'].replace('-', 'not-applicable', inplace=True)
     stats_tables = stats_tables.rename(columns={'DATAMARKER':'Marker'})
     stats_tables['Marker'] = stats_tables['Marker'].fillna(value='not-applicable')
@@ -203,7 +203,7 @@ stats_tables['Sex'] = stats_tables['Sex'].fillna(value='U')
 
 stats_tables['Department'] = stats_tables['Department'].fillna(value='all')
 stats_tables['Profession of Post'] = stats_tables['Profession of Post'].fillna(value='all').map(lambda x: pathify(x))
-stats_tables['Status of Employment'] = stats_tables['Status of Employment'].fillna(value='all').map(lambda x: pathify(x))
+stats_tables['Status of Employment'] = stats_tables['Status of Employment'].fillna(value='All')#.map(lambda x: pathify(x))
 stats_tables = stats_tables.replace({'Type of Employment' : {'Full Time' : 'Full Time Employees','Part Time' : 'Part Time Employees','Total' : 'All Employees' }})
 stats_tables['Type of Employment'] = stats_tables['Type of Employment'].fillna(value='All employees')#.map(lambda x: pathify(x))
 stats_tables = stats_tables.replace({'Type of Employment' : 

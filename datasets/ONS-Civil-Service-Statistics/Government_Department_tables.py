@@ -89,14 +89,11 @@ c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 table_39 = c1.topandas() 
 gov_tables = pd.concat([table_39, gov_tables], sort=True)
 
-
-
-
 # +
 gov_tables.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in gov_tables.columns:
     print('marker found in columns')
-    gov_tables['DATAMARKER'].replace('..', 'between-one-and-five', inplace=True)
+    gov_tables['DATAMARKER'].replace('..', 'Between one and five', inplace=True)
     gov_tables['DATAMARKER'].replace('-', 'not-applicable', inplace=True)
     gov_tables = gov_tables.rename(columns={'DATAMARKER':'Marker'})
     gov_tables['Marker'] = gov_tables['Marker'].fillna(value='not-applicable')

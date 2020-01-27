@@ -227,11 +227,87 @@ c1 = ConversionSegment(observations, dimensions, processTIMEUNIT=True)
 table_19 = c1.topandas()
 regional_tables = pd.concat([table_19, regional_tables], sort=True)
 
+regional_tables = regional_tables.replace({'Department' : 
+                                 {'Ministry of Housing, Communities and Local Government (excl. agencies)1' : 'Ministry of Housing, Communities and Local Government (excl. agencies)',
+                                  'Ministry of Housing, Communities and Local Government (excl. agencies)3' : 'Ministry of Housing, Communities and Local Government (excl. agencies)',
+                                  'Ministry of Housing, Communities and Local Government (excl. agencies)2' : 'Ministry of Housing, Communities and Local Government (excl. agencies)',
+                                  'Ministry of Housing, Communities and Local Government (excl. agencies)4' : 'Ministry of Housing, Communities and Local Government (excl. agencies)',
+                                  'Ministry of Housing, Communities and Local Government (excl. agencies)5' : 'Ministry of Housing, Communities and Local Government (excl. agencies)',
+                                  'Ministry of Housing, Communities and Local Government (excl. agencies)6' : 'Ministry of Housing, Communities and Local Government (excl. agencies)',
+                                  'Ministry of Defence4' : 'Ministry of Defence',
+                                  'Ministry of Defence6' : 'Ministry of Defence',
+                                  'Ministry of Defence5' : 'Ministry of Defence',
+                                  'Ministry of Defence7' : 'Ministry of Defence',
+                                  'Ministry of Defence8' : 'Ministry of Defence',
+                                  'Ministry of Defence9' : 'Ministry of Defence',
+                                  'Royal Fleet Auxiliary4' : 'Royal Fleet Auxiliary',
+                                  'Royal Fleet Auxiliary5' : 'Royal Fleet Auxiliary',
+                                  'Royal Fleet Auxiliary6' : 'Royal Fleet Auxiliary',
+                                  'Royal Fleet Auxiliary7' : 'Royal Fleet Auxiliary',
+                                  'Royal Fleet Auxiliary8' : 'Royal Fleet Auxiliary',
+                                  'Royal Fleet Auxiliary9' : 'Royal Fleet Auxiliary',
+                                  'Department for Exiting the European Union5' : 'Department for Exiting the European Union',
+                                  'Department for Exiting the European Union6' : 'Department for Exiting the European Union',
+                                  'Department for Exiting the European Union7' : 'Department for Exiting the European Union',
+                                  'Department for Exiting the European Union8' : 'Department for Exiting the European Union',
+                                  'Department for Exiting the European Union9' : 'Department for Exiting the European Union',
+                                  'Department for Exiting the European Union10' : 'Department for Exiting the European Union',
+                                  'Education and Skills Funding Agency6' : 'Education and Skills Funding Agency',
+                                  'Education and Skills Funding Agency7' : 'Education and Skills Funding Agency',
+                                  'Education and Skills Funding Agency8' : 'Education and Skills Funding Agency',
+                                  'Education and Skills Funding Agency9' : 'Education and Skills Funding Agency',
+                                  'Education and Skills Funding Agency10' : 'Education and Skills Funding Agency',
+                                  'Education and Skills Funding Agency11' : 'Education and Skills Funding Agency',
+                                  'Veterinary Medicines Directorate ' : 'Veterinary Medicines Directorate',
+                                  'Charity Commission ' : 'Charity Commission',
+                                  'ESTYN ' : 'ESTYN',
+                                  "Department for Business, Energy and Industrial Strategy (excl. agencies')" : "Department for Business, Energy and Industrial Strategy (excl. agencies)",
+                                  'Department of Health and Social Care (excl. agencies)10 ' : 'Department of Health and Social Care (excl. agencies)',
+                                  'Department of Health and Social Care (excl. agencies)10' : 'Department of Health and Social Care (excl. agencies)',
+                                  'Department of Health and Social Care (excl. agencies)9' : 'Department of Health and Social Care (excl. agencies)',
+                                  'Department of Health and Social Care (excl. agencies)9 ' : 'Department of Health and Social Care (excl. agencies)',
+                                  'Department of Health and Social Care (excl. agencies)11 ' : 'Department of Health and Social Care (excl. agencies)',
+                                  'Department of Health and Social Care (excl. agencies)11' : 'Department of Health and Social Care (excl. agencies)',
+                                  'Department of Health and Social Care (excl. agencies)12 ' : 'Department of Health and Social Care (excl. agencies)',
+                                  'Department of Health and Social Care (excl. agencies)13 ' : 'Department of Health and Social Care (excl. agencies)',
+                                  'Department of Health and Social Care (excl. agencies)8 ' : 'Department of Health and Social Care (excl. agencies)',
+                                  'Public Health England9 10' : 'Public Health England',
+                                  'Public Health England10 11' : 'Public Health England',
+                                  'Public Health England11 12' : 'Public Health England',
+                                  'Public Health England13 14' : 'Public Health England',
+                                  'Public Health England14 15' : 'Public Health England',
+                                  'National Infrastructure Commission12' : 'National Infrastructure Commission',
+                                  'National Infrastructure Commission14' : 'National Infrastructure Commission',
+                                  'National Infrastructure Commission16' : 'National Infrastructure Commission',
+                                  'National Infrastructure Commission13' : 'National Infrastructure Commission',
+                                  'National Infrastructure Commission11' : 'National Infrastructure Commission',
+                                  'National Infrastructure Commission17' : 'National Infrastructure Commission',
+                                  'Ministry of Justice (excl. agencies) ' : 'Ministry of Justice (excl. agencies)',
+                                  "Her Majesty's Prison and Probation Service15" : "Her Majesty's Prison and Probation Service",
+                                  "Her Majesty's Prison and Probation Service16" : "Her Majesty's Prison and Probation Service",
+                                  "Her Majesty's Prison and Probation Service17" : "Her Majesty's Prison and Probation Service",
+                                  "Her Majesty's Prison and Probation Service12" : "Her Majesty's Prison and Probation Service",
+                                  "Her Majesty's Prison and Probation Service19" : "Her Majesty's Prison and Probation Service",
+                                  "Her Majesty's Prison and Probation Service20" : "Her Majesty's Prison and Probation Service",
+                                  'Office of Rail and Road ' : 'Office of Rail and Road',
+                                  'Registers of Scotland ' : 'Registers of Scotland',
+                                  'UK Space Agency2' : 'UK Space Agency',
+                                  'Scottish Fiscal Commission16' : 'Scottish Fiscal Commission',
+                                  'Scottish Fiscal Commission17' : 'Scottish Fiscal Commission',
+                                  'Scottish Fiscal Commission18' : 'Scottish Fiscal Commission',
+                                  'Scottish Fiscal Commission13' : 'Scottish Fiscal Commission',
+                                  'Scottish Fiscal Commission20' : 'Scottish Fiscal Commission',
+                                  'Scottish Fiscal Commission21' : 'Scottish Fiscal Commission',
+                                  'Scottish Prison Service ' : 'Scottish Prison Service',
+                                  'Education and Skills Funding Agency6' : 'Education and Skills Funding Agency'
+                                 }})
+
+
 # +
 regional_tables.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in regional_tables.columns:
     print('marker found in columns')
-    regional_tables['DATAMARKER'].replace('..', 'between-one-and-five', inplace=True)
+    regional_tables['DATAMARKER'].replace('..', 'Between one and five', inplace=True)
     regional_tables['DATAMARKER'].replace('-', 'not-applicable', inplace=True)
     regional_tables = regional_tables.rename(columns={'DATAMARKER':'Marker'})
     regional_tables['Marker'] = regional_tables['Marker'].fillna(value='not-applicable')
@@ -300,13 +376,13 @@ regional_tables.loc[m13,'NUTS Region name'] = regional_tables.loc[m13,'NUTS Regi
 regional_tables = regional_tables.replace({'Sex' : {'Male' : 'M','Female' : 'F','Total' : 'T', ' ' : 'U' }})
 regional_tables = regional_tables.replace({'Sex' : {'Male ' : 'M','Female ' : 'F','Total ' : 'T', '' : 'U' }})
 regional_tables['Sex'] = regional_tables['Sex'].fillna(value='U')
-regional_tables['Department'] = regional_tables['Department'].fillna(value='all')
+regional_tables['Department'] = regional_tables['Department'].fillna(value='all').map(lambda x: pathify(x))
 regional_tables['Status of Employment'] = regional_tables['Status of Employment'].fillna(value='all').map(lambda x: pathify(x))
 regional_tables = regional_tables.replace({'Type of Employment' : {'Full Time' : 'Full Time Employees','Part Time' : 'Part Time Employees','Total' : 'All Employees' }})
-regional_tables['Type of Employment'] = regional_tables['Type of Employment'].fillna(value='All Employees').map(lambda x: pathify(x))
 regional_tables = regional_tables.replace({'Type of Employment' : 
-                               {'full-time' : 'full-time-employees',
-                                'part-time' : 'part-time-employees',}})
+                               {'full-time' : 'Full-time employees',
+                                'part-time' : 'Part-time employees',}})
+regional_tables['Type of Employment'] = regional_tables['Type of Employment'].fillna(value='All employees').map(lambda x: pathify(x))
 regional_tables['Region name'] = regional_tables['Region name'].map(lambda x: pathify(x))
 regional_tables['NUTS Region name'] = regional_tables['NUTS Region name'].map(lambda x: pathify(x))
 regional_tables['Responsibility Level'] = regional_tables['Responsibility Level'].fillna(value='all').map(lambda x: pathify(x))
@@ -328,4 +404,32 @@ regional_tables = regional_tables [['Period', 'Disability Status', 'Responsibili
                         'Sex', 'Type of Employment', 'Status of Employment','Ethnicity',
                         'Region name', 'NUTS Region name', 'Value', 'Marker', 'Measure Type']] # 'ONS area code',
 regional_tables
+
+
+# +
+out = Path('output')
+out.mkdir(exist_ok=True, parents=True)
+
+def createCodeListforColumn(dta,colNme):
+    try:
+        titles =('Label','Notation','Parent Notation','Sort Priority')
+        cdeLst = dta.unique()
+        cdeLst = pd.DataFrame(cdeLst)
+        #### Create a version of the column name with lowercase and spaces replaced with underscore(_)
+        colNmeP = colNme.replace(' ','-').replace('_','-').lower()
+        #### Create the standard codelist and output
+        cdeLst.columns = [titles[0]]
+        cdeLst[titles[1]] = cdeLst[titles[0]].apply(pathify)
+        cdeLst[titles[1]] = cdeLst[titles[1]].str.replace('/', '-', regex=True)
+        cdeLst[titles[2]] = ''
+        cdeLst[titles[3]] = cdeLst.reset_index().index + 1
+        #### Output the file
+        cdeLst.to_csv(out / f'{colNmeP}.csv', index = False)
+        return cdeLst
+    except Exception as e:
+        return "createCodeListforColumn: " + str(e)
+
+createCodeListforColumn(regional_tables['Type of Employment'],'Type of Employment')
+# -
+
 

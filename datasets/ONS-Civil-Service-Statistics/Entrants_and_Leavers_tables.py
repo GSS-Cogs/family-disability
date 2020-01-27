@@ -68,7 +68,7 @@ entry_leave_tables = pd.concat([table_41, entry_leave_tables], sort=True)
 entry_leave_tables.rename(columns={'OBS': 'Value'}, inplace=True)
 if 'DATAMARKER' in entry_leave_tables.columns:
     print('marker found in columns')
-    entry_leave_tables['DATAMARKER'].replace('..', 'between-one-and-five', inplace=True)
+    entry_leave_tables['DATAMARKER'].replace('..', 'Between one and five', inplace=True)
     entry_leave_tables['DATAMARKER'].replace('-', 'not-applicable', inplace=True)
     entry_leave_tables = entry_leave_tables.rename(columns={'DATAMARKER':'Marker'})
     entry_leave_tables['Marker'] = entry_leave_tables['Marker'].fillna(value='not-applicable')
