@@ -136,7 +136,7 @@ next_table['Entrants or Leavers'] = next_table['Entrants or Leavers'].fillna(val
 next_table['Nationality'] = next_table['Nationality'].fillna(value='all').map(lambda x: pathify(x))
 next_table['Profession of Post'] = next_table['Profession of Post'].fillna(value='all').map(lambda x: pathify(x))
 next_table['Salary Band'] = next_table['Salary Band'].fillna(value='unknown').map(lambda x: pathify(x))
-next_table['Status of Employment'] = next_table['Status of Employment'].fillna(value='All').map(lambda x: pathify(x))
+next_table['Status of Employment'] = next_table['Status of Employment'].fillna(value='All')#.map(lambda x: pathify(x))
 next_table['Region name'] = next_table['Region name'].fillna(value='All regions').map(lambda x: pathify(x))
 next_table['Department'] = next_table['Department'].map(lambda x: pathify(x))
 next_table['Responsibility Level'] = next_table['Responsibility Level'].fillna(value='all').map(lambda x: pathify(x))

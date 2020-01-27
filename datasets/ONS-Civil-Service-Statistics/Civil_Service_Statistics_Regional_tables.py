@@ -377,12 +377,12 @@ regional_tables = regional_tables.replace({'Sex' : {'Male' : 'M','Female' : 'F',
 regional_tables = regional_tables.replace({'Sex' : {'Male ' : 'M','Female ' : 'F','Total ' : 'T', '' : 'U' }})
 regional_tables['Sex'] = regional_tables['Sex'].fillna(value='U')
 regional_tables['Department'] = regional_tables['Department'].fillna(value='all').map(lambda x: pathify(x))
-regional_tables['Status of Employment'] = regional_tables['Status of Employment'].fillna(value='All').map(lambda x: pathify(x))
+regional_tables['Status of Employment'] = regional_tables['Status of Employment'].fillna(value='All')#.map(lambda x: pathify(x))
 regional_tables = regional_tables.replace({'Type of Employment' : {'Full Time' : 'Full Time Employees','Part Time' : 'Part Time Employees','Total' : 'All Employees' }})
 regional_tables = regional_tables.replace({'Type of Employment' : 
                                {'full-time' : 'Full-time employees',
                                 'part-time' : 'Part-time employees',}})
-regional_tables['Type of Employment'] = regional_tables['Type of Employment'].fillna(value='All employees').map(lambda x: pathify(x))
+regional_tables['Type of Employment'] = regional_tables['Type of Employment'].fillna(value='All employees')#.map(lambda x: pathify(x))
 regional_tables['Region name'] = regional_tables['Region name'].map(lambda x: pathify(x))
 regional_tables['NUTS Region name'] = regional_tables['NUTS Region name'].map(lambda x: pathify(x))
 regional_tables['Responsibility Level'] = regional_tables['Responsibility Level'].fillna(value='all').map(lambda x: pathify(x))
