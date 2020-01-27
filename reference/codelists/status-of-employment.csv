@@ -1,5 +1,5 @@
 Label,Notation,Parent Notation,Sort Priority
-Permanent,permanent,,1
-Temporary,temporary,,2
-Total,total,,3
-All,all,,5
+permanent,permanent,,1
+temporary,temporary,,2
+total,total,,3
+all,all,,4
