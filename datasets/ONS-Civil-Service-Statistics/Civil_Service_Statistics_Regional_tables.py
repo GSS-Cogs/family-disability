@@ -377,7 +377,7 @@ regional_tables = regional_tables.replace({'Sex' : {'Male' : 'M','Female' : 'F',
 regional_tables = regional_tables.replace({'Sex' : {'Male ' : 'M','Female ' : 'F','Total ' : 'T', '' : 'U' }})
 regional_tables['Sex'] = regional_tables['Sex'].fillna(value='U')
 regional_tables['Department'] = regional_tables['Department'].fillna(value='all').map(lambda x: pathify(x))
-regional_tables['Status of Employment'] = regional_tables['Status of Employment'].fillna(value='all').map(lambda x: pathify(x))
+regional_tables['Status of Employment'] = regional_tables['Status of Employment'].fillna(value='All').map(lambda x: pathify(x))
 regional_tables = regional_tables.replace({'Type of Employment' : {'Full Time' : 'Full Time Employees','Part Time' : 'Part Time Employees','Total' : 'All Employees' }})
 regional_tables = regional_tables.replace({'Type of Employment' : 
                                {'full-time' : 'Full-time employees',
