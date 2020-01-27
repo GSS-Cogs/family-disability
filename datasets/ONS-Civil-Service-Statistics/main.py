@@ -78,7 +78,7 @@ next_table = next_table.replace({'Department' :
                                   'Department for Exiting the European Union10' : 'Department for Exiting the European Union',
                                   #'Education and Skills Funding Agency6' : 'Education and Skills Funding Agency',
                                   'Education and Skills Funding Agency7' : 'Education and Skills Funding Agency',
-                                  #'Education and Skills Funding Agency8' : 'Education and Skills Funding Agency',
+                                  'Education and Skills Funding Agency8' : 'Education and Skills Funding Agency',
                                   'Education and Skills Funding Agency9' : 'Education and Skills Funding Agency',
                                   'Education and Skills Funding Agency10' : 'Education and Skills Funding Agency',
                                   'Education and Skills Funding Agency11' : 'Education and Skills Funding Agency',
@@ -136,11 +136,11 @@ next_table['Entrants or Leavers'] = next_table['Entrants or Leavers'].fillna(val
 next_table['Nationality'] = next_table['Nationality'].fillna(value='all').map(lambda x: pathify(x))
 next_table['Profession of Post'] = next_table['Profession of Post'].fillna(value='all').map(lambda x: pathify(x))
 next_table['Salary Band'] = next_table['Salary Band'].fillna(value='unknown').map(lambda x: pathify(x))
-next_table['Status of Employment'] = next_table['Status of Employment'].fillna(value='All')#.map(lambda x: pathify(x))
+next_table['Status of Employment'] = next_table['Status of Employment'].fillna(value='All').map(lambda x: pathify(x))
 next_table['Region name'] = next_table['Region name'].fillna(value='All regions').map(lambda x: pathify(x))
 next_table['Department'] = next_table['Department'].map(lambda x: pathify(x))
 next_table['Responsibility Level'] = next_table['Responsibility Level'].fillna(value='all').map(lambda x: pathify(x))
-next_table['Type of Employment'] = next_table['Type of Employment'].fillna(value='All employees')#.map(lambda x: pathify(x))
+next_table['Type of Employment'] = next_table['Type of Employment'].fillna(value='All employees').map(lambda x: pathify(x))
 next_table = next_table.replace({'Sex' : {'Male' : 'M','Female' : 'F','Total' : 'T','' : 'U' }})
 next_table = next_table.replace({'Sex' : {'Male ' : 'M','Female' : 'F','Total' : 'T' }})
 next_table['Sex'] = next_table['Sex'].fillna(value='U')
