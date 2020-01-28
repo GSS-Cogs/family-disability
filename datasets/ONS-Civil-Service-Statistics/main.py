@@ -154,6 +154,9 @@ destinationFolder.mkdir(exist_ok=True, parents=True)
 # +
 import numpy as np
 from gssutils.metadata import THEME
+scraper.set_base_uri('http://gss-data.org.uk')
+scraper.dataset.family = 'disability'
+scraper.dataset.theme = THEME['health-social-care']
 
 tblSet = [next_table,regional_tables]
 i = 1
@@ -161,70 +164,12 @@ for t in tblSet:
     fleNme = 'observations-' + str(i) + '.csv'
     t.drop_duplicates().to_csv(destinationFolder / (fleNme), index = False)
     scraper.set_dataset_id(f'gss_data/disability/ONS-Civil-Service-Statistics/observations-{i}/')
-    scraper.dataset.family = 'disability'
     
-    with open(destinationFolder / ('pre' + fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
+    with open(destinationFolder / (fleNme + '-metadata.trig'), 'wb') as metadata:metadata.write(scraper.generate_trig())
 
     csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
     csvw.create(destinationFolder / fleNme, destinationFolder / (fleNme + '-schema.json'))
     i = i + 1
 # -
 
-headSet = [
-    'civil-service-statistics',
-    'Civil_Service_Statistics_Regional',
-]
-headMain = 'Civil Service Statistics (unvalidated)'
-#
-# # +
-#### As each trig file is created multiple @prefix ns lines are added. This code gets rid of them
-import os
-i = 1 #### Main looping index
-k = 1 #### Secondary index to skip over lines with ns2
-lineWanted = False
-#### Loop around each element in the main heading list
-for t in headSet:
-    newDat = ''
-    curNme = f'out/preobservations-{i}.csv-metadata.trig'    #### Current file name
-    newNme = f'out/observations-{i}.csv-metadata.trig'       #### New file name
-    #### Open the file and loop around each line adding or deleting as you go
-    with open(curNme, "r") as input:
-        #### Also open the new file to add to as you go
-        with open(newNme, "w") as output: 
-            #### Loop around the input file
-            for line in input:
-                #### Change the lines to the value in the variabl headMain
-                if headMain in line.strip("\n"):
-                    newLine = line
-                    newLine = line.replace(headMain, headMain + ' - ' + t)
-                    output.write(newLine)
-                else: 
-                    lineWanted = True
-                    #### Ignore lines with ns2 but loop for other ns# lines, deleteing any extra ones that do not match the value of k
-                    if '@prefix ns2:' not in line.strip("\n"):
-                        if '@prefix ns' in line.strip("\n"):
-                            if f'@prefix ns{k}:' not in line.strip("\n"):
-                                #### You do not want this line so ignore
-                                lineWanted = False
-                    #### If the line is needed check if it is a line that needs changing then write to new file 
-                    if lineWanted: 
-                        if 'a pmd:Dataset' in line.strip("\n"):
-                            line = line.replace(f'observations-{i}/', f'observations-{i}')
-                    
-                        if 'pmd:graph' in line.strip("\n"):
-                            line = line.replace(f'observations-{i}/', f'observations-{i}')
-                        #### Output the line to the new file                    
-                        output.write(line)
-                        
-    #### Close both files
-    input.close
-    output.close
-    #### Old trig file no longer needed so remove/delete
-    os.remove(curNme)
 
-    #### Increment i, ns2 is used for something else so you have got to jump k up by 1 at this point
-    i = i + 1
-    if i == 2:
-        k = k + 2
-    else:
-        k = k + 1
