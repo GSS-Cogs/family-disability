@@ -51,7 +51,7 @@ Disability Definition Used,,Dimension,http://gss-data.org.uk/def/concept-scheme/
 Status,The number of Guardianship cases which had a Date Case Closed within the reporting period which had not ended at the end of the reporting period ie had no Date Case Closed or  cases which had a Date Case Commenced date within within the reporting period,Dimension,http://gss-data.org.uk/def/concept-scheme/status
 Guardianship,,Dimension,http://gss-data.org.uk/def/concept-scheme/guardianship
 Section,,Dimension,http://gss-data.org.uk/def/concept-scheme/section
-Region Name,the description of the geographic region in which the CASSR is located. These are the nine former Government offices for the regions (GOR),Dimension,http://gss-data.org.uk/def/concept-scheme/region-name
+Region name,the description of the geographic region in which the CASSR is located. These are the nine former Government offices for the regions (GOR),Dimension,http://gss-data.org.uk/def/concept-scheme/region-name
 Local authority code,,Dimension,http://gss-data.org.uk/def/concept-scheme/local-authority-code
 Local authority name,,Dimension,http://gss-data.org.uk/def/concept-scheme/local-authority-name
 Duration of closed cases,Duration of cases closed within the reporting period calculated from the difference between the Date Case Commenced and the Date Case Closed,Dimension,http://gss-data.org.uk/def/concept-scheme/duration-of-closed-cases
