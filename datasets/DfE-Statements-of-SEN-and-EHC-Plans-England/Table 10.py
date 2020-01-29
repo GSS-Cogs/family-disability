@@ -60,3 +60,7 @@ def user_perc(x):
     
 new_table['Statements or EHC Plan Type'] = new_table.apply(lambda row: user_perc(row['Statements or EHC Plan Type']), axis = 1)
 new_table['DfE Age Groups'] = 'all ages'
+new_table['Statements of SEN or EHC Plan Provider'] = 'all'
+# -
+
+

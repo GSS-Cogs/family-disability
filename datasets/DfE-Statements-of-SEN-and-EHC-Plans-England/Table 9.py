@@ -51,3 +51,4 @@ new_table['Statements or EHC Plan Type'] = new_table['Statements or EHC Plan Typ
 new_table['Statements or EHC Plan Type'] = new_table['Statements or EHC Plan Type'].str.rstrip('3:')
 new_table['Statements or EHC Plan Type'] = 'Number of new EHC plans issued ' + new_table['Statements or EHC Plan Type']
 new_table['DfE Age Groups'] = 'all ages'
+new_table['Statements of SEN or EHC Plan Provider'] = 'all'

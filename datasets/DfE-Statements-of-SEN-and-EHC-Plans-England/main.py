@@ -1,0 +1,132 @@
+# ---
+# jupyter:
+#   jupytext:
+#     formats: ipynb,py:light
+#     text_representation:
+#       extension: .py
+#       format_name: light
+#       format_version: '1.5'
+#       jupytext_version: 1.3.3
+#   kernelspec:
+#     display_name: Python 3
+#     language: python
+#     name: python3
+# ---
+
+from gssutils import *
+scraper = Scraper('https://www.gov.uk/government/collections/statistics-special-educational-needs-sen')
+scraper.select_dataset(title=lambda x: x.startswith('Statements of SEN and EHC Plans'), latest=True)
+
+next_table = pd.DataFrame()
+
+# +
+# %%capture
+
+# %run "Table 1.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 2.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 3.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 4.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 5.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 6.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 7.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 8.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 9.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 10.py"
+next_table = pd.concat([next_table, new_table])
+# %run "Table 11.py"
+next_table = pd.concat([next_table, new_table])
+# -
+
+next_table['DfE Age Groups'] = next_table['DfE Age Groups'].map(
+    lambda x: {
+        'Under 5 years of age' : 'under-5', 
+        'all ages' : 'all',
+        'Aged 5-10': 'age-5-to-10' ,
+        'Aged 11-15': 'age-11-to-15',
+        'Aged 16-19' : 'age-16-to-19',
+        'Aged 20-25' : 'age-20-to-25'}.get(x, x))
+
+
+next_table['Statements or EHC Plan Type'].unique()
+
+next_table
+
+dfeS = 'DfE Sex Groups'
+dfeA = 'DfE Age Groups'
+next_table.rename(columns={'Geography': 'ONS Geography',
+                             'Age' : dfeA,
+                             'Sex' : dfeS,
+                             'Special support type' : 'Special Education Support Type',
+                             'Special need type' : 'Special Education Need Type',
+                             'Education provider' : 'Special Education Provider'
+                              }, inplace=True)
+
+next_table = next_table[next_table['ONS Geography'] != '.']
+
+new_table['Period'] = pd.to_numeric(new_table['Period'], errors='coerce').fillna(0)
+new_table['Period'] = new_table['Period'].astype('Int64')
+next_table['Period'] = 'year/'+ next_table['Period'].astype(str)
+
+next_table[dfeA] = next_table[dfeA].str.replace('\.0', '')
+next_table[dfeA] = ('year/') + next_table[dfeA]
+next_table[dfeA] = next_table[dfeA].map(
+    lambda x: {
+        'year/All' : 'all', 'year/2 and under' : 'under-2', 
+       'year/12 and above': '12-plus', 'year/Total All Ages' :'all', 'year/4 and under' :'under-4',
+       'year/19+' : '19-plus', 'year/all' : 'all'
+        }.get(x, x))
+#### Replace all the forward slashes with a hyphen
+next_table[dfeA] = next_table[dfeA].str.replace('/', '-', regex=True)
+
+next_table[dfeS] = next_table[dfeS].map(
+    lambda x: { 'All' : 'T', 'Boys' :'M', 'Girls' :'F', 'Total' : 'T', 'Total(5)' :'T'        
+        }.get(x, x))
+
+next_table['Special Education Provider'] = next_table['Special Education Provider'].apply(pathify)
+
+next_table['Special Education Need Type'] = next_table['Special Education Need Type'].str.rstrip('()24569')
+next_table['Special Education Need Type'] = next_table['Special Education Need Type'].apply(pathify)
+next_table['Special Education Need Type'] = next_table['Special Education Need Type'].map(
+    lambda x: {  'other-difficulty/disability' : 'other-difficulty-or-disability',
+               'speech-language-and-communications-needs' : 'speech-language-and-communications-need'
+        }.get(x, x))
+
+next_table['Special Education Support Type'] = next_table['Special Education Support Type'].str.rstrip('()57')
+next_table['Special Education Support Type'] = next_table['Special Education Support Type'].str.replace('\.0', '')
+next_table['Special Education Support Type'] = next_table['Special Education Support Type'].apply(pathify)
+
+next_table['Special Education Support Type'] = next_table['Special Education Support Type'].map(
+    lambda x: {  'gypsy-/-roma' : 'gypsy-or-roma', 
+                 'other-difficulty/disability' : 'other-difficulty-or-disability',
+                'sen-support-by-ethnic-group-gypsy-/-roma' : 'sen-support-by-ethnic-group-gypsy-or-roma',
+                'statements-or-ehc-plans-support-by-ethnic-group-gypsy-/-roma' : 'statements-or-ehc-plans-support-by-ethnic-group-gypsy-or-roma',
+               'pupils-on-sen-support-secondary-other-difficulty/disability' : 'pupils-on-sen-support-secondary-other-difficulty-or-disability',
+               'pupils-with-statements-or-ehc-plans-secondary-other-difficulty/disability' : 'pupils-with-statements-or-ehc-plans-secondary-other-difficulty-or-disability',
+                'pupils-on-sen-supporteligible-and-claiming-free-school-meals' : 'pupils-on-sen-support-eligible-and-claiming-free-school-meals',       
+        }.get(x, x))
+
+#### Change of columns to match definitions
+next_table = next_table.rename(columns={'Special Education Support Type':'DfE Special Education Support Type'})
+next_table = next_table.rename(columns={'Special Education Provider':'DfE Special Education Provider'})
+next_table = next_table.rename(columns={'Special Education Need Type':'DfE Special Education Need Type'})
+
+from pathlib import Path
+out = Path('out')
+out.mkdir(exist_ok=True)
+next_table.drop_duplicates().to_csv(out / 'observations.csv', index = False)
+
+scraper.dataset.family = 'disability'
+with open(out / 'observations.csv-metadata.trig', 'wb') as metadata:
+    metadata.write(scraper.generate_trig())
+
+csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
+csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')

@@ -24,25 +24,26 @@ scraper
 
 tabs = { tab.name: tab for tab in scraper.distributions[2].as_databaker() }
 
-tab = tabs['Table 11']
+tab = tabs['Table 2']
 
 # +
-cell = tab.filter(contains_string('Table 11'))
+cell = tab.filter(contains_string('Table 2'))
 cell.assert_one()
-Year = tab.excel_ref('D6') | tab.excel_ref('H6')
+Year = tab.excel_ref('D6').expand(RIGHT).is_not_blank().is_not_whitespace() 
 plantype = Year.shift(0,1).expand(RIGHT).is_not_blank().is_not_whitespace()
-age = cell.shift(1,0).fill(DOWN).is_not_blank().is_not_whitespace()
-observations = plantype.fill(DOWN).is_not_blank().is_not_whitespace() - tab.excel_ref('H26')
-week = tab.filter(contains_string('38 to 51 weeks per year')) | tab.filter(contains_string('52 weeks per year'))
+age = tab.excel_ref('C12:C17')
+observations = plantype.fill(DOWN).is_not_blank().is_not_whitespace()
+description = tab.excel_ref('B11').expand(DOWN).is_not_blank().is_not_whitespace() 
+provider = tab.excel_ref('C20').expand(DOWN).is_not_blank().is_not_whitespace() | tab.excel_ref('B9')
 Dimensions = [
             HDimConst('Geography', 'all'),
             HDim(Year,'Year', CLOSEST,LEFT),
-            HDim(week,'week', CLOSEST,ABOVE),
-            HDim(age,'DfE Age Groups',DIRECTLY,LEFT),
+            HDim(age,'DfE Age Groups',CLOSEST,ABOVE),
             HDim(plantype,'Statements or EHC Plan Type',DIRECTLY, ABOVE),
             HDimConst('Unit','children'),  
             HDimConst('Measure Type','Count'),
-            HDimConst('Statements of SEN or EHC Plan Description', 'Number of children and young people with statements or EHC plans placed in residential special schools or colleges by age')
+            HDim(description,'Statements of SEN or EHC Plan Description',CLOSEST,ABOVE),
+            HDim(provider, 'Statements of SEN or EHC Plan Provider',CLOSEST,ABOVE)
     
 ]  
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
@@ -56,5 +57,6 @@ new_table['DfE Age Groups'] = new_table['DfE Age Groups'].map(
 new_table['Statements or EHC Plan Type'] = new_table['Statements or EHC Plan Type'].map(
     lambda x: {
         'Total' : 'all plans'}.get(x, x))
-new_table['Statements or EHC Plan Type'] = new_table['Statements or EHC Plan Type'] + '-' + new_table['week']
-new_table['Statements of SEN or EHC Plan Provider'] = 'all'
+new_table['Statements of SEN or EHC Plan Provider'] = new_table['Statements of SEN or EHC Plan Provider'].map(
+    lambda x: {
+        'Placement of children and young people with new statements or EHC plans' : 'all'}.get(x, x))

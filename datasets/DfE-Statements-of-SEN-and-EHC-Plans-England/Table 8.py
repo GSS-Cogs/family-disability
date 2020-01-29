@@ -48,3 +48,4 @@ import numpy as np
 new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'NHS Marker'}, inplace=True)
 new_table['Year'] = 'Year/' + new_table['Year'].astype(str).str[-4:]
 new_table['DfE Age Groups'] = 'all ages'
+new_table['Statements of SEN or EHC Plan Provider'] = 'all'

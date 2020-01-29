@@ -26,34 +26,45 @@ tabs = { tab.name: tab for tab in scraper.distributions[2].as_databaker() }
 
 tab = tabs['Table 5a']
 
-# +
 cell = tab.filter('LA code')
 cell.assert_one()
 geo = cell.fill(DOWN).is_not_blank().is_not_whitespace()
 Year = tab.filter(contains_string('Year'))
-plantype = cell.fill(RIGHT).is_not_blank().is_not_whitespace() |\
-            cell.shift(0,1).fill(RIGHT).is_not_blank().is_not_whitespace()
+provider = cell.shift(0,1).fill(RIGHT).is_not_blank().is_not_whitespace() |\
+            cell.fill(RIGHT).is_not_blank().is_not_whitespace()
 observations = geo.shift(2,0).fill(RIGHT).is_not_blank().is_not_whitespace()
+description = cell.shift(1,0).fill(RIGHT).is_not_blank().is_not_whitespace()
 Dimensions = [
             HDim(geo,'Geography',DIRECTLY,LEFT),
             HDim(Year,'Year', CLOSEST,LEFT),
-            HDim(plantype,'Statements or EHC Plan Type',DIRECTLY, ABOVE),
+            HDim(provider,'Statements of SEN or EHC Plan Provider',DIRECTLY, ABOVE),
             HDimConst('Unit','children'),  
             HDimConst('Measure Type','Count'),
-            HDimConst('Statements of SEN or EHC Plan Description', 'Placement of children and young people for whom EHC plans by local authority receiving provisions')
+            HDim(description,'Statements of SEN or EHC Plan Description',CLOSEST,LEFT)
 ]  
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
 import numpy as np
 new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'NHS Marker'}, inplace=True)
 new_table['Year'] = 'Year/' + new_table['Year'].astype(str).str[-4:]
+new_table['DfE Age Groups'] = 'all ages'
+new_table['Statements or EHC Plan Type'] = 'EHC Plan'
+
+new_table['Statements of SEN or EHC Plan Provider'] = new_table['Statements of SEN or EHC Plan Provider'].map(
+    lambda x: {
+        'Number of children and young people with EHC plans who are educated elsewhere' : 'all', 
+        'Number of children and young people with EHC plans who are not in education, employment or training' : 'all',
+        'Other2': 'all' ,
+        'Number of children and young people for whom the authority maintains a statement of SEN or EHC plan': 'all'
+        }.get(x, x)) 
+
+
+# +
 def user_perc(x,y):
     
-    if ((str(x) ==  'Apprenticeships ') | (str(x) ==  'Traineeships') | (str(x) ==  'Supported internships')) : 
-        
-        return 'Placement of children and young people with EHC plans by local authority undertaking'
+    if str(x) ==  'Number of children and young people for whom the authority maintains a statement of SEN or EHC plan' :
+        return 'all plans'
     else:
-        return y
+        return 'EHC Plans'
     
-new_table['Statements of SEN or EHC Plan Description'] = new_table.apply(lambda row: user_perc(row['Statements or EHC Plan Type'],row['Statements of SEN or EHC Plan Description']), axis = 1)
-new_table['DfE Age Groups'] = 'all ages'
+new_table['Statements or EHC Plan Type'] = new_table.apply(lambda row: user_perc(row['Statements of SEN or EHC Plan Description'],row['Statements or EHC Plan Type']), axis = 1)

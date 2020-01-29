@@ -51,4 +51,5 @@ new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'NHS Marker'}, inplace=Tr
 new_table['Year'] = 'Year/' + new_table['Year'].astype(str).str[-4:]
 new_table['DfE Age Groups'] = new_table['DfE Age Groups'].map(
     lambda x: {
-        'Total' : 'all ages '}.get(x, x))
+        'Total' : 'all ages'}.get(x, x))
+new_table['Statements of SEN or EHC Plan Provider'] = 'all'

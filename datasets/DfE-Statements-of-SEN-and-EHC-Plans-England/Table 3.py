@@ -44,7 +44,4 @@ new_table['Year'] = 'Year/' + new_table['Year'].map(str)
 new_table['Statements or EHC Plan Type'] = new_table['Statements or EHC Plan Type'].map(
     lambda x: {'EHC plans2' : 'EHC plans-other'}.get(x, x))
 new_table['DfE Age Groups'] = 'all ages'
-
-new_table
-
-
+new_table['Statements of SEN or EHC Plan Provider'] = 'all'
