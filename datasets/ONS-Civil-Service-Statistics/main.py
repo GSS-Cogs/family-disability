@@ -126,7 +126,6 @@ next_table = next_table.replace({'Department' :
                                  }})
 
 next_table['Disability Status'] = next_table['Disability Status'].fillna(value='unknown').map(lambda x: pathify(x))
-next_table['Marker'] = next_table['Marker'].map(lambda x: pathify(x))
 next_table['ONS Age Range'] = next_table['ONS Age Range'].fillna(value='all').map(lambda x: pathify(x))
 next_table['Entrants or Leavers'] = next_table['Entrants or Leavers'].fillna(value='all').map(lambda x: pathify(x))
 next_table['Nationality'] = next_table['Nationality'].fillna(value='all').map(lambda x: pathify(x))
@@ -141,7 +140,9 @@ next_table = next_table.replace({'Sex' : {'Male' : 'M','Female' : 'F','Total' : 
 next_table = next_table.replace({'Sex' : {'Male ' : 'M','Female' : 'F','Total' : 'T' }})
 next_table['Sex'] = next_table['Sex'].fillna(value='U')
 next_table = next_table.replace({'Sex' : {'not-reported' : 'U' }})
-#next_table = next_table.rename(columns={'Marker':'Markers'})
+next_table = next_table.replace({'Marker' : {'not-applicable' : 'Not applicable' }})
+next_table = next_table.replace({'Marker' : {'between-one-and-five' : 'Between one and five' }})
+next_table['Marker'] = next_table['Marker'].map(lambda x: pathify(x))
 next_table
 
 destinationFolder = Path('out')

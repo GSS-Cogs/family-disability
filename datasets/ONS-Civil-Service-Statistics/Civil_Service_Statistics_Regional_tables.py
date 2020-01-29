@@ -404,9 +404,10 @@ regional_tables['ONS Age Range'] = regional_tables['ONS Age Range'].fillna(value
 regional_tables['Period'] = 'year/' + regional_tables['Period']
 #regional_tables['NUTS Area Code'] = regional_tables['NUTS Area Code'].map(lambda x: pathify(x))
 regional_tables['Marker'] = regional_tables['Marker'].map(lambda x: pathify(x))
+#regional_tables = regional_tables.replace({'Marker' : {'not-applicable' : 'Not applicable' }})
+#regional_tables = regional_tables.replace({'Marker' : {'between-one-and-five' : 'Between one and five' }})
 #Drop nuts area code for now 
 regional_tables = regional_tables [['Period', 'Disability Status', 'Responsibility Level', 'Department', 'ONS Age Range', 
                         'Sex', 'Type of Employment', 'Status of Employment','Ethnicity',
                         'Region name', 'NUTS Region name', 'Value', 'Marker', 'Measure Type']] # 'ONS area code',
 regional_tables
-
