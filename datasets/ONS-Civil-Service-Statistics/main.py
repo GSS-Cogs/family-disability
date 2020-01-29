@@ -125,10 +125,6 @@ next_table = next_table.replace({'Department' :
                                   'Education and Skills Funding Agency6' : 'Education and Skills Funding Agency'
                                  }})
 
-
-
-# +
-
 next_table['Disability Status'] = next_table['Disability Status'].fillna(value='unknown').map(lambda x: pathify(x))
 next_table['Marker'] = next_table['Marker'].map(lambda x: pathify(x))
 next_table['ONS Age Range'] = next_table['ONS Age Range'].fillna(value='all').map(lambda x: pathify(x))
@@ -145,8 +141,8 @@ next_table = next_table.replace({'Sex' : {'Male' : 'M','Female' : 'F','Total' : 
 next_table = next_table.replace({'Sex' : {'Male ' : 'M','Female' : 'F','Total' : 'T' }})
 next_table['Sex'] = next_table['Sex'].fillna(value='U')
 next_table = next_table.replace({'Sex' : {'not-reported' : 'U' }})
+#next_table = next_table.rename(columns={'Marker':'Markers'})
 next_table
-# -
 
 destinationFolder = Path('out')
 destinationFolder.mkdir(exist_ok=True, parents=True) 
