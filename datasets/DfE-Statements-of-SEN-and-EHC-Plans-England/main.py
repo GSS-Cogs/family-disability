@@ -55,69 +55,49 @@ next_table['DfE Age Groups'] = next_table['DfE Age Groups'].map(
         'Aged 16-19' : 'age-16-to-19',
         'Aged 20-25' : 'age-20-to-25'}.get(x, x))
 
+next_table['DfE Statements or EHC Plan Type'] = next_table['Statements or EHC Plan Type'].apply(pathify)
 
-next_table['Statements or EHC Plan Type'].unique()
+next_table['DfE Statements or EHC Plan Type'] = next_table['DfE Statements or EHC Plan Type'].str.rstrip('()1324569')
 
-next_table
-
-dfeS = 'DfE Sex Groups'
-dfeA = 'DfE Age Groups'
-next_table.rename(columns={'Geography': 'ONS Geography',
-                             'Age' : dfeA,
-                             'Sex' : dfeS,
-                             'Special support type' : 'Special Education Support Type',
-                             'Special need type' : 'Special Education Need Type',
-                             'Education provider' : 'Special Education Provider'
-                              }, inplace=True)
-
-next_table = next_table[next_table['ONS Geography'] != '.']
-
-new_table['Period'] = pd.to_numeric(new_table['Period'], errors='coerce').fillna(0)
-new_table['Period'] = new_table['Period'].astype('Int64')
-next_table['Period'] = 'year/'+ next_table['Period'].astype(str)
-
-next_table[dfeA] = next_table[dfeA].str.replace('\.0', '')
-next_table[dfeA] = ('year/') + next_table[dfeA]
-next_table[dfeA] = next_table[dfeA].map(
+next_table['DfE Statements or EHC Plan Type'] = next_table['DfE Statements or EHC Plan Type'].map(
     lambda x: {
-        'year/All' : 'all', 'year/2 and under' : 'under-2', 
-       'year/12 and above': '12-plus', 'year/Total All Ages' :'all', 'year/4 and under' :'under-4',
-       'year/19+' : '19-plus', 'year/all' : 'all'
-        }.get(x, x))
-#### Replace all the forward slashes with a hyphen
-next_table[dfeA] = next_table[dfeA].str.replace('/', '-', regex=True)
-
-next_table[dfeS] = next_table[dfeS].map(
-    lambda x: { 'All' : 'T', 'Boys' :'M', 'Girls' :'F', 'Total' : 'T', 'Total(5)' :'T'        
+        'total' : 'all-plans', 
+        'ehc-plan' : 'ehc-plans',
+        'ehc-plans3-38-to-51-weeks-per-year': 'ehc-plans-38-to-51-weeks-per-year' ,
+        'ehc-plans3-52-weeks-per-year': 'ehc-plans-52-weeks-per-year',
         }.get(x, x))
 
-next_table['Special Education Provider'] = next_table['Special Education Provider'].apply(pathify)
+next_table['DfE Statements of SEN or EHC Plan Provider'] = next_table['Statements of SEN or EHC Plan Provider'].str.rstrip('132478,0569')
+next_table['DfE Statements of SEN or EHC Plan Provider'] = next_table['DfE Statements of SEN or EHC Plan Provider'].str.lstrip()
+next_table['DfE Statements of SEN or EHC Plan Provider'] = next_table['DfE Statements of SEN or EHC Plan Provider'].str.rstrip()
 
-next_table['Special Education Need Type'] = next_table['Special Education Need Type'].str.rstrip('()24569')
-next_table['Special Education Need Type'] = next_table['Special Education Need Type'].apply(pathify)
-next_table['Special Education Need Type'] = next_table['Special Education Need Type'].map(
-    lambda x: {  'other-difficulty/disability' : 'other-difficulty-or-disability',
-               'speech-language-and-communications-needs' : 'speech-language-and-communications-need'
+next_table['DfE Statements of SEN or EHC Plan Provider'] = next_table['DfE Statements of SEN or EHC Plan Provider'].apply(pathify) 
+
+next_table['DfE Statements of SEN or EHC Plan Provider'] = next_table['DfE Statements of SEN or EHC Plan Provider'].map(
+    lambda x: {
+        'academy/free' : 'academy-free', 
+        'general-fe-and-tertiary-colleges/he' : 'general-fe-and-tertiary-colleges-he',
+        'special-school-academy/free': 'special-school-academy-free' ,
+        'alternative-provision-ap-/pupil-referral-unit-pru-la-maintained': 'alternative-provision-ap-pupil-referral-unit-pru-la-maintained',
+        'ap/pru-academy' : 'ap-pru-academy',
+        'ap/pru-free-school' : 'ap-pru-free-school'
+        
         }.get(x, x))
 
-next_table['Special Education Support Type'] = next_table['Special Education Support Type'].str.rstrip('()57')
-next_table['Special Education Support Type'] = next_table['Special Education Support Type'].str.replace('\.0', '')
-next_table['Special Education Support Type'] = next_table['Special Education Support Type'].apply(pathify)
+next_table['DfE Statements of SEN or EHC Plan Description'] = next_table['Statements of SEN or EHC Plan Description'].str.rstrip('132478,0569:')
+next_table['DfE Statements of SEN or EHC Plan Description'] = next_table['DfE Statements of SEN or EHC Plan Description'].str.lstrip()
+next_table['DfE Statements of SEN or EHC Plan Description'] = next_table['DfE Statements of SEN or EHC Plan Description'].str.rstrip()
 
-next_table['Special Education Support Type'] = next_table['Special Education Support Type'].map(
-    lambda x: {  'gypsy-/-roma' : 'gypsy-or-roma', 
-                 'other-difficulty/disability' : 'other-difficulty-or-disability',
-                'sen-support-by-ethnic-group-gypsy-/-roma' : 'sen-support-by-ethnic-group-gypsy-or-roma',
-                'statements-or-ehc-plans-support-by-ethnic-group-gypsy-/-roma' : 'statements-or-ehc-plans-support-by-ethnic-group-gypsy-or-roma',
-               'pupils-on-sen-support-secondary-other-difficulty/disability' : 'pupils-on-sen-support-secondary-other-difficulty-or-disability',
-               'pupils-with-statements-or-ehc-plans-secondary-other-difficulty/disability' : 'pupils-with-statements-or-ehc-plans-secondary-other-difficulty-or-disability',
-                'pupils-on-sen-supporteligible-and-claiming-free-school-meals' : 'pupils-on-sen-support-eligible-and-claiming-free-school-meals',       
-        }.get(x, x))
+next_table['DfE Statements of SEN or EHC Plan Description'] = next_table['DfE Statements of SEN or EHC Plan Description'].apply(pathify)
 
-#### Change of columns to match definitions
-next_table = next_table.rename(columns={'Special Education Support Type':'DfE Special Education Support Type'})
-next_table = next_table.rename(columns={'Special Education Provider':'DfE Special Education Provider'})
-next_table = next_table.rename(columns={'Special Education Need Type':'DfE Special Education Need Type'})
+next_table['DfE Marker'] = next_table['Marker'].map(
+    lambda x: {
+        '.' : 'not-applicable', 
+        '..' : 'not-available'}.get(x, x))
+
+next_table.rename(columns={'Geography': 'DfE Geography'}, inplace=True)
+
+next_table = next_table[['Year','DfE Geography','DfE Statements of SEN or EHC Plan Description','DfE Statements or EHC Plan Type','DfE Statements of SEN or EHC Plan Provider','DfE Age Groups','Unit','Value','Measure Type', 'DfE Marker']]
 
 from pathlib import Path
 out = Path('out')

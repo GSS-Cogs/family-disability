@@ -39,7 +39,7 @@ Dimensions = [
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
 import numpy as np
-new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'NHS Marker'}, inplace=True)
+new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'Marker'}, inplace=True)
 new_table['Year'] = 'Year/' + new_table['Year'].map(str)
 new_table['Statements or EHC Plan Type'] = new_table['Statements or EHC Plan Type'].map(
     lambda x: {'EHC plans2' : 'EHC plans-other'}.get(x, x))

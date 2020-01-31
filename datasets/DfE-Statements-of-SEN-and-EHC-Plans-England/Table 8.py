@@ -30,22 +30,32 @@ cell = tab.filter('LA code')
 cell.assert_one()
 geo = cell.fill(DOWN).is_not_blank().is_not_whitespace()
 Year = tab.filter(contains_string('Year'))
-plantype = cell.shift(2,0).fill(RIGHT).is_not_blank().is_not_whitespace()
+description = cell.shift(2,0).fill(RIGHT).is_not_blank().is_not_whitespace()
+plantype = cell.shift(2,1).fill(RIGHT).is_not_blank().is_not_whitespace() | tab.excel_ref('E6')
 per = tab.filter(contains_string('Percentage'))
 observations = geo.shift(2,0).fill(RIGHT).is_not_blank().is_not_whitespace() - per.fill(DOWN)
 Dimensions = [
             HDim(geo,'Geography',DIRECTLY,LEFT),
             HDim(Year,'Year', CLOSEST,LEFT),
-            HDim(plantype,'Statements or EHC Plan Type',DIRECTLY, ABOVE),
+            HDim(description,'Statements of SEN or EHC Plan Description',CLOSEST,LEFT),
             HDimConst('Unit','children'),  
             HDimConst('Measure Type','Count'),
-            HDimConst('Statements of SEN or EHC Plan Description', \
-                      'Assessment of children and young people with a new EHC plan, and children and young people with statements or EHC plans transferred or discontinued - by local authority')
+            HDim(plantype,'Statements or EHC Plan Type', CLOSEST,LEFT)
 ]  
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
 import numpy as np
-new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'NHS Marker'}, inplace=True)
+new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'Marker'}, inplace=True)
 new_table['Year'] = 'Year/' + new_table['Year'].astype(str).str[-4:]
 new_table['DfE Age Groups'] = 'all ages'
 new_table['Statements of SEN or EHC Plan Provider'] = 'all'
+
+new_table['Statements or EHC Plan Type'] = new_table['Statements or EHC Plan Type'].map(
+    lambda x: {
+        'Number of initial requests that were made for assessment for an EHC plan during the 2018 calendar year' : 'New EHC Plans', 
+        'Number' : 'New EHC Plans',
+        'Percentage1': 'New EHC Plans' ,
+        'Percentage2': 'New EHC Plans',
+        'Total' : 'All Plans',
+        'Other' : 'EHC Plans Other'       
+        }.get(x, x))

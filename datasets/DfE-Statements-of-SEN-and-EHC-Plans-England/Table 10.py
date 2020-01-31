@@ -39,16 +39,16 @@ observations = geo.shift(2,0).fill(RIGHT).is_not_blank().is_not_whitespace() \
 Dimensions = [
             HDim(geo,'Geography',DIRECTLY,LEFT),
             HDim(Year,'Year', CLOSEST, ABOVE),
-            HDim(plantype,'Statements or EHC Plan Type',DIRECTLY,ABOVE),
+            HDim(plantype,'Statements of SEN or EHC Plan Description',DIRECTLY,ABOVE),
             HDimConst('Unit','children'),  
             HDimConst('Measure Type','Count'),
-            HDimConst('Statements of SEN or EHC Plan Description', \
-                      'EHC plans with personal budgets, mediation and tribunal cases by local authority')
+            HDimConst('Statements or EHC Plan Type', 
+                      'EHC Plan')
 ]  
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
 import numpy as np
-new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'NHS Marker'}, inplace=True)
+new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'Marker'}, inplace=True)
 new_table['Year'] = 'Year/' + new_table['Year'].astype(str).str[-5:]
 def user_perc(x):    
     if ((str(x) ==  'Education') | (str(x) ==  'Social care') | (str(x) ==  'Health ')) :
@@ -58,9 +58,6 @@ def user_perc(x):
     else:
         return x        
     
-new_table['Statements or EHC Plan Type'] = new_table.apply(lambda row: user_perc(row['Statements or EHC Plan Type']), axis = 1)
+new_table['Statements of SEN or EHC Plan Description'] = new_table.apply(lambda row: user_perc(row['Statements of SEN or EHC Plan Description']), axis = 1)
 new_table['DfE Age Groups'] = 'all ages'
 new_table['Statements of SEN or EHC Plan Provider'] = 'all'
-# -
-
-

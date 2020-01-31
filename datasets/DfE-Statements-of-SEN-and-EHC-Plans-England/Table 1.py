@@ -32,8 +32,8 @@ cell.assert_one()
 Year = tab.excel_ref('D6').expand(RIGHT).is_not_blank().is_not_whitespace() 
 plantype = Year.shift(0,1).expand(RIGHT).is_not_blank().is_not_whitespace()
 age = tab.excel_ref('C10:C15')
-observations = plantype.fill(DOWN).is_not_blank().is_not_whitespace()
-description = tab.excel_ref('B9').expand(DOWN).is_not_blank().is_not_whitespace() 
+observations = plantype.fill(DOWN).is_not_blank().is_not_whitespace() - tab.excel_ref('Z65')
+description = tab.excel_ref('B9').expand(DOWN).is_not_blank().is_not_whitespace()
 provider = tab.excel_ref('C18').expand(DOWN).is_not_blank().is_not_whitespace() | tab.excel_ref('B9')
 Dimensions = [
             HDimConst('Geography', 'all'),
@@ -49,7 +49,7 @@ Dimensions = [
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
 import numpy as np
-new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'NHS Marker'}, inplace=True)
+new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'Marker'}, inplace=True)
 new_table['Year'] = 'Year/' + new_table['Year'].astype(str)
 new_table['DfE Age Groups'] = new_table['DfE Age Groups'].map(
     lambda x: {
@@ -60,6 +60,3 @@ new_table['Statements or EHC Plan Type'] = new_table['Statements or EHC Plan Typ
 new_table['Statements of SEN or EHC Plan Provider'] = new_table['Statements of SEN or EHC Plan Provider'].map(
     lambda x: {
         'Number of children and young people with statements or EHC plans4:' : 'all'}.get(x, x))
-# -
-
-

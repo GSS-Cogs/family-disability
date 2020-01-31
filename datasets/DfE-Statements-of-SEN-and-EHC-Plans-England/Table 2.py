@@ -32,7 +32,7 @@ cell.assert_one()
 Year = tab.excel_ref('D6').expand(RIGHT).is_not_blank().is_not_whitespace() 
 plantype = Year.shift(0,1).expand(RIGHT).is_not_blank().is_not_whitespace()
 age = tab.excel_ref('C12:C17')
-observations = plantype.fill(DOWN).is_not_blank().is_not_whitespace()
+observations = plantype.fill(DOWN).is_not_blank().is_not_whitespace() - tab.excel_ref('Y100')
 description = tab.excel_ref('B11').expand(DOWN).is_not_blank().is_not_whitespace() 
 provider = tab.excel_ref('C20').expand(DOWN).is_not_blank().is_not_whitespace() | tab.excel_ref('B9')
 Dimensions = [
@@ -49,7 +49,7 @@ Dimensions = [
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
 import numpy as np
-new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'NHS Marker'}, inplace=True)
+new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'Marker'}, inplace=True)
 new_table['Year'] = 'Year/' + new_table['Year'].astype(str)
 new_table['DfE Age Groups'] = new_table['DfE Age Groups'].map(
     lambda x: {

@@ -45,7 +45,7 @@ Dimensions = [
 c1 = ConversionSegment(observations, Dimensions, processTIMEUNIT=True)
 new_table = c1.topandas()
 import numpy as np
-new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'NHS Marker'}, inplace=True)
+new_table.rename(columns={'OBS': 'Value','DATAMARKER': 'Marker'}, inplace=True)
 new_table['Year'] = 'Year/' + new_table['Year'].astype(str).str[-4:]
 new_table['DfE Age Groups'] = 'all ages'
 new_table['Statements or EHC Plan Type'] = 'EHC Plan'
