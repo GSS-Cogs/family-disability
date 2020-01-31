@@ -1,0 +1,154 @@
+Label,Notation,Parent Notation,Sort Priority
+All,all,,1
+Darlington,E06000005,,2
+Durham,E06000047,,3
+Gateshead,E08000020,,4
+Hartlepool,E06000001,,5
+Middlesbrough,E06000002,,6
+Newcastle upon Tyne,E08000021,,7
+North Tyneside,E08000022,,8
+Northumberland,E06000048,,9
+Redcar and Cleveland,E06000003,,10
+South Tyneside,E08000023,,11
+Stockton-on-Tees,E06000004,,12
+Sunderland,E08000024,,13
+Blackburn with Darwen,E06000008,,14
+Blackpool,E06000009,,15
+Bolton,E08000001,,16
+Bury,E08000002,,17
+Cheshire East,E06000049,,18
+Cheshire West and Chester,E06000050,,19
+Cumbria,E10000006,,20
+Halton,E06000006,,21
+Knowsley,E08000011,,22
+Lancashire,E10000017,,23
+Liverpool,E08000012,,24
+Manchester,E08000003,,25
+Oldham,E08000004,,26
+Rochdale,E08000005,,27
+Salford,E08000006,,28
+Sefton,E08000014,,29
+St. Helens,E08000013,,30
+Stockport,E08000007,,31
+Tameside,E08000008,,32
+Trafford,E08000009,,33
+Warrington,E06000007,,34
+Wigan,E08000010,,35
+Wirral,E08000015,,36
+Barnsley,E08000016,,37
+Bradford,E08000032,,38
+Calderdale,E08000033,,39
+Doncaster,E08000017,,40
+East Riding of Yorkshire,E06000011,,41
+"Kingston Upon Hull, City of",E06000010,,42
+Kirklees,E08000034,,43
+Leeds,E08000035,,44
+North East Lincolnshire,E06000012,,45
+North Lincolnshire,E06000013,,46
+North Yorkshire,E10000023,,47
+Rotherham,E08000018,,48
+Sheffield,E08000019,,49
+Wakefield,E08000036,,50
+York,E06000014,,51
+Derby,E06000015,,52
+Derbyshire,E10000007,,53
+Leicester,E06000016,,54
+Leicestershire,E10000018,,55
+Lincolnshire,E10000019,,56
+Northamptonshire,E10000021,,57
+Nottingham,E06000018,,58
+Nottinghamshire,E10000024,,59
+Rutland,E06000017,,60
+Birmingham,E08000025,,61
+Coventry,E08000026,,62
+Dudley,E08000027,,63
+Herefordshire,E06000019,,64
+Sandwell,E08000028,,65
+Shropshire,E06000051,,66
+Solihull,E08000029,,67
+Staffordshire,E10000028,,68
+Stoke-on-Trent,E06000021,,69
+Telford and Wrekin,E06000020,,70
+Walsall,E08000030,,71
+Warwickshire,E10000031,,72
+Wolverhampton,E08000031,,73
+Worcestershire,E10000034,,74
+Bedford,E06000055,,75
+Central Bedfordshire,E06000056,,76
+Cambridgeshire,E10000003,,77
+Essex,E10000012,,78
+Hertfordshire,E10000015,,79
+Luton,E06000032,,80
+Norfolk,E10000020,,81
+Peterborough,E06000031,,82
+Southend-on-Sea,E06000033,,83
+Suffolk,E10000029,,84
+Thurrock,E06000034,,85
+Camden,E09000007,,86
+City of London,E09000001,,87
+Hackney,E09000012,,88
+Hammersmith and Fulham,E09000013,,89
+Haringey,E09000014,,90
+Islington,E09000019,,91
+Kensington and Chelsea,E09000020,,92
+Lambeth,E09000022,,93
+Lewisham,E09000023,,94
+Newham,E09000025,,95
+Southwark,E09000028,,96
+Tower Hamlets,E09000030,,97
+Wandsworth,E09000032,,98
+Westminster,E09000033,,99
+Barking and Dagenham,E09000002,,100
+Barnet,E09000003,,101
+Bexley,E09000004,,102
+Brent,E09000005,,103
+Bromley,E09000006,,104
+Croydon,E09000008,,105
+Ealing,E09000009,,106
+Enfield,E09000010,,107
+Greenwich,E09000011,,108
+Harrow,E09000015,,109
+Havering,E09000016,,110
+Hillingdon,E09000017,,111
+Hounslow,E09000018,,112
+Kingston upon Thames,E09000021,,113
+Merton,E09000024,,114
+Redbridge,E09000026,,115
+Richmond upon Thames,E09000027,,116
+Sutton,E09000029,,117
+Waltham Forest,E09000031,,118
+Bracknell Forest,E06000036,,119
+Brighton and Hove,E06000043,,120
+Buckinghamshire,E10000002,,121
+East Sussex,E10000011,,122
+Hampshire,E10000014,,123
+Isle of Wight,E06000046,,124
+Kent,E10000016,,125
+Medway,E06000035,,126
+Milton Keynes,E06000042,,127
+Oxfordshire,E10000025,,128
+Portsmouth,E06000044,,129
+Reading,E06000038,,130
+Slough,E06000039,,131
+Southampton,E06000045,,132
+Surrey,E10000030,,133
+West Berkshire,E06000037,,134
+West Sussex,E10000032,,135
+Windsor and Maidenhead,E06000040,,136
+Wokingham,E06000041,,137
+Bath and North East Somerset,E06000022,,138
+Bournemouth,E06000028,,139
+"Bristol, City of",E06000023,,140
+Cornwall,E06000052,,141
+Devon,E10000008,,142
+Dorset,E10000009,,143
+Gloucestershire,E10000013,,144
+Isles of Scilly,E06000053,,145
+North Somerset,E06000024,,146
+Plymouth,E06000026,,147
+Poole,E06000029,,148
+Somerset,E10000027,,149
+South Gloucestershire,E06000025,,150
+Swindon,E06000030,,151
+Torbay,E06000027,,152
+Wiltshire,E06000054,,153
