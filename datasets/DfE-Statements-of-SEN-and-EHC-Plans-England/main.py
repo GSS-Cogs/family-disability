@@ -99,6 +99,9 @@ next_table['DfE Marker'] = next_table['DfE Marker'].fillna('no-marker')
 next_table.rename(columns={'Geography': 'DfE Geography'}, inplace=True)
 
 next_table['Period'] = next_table['Year'].str.replace('\.0', '')
+next_table['Period'] = next_table['Period'].str.lower()
+
+next_table['Period'] = next_table['Period'].str.lower()
 
 next_table = next_table[['Period','DfE Geography','DfE Statements of SEN or EHC Plan Description','DfE Statements or EHC Plan Type','DfE Statements of SEN or EHC Plan Provider','DfE Age Groups','Unit','Value','Measure Type', 'DfE Marker']]
 
@@ -113,7 +116,3 @@ with open(out / 'observations.csv-metadata.trig', 'wb') as metadata:
 
 csvw = CSVWMetadata('https://gss-cogs.github.io/family-disability/reference/')
 csvw.create(out / 'observations.csv', out / 'observations.csv-schema.json')
-
-next_table
-
-
