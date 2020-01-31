@@ -31,7 +31,7 @@ cell.assert_one()
 geo = cell.fill(DOWN).is_not_blank().is_not_whitespace()
 Year = cell.shift(0,2).fill(RIGHT).is_not_blank().is_not_whitespace()
 plantype = cell.fill(RIGHT).is_not_blank().is_not_whitespace() 
-per = tab.filter(contains_string('Percentage'))
+per = tab.excel_ref('J8:N8')| tab.excel_ref('U8:Y8')
 observations = geo.shift(2,0).fill(RIGHT).is_not_blank().is_not_whitespace() - per.fill(DOWN)
 Dimensions = [
             HDim(geo,'Geography',DIRECTLY,LEFT),
