@@ -66,6 +66,4 @@ new_table['Statements of SEN or EHC Plan Provider'] = new_table['Statements of S
          'LA maintained': 'LA maintained AP or PRU'}.get(x, x))
 # -
 
-new_table['Statements of SEN or EHC Plan Provider'].unique()
-
 

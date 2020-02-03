@@ -59,4 +59,8 @@ new_table['Statements or EHC Plan Type'] = new_table['Statements or EHC Plan Typ
         'Total' : 'all plans'}.get(x, x))
 new_table['Statements of SEN or EHC Plan Provider'] = new_table['Statements of SEN or EHC Plan Provider'].map(
     lambda x: {
-        'Placement of children and young people with new statements or EHC plans' : 'all'}.get(x, x))
+        'Placement of children and young people with new statements or EHC plans' : 'all',
+        ' LA maintained (including foundation schools)' : 'Main stream LA maintained schools',
+        ' Academy' : 'Mainstream Academy',
+         ' Free school' : 'Mainstream Free School',
+         'LA maintained': 'LA maintained AP or PRU'}.get(x, x))
