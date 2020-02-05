@@ -143,6 +143,7 @@ next_table = next_table.replace({'Sex' : {'not-reported' : 'U' }})
 next_table = next_table.replace({'Marker' : {'not-applicable' : 'Not applicable' }})
 next_table = next_table.replace({'Marker' : {'between-one-and-five' : 'Between one and five' }})
 next_table['Marker'] = next_table['Marker'].map(lambda x: pathify(x))
+next_table = next_table.rename(columns={'Marker':'ONS Marker'})
 next_table
 
 destinationFolder = Path('out')
@@ -168,5 +169,4 @@ for t in tblSet:
     csvw.create(destinationFolder / fleNme, destinationFolder / (fleNme + '-schema.json'))
     i = i + 1
 # -
-
 

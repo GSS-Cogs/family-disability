@@ -407,7 +407,8 @@ regional_tables['Marker'] = regional_tables['Marker'].map(lambda x: pathify(x))
 #regional_tables = regional_tables.replace({'Marker' : {'not-applicable' : 'Not applicable' }})
 #regional_tables = regional_tables.replace({'Marker' : {'between-one-and-five' : 'Between one and five' }})
 #Drop nuts area code for now 
+regional_tables = regional_tables.rename(columns={'Marker':'ONS Marker'})
 regional_tables = regional_tables [['Period', 'Disability Status', 'Responsibility Level', 'Department', 'ONS Age Range', 
                         'Sex', 'Type of Employment', 'Status of Employment','Ethnicity',
-                        'Region name', 'NUTS Region name', 'Value', 'Marker', 'Measure Type']] # 'ONS area code',
+                        'Region name', 'NUTS Region name', 'Value', 'ONS Marker', 'Measure Type']] # 'ONS area code',
 regional_tables
