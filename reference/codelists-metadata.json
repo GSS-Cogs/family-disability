@@ -340,5 +340,9 @@
     "url": "codelists/type-of-employment.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Type of Employment"
+  },{
+    "url": "codelists/ons-marker.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "ONS Marker"
   }]
 }
