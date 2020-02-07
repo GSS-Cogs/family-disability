@@ -360,9 +360,5 @@
     "url": "codelists/dfe-marker.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "DfE Marker"
-  },{
-    "url": "codelists/dfe-geography.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "DfE Geography"
   }]
 }

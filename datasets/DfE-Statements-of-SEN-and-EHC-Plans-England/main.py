@@ -105,6 +105,9 @@ next_table['Period'] = next_table['Period'].str.lower()
 
 next_table = next_table[['Period','DfE Geography','DfE Statements of SEN or EHC Plan Description','DfE Statements or EHC Plan Type','DfE Statements of SEN or EHC Plan Provider','DfE Age Groups','Unit','Value','Measure Type', 'DfE Marker']]
 
+# Override geography "all" with code for England
+next_table["DfE Geography"] = next_table["DfE Geography"].str.replace("all", "E92000001")
+
 from pathlib import Path
 out = Path('out')
 out.mkdir(exist_ok=True)
