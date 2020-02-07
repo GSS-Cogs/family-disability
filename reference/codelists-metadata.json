@@ -344,5 +344,25 @@
     "url": "codelists/ons-marker.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "ONS Marker"
+  },{
+    "url": "codelists/dfe-statements-of-sen-or-ehc-plan-description.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "DfE Statements of SEN or EHC Plan Description"
+  },{
+    "url": "codelists/dfe-statements-or-ehc-plan-type.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "DfE Statements or EHC Plan Type"
+  },{
+    "url": "codelists/dfe-statements-of-sen-or-ehc-plan-provider.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "DfE Statements of SEN or EHC Plan Provider"
+  },{
+    "url": "codelists/dfe-marker.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "DfE Marker"
+  },{
+    "url": "codelists/dfe-geography.csv",
+    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
+    "rdfs:label": "DfE Geography"
   }]
 }
