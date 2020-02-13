@@ -5,8 +5,8 @@
 #     text_representation:
 #       extension: .py
 #       format_name: light
-#       format_version: '1.4'
-#       jupytext_version: 1.1.1
+#       format_version: '1.5'
+#       jupytext_version: 1.3.3
 #   kernelspec:
 #     display_name: Python 3
 #     language: python
@@ -86,14 +86,13 @@ destinationFolder.mkdir(exist_ok=True, parents=True)
 
 TITLE = 'Cases of Guardianship under the Mental Health Act 1983 by local authority region'
 OBS_ID = pathify(TITLE)
-GROUP_ID = 'NHS-guardianship-mental-health-act'
 
 tidy.drop_duplicates().to_csv(destinationFolder / f'{OBS_ID}.csv', index = False)
 
 # +
 from gssutils.metadata import THEME
-scraper.set_base_uri('http://gss-data.org.uk')
-scraper.set_dataset_id(f'gss_data/disability/{GROUP_ID}/{OBS_ID}')
+from os import environ
+scraper.set_dataset_id(f'{pathify(environ.get("JOB_NAME", ""))}/{OBS_ID}')
 scraper.dataset.title = f'{TITLE}'
 scraper.dataset.family = 'disability'
 
