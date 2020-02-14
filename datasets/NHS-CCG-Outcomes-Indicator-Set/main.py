@@ -245,7 +245,7 @@ def timeify(cell):
 # Rename columns
 tidy_data = tidy_data.rename(columns={
     "OBS":"Value", 
-    "DATAMARKER":"Markers",
+    "DATAMARKER":"Marker",
     "Indicator": "CCG Indicator",
     "Level": "NHS Level"
 })
@@ -261,8 +261,8 @@ tidy_data["Sex"] = tidy_data["Sex"].map(lambda x: lookup[x])
 
 # Clear out the nans
 tidy_data["Value"].fillna("", inplace=True)
-tidy_data["Markers"].fillna("", inplace=True)
-tidy_data["Markers"] = tidy_data["Markers"].map(lambda x: "suppressed" if x == "*" else "no-marker")
+tidy_data["Marker"].fillna("", inplace=True)
+tidy_data["Marker"] = tidy_data["Marker"].map(lambda x: "suppressed" if x == "*" else "")
 
 # Pathify all the things
 for column in ["Reporting Period", "Breakdown", "NHS Level", "CCG Indicator"]:
@@ -272,7 +272,7 @@ for column in ["Reporting Period", "Breakdown", "NHS Level", "CCG Indicator"]:
 tidy_data["Reporting Period"] = tidy_data["Reporting Period"].apply(timeify)
 
 tidy_data["Sex"].unique()
-# + {}
+# +
 
 # Output observations file
 destinationFolder = Path('out')
