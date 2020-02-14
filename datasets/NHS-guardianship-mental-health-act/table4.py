@@ -77,7 +77,7 @@ new_table
 
 # +
 #Tidy up
-new_table['DATAMARKER'].replace('*', 'less-than-three', inplace=True)
+new_table['DATAMARKER'].replace('*', 'nhs-guardianship/less-than-three', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 
 new_table['Guardianship'] = new_table['Guardianship'].map(

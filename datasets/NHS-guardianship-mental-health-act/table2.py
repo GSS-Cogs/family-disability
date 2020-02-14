@@ -84,7 +84,7 @@ def right(s, amount):
 
 
 # +
-new_table['DATAMARKER'].replace('*', 'less-than-three', inplace=True)
+new_table['DATAMARKER'].replace('*', 'nhs-guardianship/less-than-three', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 
 new_table = new_table.replace({'Guardianship' : {

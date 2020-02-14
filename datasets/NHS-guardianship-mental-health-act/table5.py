@@ -157,7 +157,7 @@ new_table = pd.concat([table_16_17_all, table_17_18_all, table_16_17_section7, t
 
 # +
 #Tidy up
-new_table['DATAMARKER'].replace('*', 'less-than-three', inplace=True)
+new_table['DATAMARKER'].replace('*', 'nhs-guardianship/less-than-three', inplace=True)
 new_table.rename(columns={'OBS': 'Value'}, inplace=True)
 new_table['Guardianship'] = new_table['Guardianship'].map(lambda x: pathify(x))
 

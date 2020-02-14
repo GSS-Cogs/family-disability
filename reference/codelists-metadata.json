@@ -29,10 +29,6 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Identified support needs of homeless households"
   }, {
-    "url": "codelists/marker.csv",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "rdfs:label": "Marker"
-  }, {
     "url": "codelists/net-weekly-income.csv",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Net Weekly Income"
