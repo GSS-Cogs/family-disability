@@ -77,10 +77,6 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "rdfs:label": "Reasons for homelessness application"
   }, {
-    "rdfs:label": "Indicator",
-    "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
-    "url": "codelists/phe-indicator.csv"
-  }, {
     "rdfs:label": "Sex",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-sex.csv"
