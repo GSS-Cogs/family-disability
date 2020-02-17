@@ -81,7 +81,7 @@
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-sex.csv"
   }, {
-    "rdfs:label": "Age",
+    "rdfs:label": "PHE Age",
     "tableSchema": "https://gss-cogs.github.io/ref_common/codelist-schema.json",
     "url": "codelists/phe-age.csv"
   }, {
