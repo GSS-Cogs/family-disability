@@ -38,7 +38,6 @@ DfE Special Education Need Type,dfe_special_education_need_type,qb:dimension,htt
 Dfe-Age,dfe_age,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#age,http://gss-data.org.uk/def/concept/dfe-age/{dfe_age},string,slugize,,
 Dfe-Sex,dfe_sex,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#sex,http://gss-data.org.uk/def/concept/dfe-sex/{dfe_sex},string,slugize,,
 Year,year,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#refPeriod,http://reference.data.gov.uk/id/year/{year},string,,,
-Indicator,indicator,qb:dimension,http://gss-data.org.uk/def/dimension/indicator,http://gss-data.org.uk/def/concept/indicator/{indicator},string,slugize,,http://gss-data.org.uk/def/classes/indicator/indicator
 Trend,trend,qb:dimension,http://gss-data.org.uk/def/dimension/trend,http://gss-data.org.uk/def/concept/trend/{trend},string,slugize,,http://gss-data.org.uk/def/classes/trend/trend
 PHE Unit,phe_unit,qb:dimension,http://gss-data.org.uk/def/dimension/phe-unit,http://gss-data.org.uk/def/concept/phe-unit/{phe_unit},string,slugize,,http://gss-data.org.uk/def/classes/phe-unit/phe_unit
 PHE Age,phe_age,qb:dimension,http://purl.org/linked-data/sdmx/2009/dimension#age,http://gss-data.org.uk/def/concept/phe-age/{phe_age},string,slugize,,http://gss-data.org.uk/def/classes/phe-age/phe_age
