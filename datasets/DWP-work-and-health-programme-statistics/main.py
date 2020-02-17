@@ -418,7 +418,7 @@ for i in tidy_tabs:
         'total' : 'all'}})
     tidy = tidy.replace({'DATAMARKER' : {
         '-' : 'not-applicable', 
-        '.' : 'negligible'}})
+        '.' : 'dwp-work-and-health/nil-negligible'}})
     tidy = tidy.replace({'Age Group' : {
         'Unknown Age' : 'unknown',
         'Total' : 'all'}})
