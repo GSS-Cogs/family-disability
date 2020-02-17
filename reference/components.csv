@@ -55,7 +55,6 @@ Region name,the description of the geographic region in which the CASSR is locat
 Local authority code,,Dimension,http://gss-data.org.uk/def/concept-scheme/local-authority-code
 Local authority name,,Dimension,http://gss-data.org.uk/def/concept-scheme/local-authority-name
 Duration of closed cases,Duration of cases closed within the reporting period calculated from the difference between the Date Case Commenced and the Date Case Closed,Dimension,http://gss-data.org.uk/def/concept-scheme/duration-of-closed-cases
-Count,Count of People,Measure,
 NHS LDHC Quality Service,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-ldhc-quality-service
 NHS LDHC Measure Code,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-ldhc-measure-code
 GP Practice,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-gp-practices
