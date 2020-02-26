@@ -7,8 +7,9 @@ from gssutils import *
 import datetime as d
 import numpy as np
 
+mainURL = "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-"
 #### Construct a string based on the year you need to look at.
-oneYrAgo = int(d.datetime.now().year) - 1        #### Get the year 1 year ago
+oneYrAgo = int(d.datetime.now().year) - 1      #### Get the year 1 year ago
 twoYrAgo = oneYrAgo - 1                          #### Get the year 2 years ago
 yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, 201718
 yrStr2 = str(twoYrAgo) + '/' + str(oneYrAgo)[2:4] #### This is for adding to columns later
@@ -16,20 +17,29 @@ try:
     #### EXAMPLE: https://www.gov.uk/government/statistics/family-resources-survey-#### Construct a string based on the year you need to look at.
     oneYrAgo = int(d.datetime.now().year) - 1        #### Get the year 1 year ago
     twoYrAgo = oneYrAgo - 1                          #### Get the year 2 years ago
-    yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, 201718financial-year-201718
-    urlStr = "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-" + yrStr
-
+    yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, financial-year-201718
+    urlStr = mainURL + yrStr
+    print("1. Trying: " + urlStr)
     scraper = Scraper(urlStr)
+    if (len(scraper.distributions) == 0): 
+        oneYrAgo = int(d.datetime.now().year) - 2        #### Get the year 1 year ago
+        twoYrAgo = oneYrAgo - 1                          #### Get the year 2 years ago
+        yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, 2financial-year-201718
+        urlStr = mainURL + yrStr
+        print("2. Trying: " + urlStr)
+        scraper = Scraper(urlStr)
+        if (len(scraper.distributions) == 0):
+            oneYrAgo = int(d.datetime.now().year) - 3       #### Get the year 1 year ago
+            twoYrAgo = oneYrAgo - 1                          #### Get the year 2 years ago
+            yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, financial-year-201718
+            urlStr = mainURL + yrStr
+            print("3. Trying: " + urlStr)
+            scraper = Scraper(urlStr)
+    
+    currYr = str(twoYrAgo) + '/' + str(oneYrAgo)[2:4]
 except Exception as e:
-    #print(e.message, e.args)
-    oneYrAgo = int(d.datetime.now().year) - 2        #### Get the year 1 year ago
-    twoYrAgo = oneYrAgo - 1                          #### Get the year 2 years ago
-    yrStr = str(twoYrAgo) + str(oneYrAgo)[2:4]       #### Join the years as a string, 201718financial-year-201718
-    urlStr = "https://www.gov.uk/government/statistics/family-resources-survey-financial-year-" + yrStr
-
-    scraper = Scraper(urlStr)
+    print("Cannot find a suitable webpage!!")
 scraper
-urlStr
 
 
 # +
@@ -397,7 +407,7 @@ def extract_sheet_5_9(tab, gHeading, yrRange, ageH):
         tbl['Measure Type'] = mainHeading
         return tbl
     except Exception as e:
-        err = pd.DataFrame(e.message, columns = ['Error']) 
+        err = pd.DataFrame(str(e), columns = ['Error']) 
         return err
 
 
@@ -467,7 +477,7 @@ def changeDataMarkerValues(tbl):
         tbl = tbl.rename(columns={colName:'Marker'})
         return tbl
     except Exception as e:
-        return "Error for table 5_10: " + e.message
+        return "Error for table 5_10: " + str(e)
 
 
 #### There are several spreadsheets so look for the one you want, which in this case is Carers only
@@ -478,13 +488,13 @@ try:
             sheets = i
             break
 except Exception as e:
-         print(e.message, e.args)
+         print(str(e))
 
 #### Convert to a DataBaker object
 try:
     sheets = sheets.as_databaker()
 except Exception as e:
-    print(e.message, e.args)
+    print(str(e))
 
 yrRange = 'Period'
 gendHead = 'Sex'
@@ -504,7 +514,7 @@ try:
     tbl9 = extract_sheet_5_9([t for t in sheets if t.name == '5_9'][0], gendHead, yrRange, ageHead)
     tbl10 = extract_sheet_5_10([t for t in sheets if t.name == '5_10'][0], gendHead, yrRange, ageHead)
 except Exception as e:
-    print(e.message, e.args)
+    print(str(e))
 
 tbl4['Employment Type'] = tbl4['Employment Type'].str.replace('/', '-', regex=True)
 tbl5['Source of Income'] = tbl5['Source of Income'].str.replace('/', '-', regex=True)

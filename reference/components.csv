@@ -5,7 +5,6 @@ Percentage of People,The percentage of all people measured who meet the criteria
 Identified support needs of homeless households,,Dimension,http://gss-data.org.uk/def/concept-scheme/identified-support-needs-of-homeless-households
 Reasons for failing to maintain accommodation,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons-for-failing-to-maintain-accommodation
 Reasons for homelessness application,,Dimension,http://gss-data.org.uk/def/concept-scheme/reasons-for-homelessness-application
-Indicator,,Dimension,http://gss-data.org.uk/def/concept-scheme/indicator
 Trend,,Dimension,http://gss-data.org.uk/def/concept-scheme/trend
 Standard Population,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-standard-population
 County & UA (pre Apr2019) deprivation deciles in England (IMD2015),,Dimension,http://gss-data.org.uk/def/concept-scheme/county-ua-pre-apr2019-deprivation-deciles-in-england-imd2015
@@ -30,7 +29,7 @@ Score,,Measure,
 Directly standardised rate,,Measure,
 Indirectly standardised rate,,Measure,
 Indirectly standardised ratio,,Measure,
-Age,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-age
+PHE Age,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-age
 Unit,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-unit
 Sex,,Dimension,http://gss-data.org.uk/def/concept-scheme/phe-sex
 DWP Age Group,,Dimension,http://gss-data.org.uk/def/concept-scheme/dwp-age-group
@@ -55,7 +54,6 @@ Region name,the description of the geographic region in which the CASSR is locat
 Local authority code,,Dimension,http://gss-data.org.uk/def/concept-scheme/local-authority-code
 Local authority name,,Dimension,http://gss-data.org.uk/def/concept-scheme/local-authority-name
 Duration of closed cases,Duration of cases closed within the reporting period calculated from the difference between the Date Case Commenced and the Date Case Closed,Dimension,http://gss-data.org.uk/def/concept-scheme/duration-of-closed-cases
-Count,Count of People,Measure,
 NHS LDHC Quality Service,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-ldhc-quality-service
 NHS LDHC Measure Code,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-ldhc-measure-code
 GP Practice,,Dimension,http://gss-data.org.uk/def/concept-scheme/nhs-gp-practices
