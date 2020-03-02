@@ -586,6 +586,7 @@ for t in tblSet:
     
     #t = t.drop(columns=['Unit'])
     t['Marker'] = t['Marker'].str.replace(' ', '-')
+    t = t.rename(columns={'Marker':'ONS Marker'})
     
     fleNme = 'observations-5-' + str(i) + '.csv'
     t.drop_duplicates().to_csv(out / (fleNme), index = False)
