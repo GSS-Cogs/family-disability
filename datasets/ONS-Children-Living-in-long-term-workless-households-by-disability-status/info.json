@@ -1,43 +1,57 @@
 {
-  "title": "Children living in long-term workless households, by disability status (Table H)",
-  "publisher": "ONS",
-  "description": "Annual estimates of the number of children living in households in the UK where all the adults have not worked for at least 12 months, by highest qualification of all adults in the household.",
-  "landingPage": "https://www.ons.gov.uk/employmentandlabourmarket/peoplenotinwork/unemployment/datasets/hchildrenlivinginlongtermworklesshouseholdsandworklesshouseholdsbydisabilitystatus",
-  "contacts": [{
-    "name": "Bob Watson",
-    "tel": "+44 (0)1633 455070",
-    "email": "labour.supply@ons.gov.uk"
-  }],
-  "published": "30 October 2019",
-  "families": ["Education", "Disability"],
-  "stability": "Good",
-  "future": "Good",
-  "extract": {
-    "source": "Excel spreadsheet",
-    "subset": "All tabs",
-    "breakdowns": [
-      "Year",
-      {
-        "Workless Household Type": ["Children in long-term workless households", "Children in workless households",
-                                        "All children"]
-      },
-      {
-        "Household Disability Status": ["No disabled adults in household", "Some adults in household are disabled",
-                                        "All adults in household are disabled"]
-      },
-      {
-        "Measure Type": ["Thousands"]
-      },
-      {
-        "Unit": ["People"]
-      }
-    ]
-  },
-  "notes": [
-    "Source: Annual Population Survey (Household)."
-  ],
-  "transform": {
-    "main_issue": 12,
-    "asana": "1149605042704978"
-  }
+    "title": "Children living in long-term workless households, by disability status (Table H)",
+    "publisher": "Office for National Statistics",
+    "description": "Annual estimates of the number of children living in households in the UK where all the adults have not worked for at least 12 months, by highest qualification of all adults in the household.",
+    "landingPage": "https://www.ons.gov.uk/employmentandlabourmarket/peoplenotinwork/unemployment/datasets/hchildrenlivinginlongtermworklesshouseholdsandworklesshouseholdsbydisabilitystatus",
+    "contacts": [
+        {
+            "name": "Bob Watson",
+            "tel": "+44 (0)1633 455070",
+            "email": "labour.supply@ons.gov.uk"
+        }
+    ],
+    "published": "2018-10-31",
+    "families": [
+        "Disabilities"
+    ],
+    "stability": "Good",
+    "future": "Good",
+    "extract": {
+        "source": "XLS",
+        "subset": "All tabs",
+        "breakdowns": [
+            "Year",
+            {
+                "Workless Household Type": [
+                    "Children in long-term workless households",
+                    "Children in workless households",
+                    "All children"
+                ]
+            },
+            {
+                "Household Disability Status": [
+                    "No disabled adults in household",
+                    "Some adults in household are disabled",
+                    "All adults in household are disabled"
+                ]
+            },
+            {
+                "Measure Type": [
+                    "Thousands"
+                ]
+            },
+            {
+                "Unit": [
+                    "People"
+                ]
+            }
+        ]
+    },
+    "notes": "Source: Annual Population Survey (Household).",
+    "transform": {
+        "main_issue": 12,
+        "asana": "1149605042704978",
+        "airtable": "recWlEPwJpmEvDFKf"
+    },
+    "sizingNotes": "Simple table structure with footnotes and 5 tables on the one spreadheet."
 }

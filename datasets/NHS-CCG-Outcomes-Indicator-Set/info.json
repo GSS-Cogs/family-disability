@@ -1,34 +1,48 @@
 {
-  "title": "CCG Outcomes Indicator Set - December 2019",
-  "publisher": "NHS Digital ",
-  "description": "The indicators aim to provide clear, comparative information for Clinical Commissioning Groups (CCGs) and Health and Wellbeing Boards (HWBs) about the quality of health services commissioned by CCGs and, as far as possible, the associated health outcomes.",
-  "landingPage": "https://digital.nhs.uk/data-and-information/publications/clinical-indicators/ccg-outcomes-indicator-set",
-  "datasetNotes": [
-    "Latest version: CCG Outcomes Indicator Set..."
-  ],
-  "contacts": [{
-    "name": "Madeleine Watson, Chris Drew",
-    "tel": "0300 303 5678",
-    "email": "enquiries@nhsdigital.nhs.uk"
-  }],
-  "published": "December 2019",
-  "families": ["Health", "Disability"],
-  "stability": "Good",
-  "future": "Good",
-  "extract": {
-    "source": "Excel spreadsheet, CSV",
-    "subset": "All tabs",
-    "breakdowns": [
-      "Reporting period", "Breakdown", "Level",
-      {
-        "Health": ["Cancer", "Mental illness", "Long-term"]
-      },
-      "Survival rate", "Check", "Value"
-    ]
-  },
-  "notes": "",
-  "transform": {
-    "main_issue": 13,
-    "asana": "1145780845413497"
-  }
+    "title": "CCG Outcomes Indicator Set",
+    "publisher": "NHS Digital",
+    "description": "The indicators aim to provide clear, comparative information for Clinical Commissioning Groups (CCGs) and Health and Wellbeing Boards (HWBs) about the quality of health services commissioned by CCGs and, as far as possible, the associated health outcomes.",
+    "landingPage": "https://digital.nhs.uk/data-and-information/publications/clinical-indicators/ccg-outcomes-indicator-set/current",
+    "datasetNotes": [
+        "Latest version: CCG Outcomes Indicator Set..."
+    ],
+    "contacts": [
+        {
+            "name": "Madeleine Watson, Chris Drew",
+            "tel": "0300 303 5678",
+            "email": "enquiries@nhsdigital.nhs.uk"
+        }
+    ],
+    "published": "2019-09-19",
+    "families": [
+        "Disabilities"
+    ],
+    "stability": "Good",
+    "future": "Good",
+    "extract": {
+        "source": "XLS, CSV",
+        "subset": "All tabs",
+        "breakdowns": [
+            "Reporting period",
+            "Breakdown",
+            "Level",
+            {
+                "Health": [
+                    "Cancer",
+                    "Mental illness",
+                    "Long-term"
+                ]
+            },
+            "Survival rate",
+            "Check",
+            "Value"
+        ]
+    },
+    "notes": "This is a larger dataset The indicators aim to provide clear, comparative information for Clinical Commissioning Groups (CCGs) and Health and Wellbeing Boards (HWBs) about the quality of health services commissioned by CCGs and, as far as possible, the associated health outcomes. Listed below are a number of datasets relating to disabilities, although it is possible that there are more that are appropriate.\nWill probably entail converting a number of sheets into a larger dataset and involve a significant amount of effort.",
+    "transform": {
+        "main_issue": 13,
+        "asana": "1145780845413497",
+        "airtable": "recKTza3fNH5pz1ko"
+    },
+    "sizingNotes": "Simple table structure with a few dimensions. Large tables, spread across many files. Although table structures are simple, combining the files may be complex or treating each file seperately will entail a lot of resource."
 }

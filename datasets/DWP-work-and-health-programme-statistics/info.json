@@ -1,32 +1,62 @@
 {
-  "title": "Work and Health Programme statistics to May 2019",
-  "publisher": "Department for Work and Pensions",
-  "description": "Results from the Family Resources Survey for financial year 2017 to 2018, providing information on income and circumstances of UK households. Includes a table of Disability information.",
-  "landingPage": "https://www.gov.uk/government/collections/work-and-health-programme-statistics",
-  "contacts": [{
-    "name": "Department for Work and Pensions"
-  }],
-  "published": "29 August 2019",
-  "families": "Disability",
-  "stability": "Good",
-  "future": "Good",
-  "extract": {
-    "source": "Excel spreadsheet, ODS",
-    "subset": "All tabs",
-    "breakdowns": [{
-      "Period": ["Month/year", "6 months", "12 months"]},
-        "Referrals/individual referrals", "Starts", "Referral group", "Job outcome",
+    "title": "Work and Health Programme statistics to May 2019",
+    "publisher": "Department for Work and Pensions",
+    "description": "The Work and Health Programme (WHP) predominantly helps disabled people, as well as the long-term unemployed and certain other priority groups to enter into and stay in work.",
+    "landingPage": "https://www.gov.uk/government/statistics/work-and-health-programme-statistics-to-may-2019",
+    "contacts": [
         {
-          "Gender": ["Male", "Female", "Unknown"]
-        },
-        {
-        "Age": ["18-24", "25-34", "35-44", "45-49", "50-54", "55-59", "60+", "Unknown"]
-      },
-      "Contract package area", "local Government Partnership"
-    ]
-  },
-  "transform": {
-    "main_issue": 66, 
-    "asana": "1152609750780897"
-  }
+            "name": "Department for Work and Pensions"
+        }
+    ],
+    "published": "2019-08-29",
+    "families": [
+        "Disabilities"
+    ],
+    "stability": "Good",
+    "future": "Good",
+    "extract": {
+        "source": "XLS, ODS",
+        "subset": "All tabs",
+        "breakdowns": [
+            {
+                "Period": [
+                    "Month/year",
+                    "6 months",
+                    "12 months"
+                ]
+            },
+            "Referrals/individual referrals",
+            "Starts",
+            "Referral group",
+            "Job outcome",
+            {
+                "Gender": [
+                    "Male",
+                    "Female",
+                    "Unknown"
+                ]
+            },
+            {
+                "Age": [
+                    "18-24",
+                    "25-34",
+                    "35-44",
+                    "45-49",
+                    "50-54",
+                    "55-59",
+                    "60+",
+                    "Unknown"
+                ]
+            },
+            "Contract package area",
+            "local Government Partnership"
+        ]
+    },
+    "transform": {
+        "main_issue": 66,
+        "asana": "1152609750780897",
+        "airtable": "recnV3wdsf6Wxj5dM"
+    },
+    "sizingNotes": "Simple table structure with multiple dimensions, subdimensions and footnotes.",
+    "notes": ""
 }
