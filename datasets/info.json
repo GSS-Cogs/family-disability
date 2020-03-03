@@ -1,24 +1,16 @@
 {
-  "family": "Disability",
-  "github": "https://github.com/GSS-Cogs/family-disability",
-  "pipelines": [
-    "DWP-Family-Resources-Survey-Carer",
-    "DWP-Family-Resources-Survey-Disability",
-    "DWP-work-and-health-programme-statistics",
-    "DfE-Statements-of-SEN-and-EHC-Plans-England",
-    "DfE-special-educational-needs",
-    "MHCLG-English-indices-of-deprivation",
-    "NHS-CCG-Outcomes-Indicator-Set",
-    "NHS-adult-social-care-activity-and-finance-england",
-    "NHS-guardianship-mental-health-act",
-    "NHS-learning-disability-health-check-scheme-england",
-    "NHS-measures-adult-social-care-outcomes",
-    "NISRA-northern-ireland-deprivation",
-    "ONS-Children-Living-in-long-term-workless-households-by-disability-status",
-    "ONS-Civil-Service-Statistics",
-    "ONS-Health-state-life-expectancy",
-    "ONS-Labour-force-survey",
-    "PHE-Co-occurring-substance-misuse-and-mental-health-issues",
-    "SG-homelessness-in-scotland-annual-publication"
-  ]
+    "family": "Disabilities",
+    "github": "https://github.com/GSS-Cogs/family-disability",
+    "pipelines": [
+        "DWP-Family-Resources-Survey-Disability",
+        "DWP-work-and-health-programme-statistics",
+        "MHCLG-English-indices-of-deprivation",
+        "NHS-CCG-Outcomes-Indicator-Set",
+        "NISRA-northern-ireland-deprivation",
+        "ONS-Children-Living-in-long-term-workless-households-by-disability-status",
+        "ONS-Civil-Service-Statistics",
+        "ONS-Health-state-life-expectancy",
+        "ONS-Labour-force-survey",
+        "SG-homelessness-in-scotland-annual-publication"
+    ]
 }
