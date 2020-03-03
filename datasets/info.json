@@ -4,7 +4,7 @@
   "pipelines": [
     "DWP-Family-Resources-Survey-Carer",
     "DWP-Family-Resources-Survey-Disability",
-    "DWP-work-and-health-programme-statistics"
+    "DWP-work-and-health-programme-statistics",
     "DfE-Statements-of-SEN-and-EHC-Plans-England",
     "DfE-special-educational-needs",
     "MHCLG-English-indices-of-deprivation",
@@ -19,6 +19,6 @@
     "ONS-Health-state-life-expectancy",
     "ONS-Labour-force-survey",
     "PHE-Co-occurring-substance-misuse-and-mental-health-issues",
-    "SG-homelessness-in-scotland-annual-publication",
+    "SG-homelessness-in-scotland-annual-publication"
   ]
 }
