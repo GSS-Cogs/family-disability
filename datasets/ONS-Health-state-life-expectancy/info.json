@@ -1,26 +1,40 @@
 {
-  "title": "Health state life expectancy - all ages, UK",
-  "publisher": "ONS",
-  "description": "Pivot tables for health state life expectancy by sex and area type, divided by two-year intervals starting from 2009 to 2011. Inversely relevant to disability dataset.",
-  "landingPage": "https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/datasets/healthstatelifeexpectancyallagesuk",
-  "contacts": [{
-    "name": "Merilynn Pratt",
-    "tel": "01633 456305",
-    "email": "merilynn.pratt@ons.gov.uk"
-  }],
-  "published": "12 Dec 2018",
-  "families": ["Disability", "Health"],
-  "stability": "Good",
-  "future": "Good",
-  "extract": {
-    "source": "Excel spreadsheet, CSV and XLS",
-    "subset": "All tabs",
-    "breakdowns": [
-      "Period", "Geography", "Sex", "Age Group", "Health State Life Expectancy"
-    ]
-  },
-  "transform": {
-    "main_issue": 5,
-    "asana": "1149989260843180"
-  }
+    "title": "Health state life expectancy - all ages, UK",
+    "publisher": "Office for National Statistics",
+    "description": "Pivot tables for health state life expectancy by sex and area type, divided by two-year intervals starting from 2009 to 2011. Inversely relevant to disability dataset.",
+    "landingPage": "https://www.ons.gov.uk/peoplepopulationandcommunity/healthandsocialcare/healthandlifeexpectancies/datasets/healthstatelifeexpectancyallagesuk",
+    "contacts": [
+        {
+            "name": "Merilynn Pratt",
+            "tel": "01633 456305",
+            "email": "merilynn.pratt@ons.gov.uk"
+        }
+    ],
+    "published": "2019-12-11",
+    "families": [
+        "Disabilities"
+    ],
+    "stability": "Good",
+    "future": "Good",
+    "extract": {
+        "source": "XLS",
+        "subset": "All tabs",
+        "breakdowns": [
+            "Period",
+            "Geography",
+            "Sex",
+            "Age Group",
+            "Health State Life Expectancy"
+        ]
+    },
+    "transform": {
+        "main_issue": 5,
+        "asana": "1149989260843180",
+        "airtable": "recrHZzjDy8tbQLxW"
+    },
+    "datasetNotes": [
+        "Data on this page identified towards middle-bottom of page, under heading \"Your download option\" and \"Current\"."
+    ],
+    "sizingNotes": "Large amount of data.  Simple table structure, mixture of numbers and percentages.  Could be more than 1 dataset?",
+    "notes": "Several candidate datasets."
 }
