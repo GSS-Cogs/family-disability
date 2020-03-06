@@ -1,6 +1,13 @@
 {
     "family": "Disabilities",
     "github": "https://github.com/GSS-Cogs/family-disability",
+    "jenkins": {
+        "base": "https://ci.floop.org.uk",
+        "path": [
+            "GSS_data",
+            "Disability"
+        ]
+    },
     "pipelines": [
         "DWP-Family-Resources-Survey-Disability",
         "DWP-work-and-health-programme-statistics",

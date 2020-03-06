@@ -1,27 +1,27 @@
 <div class="row">
   <div class="col border p-2">
-    <span class="font-weight-bold">Title: </span>{{title}}
+    <span class="font-weight-bold">Title: </span>{{dataset.title}}
   </div>
 </div>
 <div class="row">
   <div class="col border-bottom border-right border-left p-2">
-    <span class="font-weight-bold">Publisher: </span>{{publisher}}
+    <span class="font-weight-bold">Publisher: </span>{{dataset.publisher}}
   </div>
 </div>
 <div class="row">
   <div class="col border-bottom border-right border-left p-2">
     <div class="font-weight-bold">Description:</div>
-    <div>{{description}}</div>
+    <div>{{dataset.description}}</div>
   </div>
   <div class="col border-bottom border-right p-2">
     <div class="font-weight-bold">Landing page:</div>
-    <div><a href="{{landingPage}}">{{landingPage}}</a></div>
+    <div><a href="{{dataset.landingPage}}">{{dataset.landingPage}}</a></div>
   </div>
 </div>
 <div class="row">
   <div class="col border-bottom border-right border-left p-2">
     <div class="font-weight-bold">Contacts:</div>
-    {{#each contacts}}
+    {{#each dataset.contacts}}
       <div>{{this.name}}</div>
       <div>{{this.tel}}</div>
       <div><a href="mailto:{{this.email}}">{{this.email}}</a></div>
@@ -30,9 +30,9 @@
   <div class="col border-bottom border-right p-2">
     <div class="font-weight-bold">Finding the dataset / distribution:</div>
     <div>
-      {{#if datasetNotes}}
+      {{#if dataset.datasetNotes}}
       <ol>
-        {{#each datasetNotes}}
+        {{#each dataset.datasetNotes}}
         <li>{{this}}</li>
         {{/each}}
         </ol>
@@ -43,11 +43,11 @@
 <div class="row">
   <div class="col border-bottom border-right border-left p-2">
     <div class="font-weight-bold">Published:</div>
-    <div>{{published}}</div>
+    <div>{{dataset.published}}</div>
   </div>
   <div class="col border-bottom border-right p-2">
     <div class="font-weight-bold">Families:</div>
-    {{#each families}}
+    {{#each dataset.families}}
       {{this}}{{#unless @last}}, {{/unless}}
     {{/each}}
   </div>
@@ -55,15 +55,15 @@
 <div class="row">
   <div class="col border-bottom border-right border-left p-2">
     <span class="font-weight-bold">RAP:</span>
-    <span>{{#if rap}}{{rap}}{{/if}}</span>
+    <span>{{#if dataset.rap}}{{dataset.rap}}{{/if}}</span>
   </div>
   <div class="col border-bottom border-right p-2">
     <span class="font-weight-bold">Stability:</span>
-    <span>{{#if stability}}{{stability}}{{/if}}</span>
+    <span>{{#if dataset.stability}}{{dataset.stability}}{{/if}}</span>
   </div>
   <div class="col border-bottom border-right p-2">
     <span class="font-weight-bold">Future:</span>
-    <span>{{#if future}}{{future}}{{/if}}</span>
+    <span>{{#if dataset.future}}{{dataset.future}}{{/if}}</span>
   </div>
 </div>
 <div class="row">
@@ -84,17 +84,27 @@
   <div class="col border-bottom border-right border-left p-2">
     <div>
       <span class="font-weight-bold">Source:</span>
-      <span>{{extract.source}}</span>
+      <span>{{dataset.extract.source}}</span>
     </div>
     <div>
       <span class="font-weight-bold">Subset:</span>
-      <span>{{extract.subset}}</span>
+      <span>{{dataset.extract.subset}}</span>
     </div>
   </div>
   <div class="col border-bottom border-right p-2">
-    {{#if transform.main_issue}}
-    <span class="font-weight-bold">Tracking:</span>
-    <span><a href="https://github.com/GSS-Cogs/family-disability/issues/{{transform.main_issue}}">GitHub issue #{{transform.main_issue}}</a></span>
+    {{#if dataset.transform.main_issue}}
+    <div>
+        <span class="font-weight-bold">Tracking:</span>
+        <span><a href="{{main.github}}/issues/{{dataset.transform.main_issue}}">GitHub issue #{{dataset.transform.main_issue}}</a></span>
+    </div>
+    {{/if}}
+    {{#if main.jenkins}}
+    <div>
+        <span class="font-weight-bold">Jenkins:</span>
+        <span><a href="{{main.jenkins.base}}/{{jenkins_path}}/job/{{dataset_path}}">
+            <img src="{{main.jenkins.base}}/{{jenkins_buildicon}}{{dataset_path}}"/>
+        </a></span>
+    </div>
     {{/if}}
   </div>
   <div class="col border-bottom border-right p-2">
@@ -104,7 +114,7 @@
   <div class="col border-bottom border-right border-left p-2">
     <div>
       <div class="font-weight-bold">Breakdowns:</div>
-      {{#each extract.breakdowns}}
+      {{#each dataset.extract.breakdowns}}
         <div>
           {{#ifObject this}}
             {{#each this}}
@@ -125,6 +135,6 @@
 <div class="row">
   <div class="col border-bottom border-right border-left p-2">
       <div class="font-weight-bold">Notes:</div>
-      <div>{{notes}}</div>
+      <div>{{dataset.notes}}</div>
   </div>
 </div>
