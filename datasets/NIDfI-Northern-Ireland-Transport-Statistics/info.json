@@ -1,0 +1,22 @@
+{
+    "title": "Northern Ireland Transport Statistics",
+    "publisher": "Northern Ireland Department for Infrastructure",
+    "description": "This publication presents information on the road network, public transport and accessible transport in Northern Ireland.",
+    "landingPage": "https://www.infrastructure-ni.gov.uk/articles/northern-ireland-transport-statistics",
+    "datasetNotes": [
+        "Data on this page identified via a link at top of list under heading \"Publications\". This will link to another page with the latest data, identified on page under heading \"Documents\" as two tables in XLS and ODS formats."
+    ],
+    "published": "2019-10-24",
+    "families": [
+        "Disabilities"
+    ],
+    "extract": {
+        "source": "XLS, ODS",
+        "stage": "Candidate"
+    },
+    "transform": {
+        "airtable": "recL1KoRSdygeqsUE"
+    },
+    "sizingNotes": "Small tables with simple strctures but doule tables on one tab. Multiple dimensions with subdimensions and several footnotes.",
+    "notes": "Chapter 3 covers transport and disability"
+}

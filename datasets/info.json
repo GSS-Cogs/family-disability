@@ -9,14 +9,24 @@
         ]
     },
     "pipelines": [
+        "DWP-Family-Resources-Survey-Carer",
         "DWP-Family-Resources-Survey-Disability",
         "DWP-work-and-health-programme-statistics",
+        "DfE-Statements-of-SEN-and-EHC-Plans-England",
+        "DfE-special-educational-needs",
+        "HESA-Higher-Education-Staff-Data",
+        "HESA-Higher-Education-Student-Data",
+        "HO-Hate-crime-England-and-Wales",
         "MHCLG-English-indices-of-deprivation",
         "NHS-CCG-Outcomes-Indicator-Set",
+        "NHS-adult-social-care-activity-and-finance-england",
+        "NIDfI-Northern-Ireland-Transport-Statistics",
+        "NIEO-Public-Appointments-Annual-Report",
         "NISRA-northern-ireland-deprivation",
         "ONS-Children-Living-in-long-term-workless-households-by-disability-status",
         "ONS-Civil-Service-Statistics",
         "ONS-Health-state-life-expectancy",
+        "ONS-Health-state-life-expectancy-at-birth-and-at-age-65-by-local-areas-UK",
         "ONS-Labour-force-survey",
         "SG-homelessness-in-scotland-annual-publication"
     ]

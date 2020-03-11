@@ -1,0 +1,22 @@
+{
+    "title": "Higher Education Student Data",
+    "publisher": "Higher Education Statistics Agency",
+    "description": "A larger dataset relating to Higher education students.",
+    "landingPage": "https://www.hesa.ac.uk/data-and-analysis/students",
+    "datasetNotes": [
+        "Data on this page identified via a links towards bottom of page under table column heading \"table/chart\".  Once relevant table link clicked, a data table is presented on a new page, at the bottom of this table is a link to the actual data in CSV form titled \"Download table (csv) | Download source data (csv)\"."
+    ],
+    "published": "2019-01-31",
+    "families": [
+        "Disabilities"
+    ],
+    "extract": {
+        "source": "CSV",
+        "stage": "Candidate"
+    },
+    "transform": {
+        "airtable": "recMcloXh08ruyddC"
+    },
+    "sizingNotes": "As far as I can see only tables of \"HE student enrolments by personal characteristics 2013/14 - 2017/18\" and when \"next\" clicked to reveal further tables, \"UK domiciled student enrolments by disability and sex 2014/15 to 2017/18 \" have disability data. Simple table structures and dimensions. CSV format downloadable.",
+    "notes": "Open Data source available, so this is potentially an easy win dataset.\nMay fit better with an \"Education\" family"
+}

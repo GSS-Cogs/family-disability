@@ -1,0 +1,22 @@
+{
+    "title": "Hate crime, England and Wales",
+    "publisher": "Home Office",
+    "description": "Statistics on hate crimes recorded by the police and information on hate crime from the Crime Survey for England and Wales.",
+    "landingPage": "https://www.gov.uk/government/collections/hate-crime-statistics",
+    "datasetNotes": [
+        "Data on this page identified by accessing latest link \"Hate Crime England And Wales...\" towards top of page under the heading \"Documents\". The new page thus opened has relevant ODS files under the heading \"Documents\"."
+    ],
+    "published": "2019-10-15",
+    "families": [
+        "Disabilities"
+    ],
+    "extract": {
+        "source": "ODS",
+        "stage": "Candidate"
+    },
+    "transform": {
+        "airtable": "recmrje6DxdFUiTWq"
+    },
+    "sizingNotes": "Messy and complex tables with little disability data. Put on hold for further discussion.",
+    "notes": "Apendix tables Identifies numbers in a strand of hate crime, includes Disability.  This is just a small Disability figure in a wider dataset"
+}
