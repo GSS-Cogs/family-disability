@@ -1,44 +1,79 @@
 {
-  "title": "Family Resources Survey for financial year 2017 to 2018 - Carer",
-  "publisher": "Department for Work and Pensions",
-  "description": "Results from the Family Resources Survey for financial year 2017 to 2018, providing information on income and circumstances of UK households. Includes a table of Carer information.",
-  "landingPage": "https://www.gov.uk/government/collections/family-resources-survey--2",
-  "contacts": [{
-    "name": "M A Vaughan",
-    "tel": "",
-    "email": "steam.frs@dwp.gov.uk"
-  }],
-  "published": "28 March 2019",
-  "families": ["Affordable Housing", "Disability", "Care"],
-  "stability": "Good",
-  "future": "Good",
-  "extract": {
-    "source": "Excel spreadsheet, ODS",
-    "subset": "All tabs",
-    "breakdowns": [
-      "Year", "Informal Care",
-      {
-        "Gender": ["Male", "Female"]
-      },
-      {
-        "Age": ["0-15", "16-24", "25-34", "35-44", "45-54", "55-64", "65-74", "75-84", "85+"]
-      },
-      {
-        "Age Adult Carer": ["0-15", "16-24", "25-34", "35-44", "45-54", "55-64", "65-74", "75+"]
-      },
-      {
-        "Geography": ["United Kingdom"]
-      },
-      "Hours providing care per week", "Employment status", "Main source of income", "Net weekly income", "Person cared for",
-      "Frequency of care", "People receiving care", "People not receiving care", "All People"
-    ]
-  },
-  "notes": [
-    "This ETL covers the Carer dataset there is a seperate ETL for Disability an XLS and ODS document for each dataset available on the landing page.  This report also links into another ETL which has been created under affordable housing",
-    "There are 2 Age dimensions as listed above."
-  ],
-  "transform": {
-    "main_issue": 10,
-    "asana": "1149605042704982"
-  }
+    "title": "Family Resources Survey",
+    "publisher": "Department for Work and Pensions",
+    "description": "Results from the Family Resources Survey for financial year 2017 to 2018, providing information on income and circumstances of UK households. Includes a table of Carer information.",
+    "landingPage": "https://www.gov.uk/government/collections/family-resources-survey--2",
+    "contacts": [
+        {
+            "name": "M A Vaughan",
+            "tel": "",
+            "email": "steam.frs@dwp.gov.uk"
+        }
+    ],
+    "published": "",
+    "families": [
+        "Care"
+    ],
+    "stability": "Good",
+    "future": "Good",
+    "extract": {
+        "source": "XLS, ODS",
+        "subset": "All tabs",
+        "breakdowns": [
+            "Year",
+            "Informal Care",
+            {
+                "Gender": [
+                    "Male",
+                    "Female"
+                ]
+            },
+            {
+                "Age": [
+                    "0-15",
+                    "16-24",
+                    "25-34",
+                    "35-44",
+                    "45-54",
+                    "55-64",
+                    "65-74",
+                    "75-84",
+                    "85+"
+                ]
+            },
+            {
+                "Age Adult Carer": [
+                    "0-15",
+                    "16-24",
+                    "25-34",
+                    "35-44",
+                    "45-54",
+                    "55-64",
+                    "65-74",
+                    "75+"
+                ]
+            },
+            {
+                "Geography": [
+                    "United Kingdom"
+                ]
+            },
+            "Hours providing care per week",
+            "Employment status",
+            "Main source of income",
+            "Net weekly income",
+            "Person cared for",
+            "Frequency of care",
+            "People receiving care",
+            "People not receiving care",
+            "All People"
+        ],
+        "stage": "Prioritized"
+    },
+    "notes": "This relates to Care",
+    "transform": {
+        "main_issue": 10,
+        "airtable": "recHdViAYUMCSw4JE"
+    },
+    "sizingNotes": "Simple table structure with footnotes, some tabs  have 2 tables with numbers and percentages.and graphs included. Different use of age complicates things."
 }

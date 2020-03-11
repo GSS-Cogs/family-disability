@@ -38,7 +38,8 @@
                 ]
             },
             "Year"
-        ]
+        ],
+        "stage": "Prioritized"
     },
     "transform": {
         "main_issue": 9,

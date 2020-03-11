@@ -102,7 +102,8 @@
             "Benefit unit type",
             "Disability status of benefit unit",
             "State support"
-        ]
+        ],
+        "stage": "Prioritized"
     },
     "notes": "This relates to Disability",
     "transform": {

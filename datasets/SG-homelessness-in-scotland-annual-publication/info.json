@@ -44,7 +44,8 @@
             "Property type",
             "Armed services",
             "LA Care"
-        ]
+        ],
+        "stage": "Prioritized"
     },
     "transform": {
         "main_issue": 7,

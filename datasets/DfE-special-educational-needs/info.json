@@ -1,37 +1,62 @@
 {
-  "title": "Special educational needs in England: January 2019",
-  "publisher": "Department for Education",
-  "description": "Information from the school census on pupils with special educational needs (SEN) and SEN provision in schools.",
-  "landingPage": "https://www.gov.uk/government/collections/statistics-special-educational-needs-sen",
-  "datasetNotes": [
-    "Top link in \"National statistics on special educational needs in England\"",
-    "Underlying data in ZIP"
-  ],
-  "contacts": [{
-    "name": "Sean Gibson",
-    "tel": "01325 340 987",
-    "email": "sen.statistics@education.gov.uk"
-  }],
-  "published": "04 July 2019",
-  "families": ["Education", "Disability"],
-  "stability": "?",
-  "future": "?",
-  "extract": {
-    "source": "3 XLS spreadsheets",
-    "subset": "All tabs",
-    "breakdowns": [{
-        "Education provider": ["School type", "Academy type"]
-      },
-      "Provision", {
-        "Special need type": ["SEN support ", "ECH plan "]
-      }, "Year", "Age", "Gender",
-      "National curriculum year", "Free school meals", "Ethnic group", "First Language", "Primary type of need",
-      "Disability type", "Approval", "School size", "Resourced provision", "Region/LA area"
-    ]
-  },
-  "notes": "There appears to be a different definition of provision e.g. table 1, table 9 and the disabilities appears to be referred to as Primary type of need in tables 16 -18",
-  "transform": {
-    "main_issue": 15,
-    "asana": "1149605042704974"
-  }
+    "title": "Special educational needs in England: January 2019",
+    "publisher": "Department for Education",
+    "description": "Information from the school census on pupils with special educational needs (SEN) and SEN provision in schools",
+    "landingPage": "https://www.gov.uk/government/statistics/special-educational-needs-in-england-january-2019",
+    "datasetNotes": [
+        "Top link in \"National statistics on special educational needs in England\"",
+        "Underlying data in ZIP"
+    ],
+    "contacts": [
+        {
+            "name": "Sean Gibson",
+            "tel": "01325 340 987",
+            "email": "sen.statistics@education.gov.uk"
+        }
+    ],
+    "published": "2019-07-04",
+    "families": [
+        "Special Educational Needs"
+    ],
+    "stability": "?",
+    "future": "?",
+    "extract": {
+        "source": "XLS",
+        "subset": "All tabs",
+        "breakdowns": [
+            {
+                "Education provider": [
+                    "School type",
+                    "Academy type"
+                ]
+            },
+            "Provision",
+            {
+                "Special need type": [
+                    "SEN support ",
+                    "ECH plan "
+                ]
+            },
+            "Year",
+            "Age",
+            "Gender",
+            "National curriculum year",
+            "Free school meals",
+            "Ethnic group",
+            "First Language",
+            "Primary type of need",
+            "Disability type",
+            "Approval",
+            "School size",
+            "Resourced provision",
+            "Region/LA area"
+        ],
+        "stage": "Prioritized"
+    },
+    "notes": "",
+    "transform": {
+        "main_issue": 15,
+        "airtable": "recnRNBDB0W4lgBml"
+    },
+    "sizingNotes": "3 seperate spreadsheets with multiple tabs and multiple 1 tables on some tabs.   Footnotes.  some messiness from numbers and percantages and some work may be required on  determining dimensions."
 }

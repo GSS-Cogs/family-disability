@@ -50,7 +50,8 @@
             },
             "Contract package area",
             "local Government Partnership"
-        ]
+        ],
+        "stage": "Prioritized"
     },
     "transform": {
         "main_issue": 66,

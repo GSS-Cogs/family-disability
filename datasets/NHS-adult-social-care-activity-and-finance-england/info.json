@@ -1,33 +1,55 @@
 {
-  "title": "Adult Social Care Activity and Finance Report, England - 2018-19",
-  "publisher": "NHS Digital",
-  "description": "This publication contains data taken from the Adult Social Care Finance Return (ASC-FR) and Short and Long Term (SALT) collection to provide information regarding adult social care activity and finance on local authorities in England for 2018-19.",
-  "landingPage": "https://digital.nhs.uk/data-and-information/publications/statistical/adult-social-care-activity-and-finance-report",
-  "contacts": [{
-    "name": "Sarah Liley",
-    "tel": "0300 303 5678",
-    "email": "enquiries@nhsdigital.nhs.uk"
-  }],
-  "published": "22 October 2019",
-  "families": ["Social care", "Disability"],
-  "stability": "Good",
-  "future": "Good",
-  "extract": {
-    "source": "Excel spreadsheet",
-    "subset": "All tabs",
-    "breakdowns": [
-      "Activity", {
-        "Geography": ["Local Authority", "Region"]
-      },
-      "Year", "Requests, support and care",
-      {
-        "Financial": ["Income", "Expenditure", "Capital", "Cash"]
-      },
-      "Age",
-      "Finance source", "Care type", "Access route", "Long term (?)", "Short term (?)"
-    ]
-  },
-  "transform": {
-    "main_issue": 6
-  }
+    "title": "Adult Social Care Activity and Finance Report, England",
+    "publisher": "NHS Digital",
+    "description": "This publication contains data taken from the Adult Social Care Finance Return (ASC-FR) and Short and Long Term (SALT) collection to provide information regarding adult social care activity and finance on local authorities in England for 2018-19.",
+    "landingPage": "https://digital.nhs.uk/data-and-information/publications/statistical/adult-social-care-activity-and-finance-report/2018-19",
+    "contacts": [
+        {
+            "name": "Sarah Liley",
+            "tel": "0300 303 5678",
+            "email": "enquiries@nhsdigital.nhs.uk"
+        }
+    ],
+    "published": "2019-10-22",
+    "families": [
+        "Care"
+    ],
+    "stability": "Good",
+    "future": "Good",
+    "extract": {
+        "source": "XLS",
+        "subset": "All tabs",
+        "breakdowns": [
+            "Activity",
+            {
+                "Geography": [
+                    "Local Authority",
+                    "Region"
+                ]
+            },
+            "Year",
+            "Requests, support and care",
+            {
+                "Financial": [
+                    "Income",
+                    "Expenditure",
+                    "Capital",
+                    "Cash"
+                ]
+            },
+            "Age",
+            "Finance source",
+            "Care type",
+            "Access route",
+            "Long term (?)",
+            "Short term (?)"
+        ],
+        "stage": "Prioritized"
+    },
+    "transform": {
+        "main_issue": 6,
+        "airtable": "reciazosPGrsBWLB4"
+    },
+    "sizingNotes": "Simple table structures. Large number of tables, not all same structure. Multiple dimensions and sub dimensions, several footnotes.",
+    "notes": ""
 }

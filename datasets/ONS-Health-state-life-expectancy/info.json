@@ -25,7 +25,8 @@
             "Sex",
             "Age Group",
             "Health State Life Expectancy"
-        ]
+        ],
+        "stage": "Prioritized"
     },
     "transform": {
         "main_issue": 5,

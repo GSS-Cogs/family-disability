@@ -53,7 +53,8 @@
         ],
         "notes": [
             "This landing page also provides links to Multiple Deprivation Measures in the rest of the UK."
-        ]
+        ],
+        "stage": "Prioritized"
     },
     "transform": {
         "main_issue": 17,

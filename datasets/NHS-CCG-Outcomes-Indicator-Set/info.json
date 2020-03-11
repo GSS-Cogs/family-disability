@@ -36,7 +36,8 @@
             "Survival rate",
             "Check",
             "Value"
-        ]
+        ],
+        "stage": "Prioritized"
     },
     "notes": "This is a larger dataset The indicators aim to provide clear, comparative information for Clinical Commissioning Groups (CCGs) and Health and Wellbeing Boards (HWBs) about the quality of health services commissioned by CCGs and, as far as possible, the associated health outcomes. Listed below are a number of datasets relating to disabilities, although it is possible that there are more that are appropriate.\nWill probably entail converting a number of sheets into a larger dataset and involve a significant amount of effort.",
     "transform": {

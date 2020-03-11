@@ -45,7 +45,8 @@
                     "People"
                 ]
             }
-        ]
+        ],
+        "stage": "Prioritized"
     },
     "notes": "Source: Annual Population Survey (Household).",
     "transform": {

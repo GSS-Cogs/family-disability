@@ -41,7 +41,8 @@
                     "Equality Act Core"
                 ]
             }
-        ]
+        ],
+        "stage": "Prioritized"
     },
     "transform": {
         "main_issue": 3,
