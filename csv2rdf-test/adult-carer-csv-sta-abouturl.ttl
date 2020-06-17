@@ -1,0 +1,70 @@
+
+<http://gss-data.org.uk/def/adult-carer#tablegroup> a <http://www.w3.org/ns/csvw#TableGroup>;
+  <http://www.w3.org/ns/csvw#table> <http://example.com/dataset/def/concept-scheme/adult-carer>;
+  <http://www.w3.org/ns/prov#hadDerivation> <http://gss-data.org.uk/def/concept-scheme/adult-carer> .
+
+<http://gss-data.org.uk/def/concept-scheme/adult-carer> a <http://www.w3.org/2004/02/skos/core#ConceptScheme>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Adult Carer"@en .
+
+<http://example.com/dataset/def/concept-scheme/adult-carer> a <http://www.w3.org/ns/csvw#Table>;
+  <http://www.w3.org/ns/csvw#row> _:rowG__164 .
+
+_:rowG__164 a <http://www.w3.org/ns/csvw#Row>;
+  <http://www.w3.org/ns/csvw#describes> _:bnodeG__165 .
+
+_:bnodeG__165 a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "All adults";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <http://example.com/dataset/def/concept-scheme/adult-carer>;
+  <http://www.w3.org/2004/02/skos/core#notation> "all-adults";
+  <http://www.w3.org/ns/ui#sortPriority> 1.0E0 .
+
+_:rowG__164 <http://www.w3.org/ns/csvw#rownum> 1;
+  <http://www.w3.org/ns/csvw#url> <file:/workspace/reference/codelists/adult-carer.csv#row=2> .
+
+<http://example.com/dataset/def/concept-scheme/adult-carer> <http://www.w3.org/ns/csvw#row>
+    _:rowG__166 .
+
+_:rowG__166 a <http://www.w3.org/ns/csvw#Row>;
+  <http://www.w3.org/ns/csvw#describes> _:bnodeG__167 .
+
+_:bnodeG__167 a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "All adult informal carers";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <http://example.com/dataset/def/concept-scheme/adult-carer>;
+  <http://www.w3.org/2004/02/skos/core#notation> "all-adult-informal-carers";
+  <http://www.w3.org/ns/ui#sortPriority> 2.0E0 .
+
+_:rowG__166 <http://www.w3.org/ns/csvw#rownum> 2;
+  <http://www.w3.org/ns/csvw#url> <file:/workspace/reference/codelists/adult-carer.csv#row=3> .
+
+<http://example.com/dataset/def/concept-scheme/adult-carer> <http://www.w3.org/ns/csvw#row>
+    _:rowG__168 .
+
+_:rowG__168 a <http://www.w3.org/ns/csvw#Row>;
+  <http://www.w3.org/ns/csvw#describes> _:bnodeG__169 .
+
+_:bnodeG__169 a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Males";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <http://example.com/dataset/def/concept-scheme/adult-carer>;
+  <http://www.w3.org/2004/02/skos/core#notation> "males";
+  <http://www.w3.org/ns/ui#sortPriority> 3.0E0 .
+
+_:rowG__168 <http://www.w3.org/ns/csvw#rownum> 3;
+  <http://www.w3.org/ns/csvw#url> <file:/workspace/reference/codelists/adult-carer.csv#row=4> .
+
+<http://example.com/dataset/def/concept-scheme/adult-carer> <http://www.w3.org/ns/csvw#row>
+    _:rowG__170 .
+
+_:rowG__170 a <http://www.w3.org/ns/csvw#Row>;
+  <http://www.w3.org/ns/csvw#describes> _:bnodeG__171 .
+
+_:bnodeG__171 a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Females";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <http://example.com/dataset/def/concept-scheme/adult-carer>;
+  <http://www.w3.org/2004/02/skos/core#notation> "females";
+  <http://www.w3.org/ns/ui#sortPriority> 4.0E0 .
+
+_:rowG__170 <http://www.w3.org/ns/csvw#rownum> 4;
+  <http://www.w3.org/ns/csvw#url> <file:/workspace/reference/codelists/adult-carer.csv#row=5> .
+
+<http://example.com/dataset/def/concept-scheme/adult-carer> <http://www.w3.org/ns/csvw#url>
+    <file:/workspace/reference/codelists/adult-carer.csv> .
