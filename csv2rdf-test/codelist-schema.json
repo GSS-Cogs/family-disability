@@ -1,0 +1,104 @@
+{
+  "@context": [
+  "http://www.w3.org/ns/csvw",
+    {
+      "@language": "en"
+    }
+],
+    "tables": [
+      {
+        "url": "codelists/adult-carer.csv",
+        "tableSchema": {
+          "columns": [
+            {
+              "titles": "label",
+              "name": "label",
+              "datatype": "string",
+              "required": true,
+              "propertyUrl": "rdfs:label"
+            },
+            {
+              "titles": "notation",
+              "name": "notation",
+              "datatype": {
+                "base": "string",
+                "format": "^-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*$"
+              },
+              "required": true,
+              "propertyUrl": "skos:notation"
+            },
+            {
+              "titles": "parent_notation",
+              "name": "parent_notation",
+              "datatype": {
+                "base": "string",
+                "format": "^(-?[\\w\\.\\/]+(-[\\w\\.\\/]+)*|)$"
+              },
+              "required": false,
+              "propertyUrl": "skos:broader",
+              "valueUrl": "http://example.com/dataset/def/concept-scheme/adult-carer"
+            },
+            {
+              "titles": "sort_priority",
+              "name": "sort_priority",
+              "datatype": "number",
+              "required": false,
+              "propertyUrl": "http://www.w3.org/ns/ui#sortPriority"
+            },
+            {
+              "titles": "description",
+              "name": "description",
+              "datatype": "string",
+              "required": false,
+              "propertyUrl": "rdfs:comment"
+            },
+            {
+              "titles": "top_concept_of",
+              "name": "top_concept_of",
+              "datatype": "string",
+              "required": true,
+              "propertyUrl": "skos:topConceptOf",
+              "valueUrl": "http://example.com/dataset/def/concept-scheme/adult-carer"
+            },
+            {
+              "titles": "has_top_concept",
+              "name": "has_top_concept",
+              "datatype": "string",
+              "required": false,
+              "propertyUrl": "skos:hasTopConcept",
+              "valueUrl": "http://example.com/dataset/def/concept-scheme/adult-carer"
+            },
+            {
+              "titles": "pref_label",
+              "name": "pref_label",
+              "datatype": "string",
+              "required": true,
+              "propertyUrl": "skos:prefLabel"
+            },
+            {
+              "name": "in_scheme",
+              "propertyUrl": "skos:inScheme",
+              "valueUrl": "http://example.com/dataset/def/concept-scheme/adult-carer",
+              "virtual": true
+            },
+            {
+              "name": "type",
+              "propertyUrl": "rdf:type",
+              "valueUrl": "skos:Concept",
+              "virtual": true
+            }
+          ],
+          "primaryKey": ["notation","parent_notation"],
+          "aboutUrl": "http://gss-data.org.uk/def/concept/adult-carer/{notation}",
+          "@id": "http://gss-data.org.uk/def/concept/adult-carer/{notation}"
+        },
+        "@id": "http://example.com/dataset/def/concept-scheme/adult-carer"
+      }
+    ],
+    "@id": "http://gss-data.org.uk/def/adult-carer#tablegroup",
+    "prov:hadDerivation": {
+      "@id": "http://gss-data.org.uk/def/concept-scheme/adult-carer",
+      "@type": "skos:ConceptScheme",
+      "rdfs:label": "Adult Carer"
+  }
+}

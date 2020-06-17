@@ -1,0 +1,73 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix sdmx-dimension: <http://purl.org/linked-data/sdmx/2009/dimension#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sdmx-attribute: <http://purl.org/linked-data/sdmx/2009/attribute#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sdmx-concept: <http://purl.org/linked-data/sdmx/2009/concept#> .
+
+
+<http://example.com/dataset/def/concept-scheme/my-codes> dcterms:title "‘My"@en ;
+	rdfs:label "‘My"@en ;
+	a skos:ConceptScheme .
+
+<http://example.com/dataset/def/concept/my-codes/all-adults> rdfs:label "All adults" ;
+	skos:notation "all-adults" ;
+	<http://www.w3.org/ns/ui#sortPriority> 1 ;
+	skos:topConceptOf <http://example.com/dataset/def/concept-scheme/my-codes> .
+
+<http://example.com/dataset/def/concept-scheme/my-codes> skos:hasTopConcept <http://example.com/dataset/def/concept/my-codes/all-adults> .
+
+<http://example.com/dataset/def/concept/my-codes/all-adults> skos:prefLabel "All adults" ;
+	skos:inScheme <http://example.com/dataset/def/concept-scheme/my-codes> .
+
+<http://example.com/dataset/def/concept-scheme/my-codes> skos:member <http://example.com/dataset/def/concept/my-codes/all-adults> .
+
+<http://example.com/dataset/def/concept/my-codes/all-adults> a skos:Concept .
+
+<http://example.com/dataset/def/concept/my-codes/all-adult-informal-carers> rdfs:label "All adult informal carers" ;
+	skos:notation "all-adult-informal-carers" ;
+	<http://www.w3.org/ns/ui#sortPriority> 2 ;
+	skos:topConceptOf <http://example.com/dataset/def/concept-scheme/my-codes> .
+
+<http://example.com/dataset/def/concept-scheme/my-codes> skos:hasTopConcept <http://example.com/dataset/def/concept/my-codes/all-adult-informal-carers> .
+
+<http://example.com/dataset/def/concept/my-codes/all-adult-informal-carers> skos:prefLabel "All adult informal carers" ;
+	skos:inScheme <http://example.com/dataset/def/concept-scheme/my-codes> .
+
+<http://example.com/dataset/def/concept-scheme/my-codes> skos:member <http://example.com/dataset/def/concept/my-codes/all-adult-informal-carers> .
+
+<http://example.com/dataset/def/concept/my-codes/all-adult-informal-carers> a skos:Concept .
+
+<http://example.com/dataset/def/concept/my-codes/males> rdfs:label "Males" ;
+	skos:notation "males" ;
+	<http://www.w3.org/ns/ui#sortPriority> 3 ;
+	skos:topConceptOf <http://example.com/dataset/def/concept-scheme/my-codes> .
+
+<http://example.com/dataset/def/concept-scheme/my-codes> skos:hasTopConcept <http://example.com/dataset/def/concept/my-codes/males> .
+
+<http://example.com/dataset/def/concept/my-codes/males> skos:prefLabel "Males" ;
+	skos:inScheme <http://example.com/dataset/def/concept-scheme/my-codes> .
+
+<http://example.com/dataset/def/concept-scheme/my-codes> skos:member <http://example.com/dataset/def/concept/my-codes/males> .
+
+<http://example.com/dataset/def/concept/my-codes/males> a skos:Concept .
+
+<http://example.com/dataset/def/concept/my-codes/females> rdfs:label "Females" ;
+	skos:notation "females" ;
+	<http://www.w3.org/ns/ui#sortPriority> 4 ;
+	skos:topConceptOf <http://example.com/dataset/def/concept-scheme/my-codes> .
+
+<http://example.com/dataset/def/concept-scheme/my-codes> skos:hasTopConcept <http://example.com/dataset/def/concept/my-codes/females> .
+
+<http://example.com/dataset/def/concept/my-codes/females> skos:prefLabel "Females" ;
+	skos:inScheme <http://example.com/dataset/def/concept-scheme/my-codes> .
+
+<http://example.com/dataset/def/concept-scheme/my-codes> skos:member <http://example.com/dataset/def/concept/my-codes/females> .
+
+<http://example.com/dataset/def/concept/my-codes/females> a skos:Concept .

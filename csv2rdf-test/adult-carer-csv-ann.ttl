@@ -1,0 +1,30 @@
+
+<http://gss-data.org.uk/def/adult-carer#tablegroup> <http://www.w3.org/ns/prov#hadDerivation>
+    <http://gss-data.org.uk/def/concept-scheme/adult-carer> .
+
+<http://gss-data.org.uk/def/concept-scheme/adult-carer> a <http://www.w3.org/2004/02/skos/core#ConceptScheme>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Adult Carer"@en .
+
+<http://gss-data.org.uk/def/concept/adult-carer/all-adults> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "All adults";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <http://example.com/dataset/def/concept-scheme/adult-carer>;
+  <http://www.w3.org/2004/02/skos/core#notation> "all-adults";
+  <http://www.w3.org/ns/ui#sortPriority> 1.0E0 .
+
+<http://gss-data.org.uk/def/concept/adult-carer/all-adult-informal-carers> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "All adult informal carers";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <http://example.com/dataset/def/concept-scheme/adult-carer>;
+  <http://www.w3.org/2004/02/skos/core#notation> "all-adult-informal-carers";
+  <http://www.w3.org/ns/ui#sortPriority> 2.0E0 .
+
+<http://gss-data.org.uk/def/concept/adult-carer/males> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Males";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <http://example.com/dataset/def/concept-scheme/adult-carer>;
+  <http://www.w3.org/2004/02/skos/core#notation> "males";
+  <http://www.w3.org/ns/ui#sortPriority> 3.0E0 .
+
+<http://gss-data.org.uk/def/concept/adult-carer/females> a <http://www.w3.org/2004/02/skos/core#Concept>;
+  <http://www.w3.org/2000/01/rdf-schema#label> "Females";
+  <http://www.w3.org/2004/02/skos/core#inScheme> <http://example.com/dataset/def/concept-scheme/adult-carer>;
+  <http://www.w3.org/2004/02/skos/core#notation> "females";
+  <http://www.w3.org/ns/ui#sortPriority> 4.0E0 .
